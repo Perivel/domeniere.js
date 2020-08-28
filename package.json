@@ -1,0 +1,21 @@
+{
+  "name": "fragment",
+  "version": "0.1.0",
+  "description": "Frament is the domain layer framework.",
+  "main": "fragment.js",
+  "repository": "https://github.com/Perivel/fragment",
+  "author": "Patrick Luy <pluy@perivel.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "inspect:circular": "npx madge --circular --extensions ts ./",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "dependencies": {
+    "foundation": "https://github.com/Perivel/foundation.git"
+  }
+}
