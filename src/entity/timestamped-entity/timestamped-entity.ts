@@ -1,5 +1,6 @@
-import { Timestamp, TimestampedResource, Id } from 'foundation';
+import { Timestamp, TimestampedResource } from 'foundation';
 import { Entity } from "../entity/entity";
+import { Identifier } from '../../common/interfaces/identifier.interface';
 
 /**
  * TimestampedEntity
@@ -23,7 +24,7 @@ export abstract class TimestampedEntity extends Entity implements TimestampedRes
      * @throws InvalidArgumentException when the id is undefined.
      */
 
-    constructor(id: Id, created: Timestamp = Timestamp.Now(), updated: Timestamp = Timestamp.Now(), deleted: Timestamp | null = null) {
+    constructor(id: Identifier, created: Timestamp = Timestamp.Now(), updated: Timestamp = Timestamp.Now(), deleted: Timestamp | null = null) {
         try {
             super(id)
             this._createdOn = created;
@@ -98,7 +99,7 @@ export abstract class TimestampedEntity extends Entity implements TimestampedRes
      * @param id The id to set.
      */
 
-    protected setId(id: Id): void {
+    protected setId(id: Identifier): void {
         super.setId(id);
         this.commitStateChange();
     }

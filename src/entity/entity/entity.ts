@@ -1,5 +1,6 @@
 import { EntityInterface } from "./entity.interface";
-import { Id, InvalidArgumentException } from "foundation";
+import { InvalidArgumentException } from "foundation";
+import { Identifier } from "../../common/interfaces/identifier.interface";
 
 /**
  * Entity
@@ -8,15 +9,15 @@ import { Id, InvalidArgumentException } from "foundation";
  */
 
 export abstract class Entity implements EntityInterface {
-    private _id: Id;
+    private _id: Identifier;
 
     /**
      * creates a new entity instance.
-     * @param id 
+     * @param id The entity identifier.
      * @throws InvalidArgumentException when the id is undefined.
      */
 
-    constructor(id: Id) {
+    constructor(id: Identifier) {
 
         if (!id) {
             // id is undefined.
@@ -42,7 +43,7 @@ export abstract class Entity implements EntityInterface {
      * id() gets the id value of the entity.
      */
 
-    public id(): Id {
+    public id(): Identifier {
         return this._id;
     }
 
@@ -53,7 +54,7 @@ export abstract class Entity implements EntityInterface {
      * @param id The id to set.
      */
 
-    protected setId(id: Id): void {
+    protected setId(id: Identifier): void {
         this._id = id;
     }
 }

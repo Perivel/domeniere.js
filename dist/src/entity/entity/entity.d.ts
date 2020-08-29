@@ -1,10 +1,10 @@
 import { EntityInterface } from "./entity.interface";
-import { Id } from "foundation";
+import { Identifier } from "../../common/interfaces/identifier.interface";
 export declare abstract class Entity implements EntityInterface {
     private _id;
-    constructor(id: Id);
+    constructor(id: Identifier);
     abstract equals(suspect: any): boolean;
-    id(): Id;
-    protected setId(id: Id): void;
+    id(): Identifier;
+    protected setId(id: Identifier): void;
 }
 //# sourceMappingURL=entity.d.ts.map

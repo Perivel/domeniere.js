@@ -1,4 +1,5 @@
-import { Id, Equatable } from "foundation";
+import { Equatable } from "foundation";
+import { Identifier } from "../../common/interfaces/identifier.interface";
 
 /**
  * EntityInterface
@@ -9,10 +10,10 @@ import { Id, Equatable } from "foundation";
 export interface EntityInterface extends Equatable {
 
     /**
-     * id()
+     * identity()
      * 
-     * id() gets the entity Id.
+     * identity() gets the entity Identity.
      */
 
-    id(): Id;
+    id(): Identifier;
 }
