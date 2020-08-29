@@ -1,1 +1,1 @@
-"use strict";
+export { Data } from './data/data';
