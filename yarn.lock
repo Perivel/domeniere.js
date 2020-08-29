@@ -26,7 +26,7 @@ email-validator@^2.0.4:
 
 "foundation@https://github.com/Perivel/foundation.git":
   version "0.1.0"
-  resolved "https://github.com/Perivel/foundation.git#831ae76ce0a91582d5ed0cbad24b07c6aea35492"
+  resolved "https://github.com/Perivel/foundation.git#bde9f6f4a61facd19c7ef265f076102a523f132f"
   dependencies:
     "@types/moment-timezone" "^0.5.30"
     "@types/uuid" "^8.3.0"
