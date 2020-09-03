@@ -5,7 +5,7 @@
  * 
  */
 
- export abstract class EventPublisher {
+ export abstract class EventEmittingObject {
 
     constructor() {}
 

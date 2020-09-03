@@ -8,3 +8,4 @@ export * from './src/factory/factory.module';
 export * from './src/aggregate/aggregate.module';
 export * from './src/repository/repository.module';
 export * from './src/utils/utils.module';
+export * from './src/event/event.module';

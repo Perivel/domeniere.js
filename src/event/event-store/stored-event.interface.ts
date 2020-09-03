@@ -1,0 +1,69 @@
+import { Timestamp } from "foundation";
+
+/**
+ * StoredEventInterface
+ */
+
+export interface StoredEventInterface {
+
+    /**
+     * eventBody()
+     * 
+     * eventBody() gets the event body.
+     */
+
+    eventBody(): string;
+
+    /**
+     * evnetClassification()
+     * 
+     * eventClassification() gets the event classification.
+     */
+
+    eventClassification(): string;
+
+    /**
+     * eventId()
+     * 
+     * eventId() gets the event id.
+     */
+    eventId(): string;
+
+    /**
+     * eventName()
+     * 
+     * eventName() gets the event name.
+     */
+
+    eventName(): string;
+
+    /**
+     * eventVersion()
+     * 
+     * eventVersion() gets the event version.
+     */
+
+    eventVersion(): number;
+
+    /**
+     * isPublished()
+     * 
+     * isPublished() determines if an event has been published.
+     */
+    isPublished(): boolean;
+
+    /**
+     * markPublished()
+     * 
+     * markPublished() marks a stored event as published.
+     */
+    markPublished(): void;
+
+    /**
+     * occuredOn()
+     * 
+     * occuredOn()
+     */
+
+    occuredOn(): Timestamp;
+}
