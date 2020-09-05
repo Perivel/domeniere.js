@@ -1,6 +1,5 @@
 import { DomainEvent } from "../domain-event/domain-event";
 import { StoredEvent } from "./stored-event";
-import { CronJob, CronTime } from 'cron';
 
 /**
  * EventStore
@@ -11,12 +10,11 @@ import { CronJob, CronTime } from 'cron';
 export abstract class EventStore {
 
     private _maxUnpublishedEventsAllowed: number;
-    private _scheduledProcedure: CronJob;
+    private _unpublishedEventCount: number;
 
     constructor() {
         this._maxUnpublishedEventsAllowed = 50;
-        this._scheduledProcedure = this.createCronJob();
-        this._scheduledProcedure.start();
+        this._unpublishedEventCount = 0;
     }
 
     /**
@@ -67,6 +65,11 @@ export abstract class EventStore {
         try {
             // store the event.
             await this.save(storedEvent);
+            this._unpublishedEventCount++;
+
+            if (this._unpublishedEventCount >= this._maxUnpublishedEventsAllowed) {
+                await this.publishEvents();
+            }
         }
         catch(error) {
             // failed to store the event.
@@ -135,16 +138,5 @@ export abstract class EventStore {
             }
         }
         return true;
-    }
-
-    /**
-     * createCronJob()
-     * 
-     * createCronJob() creates the procedure.
-     */
-
-    private createCronJob(): CronJob {
-        const everyTenMinutes = '*/10 * * * *';
-        return new CronJob(everyTenMinutes, this.publishEvents);
     }
 }

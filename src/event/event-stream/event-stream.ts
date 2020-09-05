@@ -5,6 +5,7 @@ import { EventStore } from "../event-store/event-store";
 import { Subscriber } from "../subscriber/subscriber";
 import { EventHandler } from "../subscriber/event-handler.type";
 import { SubscriberId } from "../subscriber/subscriber-id";
+import { DefaultEventStore } from "../event-store/default-event-store";
 
 
 export class EventStream implements EventStreamInterface {
@@ -15,10 +16,11 @@ export class EventStream implements EventStreamInterface {
     private emitter: EventEmitter;
 
     // event store
-    private static eventStore: EventStore;
+    private eventStore: EventStore;
 
     private constructor() {
         this.emitter = new EventEmitter();
+        this.eventStore = new DefaultEventStore();
     }
 
     /**
@@ -44,10 +46,10 @@ export class EventStream implements EventStreamInterface {
 
     public async emit(event: DomainEvent): Promise<void> {
 
-        if (EventStream.eventStore) {
+        if (this.eventStore) {
             
             try {
-                EventStream.eventStore.store(event);
+                this.eventStore.store(event);
                 await this.emitter.emit(event);
             }
             catch(err) {
@@ -66,7 +68,7 @@ export class EventStream implements EventStreamInterface {
      */
 
     public setEventStore(eventStore: EventStore): void {
-        EventStream.eventStore = eventStore;
+        this.eventStore = eventStore;
     }
 
     /**
