@@ -1,17 +1,17 @@
 import { UUID } from "foundation";
 import { EventStream } from "../event-stream/event-stream";
 import { DomainEventHandlerPriority } from "../subscriber/domain-event-handler-priority.enum";
+import { EventAggregate } from "../event-emitter/event-aggregate..type";
 import { EventDescriptor } from "./event-decryptor";
 
 /**
- * On() Decorator.
+ * OnAny() Decorator.
  * 
- * On() decorator is a method-decorator that 
- * automatically adds an observer for the specified
- * event.
+ * OnAny() decorator is a method-decorator that 
+ * automatically adds an observer for any event.
  */
 
-export function On<T extends { EventName: () => string, new(...args: any): InstanceType<T> }>(event: T, priority: DomainEventHandlerPriority = DomainEventHandlerPriority.MEDIUM, label: string = UUID.V4().id(), stopPropogationOnError: boolean = false) {
+export function OnAny<T extends { EventName: () => string, new(...args: any): InstanceType<T> }>(priority: DomainEventHandlerPriority = DomainEventHandlerPriority.MEDIUM, label: string = UUID.V4().id(), stopPropogationOnError: boolean = false) {
     return function (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) {
 
         // get the function the decorator was applied to.
@@ -21,7 +21,7 @@ export function On<T extends { EventName: () => string, new(...args: any): Insta
         const handlerPriority = Number(priority);
 
         // get the event name.
-        const eventName = event.EventName();
+        const eventName = EventAggregate.Any.toString();
 
         if (func) {
             // create the subscription identifier.

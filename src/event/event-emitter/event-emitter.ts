@@ -3,6 +3,7 @@ import { SubscriberInterface } from "../subscriber/subscriber.interface";
 import { Subscriber } from "../subscriber/subscriber";
 import { DomainEvent } from "../domain-event/domain-event";
 import { PriorityQueue } from "foundation";
+import { EventAggregate } from "./event-aggregate..type";
 
 
 export class EventEmitter implements EventEmitterInterface{
@@ -49,13 +50,13 @@ export class EventEmitter implements EventEmitterInterface{
                 (sub.eventName() === eventName) ||
 
                 // The subscriber is listening to all events.
-                (sub.eventName() === "*") ||
+                (sub.eventName() === EventAggregate.Any.toString()) ||
                 
                 // The subscriber is listening to framework events.
-                ((event.isInternal()) && (sub.eventName() === 'framework.internal.event')) || 
+                ((event.isInternal()) && (sub.eventName() === EventAggregate.Internal.toString())) || 
 
                 // The subscriber is listening to an error event.
-                ((event.isError()) && (sub.eventName() === "framework.internal.error"))
+                ((event.isError()) && (sub.eventName() === EventAggregate.Error.toString()))
             ) {
                 // add the subscriber to the queue.
                 queue.enqueue(sub, sub.priority());

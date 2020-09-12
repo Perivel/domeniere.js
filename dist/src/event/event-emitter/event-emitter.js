@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { PriorityQueue } from "foundation";
+import { EventAggregate } from "./event-aggregate..type";
 export class EventEmitter {
     constructor(maxRetries = 3) {
         this.subscribers = new Array();
@@ -24,9 +25,9 @@ export class EventEmitter {
             const eventName = event.eventName();
             this.subscribers.forEach(sub => {
                 if ((sub.eventName() === eventName) ||
-                    (sub.eventName() === "*") ||
-                    ((event.isInternal()) && (sub.eventName() === 'framework.internal.event')) ||
-                    ((event.isError()) && (sub.eventName() === "framework.internal.error"))) {
+                    (sub.eventName() === EventAggregate.Any.toString()) ||
+                    ((event.isInternal()) && (sub.eventName() === EventAggregate.Internal.toString())) ||
+                    ((event.isError()) && (sub.eventName() === EventAggregate.Error.toString()))) {
                     queue.enqueue(sub, sub.priority());
                 }
             });

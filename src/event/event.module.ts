@@ -9,3 +9,6 @@ export { EventStore } from './event-store/event-store';
 export { StoredEvent } from './event-store/stored-event';
 export { EventStream } from './event-stream/event-stream';
 export { On } from './decorators/on.decorator';
+export { OnInternal } from './decorators/on-internal.decorator';
+export { OnError } from './decorators/on-error.decorator';
+export { OnAny } from './decorators/on-any.decorator';
