@@ -6,6 +6,8 @@ import { Subscriber } from "../subscriber/subscriber";
 import { EventHandler } from "../subscriber/event-handler.type";
 import { SubscriberId } from "../subscriber/subscriber-id";
 import { DefaultEventStore } from "../event-store/default-event-store";
+import { NetworkEventQueue, NetworkEventQueueInterface } from "../../common/common.module";
+import { DefaultNetworkEventQueue } from "../../common/objects/default-network-event-queue";
 
 
 export class EventStream implements EventStreamInterface {
@@ -18,9 +20,25 @@ export class EventStream implements EventStreamInterface {
     // event store
     private _eventStore: EventStore;
 
+    // The publish queue.
+    // The publish queue is the queue used specifically for events awaiting to
+    // be published to the public queue.
+    private _publishQueue: NetworkEventQueue;
+
+    // The Public Queue
+    // The public Queue is the queue that is exposed to the whole network.
+    private _publicQueue: NetworkEventQueue;
+
+    // indicates whether or not internal events should be saved.
+    private _shouldSaveInternalEvents: boolean;
+
+
     private constructor() {
         this.emitter = new EventEmitter();
         this._eventStore = new DefaultEventStore();
+        this._publicQueue = new DefaultNetworkEventQueue();
+        this._publishQueue = new DefaultNetworkEventQueue();
+        this._shouldSaveInternalEvents = false;
     }
 
     /**
@@ -50,7 +68,18 @@ export class EventStream implements EventStreamInterface {
 
         try {
             // save the event
-            await this.eventStore().store(event);
+            //await this.eventStore().store(event);
+
+            if (event.isInternal()) {
+                // only store if it is specified that internal events must be stored.
+                if (this._shouldSaveInternalEvents) {
+                    await this.eventStore().store(event);
+                }
+            }
+            else {
+                // events must be stored regardless.
+                await this.eventStore().store(event);
+            }
         }
         catch(err) {
             // failed to store the event.
@@ -72,6 +101,15 @@ export class EventStream implements EventStreamInterface {
     }
 
     /**
+     * saveInternalEvents()
+     * saveInternalEvents() indicates that internal framework events should be saved.
+     */
+
+    public saveInternalEvents(): void {
+        this._shouldSaveInternalEvents = true;
+    }
+
+    /**
      * setEventStore()
      * 
      * setEventStore() sets the event store.
@@ -79,6 +117,28 @@ export class EventStream implements EventStreamInterface {
 
     public setEventStore(eventStore: EventStore): void {
         this._eventStore = eventStore;
+    }
+
+    /**
+     * setPublicQueue()
+     * 
+     * sets the public queue.
+     * @param queue The queue to set.
+     */
+
+    public setPublicQueue(queue: NetworkEventQueueInterface): void {
+        this._publicQueue = queue;
+    }
+
+    /**
+     * setPublishQueue()
+     * 
+     * sets the publish queue.
+     * @param queue The queue to set.
+     */
+
+    public setPublishQueue(queue: NetworkEventQueueInterface): void {
+        this._publishQueue = queue;
     }
 
     /**

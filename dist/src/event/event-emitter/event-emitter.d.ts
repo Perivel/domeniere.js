@@ -9,5 +9,6 @@ export declare class EventEmitter implements EventEmitterInterface {
     emit(event: DomainEvent): Promise<void>;
     removeSubscriber(suspect: Subscriber): void;
     private subscriberExists;
+    private executeEventHandlers;
 }
 //# sourceMappingURL=event-emitter.d.ts.map

@@ -1,6 +1,7 @@
 import { EventHandler } from "../subscriber/event-handler.type";
 import { DomainEventInterface } from "../domain-event/domain-event.interface";
 import { EventStore } from "../event-store/event-store";
+import { NetworkEventQueueInterface } from "../../common/common.module";
 
 /**
  * EventStreamInterface
@@ -33,6 +34,23 @@ export interface EventStreamInterface {
      */
 
     setEventStore(eventStore: EventStore): void;
+
+    /**
+     * setPublicQueue()
+     * 
+     * sets the public queue.
+     * @param queue The queue to set.
+     */
+
+    setPublicQueue(queue: NetworkEventQueueInterface): void;
+
+    /**
+     * setPublishQueue()
+     * 
+     * sets the publish queue.
+     * @param queue The queue to set.
+     */
+    setPublishQueue(queue: NetworkEventQueueInterface): void;
 
     /**
      * creates a subscriber for the event stream.

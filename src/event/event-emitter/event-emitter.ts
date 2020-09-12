@@ -64,16 +64,7 @@ export class EventEmitter implements EventEmitterInterface{
         });
 
         // handle the events.
-        await Promise.all(queue.toArray().map(async sub => {
-            try {
-                // execute the subscriber handler.
-                await sub.handleEvent(event);
-            }
-            catch(error) {
-                // An error occured.
-                // publish the error event.
-            }
-        }));
+        await this.executeEventHandlers(queue.toArray(), event);
     }
 
     /**
@@ -100,5 +91,33 @@ export class EventEmitter implements EventEmitterInterface{
     private subscriberExists(suspect: Subscriber): boolean {
         const foundSubscribers = this.subscribers.filter(subscription => suspect.equals(subscription));
         return foundSubscribers.length !== 0;
+    }
+
+    // HELPERS
+
+    /**
+     * executeEventHandlers()
+     * 
+     * executeEventHandlers() executes the event handlers for the event.
+     * @param subscribersArray 
+     * @param event 
+     */
+
+    private async executeEventHandlers(subscribersArray: Subscriber[], event: DomainEvent): Promise<boolean> {
+        for (let sub of subscribersArray) {
+            try {
+                // execute the operation.
+                await sub.handleEvent(event);
+                sub.resetHandleAttempts();
+            }
+            catch(error) {
+                // The handler failed.
+                sub.incrementFailedHandleAttempts();
+                // emit the error
+                
+                return !sub.shouldStopPropogationOnError();
+            }
+        }
+        return true;
     }
  }

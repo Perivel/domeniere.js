@@ -31,13 +31,7 @@ export class EventEmitter {
                     queue.enqueue(sub, sub.priority());
                 }
             });
-            yield Promise.all(queue.toArray().map((sub) => __awaiter(this, void 0, void 0, function* () {
-                try {
-                    yield sub.handleEvent(event);
-                }
-                catch (error) {
-                }
-            })));
+            yield this.executeEventHandlers(queue.toArray(), event);
         });
     }
     removeSubscriber(suspect) {
@@ -46,5 +40,20 @@ export class EventEmitter {
     subscriberExists(suspect) {
         const foundSubscribers = this.subscribers.filter(subscription => suspect.equals(subscription));
         return foundSubscribers.length !== 0;
+    }
+    executeEventHandlers(subscribersArray, event) {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (let sub of subscribersArray) {
+                try {
+                    yield sub.handleEvent(event);
+                    sub.resetHandleAttempts();
+                }
+                catch (error) {
+                    sub.incrementFailedHandleAttempts();
+                    return !sub.shouldStopPropogationOnError();
+                }
+            }
+            return true;
+        });
     }
 }

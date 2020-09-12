@@ -1,0 +1,1 @@
+{"version":3,"file":"network-event-queue.interface.d.ts","sourceRoot":"","sources":["../../../../src/common/objects/network-event-queue.interface.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,oBAAoB,EAAE,MAAM,gDAAgD,CAAC;AAGtF,MAAM,WAAW,0BAA0B;IAOvC,OAAO,IAAI,OAAO,CAAC,oBAAoB,EAAE,CAAC,CAAC;IAQ3C,OAAO,CAAC,KAAK,EAAE,oBAAoB,GAAG,OAAO,CAAC,IAAI,CAAC,CAAC;CACvD"}
