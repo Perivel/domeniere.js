@@ -9,22 +9,9 @@ import { StoredEvent } from "./stored-event";
 
 export abstract class EventStore {
 
-    private _maxUnpublishedEventsAllowed: number;
-    private _unpublishedEventCount: number;
-
     constructor() {
-        this._maxUnpublishedEventsAllowed = 50;
-        this._unpublishedEventCount = 0;
+        //
     }
-
-    /**
-     * broadcastEvent()
-     * 
-     * broadcastEvent() broadcasts event.
-     * @param event The event to broadcast.
-     */
-
-    protected abstract async broadcastEvent(event: StoredEvent): Promise<void>;
 
     /**
      * getUnpublishedEvents()
@@ -41,7 +28,7 @@ export abstract class EventStore {
      * @param event the event to persist in storage.
      */
 
-    protected async abstract save(events: StoredEvent|StoredEvent[]): Promise<void>;
+    public async abstract save(events: StoredEvent|StoredEvent[]): Promise<void>;
 
     /**
      * store()
@@ -65,78 +52,10 @@ export abstract class EventStore {
         try {
             // store the event.
             await this.save(storedEvent);
-            this._unpublishedEventCount++;
-
-            if (this._unpublishedEventCount >= this._maxUnpublishedEventsAllowed) {
-                await this.publishEvents();
-            }
         }
         catch(error) {
             // failed to store the event.
+            throw new Error("Failed to save the event");
         }
-    }
-
-    /**
-     * publisheEvents()
-     * 
-     * publishEvents() publishes the unpublished events.
-     */
-
-    public async publishEvents(): Promise<void> {
-        // get unppublished events.
-        const unpublishedEvents = await this.getUnpublishedEvents();
-
-        if (unpublishedEvents.length > 0) {
-            // sort the evnets.
-            unpublishedEvents.sort((a, b) => {
-                let comparisonResult = 0;
-
-                if (a.occuredOn().isBefore(b.occuredOn())) {
-                    comparisonResult = -1;
-                }
-                else if (a.occuredOn().isAfter(b.occuredOn())) {
-                    comparisonResult = 1;
-                }
-
-                return comparisonResult;
-            });
-
-            // publish the events.
-            const publishedEvents = new Array<StoredEvent>();
-            await this.forEveryStoredEvent(unpublishedEvents, async event => {
-                try {
-                    // send the request
-                    await this.broadcastEvent(event);
-                    event.markPublished();
-                    publishedEvents.push(event);
-                    return true;
-                }
-                catch (error) {
-                    return false;
-                }
-            });
-
-            // update the published events.
-            await this.save(publishedEvents);
-        }
-    }
-
-    // HELPERS
-
-    /**
-     * forEveryStoredEvent()
-     * 
-     * runs a predicate function for every elemet of the array.
-     * @param arr The array to itterate over.
-     * @param predicate The function to call for each element in the array.
-     */
-
-    private async forEveryStoredEvent(arr: Array<StoredEvent>, predicate: (d: StoredEvent) => Promise<boolean>): Promise<boolean> {
-        for(let e of arr) {
-            if (!await predicate(e)) {
-                return false;
-            }
-        }
-        return true;
     }
 }

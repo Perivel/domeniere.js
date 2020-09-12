@@ -8,3 +8,4 @@ export { SubscriberId } from './subscriber/subscriber-id';
 export { EventStore } from './event-store/event-store';
 export { StoredEvent } from './event-store/stored-event';
 export { EventStream } from './event-stream/event-stream';
+export { On } from './decorators/on.decorator';

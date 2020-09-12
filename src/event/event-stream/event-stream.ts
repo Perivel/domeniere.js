@@ -16,11 +16,11 @@ export class EventStream implements EventStreamInterface {
     private emitter: EventEmitter;
 
     // event store
-    private eventStore: EventStore;
+    private _eventStore: EventStore;
 
     private constructor() {
         this.emitter = new EventEmitter();
-        this.eventStore = new DefaultEventStore();
+        this._eventStore = new DefaultEventStore();
     }
 
     /**
@@ -42,23 +42,33 @@ export class EventStream implements EventStreamInterface {
      * emit()
      * 
      * emit() publishes a domain event.
+     * @throws UndefinedEventStoreException 
+     * @emits EventStorageFailed when the event couldn't be stored.
      */
 
     public async emit(event: DomainEvent): Promise<void> {
 
-        if (this.eventStore) {
-            
-            try {
-                this.eventStore.store(event);
-                await this.emitter.emit(event);
-            }
-            catch(err) {
-                // failed to store the event.
-            }
+        try {
+            // save the event
+            await this.eventStore().store(event);
         }
-        else {
-            // Event Store not defined.
+        catch(err) {
+            // failed to store the event.
+
         }
+
+        // emit the event.
+        await this.emitter.emit(event);
+    }
+
+    /**
+     * eventStore()
+     * 
+     * eventStore() gets the EventStore instance.
+     */
+
+    public eventStore(): EventStore {
+        return this._eventStore;
     }
 
     /**
@@ -68,7 +78,7 @@ export class EventStream implements EventStreamInterface {
      */
 
     public setEventStore(eventStore: EventStore): void {
-        this.eventStore = eventStore;
+        this._eventStore = eventStore;
     }
 
     /**
@@ -78,11 +88,12 @@ export class EventStream implements EventStreamInterface {
      * @param priority The priority of the subscriber (the lower the number, the highrer the priority).
      * @param label a label to give to the subscriber.
      * @param handler The function to execute when an event occurs.
+     * @param stopPropogationOnError indicates if the event propogation should stop when the subscriber handler encounters an error.
      */
 
-    public subscribe(id: string, eventName: string, priority: number, label: string, handler: EventHandler): void {
+    public subscribe(id: string, eventName: string, priority: number, label: string, handler: EventHandler, stopPropogationOnError: boolean = false): void {
         const subscriberId = new SubscriberId(id);
-        const subscriber = new Subscriber(subscriberId, eventName, priority, label, handler);
+        const subscriber = new Subscriber(subscriberId, eventName, priority, label, handler, stopPropogationOnError);
         this.emitter.addSubscriber(subscriber);
     }
 }

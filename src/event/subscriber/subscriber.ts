@@ -17,6 +17,7 @@ export class Subscriber implements SubscriberInterface, Equatable {
     private _label: string;
     private _priority: number;
     private _handleAttempts: number;
+    private _stopPropogationOnError: boolean;
 
     /**
      * Creates an EventSubscription instance.
@@ -25,13 +26,14 @@ export class Subscriber implements SubscriberInterface, Equatable {
      * @param handler the event handler. 
      */
 
-    constructor(id: SubscriberId, eventName: string, priority: number, label: string, handler: EventHandler) {
+    constructor(id: SubscriberId, eventName: string, priority: number, label: string, handler: EventHandler, stopPropogationOnError: boolean = false) {
         this._id = id;
         this._eventName = eventName;
         this._handler = handler;
         this._label = label;
         this._priority = priority;
         this._handleAttempts = 0;
+        this._stopPropogationOnError = stopPropogationOnError;
     }
 
     /**
@@ -129,5 +131,16 @@ export class Subscriber implements SubscriberInterface, Equatable {
 
     public resetHandleAttempts(): void {
         this._handleAttempts = 0;
+    }
+
+    /**
+     * shouldStopPropogationOnError()
+     * 
+     * shouldStopPropogationOnError() determines if the event propogation
+     * should stop if the handler encounters an error.
+     */
+
+    public shouldStopPropogationOnError(): boolean {
+        return this._stopPropogationOnError;
     }
 }

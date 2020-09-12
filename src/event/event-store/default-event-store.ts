@@ -14,13 +14,11 @@ export class DefaultEventStore extends EventStore {
         super();
     }
 
-    protected broadcastEvent(event: StoredEvent): Promise<void> {
-        //
+    protected async getUnpublishedEvents(): Promise<StoredEvent[]> {
+        return new Array<StoredEvent>();
     }
-    protected getUnpublishedEvents(): Promise<StoredEvent[]> {
-        //
-    }
-    protected save(events: StoredEvent | StoredEvent[]): Promise<void> {
+    
+    public async save(events: StoredEvent | StoredEvent[]): Promise<void> {
         //
     }
 }

@@ -47,4 +47,13 @@ export interface SubscriberInterface {
      */
 
     priority(): number;
+
+    /**
+     * shouldStopPropogationOnError()
+     * 
+     * shouldStopPropogationOnError() determines if the event propogation
+     * should stop if the handler encounters an error.
+     */
+
+    shouldStopPropogationOnError(): boolean;
 }
