@@ -1,5 +1,6 @@
 // The Event API
 export { DomainEvent } from './domain-event/domain-event';
+export { DomainEventInterface } from './domain-event/domain-event.interface';
 export { DomainEventId } from './domain-event/domain-event-id';
 export { DomainEventHandlerPriority } from './subscriber/domain-event-handler-priority.enum';
 export { EventHandler } from './subscriber/event-handler.type';
@@ -12,3 +13,5 @@ export { On } from './decorators/on.decorator';
 export { OnInternal } from './decorators/on-internal.decorator';
 export { OnError } from './decorators/on-error.decorator';
 export { OnAny } from './decorators/on-any.decorator';
+export { EventHandlerFailed } from './libevents/event-handler-failed.event';
+export { EventStored } from './libevents/event-stored.event';

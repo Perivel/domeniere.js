@@ -16,6 +16,8 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "dependencies": {
-    "foundation": "https://github.com/Perivel/foundation.git"
+    "@types/node-cron": "^2.0.3",
+    "foundation": "https://github.com/Perivel/foundation.git",
+    "node-cron": "^2.0.3"
   }
 }

@@ -4,7 +4,12 @@ import { Subscriber } from "../subscriber/subscriber";
 import { DomainEvent } from "../domain-event/domain-event";
 import { PriorityQueue } from "foundation";
 import { EventAggregate } from "./event-aggregate..type";
+import { EventStream } from "../event-stream/event-stream";
+import { EventHandlerFailed } from "../libevents/event-handler-failed.event";
 
+/**
+ * EventEmitter
+ */
 
 export class EventEmitter implements EventEmitterInterface{
 
@@ -36,6 +41,7 @@ export class EventEmitter implements EventEmitterInterface{
      * 
      * emit() emits an event.
      * @param event The event to emit.
+     * @emits EventHandlerFailed When an event handler fails.
      */
 
     public async emit(event: DomainEvent): Promise<void> {
@@ -99,8 +105,9 @@ export class EventEmitter implements EventEmitterInterface{
      * executeEventHandlers()
      * 
      * executeEventHandlers() executes the event handlers for the event.
-     * @param subscribersArray 
-     * @param event 
+     * @param subscribersArray the list of subscribers to call.
+     * @param event the event to execute upon.
+     * @emits EventHandlerFailed when a subscriber fails.
      */
 
     private async executeEventHandlers(subscribersArray: Subscriber[], event: DomainEvent): Promise<boolean> {
@@ -113,9 +120,13 @@ export class EventEmitter implements EventEmitterInterface{
             catch(error) {
                 // The handler failed.
                 sub.incrementFailedHandleAttempts();
-                // emit the error
+
+                // emit the event handler failed event.
+                await EventStream.instance().emit(new EventHandlerFailed(sub, event));
                 
-                return !sub.shouldStopPropogationOnError();
+                if (sub.shouldStopPropogationOnError()) {
+                    return false;
+                }
             }
         }
         return true;

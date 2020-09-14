@@ -1,6 +1,6 @@
-import { StoredEventInterface } from "../../event/event-store/stored-event.interface";
+import { DomainEventInterface } from "../../event/event.module";
 export interface NetworkEventQueueInterface {
-    dequeue(): Promise<StoredEventInterface[]>;
-    enqueue(event: StoredEventInterface): Promise<void>;
+    dequeue(): Promise<DomainEventInterface | null>;
+    enqueue(event: DomainEventInterface): Promise<void>;
 }
 //# sourceMappingURL=network-event-queue.interface.d.ts.map

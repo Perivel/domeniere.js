@@ -126,7 +126,7 @@ export abstract class DomainEvent implements DomainEventInterface, Serializable 
      * isInternal() determines if the event is an internal framework event.
      */
     public isInternal(): boolean {
-        return this.eventClassification() === EventClassifications.InternalEvent.toString();
+        return (this.eventClassification() === EventClassifications.InternalEvent.toString()) || (this.eventClassification() === EventClassifications.InternalError.toString());
     }
 
     /**

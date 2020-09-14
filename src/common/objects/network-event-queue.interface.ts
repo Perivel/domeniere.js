@@ -1,4 +1,4 @@
-import { StoredEventInterface } from "../../event/event-store/stored-event.interface";
+import { DomainEventInterface } from "../../event/event.module";
 
 
 export interface NetworkEventQueueInterface {
@@ -8,7 +8,7 @@ export interface NetworkEventQueueInterface {
      * 
      * dequeue() gets the latest events in the queue
      */
-    dequeue(): Promise<StoredEventInterface[]>;
+    dequeue(): Promise<DomainEventInterface|null>;
 
     /**
      * enqueue()
@@ -16,5 +16,5 @@ export interface NetworkEventQueueInterface {
      * enqueue() adds the event to the queue.
      * @param event The event to add.
      */
-    enqueue(event: StoredEventInterface): Promise<void>;
+    enqueue(event: DomainEventInterface): Promise<void>;
 }

@@ -16,11 +16,7 @@ export class DefaultNetworkEventQueue extends NetworkEventQueue {
     }
     dequeue() {
         return __awaiter(this, void 0, void 0, function* () {
-            const elements = new Array();
-            while (!this.queue.isEmpty()) {
-                elements.push(this.queue.dequeue());
-            }
-            return elements;
+            return this.queue.dequeue();
         });
     }
     enqueue(event) {

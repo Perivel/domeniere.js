@@ -1,5 +1,5 @@
 import { NetworkEventQueueInterface } from "./network-event-queue.interface";
-import { StoredEventInterface } from "../../event/event-store/stored-event.interface";
+import { DomainEvent } from "../../event/event.module";
 
 
 export abstract class NetworkEventQueue implements NetworkEventQueueInterface {
@@ -12,7 +12,7 @@ export abstract class NetworkEventQueue implements NetworkEventQueueInterface {
      * dequeue() gets all the items from the queue.
      * @throws any kind of exception when an error occurs.
      */
-    public async abstract dequeue(): Promise<StoredEventInterface[]>;
+    public async abstract dequeue(): Promise<DomainEvent|null>;
 
     /**
      * enqueue()
@@ -22,5 +22,5 @@ export abstract class NetworkEventQueue implements NetworkEventQueueInterface {
      * @param event the event to insert.
      */
     
-    public async abstract enqueue(event: StoredEventInterface): Promise<void>;
+    public async abstract enqueue(event: DomainEvent): Promise<void>;
 }

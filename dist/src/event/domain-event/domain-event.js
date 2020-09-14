@@ -34,7 +34,7 @@ export class DomainEvent {
         return this.eventClassification() === EventClassifications.InternalError.toString();
     }
     isInternal() {
-        return this.eventClassification() === EventClassifications.InternalEvent.toString();
+        return (this.eventClassification() === EventClassifications.InternalEvent.toString()) || (this.eventClassification() === EventClassifications.InternalError.toString());
     }
     occuredOn() {
         return this._timestamp;

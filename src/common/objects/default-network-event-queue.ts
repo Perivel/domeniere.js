@@ -1,6 +1,7 @@
 import { NetworkEventQueue } from "./network-event-queue";
-import { StoredEventInterface } from "../../event/event-store/stored-event.interface";
 import { Queue } from "foundation";
+import { DomainEvent } from "../../event/event.module";
+
 
 /**
  * The Default Network Event Queue
@@ -8,25 +9,19 @@ import { Queue } from "foundation";
 
 export class DefaultNetworkEventQueue extends NetworkEventQueue {
 
-    private queue: Queue<StoredEventInterface>;
+    private queue: Queue<DomainEvent>;
 
     constructor() {
         super();
-        this.queue = new Queue<StoredEventInterface>();
+        this.queue = new Queue<DomainEvent>();
     }
 
 
-    public async dequeue(): Promise<StoredEventInterface[]> {
-        const elements = new Array<StoredEventInterface>();
-        
-        while (!this.queue.isEmpty()) {
-            elements.push(this.queue.dequeue()!);
-        }
-
-        return elements;
+    public async dequeue(): Promise<DomainEvent|null> {
+        return this.queue.dequeue();
     }
 
-    public async enqueue(event: StoredEventInterface): Promise<void> {
+    public async enqueue(event: DomainEvent): Promise<void> {
         this.queue.enqueue(event);
     }
     

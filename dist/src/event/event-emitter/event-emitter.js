@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { PriorityQueue } from "foundation";
 import { EventAggregate } from "./event-aggregate..type";
+import { EventStream } from "../event-stream/event-stream";
+import { EventHandlerFailed } from "../libevents/event-handler-failed.event";
 export class EventEmitter {
     constructor(maxRetries = 3) {
         this.subscribers = new Array();
@@ -50,7 +52,10 @@ export class EventEmitter {
                 }
                 catch (error) {
                     sub.incrementFailedHandleAttempts();
-                    return !sub.shouldStopPropogationOnError();
+                    yield EventStream.instance().emit(new EventHandlerFailed(sub, event));
+                    if (sub.shouldStopPropogationOnError()) {
+                        return false;
+                    }
                 }
             }
             return true;

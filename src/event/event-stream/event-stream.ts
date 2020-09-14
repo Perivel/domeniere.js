@@ -8,6 +8,11 @@ import { SubscriberId } from "../subscriber/subscriber-id";
 import { DefaultEventStore } from "../event-store/default-event-store";
 import { NetworkEventQueue, NetworkEventQueueInterface } from "../../common/common.module";
 import { DefaultNetworkEventQueue } from "../../common/objects/default-network-event-queue";
+import { EventStoreFailed } from "../libevents/event-store-failed.event";
+import { EventStored } from "../libevents/event-stored.event";
+import { UUID, Queue } from "foundation";
+import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
+import { schedule as scheduleTask, ScheduledTask, validate as validateCronExpression } from 'node-cron';
 
 
 export class EventStream implements EventStreamInterface {
@@ -15,7 +20,10 @@ export class EventStream implements EventStreamInterface {
     private static _instance: EventStream;
 
     // The event publisher.
-    private emitter: EventEmitter;
+    private readonly emitter: EventEmitter;
+
+    // Backlog Event Queue
+    private readonly _backlogEventQueue: Queue<DomainEvent>;
 
     // event store
     private _eventStore: EventStore;
@@ -32,6 +40,9 @@ export class EventStream implements EventStreamInterface {
     // indicates whether or not internal events should be saved.
     private _shouldSaveInternalEvents: boolean;
 
+    // The event publisher task
+    private _eventPublisherTask: ScheduledTask|null;
+
 
     private constructor() {
         this.emitter = new EventEmitter();
@@ -39,6 +50,11 @@ export class EventStream implements EventStreamInterface {
         this._publicQueue = new DefaultNetworkEventQueue();
         this._publishQueue = new DefaultNetworkEventQueue();
         this._shouldSaveInternalEvents = false;
+        this._backlogEventQueue = new Queue<DomainEvent>();
+        this._eventPublisherTask = null;
+
+        // Register internal event handlers.
+        this.registerInternalEventHandlers();
     }
 
     /**
@@ -56,34 +72,34 @@ export class EventStream implements EventStreamInterface {
         return EventStream._instance;
     }
 
+    public static PublishEventsWithinInterval(interval: number): void {
+
+        if ((interval < 1) || (interval > 59)) {
+             throw new Error('out of range.');
+        }
+        EventStream.instance().scheduleEventPublisherInterval(`*/${interval} * * * *`);
+    }
+
     /**
      * emit()
      * 
      * emit() publishes a domain event.
      * @throws UndefinedEventStoreException 
-     * @emits EventStorageFailed when the event couldn't be stored.
+     * @emits EventStoreFailed when the event couldn't be stored.
      */
 
     public async emit(event: DomainEvent): Promise<void> {
 
         try {
-            // save the event
-            //await this.eventStore().store(event);
-
-            if (event.isInternal()) {
-                // only store if it is specified that internal events must be stored.
-                if (this._shouldSaveInternalEvents) {
-                    await this.eventStore().store(event);
-                }
-            }
-            else {
-                // events must be stored regardless.
+            if (!event.isInternal() || this._shouldSaveInternalEvents) {
                 await this.eventStore().store(event);
+                this._backlogEventQueue.enqueue(event);
+                await EventStream.instance().emit(new EventStored(event));
             }
         }
         catch(err) {
             // failed to store the event.
-
+            await EventStream.instance().emit(new EventStoreFailed(event, err as Error));
         }
 
         // emit the event.
@@ -126,7 +142,7 @@ export class EventStream implements EventStreamInterface {
      * @param queue The queue to set.
      */
 
-    public setPublicQueue(queue: NetworkEventQueueInterface): void {
+    public setPublicQueue(queue: NetworkEventQueue): void {
         this._publicQueue = queue;
     }
 
@@ -137,7 +153,7 @@ export class EventStream implements EventStreamInterface {
      * @param queue The queue to set.
      */
 
-    public setPublishQueue(queue: NetworkEventQueueInterface): void {
+    public setPublishQueue(queue: NetworkEventQueue): void {
         this._publishQueue = queue;
     }
 
@@ -155,5 +171,44 @@ export class EventStream implements EventStreamInterface {
         const subscriberId = new SubscriberId(id);
         const subscriber = new Subscriber(subscriberId, eventName, priority, label, handler, stopPropogationOnError);
         this.emitter.addSubscriber(subscriber);
+    }
+
+    // helpers
+
+    private registerInternalEventHandlers(): void {
+
+        // register a listener to add the event to the publishQueue
+        this.subscribe(UUID.V4().id(), EventStored.EventName(), Number(FrameworkEventHandlerPriority.VERY_HIGH), 'add-event-to-publish-queue', async (event: DomainEvent) => {
+
+            let eventToAdd: DomainEvent|null = null;
+            while(!this._backlogEventQueue.isEmpty()) {
+                eventToAdd = this._backlogEventQueue.peek();
+                await this._publishQueue.enqueue(eventToAdd);
+                this._backlogEventQueue.dequeue();
+            }
+        }, false);
+    }
+
+    /**
+     * Schedules the interval when events are to be published to the public queue.
+     * @param cronExpression THe cron expression
+     */
+
+    private scheduleEventPublisherInterval(cronExpression: string): void {
+        if (this._eventPublisherTask) {
+            this._eventPublisherTask.destroy();
+        }
+
+        // validate
+        if (!validateCronExpression(cronExpression)) {
+            // invalid chron expression.
+            throw new Error('Invalid Interval.');
+        }
+
+        this._eventPublisherTask = scheduleTask(cronExpression, async () => {
+            // get the event from publish queue.
+
+            // post the event to public queue.
+        });
     }
 }
