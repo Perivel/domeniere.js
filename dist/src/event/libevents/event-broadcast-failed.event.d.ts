@@ -1,6 +1,6 @@
 import { DomainEvent } from "../domain-event/domain-event";
 import { Timestamp } from "foundation";
-export declare class EventStoreFailed extends DomainEvent {
+export declare class EventBroadcastFailed extends DomainEvent {
     private readonly _error;
     constructor(error: Error, timestamp?: Timestamp, id?: string | undefined);
     static EventName(): string;
@@ -9,4 +9,4 @@ export declare class EventStoreFailed extends DomainEvent {
     error(): Error;
     serialize(): string;
 }
-//# sourceMappingURL=event-store-failed.event.d.ts.map
+//# sourceMappingURL=event-broadcast-failed.event.d.ts.map

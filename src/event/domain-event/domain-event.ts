@@ -148,4 +148,14 @@ export abstract class DomainEvent implements DomainEventInterface, Serializable 
     public serialize(): string {
         return "";
     }
+
+    /**
+     * shouldBeBroadcasted()
+     * 
+     * shouldBeBroadcasted() determines if the event should be broadcasted to the network.
+     */
+    
+    public shouldBeBroadcasted(): boolean {
+        return true;
+    }
 }

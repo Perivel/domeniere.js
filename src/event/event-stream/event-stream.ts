@@ -6,13 +6,10 @@ import { Subscriber } from "../subscriber/subscriber";
 import { EventHandler } from "../subscriber/event-handler.type";
 import { SubscriberId } from "../subscriber/subscriber-id";
 import { DefaultEventStore } from "../event-store/default-event-store";
-import { NetworkEventQueue, NetworkEventQueueInterface } from "../../common/common.module";
-import { DefaultNetworkEventQueue } from "../../common/objects/default-network-event-queue";
-import { EventStoreFailed } from "../libevents/event-store-failed.event";
-import { EventStored } from "../libevents/event-stored.event";
-import { UUID, Queue } from "foundation";
+import { UUID } from "foundation";
 import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
 import { schedule as scheduleTask, ScheduledTask, validate as validateCronExpression } from 'node-cron';
+import { EventAggregate } from "../event-emitter/event-aggregate..type";
 
 
 export class EventStream implements EventStreamInterface {
@@ -22,36 +19,17 @@ export class EventStream implements EventStreamInterface {
     // The event publisher.
     private readonly emitter: EventEmitter;
 
-    // Backlog Event Queue
-    private readonly _backlogEventQueue: Queue<DomainEvent>;
-
     // event store
     private _eventStore: EventStore;
-
-    // The publish queue.
-    // The publish queue is the queue used specifically for events awaiting to
-    // be published to the public queue.
-    private _publishQueue: NetworkEventQueue;
-
-    // The Public Queue
-    // The public Queue is the queue that is exposed to the whole network.
-    private _publicQueue: NetworkEventQueue;
-
-    // indicates whether or not internal events should be saved.
-    private _shouldSaveInternalEvents: boolean;
 
     // The event publisher task
     private _eventPublisherTask: ScheduledTask|null;
 
-
     private constructor() {
         this.emitter = new EventEmitter();
         this._eventStore = new DefaultEventStore();
-        this._publicQueue = new DefaultNetworkEventQueue();
-        this._publishQueue = new DefaultNetworkEventQueue();
-        this._shouldSaveInternalEvents = false;
-        this._backlogEventQueue = new Queue<DomainEvent>();
         this._eventPublisherTask = null;
+
 
         // Register internal event handlers.
         this.registerInternalEventHandlers();
@@ -84,45 +62,21 @@ export class EventStream implements EventStreamInterface {
      * emit()
      * 
      * emit() publishes a domain event.
-     * @throws UndefinedEventStoreException 
-     * @emits EventStoreFailed when the event couldn't be stored.
      */
 
     public async emit(event: DomainEvent): Promise<void> {
-
-        try {
-            if (!event.isInternal() || this._shouldSaveInternalEvents) {
-                await this.eventStore().store(event);
-                this._backlogEventQueue.enqueue(event);
-                await EventStream.instance().emit(new EventStored(event));
-            }
-        }
-        catch(err) {
-            // failed to store the event.
-            await EventStream.instance().emit(new EventStoreFailed(event, err as Error));
-        }
-
-        // emit the event.
+        this.eventStore().store(event);
         await this.emitter.emit(event);
     }
 
     /**
      * eventStore()
      * 
-     * eventStore() gets the EventStore instance.
+     * eventStore() gets the event store.
      */
 
     public eventStore(): EventStore {
         return this._eventStore;
-    }
-
-    /**
-     * saveInternalEvents()
-     * saveInternalEvents() indicates that internal framework events should be saved.
-     */
-
-    public saveInternalEvents(): void {
-        this._shouldSaveInternalEvents = true;
     }
 
     /**
@@ -133,28 +87,6 @@ export class EventStream implements EventStreamInterface {
 
     public setEventStore(eventStore: EventStore): void {
         this._eventStore = eventStore;
-    }
-
-    /**
-     * setPublicQueue()
-     * 
-     * sets the public queue.
-     * @param queue The queue to set.
-     */
-
-    public setPublicQueue(queue: NetworkEventQueue): void {
-        this._publicQueue = queue;
-    }
-
-    /**
-     * setPublishQueue()
-     * 
-     * sets the publish queue.
-     * @param queue The queue to set.
-     */
-
-    public setPublishQueue(queue: NetworkEventQueue): void {
-        this._publishQueue = queue;
     }
 
     /**
@@ -175,17 +107,17 @@ export class EventStream implements EventStreamInterface {
 
     // helpers
 
+    /**
+     * registerInternalHandlers()
+     * 
+     * reigster internal handlers here.
+     */
+
     private registerInternalEventHandlers(): void {
-
-        // register a listener to add the event to the publishQueue
-        this.subscribe(UUID.V4().id(), EventStored.EventName(), Number(FrameworkEventHandlerPriority.VERY_HIGH), 'add-event-to-publish-queue', async (event: DomainEvent) => {
-
-            let eventToAdd: DomainEvent|null = null;
-            while(!this._backlogEventQueue.isEmpty()) {
-                eventToAdd = this._backlogEventQueue.peek();
-                await this._publishQueue.enqueue(eventToAdd);
-                this._backlogEventQueue.dequeue();
-            }
+        
+        // register a handler to automatically save events on any event.
+        this.subscribe(UUID.V4().id(), EventAggregate.Any.toString(), FrameworkEventHandlerPriority.HIGH, 'persist events', async () => {
+            await EventStream.instance().eventStore().persistEvents();
         }, false);
     }
 
@@ -206,9 +138,11 @@ export class EventStream implements EventStreamInterface {
         }
 
         this._eventPublisherTask = scheduleTask(cronExpression, async () => {
-            // get the event from publish queue.
-
-            // post the event to public queue.
+            // publish the events.
+            await EventStream
+                .instance()
+                .eventStore()
+                .publishEvents();
         });
     }
 }

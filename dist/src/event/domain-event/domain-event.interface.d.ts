@@ -8,5 +8,6 @@ export interface DomainEventInterface {
     isInternal(): boolean;
     occuredOn(): Timestamp;
     eventVersion(): number;
+    shouldBeBroadcasted(): boolean;
 }
 //# sourceMappingURL=domain-event.interface.d.ts.map

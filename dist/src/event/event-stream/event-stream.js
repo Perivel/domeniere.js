@@ -11,20 +11,14 @@ import { EventEmitter } from "../event-emitter/event-emitter";
 import { Subscriber } from "../subscriber/subscriber";
 import { SubscriberId } from "../subscriber/subscriber-id";
 import { DefaultEventStore } from "../event-store/default-event-store";
-import { DefaultNetworkEventQueue } from "../../common/objects/default-network-event-queue";
-import { EventStoreFailed } from "../libevents/event-store-failed.event";
-import { EventStored } from "../libevents/event-stored.event";
-import { UUID, Queue } from "foundation";
+import { UUID } from "foundation";
 import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
 import { schedule as scheduleTask, validate as validateCronExpression } from 'node-cron';
+import { EventAggregate } from "../event-emitter/event-aggregate..type";
 export class EventStream {
     constructor() {
         this.emitter = new EventEmitter();
         this._eventStore = new DefaultEventStore();
-        this._publicQueue = new DefaultNetworkEventQueue();
-        this._publishQueue = new DefaultNetworkEventQueue();
-        this._shouldSaveInternalEvents = false;
-        this._backlogEventQueue = new Queue();
         this._eventPublisherTask = null;
         this.registerInternalEventHandlers();
     }
@@ -42,33 +36,15 @@ export class EventStream {
     }
     emit(event) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                if (!event.isInternal() || this._shouldSaveInternalEvents) {
-                    yield this.eventStore().store(event);
-                    this._backlogEventQueue.enqueue(event);
-                    yield EventStream.instance().emit(new EventStored(event));
-                }
-            }
-            catch (err) {
-                yield EventStream.instance().emit(new EventStoreFailed(event, err));
-            }
+            this.eventStore().store(event);
             yield this.emitter.emit(event);
         });
     }
     eventStore() {
         return this._eventStore;
     }
-    saveInternalEvents() {
-        this._shouldSaveInternalEvents = true;
-    }
     setEventStore(eventStore) {
         this._eventStore = eventStore;
-    }
-    setPublicQueue(queue) {
-        this._publicQueue = queue;
-    }
-    setPublishQueue(queue) {
-        this._publishQueue = queue;
     }
     subscribe(id, eventName, priority, label, handler, stopPropogationOnError = false) {
         const subscriberId = new SubscriberId(id);
@@ -76,13 +52,8 @@ export class EventStream {
         this.emitter.addSubscriber(subscriber);
     }
     registerInternalEventHandlers() {
-        this.subscribe(UUID.V4().id(), EventStored.EventName(), Number(FrameworkEventHandlerPriority.VERY_HIGH), 'add-event-to-publish-queue', (event) => __awaiter(this, void 0, void 0, function* () {
-            let eventToAdd = null;
-            while (!this._backlogEventQueue.isEmpty()) {
-                eventToAdd = this._backlogEventQueue.peek();
-                yield this._publishQueue.enqueue(eventToAdd);
-                this._backlogEventQueue.dequeue();
-            }
+        this.subscribe(UUID.V4().id(), EventAggregate.Any.toString(), FrameworkEventHandlerPriority.HIGH, 'persist events', () => __awaiter(this, void 0, void 0, function* () {
+            yield EventStream.instance().eventStore().persistEvents();
         }), false);
     }
     scheduleEventPublisherInterval(cronExpression) {
@@ -93,6 +64,10 @@ export class EventStream {
             throw new Error('Invalid Interval.');
         }
         this._eventPublisherTask = scheduleTask(cronExpression, () => __awaiter(this, void 0, void 0, function* () {
+            yield EventStream
+                .instance()
+                .eventStore()
+                .publishEvents();
         }));
     }
 }

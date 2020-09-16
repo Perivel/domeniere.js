@@ -1,3 +1,5 @@
+import { Queue } from "foundation";
+import { DomainEvent } from "../event.module";
 import { EventStore } from "./event-store";
 import { StoredEvent } from "./stored-event";
 
@@ -14,11 +16,7 @@ export class DefaultEventStore extends EventStore {
         super();
     }
 
-    protected async getUnpublishedEvents(): Promise<StoredEvent[]> {
-        return new Array<StoredEvent>();
-    }
-    
-    public async save(events: StoredEvent | StoredEvent[]): Promise<void> {
-        //
-    }
+    protected async boradcastEvents(eventQueue: Queue<DomainEvent>): Promise<void> {}
+
+    protected async saveEvents(eventQueue: Queue<StoredEvent>): Promise<void> {}
 }

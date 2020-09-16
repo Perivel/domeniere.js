@@ -60,4 +60,11 @@ export interface DomainEventInterface {
      */
 
     eventVersion(): number;
+
+    /**
+     * shouldBeBroadcasted()
+     * 
+     * shouldBeBroadcasted() determines if the event should be broadcasted to the network.
+     */
+    shouldBeBroadcasted(): boolean;
 }

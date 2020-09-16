@@ -42,4 +42,7 @@ export class DomainEvent {
     serialize() {
         return "";
     }
+    shouldBeBroadcasted() {
+        return true;
+    }
 }

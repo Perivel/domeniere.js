@@ -11,4 +11,4 @@ export { OnInternal } from './decorators/on-internal.decorator';
 export { OnError } from './decorators/on-error.decorator';
 export { OnAny } from './decorators/on-any.decorator';
 export { EventHandlerFailed } from './libevents/event-handler-failed.event';
-export { EventStored } from './libevents/event-stored.event';
+export { EventBroadcastFailed } from './libevents/event-broadcast-failed.event';

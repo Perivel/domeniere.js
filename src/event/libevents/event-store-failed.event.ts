@@ -10,12 +10,10 @@ import { EventClassifications } from "../domain-event/event-classification.enum"
 
 export class EventStoreFailed extends DomainEvent {
 
-    private readonly _event: DomainEvent;
     private readonly _error: Error;
 
-    constructor(event: DomainEvent, error: Error, timestamp: Timestamp = Timestamp.Now(), id: string|undefined = undefined) {
+    constructor(error: Error, timestamp: Timestamp = Timestamp.Now(), id: string|undefined = undefined) {
         super(timestamp, id);
-        this._event = event;
         this._error = error;
     }
 
@@ -60,16 +58,6 @@ export class EventStoreFailed extends DomainEvent {
     }
 
     /**
-     * event()
-     * 
-     * event() gets the event that could not be saved.
-     */
-
-    public event(): DomainEvent {
-        return this._event;
-    }
-
-    /**
      * serialize()
      * 
      * serialize() serializes the event data.
@@ -77,7 +65,6 @@ export class EventStoreFailed extends DomainEvent {
 
     public serialize(): string {
         return JSON.stringify({
-            event: this.event(),
             error: this.error()
         });
     }

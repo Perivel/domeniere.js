@@ -1,13 +1,13 @@
 import { DomainEvent } from "../domain-event/domain-event";
 import { Timestamp } from "foundation";
 import { EventClassifications } from "../domain-event/event-classification.enum";
-export class EventStoreFailed extends DomainEvent {
+export class EventBroadcastFailed extends DomainEvent {
     constructor(error, timestamp = Timestamp.Now(), id = undefined) {
         super(timestamp, id);
         this._error = error;
     }
     static EventName() {
-        return 'event-store-failed';
+        return 'event-broadcast-failed';
     }
     static EventClassification() {
         return EventClassifications.InternalError.toString();

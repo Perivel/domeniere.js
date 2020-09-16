@@ -1,20 +1,20 @@
-import { DomainEvent } from "../domain-event/domain-event";
+import { DomainEvent } from "../domain-event/domain-event"
 import { Timestamp } from "foundation";
 import { EventClassifications } from "../domain-event/event-classification.enum";
 
 /**
- * EventStored
+ * EventBroadcastFailed
  * 
- * EventStored indicates that an event has been successfully stored.
+ * The EventBroadcastFailed event indicates that the event broadcasting service failed.
  */
 
-export class EventStored extends DomainEvent {
+export class EventBroadcastFailed extends DomainEvent {
 
-    private readonly _event: DomainEvent;
+    private readonly _error: Error;
 
-    constructor(event: DomainEvent, timestamp: Timestamp = Timestamp.Now(), id: string|undefined = undefined) {
+    constructor(error: Error, timestamp: Timestamp = Timestamp.Now(), id: string | undefined = undefined) {
         super(timestamp, id);
-        this._event = event;
+        this._error = error;
     }
 
     /**
@@ -24,7 +24,7 @@ export class EventStored extends DomainEvent {
      */
 
     public static EventName(): string {
-        return 'domain-event-stored';
+        return 'event-broadcast-failed';
     }
 
     /**
@@ -34,13 +34,13 @@ export class EventStored extends DomainEvent {
      */
 
     public static EventClassification(): string {
-        return EventClassifications.InternalEvent.toString();
+        return EventClassifications.InternalError.toString();
     }
 
     /**
      * EventVersion()
      * 
-     * EventVersion() gets the version of the event.
+     * EventVersion() gets the event version.
      */
 
     public static EventVersion(): number {
@@ -48,13 +48,13 @@ export class EventStored extends DomainEvent {
     }
 
     /**
-     * event()
+     * error()
      * 
-     * event() gets the event that has been successfully saved.
+     * error() gets the error that occcured.
      */
 
-    public event(): DomainEvent {
-        return this._event; 
+    public error(): Error {
+        return this._error;
     }
 
     /**
@@ -65,7 +65,7 @@ export class EventStored extends DomainEvent {
 
     public serialize(): string {
         return JSON.stringify({
-            event: this.event()
+            error: this.error()
         });
     }
 }

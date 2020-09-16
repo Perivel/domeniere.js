@@ -19,5 +19,6 @@ export declare abstract class DomainEvent implements DomainEventInterface, Seria
     isInternal(): boolean;
     occuredOn(): Timestamp;
     serialize(): string;
+    shouldBeBroadcasted(): boolean;
 }
 //# sourceMappingURL=domain-event.d.ts.map

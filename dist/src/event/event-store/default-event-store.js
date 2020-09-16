@@ -12,13 +12,10 @@ export class DefaultEventStore extends EventStore {
     constructor() {
         super();
     }
-    getUnpublishedEvents() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return new Array();
-        });
+    boradcastEvents(eventQueue) {
+        return __awaiter(this, void 0, void 0, function* () { });
     }
-    save(events) {
-        return __awaiter(this, void 0, void 0, function* () {
-        });
+    saveEvents(eventQueue) {
+        return __awaiter(this, void 0, void 0, function* () { });
     }
 }
