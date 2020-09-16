@@ -1,1 +1,1 @@
-export { NetworkEventQueue } from './objects/network-event-queue';
+export { EventEmittingObject } from './utils/event-publisher/event-emitting-object';

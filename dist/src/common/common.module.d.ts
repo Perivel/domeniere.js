@@ -1,4 +1,3 @@
 export { Identifier } from './interfaces/identifier.interface';
-export { NetworkEventQueue } from './objects/network-event-queue';
-export { NetworkEventQueueInterface } from './objects/network-event-queue.interface';
+export { EventEmittingObject } from './utils/event-publisher/event-emitting-object';
 //# sourceMappingURL=common.module.d.ts.map

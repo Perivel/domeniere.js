@@ -5,13 +5,15 @@
  * 
  */
 
+import { DomainEvent, EventStream } from "../../../event/event.module";
+
  export abstract class EventEmittingObject {
 
     constructor() {}
 
-    /*
-    protected async publish(event: DomainEvent): Promise<void> {
-        //
+    
+    protected async emit(event: DomainEvent): Promise<void> {
+        await EventStream.instance().emit(event);
     }
-    */
+    
  }
