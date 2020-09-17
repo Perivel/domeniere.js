@@ -1,3 +1,4 @@
+import { EventEmittingObject } from '../../common/common.module';
 import { ServiceInterface } from './service.interface';
 
 /**
@@ -6,6 +7,8 @@ import { ServiceInterface } from './service.interface';
  * Service represents a Domain Service
  */
 
-export abstract class DomainService implements ServiceInterface {
-    constructor() {}
+export abstract class DomainService extends EventEmittingObject implements ServiceInterface {
+    constructor() {
+        super();
+    }
 }
