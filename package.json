@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Frament is the domain layer framework.",
   "main": "fragment.js",
+  "type": "module",
   "repository": "https://github.com/Perivel/fragment",
   "author": "Patrick Luy <pluy@perivel.com>",
   "license": "MIT",
@@ -19,5 +20,11 @@
     "@types/node-cron": "^2.0.3",
     "foundation": "https://github.com/Perivel/foundation.git",
     "node-cron": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.4.0",
+    "typescript": "^4.0.3"
   }
 }
