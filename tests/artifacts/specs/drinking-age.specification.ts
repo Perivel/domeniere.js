@@ -1,4 +1,4 @@
-import { CompositeSpecification } from "../../../fragment";
+import { CompositeSpecification } from "../../../src/utils/specification/composite-specification";
 
 
 export class DrinkingAgeSpecification extends CompositeSpecification {

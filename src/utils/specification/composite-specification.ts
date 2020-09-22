@@ -30,7 +30,7 @@ export abstract class CompositeSpecification implements SpecificationInterface {
      * @param other the other specification
      */
 
-    public and(other: SpecificationInterface): AndSpecification {
+    public and(other: SpecificationInterface): SpecificationInterface {
         return new AndSpecification(this, other);
     }
 
@@ -39,7 +39,7 @@ export abstract class CompositeSpecification implements SpecificationInterface {
      * @param other the other specification.
      */
 
-    public andNot(other: SpecificationInterface): AndNotSpecification {
+    public andNot(other: SpecificationInterface): SpecificationInterface {
         return new AndNotSpecification(this, other);
     }
 
@@ -48,7 +48,7 @@ export abstract class CompositeSpecification implements SpecificationInterface {
      * @param other The other specification.
      */
 
-    public or(other: SpecificationInterface): OrSpecification {
+    public or(other: SpecificationInterface): SpecificationInterface {
         return new OrSpecification(this, other);
     }
 
@@ -57,7 +57,7 @@ export abstract class CompositeSpecification implements SpecificationInterface {
      * @param other the other specification.
      */
 
-    public orNot(other: SpecificationInterface): OrNotSpecification {
+    public orNot(other: SpecificationInterface): SpecificationInterface {
         return new OrNotSpecification(this, other);
     }
 }

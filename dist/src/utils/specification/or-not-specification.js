@@ -1,7 +1,8 @@
-import { CompositeSpecification } from "./composite-specification";
-export class OrNotSpecification extends CompositeSpecification {
+import { AndNotSpecification } from "./and-not-specification";
+import { AndSpecification } from "./and-specification";
+import { OrSpecification } from "./or-specification";
+export class OrNotSpecification {
     constructor(left, right) {
-        super();
         this._left = left;
         this._right = right;
     }
@@ -12,5 +13,17 @@ export class OrNotSpecification extends CompositeSpecification {
         else {
             return this._left.isSatisfiedBy(suspect) || !this._right.isSatisfiedBy(suspect);
         }
+    }
+    and(other) {
+        return new AndSpecification(this, other);
+    }
+    andNot(other) {
+        return new AndNotSpecification(this, other);
+    }
+    or(other) {
+        return new OrSpecification(this, other);
+    }
+    orNot(other) {
+        return new OrNotSpecification(this, other);
     }
 }

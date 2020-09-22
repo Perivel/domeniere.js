@@ -1,3 +1,5 @@
+
+
 export interface SpecificationInterface {
     /**
      * isSatisfiedBy()
@@ -9,4 +11,32 @@ export interface SpecificationInterface {
      */
 
     isSatisfiedBy(suspect: any): boolean;
+
+    /**
+    * and()
+    * @param other the other specification
+    */
+
+    and(other: SpecificationInterface): SpecificationInterface;
+
+    /**
+     * andNot()
+     * @param other the other specification.
+     */
+
+    andNot(other: SpecificationInterface): SpecificationInterface;
+
+    /**
+     * or()
+     * @param other The other specification.
+     */
+
+    or(other: SpecificationInterface): SpecificationInterface;
+
+    /**
+    * orNot()
+    * @param other the other specification.
+    */
+
+    orNot(other: SpecificationInterface): SpecificationInterface
 }

@@ -1,17 +1,19 @@
+import { AndSpecification } from "./and-specification";
 import { CompositeSpecification } from "./composite-specification";
+import { OrNotSpecification } from "./or-not-specification";
+import { OrSpecification } from "./or-specification";
 import { SpecificationInterface } from "./specification.interface";
 
 /**
  * AndNotSpecification
  */
 
-export class AndNotSpecification extends CompositeSpecification implements SpecificationInterface {
+export class AndNotSpecification implements SpecificationInterface {
 
     private readonly _left: SpecificationInterface;
     private readonly _right: SpecificationInterface;
 
     constructor(left: SpecificationInterface, right: SpecificationInterface) {
-        super();
         this._left = left;
         this._right = right;
     }
@@ -33,5 +35,41 @@ export class AndNotSpecification extends CompositeSpecification implements Speci
         else {
             return this._left.isSatisfiedBy(suspect) && !this._right.isSatisfiedBy(suspect);
         }
+    }
+
+    /**
+     * and()
+     * @param other the other specification
+     */
+
+    public and(other: SpecificationInterface): SpecificationInterface {
+        return new AndSpecification(this, other);
+    }
+
+    /**
+     * andNot()
+     * @param other the other specification.
+     */
+
+    public andNot(other: SpecificationInterface): SpecificationInterface {
+        return new AndNotSpecification(this, other);
+    }
+
+    /**
+     * or()
+     * @param other The other specification.
+     */
+
+    public or(other: SpecificationInterface): SpecificationInterface {
+        return new OrSpecification(this, other);
+    }
+
+    /**
+     * orNot()
+     * @param other the other specification.
+     */
+
+    public orNot(other: SpecificationInterface): SpecificationInterface {
+        return new OrNotSpecification(this, other);
     }
 }
