@@ -1,5 +1,8 @@
-import { LoggerDelegate } from './logger-delegate';
-export class ConsoleLoggerDelegate extends LoggerDelegate {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ConsoleLoggerDelegate = void 0;
+const logger_delegate_1 = require("./logger-delegate");
+class ConsoleLoggerDelegate extends logger_delegate_1.LoggerDelegate {
     constructor() {
         super();
     }
@@ -33,3 +36,4 @@ export class ConsoleLoggerDelegate extends LoggerDelegate {
         return (trace) ? msg + '\n' + trace : msg;
     }
 }
+exports.ConsoleLoggerDelegate = ConsoleLoggerDelegate;

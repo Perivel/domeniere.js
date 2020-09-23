@@ -1,18 +1,11 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-import { EventStream } from "../../../event/event.module";
-export class EventEmittingObject {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventEmittingObject = void 0;
+const event_module_1 = require("../../../event/event.module");
+class EventEmittingObject {
     constructor() { }
-    emit(event) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield EventStream.instance().emit(event);
-        });
+    async emit(event) {
+        await event_module_1.EventStream.instance().emit(event);
     }
 }
+exports.EventEmittingObject = EventEmittingObject;

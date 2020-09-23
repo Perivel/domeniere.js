@@ -1,5 +1,8 @@
-import { Id } from "foundation";
-export class SubscriberId extends Id {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SubscriberId = void 0;
+const foundation_1 = require("foundation");
+class SubscriberId extends foundation_1.Id {
     constructor(value) {
         super(value);
     }
@@ -15,3 +18,4 @@ export class SubscriberId extends Id {
         return super.id();
     }
 }
+exports.SubscriberId = SubscriberId;

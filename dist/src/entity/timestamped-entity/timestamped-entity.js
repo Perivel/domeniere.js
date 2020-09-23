@@ -1,7 +1,10 @@
-import { Timestamp } from 'foundation';
-import { Entity } from "../entity/entity";
-export class TimestampedEntity extends Entity {
-    constructor(id, created = Timestamp.Now(), updated = Timestamp.Now(), deleted = null) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TimestampedEntity = void 0;
+const foundation_1 = require("foundation");
+const entity_1 = require("../entity/entity");
+class TimestampedEntity extends entity_1.Entity {
+    constructor(id, created = foundation_1.Timestamp.Now(), updated = foundation_1.Timestamp.Now(), deleted = null) {
         try {
             super(id);
             this._createdOn = created;
@@ -22,7 +25,7 @@ export class TimestampedEntity extends Entity {
         return this._updatedOn;
     }
     commitStateChange() {
-        this._updatedOn = Timestamp.Now();
+        this._updatedOn = foundation_1.Timestamp.Now();
     }
     setDeleted(timestamp) {
         this._deletedOn = timestamp;
@@ -32,3 +35,4 @@ export class TimestampedEntity extends Entity {
         this.commitStateChange();
     }
 }
+exports.TimestampedEntity = TimestampedEntity;

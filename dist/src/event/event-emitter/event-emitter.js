@@ -1,17 +1,11 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-import { PriorityQueue } from "foundation";
-import { EventAggregate } from "./event-aggregate..type";
-import { EventStream } from "../event-stream/event-stream";
-import { EventHandlerFailed } from "../libevents/event-handler-failed.event";
-export class EventEmitter {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventEmitter = void 0;
+const foundation_1 = require("foundation");
+const event_aggregate__type_1 = require("./event-aggregate..type");
+const event_stream_1 = require("../event-stream/event-stream");
+const event_handler_failed_event_1 = require("../libevents/event-handler-failed.event");
+class EventEmitter {
     constructor(maxRetries = 3) {
         this.subscribers = new Array();
         this.maxRetries = maxRetries;
@@ -21,20 +15,18 @@ export class EventEmitter {
             this.subscribers.push(subscriber);
         }
     }
-    emit(event) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const queue = new PriorityQueue();
-            const eventName = event.eventName();
-            this.subscribers.forEach(sub => {
-                if ((sub.eventName() === eventName) ||
-                    (sub.eventName() === EventAggregate.Any.toString()) ||
-                    ((event.isInternal()) && (sub.eventName() === EventAggregate.Internal.toString())) ||
-                    ((event.isError()) && (sub.eventName() === EventAggregate.Error.toString()))) {
-                    queue.enqueue(sub, sub.priority());
-                }
-            });
-            yield this.executeEventHandlers(queue.toArray(), event);
+    async emit(event) {
+        const queue = new foundation_1.PriorityQueue();
+        const eventName = event.eventName();
+        this.subscribers.forEach(sub => {
+            if ((sub.eventName() === eventName) ||
+                (sub.eventName() === event_aggregate__type_1.EventAggregate.Any.toString()) ||
+                ((event.isInternal()) && (sub.eventName() === event_aggregate__type_1.EventAggregate.Internal.toString())) ||
+                ((event.isError()) && (sub.eventName() === event_aggregate__type_1.EventAggregate.Error.toString()))) {
+                queue.enqueue(sub, sub.priority());
+            }
         });
+        await this.executeEventHandlers(queue.toArray(), event);
     }
     removeSubscriber(suspect) {
         this.subscribers = this.subscribers.filter(subscriber => !subscriber.equals(suspect));
@@ -43,22 +35,21 @@ export class EventEmitter {
         const foundSubscribers = this.subscribers.filter(subscription => suspect.equals(subscription));
         return foundSubscribers.length !== 0;
     }
-    executeEventHandlers(subscribersArray, event) {
-        return __awaiter(this, void 0, void 0, function* () {
-            for (let sub of subscribersArray) {
-                try {
-                    yield sub.handleEvent(event);
-                    sub.resetHandleAttempts();
-                }
-                catch (error) {
-                    sub.incrementFailedHandleAttempts();
-                    yield EventStream.instance().emit(new EventHandlerFailed(sub, event));
-                    if (sub.shouldStopPropogationOnError()) {
-                        return false;
-                    }
+    async executeEventHandlers(subscribersArray, event) {
+        for (let sub of subscribersArray) {
+            try {
+                await sub.handleEvent(event);
+                sub.resetHandleAttempts();
+            }
+            catch (error) {
+                sub.incrementFailedHandleAttempts();
+                await event_stream_1.EventStream.instance().emit(new event_handler_failed_event_1.EventHandlerFailed(sub, event));
+                if (sub.shouldStopPropogationOnError()) {
+                    return false;
                 }
             }
-            return true;
-        });
+        }
+        return true;
     }
 }
+exports.EventEmitter = EventEmitter;

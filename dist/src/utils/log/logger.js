@@ -1,7 +1,10 @@
-import { ConsoleLoggerDelegate } from './console-logger.delegate';
-export class Logger {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Logger = void 0;
+const console_logger_delegate_1 = require("./console-logger.delegate");
+class Logger {
     constructor() {
-        this.delegate = new ConsoleLoggerDelegate();
+        this.delegate = new console_logger_delegate_1.ConsoleLoggerDelegate();
     }
     static instance() {
         if (!Logger._instance) {
@@ -37,3 +40,4 @@ export class Logger {
         this.delegate = delegate;
     }
 }
+exports.Logger = Logger;

@@ -1,41 +1,31 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-import { Queue } from "foundation";
-import { EventStream } from "../event-stream/event-stream";
-import { EventBroadcastFailed } from "../libevents/event-broadcast-failed.event";
-import { EventStoreFailed } from "../libevents/event-store-failed.event";
-import { StoredEvent } from "./stored-event";
-export class EventStore {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventStore = void 0;
+const foundation_1 = require("foundation");
+const event_stream_1 = require("../event-stream/event-stream");
+const event_broadcast_failed_event_1 = require("../libevents/event-broadcast-failed.event");
+const event_store_failed_event_1 = require("../libevents/event-store-failed.event");
+const stored_event_1 = require("./stored-event");
+class EventStore {
     constructor() {
-        this._storageQueue = new Queue();
-        this._publishQueue = new Queue();
+        this._storageQueue = new foundation_1.Queue();
+        this._publishQueue = new foundation_1.Queue();
     }
-    publishEvents() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                yield this.boradcastEvents(this._publishQueue);
-            }
-            catch (error) {
-                yield EventStream.instance().emit(new EventBroadcastFailed(error));
-            }
-        });
+    async publishEvents() {
+        try {
+            await this.boradcastEvents(this._publishQueue);
+        }
+        catch (error) {
+            await event_stream_1.EventStream.instance().emit(new event_broadcast_failed_event_1.EventBroadcastFailed(error));
+        }
     }
-    persistEvents() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                yield this.saveEvents(this._storageQueue);
-            }
-            catch (err) {
-                yield EventStream.instance().emit(new EventStoreFailed(err));
-            }
-        });
+    async persistEvents() {
+        try {
+            await this.saveEvents(this._storageQueue);
+        }
+        catch (err) {
+            await event_stream_1.EventStream.instance().emit(new event_store_failed_event_1.EventStoreFailed(err));
+        }
     }
     shouldBroadcastInternalEvents() {
         return false;
@@ -43,15 +33,14 @@ export class EventStore {
     shouldSaveInternalEvents() {
         return false;
     }
-    store(event) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (!event.isInternal() || this.shouldSaveInternalEvents()) {
-                const storedEvent = new StoredEvent(event.eventId().id(), event.eventName(), event.eventClassification(), event.eventVersion(), event.serialize(), event.occuredOn());
-                this._storageQueue.enqueue(storedEvent);
-                if ((event.shouldBeBroadcasted() && !event.isInternal()) || this.shouldBroadcastInternalEvents()) {
-                    this._publishQueue.enqueue(event);
-                }
+    async store(event) {
+        if (!event.isInternal() || this.shouldSaveInternalEvents()) {
+            const storedEvent = new stored_event_1.StoredEvent(event.eventId().id(), event.eventName(), event.eventClassification(), event.eventVersion(), event.serialize(), event.occuredOn());
+            this._storageQueue.enqueue(storedEvent);
+            if ((event.shouldBeBroadcasted() && !event.isInternal()) || this.shouldBroadcastInternalEvents()) {
+                this._publishQueue.enqueue(event);
             }
-        });
+        }
     }
 }
+exports.EventStore = EventStore;

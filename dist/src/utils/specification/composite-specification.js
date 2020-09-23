@@ -1,19 +1,23 @@
-import { AndSpecification } from "./and-specification";
-import { AndNotSpecification } from "./and-not-specification";
-import { OrSpecification } from "./or-specification";
-import { OrNotSpecification } from "./or-not-specification";
-export class CompositeSpecification {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CompositeSpecification = void 0;
+const and_specification_1 = require("./and-specification");
+const and_not_specification_1 = require("./and-not-specification");
+const or_specification_1 = require("./or-specification");
+const or_not_specification_1 = require("./or-not-specification");
+class CompositeSpecification {
     constructor() { }
     and(other) {
-        return new AndSpecification(this, other);
+        return new and_specification_1.AndSpecification(this, other);
     }
     andNot(other) {
-        return new AndNotSpecification(this, other);
+        return new and_not_specification_1.AndNotSpecification(this, other);
     }
     or(other) {
-        return new OrSpecification(this, other);
+        return new or_specification_1.OrSpecification(this, other);
     }
     orNot(other) {
-        return new OrNotSpecification(this, other);
+        return new or_not_specification_1.OrNotSpecification(this, other);
     }
 }
+exports.CompositeSpecification = CompositeSpecification;

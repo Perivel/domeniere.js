@@ -1,4 +1,7 @@
-export class StoredEvent {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.StoredEvent = void 0;
+class StoredEvent {
     constructor(eventId, eventName, eventClassification, eventVersion, body, occuredOn, isPublished = false) {
         this._eventBody = body;
         this._eventClassification = eventClassification;
@@ -33,3 +36,4 @@ export class StoredEvent {
         return this._occuredOn;
     }
 }
+exports.StoredEvent = StoredEvent;

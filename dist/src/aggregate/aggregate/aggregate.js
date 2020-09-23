@@ -1,8 +1,11 @@
-import { InvalidArgumentException } from "foundation";
-export class Aggregate {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Aggregate = void 0;
+const foundation_1 = require("foundation");
+class Aggregate {
     constructor(root) {
         if (!root) {
-            throw new InvalidArgumentException("An aggregate's root cannot be undefined.");
+            throw new foundation_1.InvalidArgumentException("An aggregate's root cannot be undefined.");
         }
         this._root = root;
     }
@@ -17,8 +20,9 @@ export class Aggregate {
     }
     setRoot(root) {
         if (!root) {
-            throw new InvalidArgumentException('An aggregate root cannot be undefined.');
+            throw new foundation_1.InvalidArgumentException('An aggregate root cannot be undefined.');
         }
         this._root = root;
     }
 }
+exports.Aggregate = Aggregate;

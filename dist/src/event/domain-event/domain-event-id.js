@@ -1,10 +1,13 @@
-import { Id, UUID } from "foundation";
-export class DomainEventId extends Id {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DomainEventId = void 0;
+const foundation_1 = require("foundation");
+class DomainEventId extends foundation_1.Id {
     constructor(value) {
         super(value);
     }
     static Generate() {
-        return new DomainEventId(UUID.V4().id());
+        return new DomainEventId(foundation_1.UUID.V4().id());
     }
     equals(suspect) {
         let isEqual = false;
@@ -18,3 +21,4 @@ export class DomainEventId extends Id {
         return super.id();
     }
 }
+exports.DomainEventId = DomainEventId;

@@ -1,16 +1,19 @@
-import { Timestamp } from "foundation";
-import { DomainEventId } from "./domain-event-id";
-import { EventClassifications } from "./event-classification.enum";
-export class DomainEvent {
-    constructor(timestamp = Timestamp.Now(), id = "") {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DomainEvent = void 0;
+const foundation_1 = require("foundation");
+const domain_event_id_1 = require("./domain-event-id");
+const event_classification_enum_1 = require("./event-classification.enum");
+class DomainEvent {
+    constructor(timestamp = foundation_1.Timestamp.Now(), id = "") {
         this._timestamp = timestamp;
-        this._id = (id) ? new DomainEventId(id) : DomainEventId.Generate();
+        this._id = (id) ? new domain_event_id_1.DomainEventId(id) : domain_event_id_1.DomainEventId.Generate();
         this._eventName = this.constructor.EventName();
         this._eventClassification = this.constructor.EventClassification();
         this._eventVersion = this.constructor.EventVersion();
     }
     static EventClassification() {
-        return EventClassifications.Domain.toString();
+        return event_classification_enum_1.EventClassifications.Domain.toString();
     }
     static EventName() {
         throw new Error('EventNotSpecifiedException.');
@@ -22,7 +25,7 @@ export class DomainEvent {
         return this._eventClassification;
     }
     eventId() {
-        return new DomainEventId(this._id.id());
+        return new domain_event_id_1.DomainEventId(this._id.id());
     }
     eventName() {
         return this._eventName;
@@ -31,10 +34,10 @@ export class DomainEvent {
         return this._eventVersion;
     }
     isError() {
-        return this.eventClassification() === EventClassifications.InternalError.toString();
+        return this.eventClassification() === event_classification_enum_1.EventClassifications.InternalError.toString();
     }
     isInternal() {
-        return (this.eventClassification() === EventClassifications.InternalEvent.toString()) || (this.eventClassification() === EventClassifications.InternalError.toString());
+        return (this.eventClassification() === event_classification_enum_1.EventClassifications.InternalEvent.toString()) || (this.eventClassification() === event_classification_enum_1.EventClassifications.InternalError.toString());
     }
     occuredOn() {
         return this._timestamp;
@@ -46,3 +49,4 @@ export class DomainEvent {
         return true;
     }
 }
+exports.DomainEvent = DomainEvent;

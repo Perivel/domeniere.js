@@ -1,24 +1,18 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-import { EventEmitter } from "../event-emitter/event-emitter";
-import { Subscriber } from "../subscriber/subscriber";
-import { SubscriberId } from "../subscriber/subscriber-id";
-import { DefaultEventStore } from "../event-store/default-event-store";
-import { UUID } from "foundation";
-import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
-import { schedule as scheduleTask, validate as validateCronExpression } from 'node-cron';
-import { EventAggregate } from "../event-emitter/event-aggregate..type";
-export class EventStream {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventStream = void 0;
+const event_emitter_1 = require("../event-emitter/event-emitter");
+const subscriber_1 = require("../subscriber/subscriber");
+const subscriber_id_1 = require("../subscriber/subscriber-id");
+const default_event_store_1 = require("../event-store/default-event-store");
+const foundation_1 = require("foundation");
+const framework_event_handler_priority_enum_1 = require("../subscriber/framework-event-handler-priority.enum");
+const node_cron_1 = require("node-cron");
+const event_aggregate__type_1 = require("../event-emitter/event-aggregate..type");
+class EventStream {
     constructor() {
-        this.emitter = new EventEmitter();
-        this._eventStore = new DefaultEventStore();
+        this.emitter = new event_emitter_1.EventEmitter();
+        this._eventStore = new default_event_store_1.DefaultEventStore();
         this._eventPublisherTask = null;
         this.registerInternalEventHandlers();
     }
@@ -34,11 +28,9 @@ export class EventStream {
         }
         EventStream.instance().scheduleEventPublisherInterval(`*/${interval} * * * *`);
     }
-    emit(event) {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.eventStore().store(event);
-            yield this.emitter.emit(event);
-        });
+    async emit(event) {
+        this.eventStore().store(event);
+        await this.emitter.emit(event);
     }
     eventStore() {
         return this._eventStore;
@@ -47,27 +39,28 @@ export class EventStream {
         this._eventStore = eventStore;
     }
     subscribe(id, eventName, priority, label, handler, stopPropogationOnError = false) {
-        const subscriberId = new SubscriberId(id);
-        const subscriber = new Subscriber(subscriberId, eventName, priority, label, handler, stopPropogationOnError);
+        const subscriberId = new subscriber_id_1.SubscriberId(id);
+        const subscriber = new subscriber_1.Subscriber(subscriberId, eventName, priority, label, handler, stopPropogationOnError);
         this.emitter.addSubscriber(subscriber);
     }
     registerInternalEventHandlers() {
-        this.subscribe(UUID.V4().id(), EventAggregate.Any.toString(), FrameworkEventHandlerPriority.HIGH, 'persist events', () => __awaiter(this, void 0, void 0, function* () {
-            yield EventStream.instance().eventStore().persistEvents();
-        }), false);
+        this.subscribe(foundation_1.UUID.V4().id(), event_aggregate__type_1.EventAggregate.Any.toString(), framework_event_handler_priority_enum_1.FrameworkEventHandlerPriority.HIGH, 'persist events', async () => {
+            await EventStream.instance().eventStore().persistEvents();
+        }, false);
     }
     scheduleEventPublisherInterval(cronExpression) {
         if (this._eventPublisherTask) {
             this._eventPublisherTask.destroy();
         }
-        if (!validateCronExpression(cronExpression)) {
+        if (!node_cron_1.validate(cronExpression)) {
             throw new Error('Invalid Interval.');
         }
-        this._eventPublisherTask = scheduleTask(cronExpression, () => __awaiter(this, void 0, void 0, function* () {
-            yield EventStream
+        this._eventPublisherTask = node_cron_1.schedule(cronExpression, async () => {
+            await EventStream
                 .instance()
                 .eventStore()
                 .publishEvents();
-        }));
+        });
     }
 }
+exports.EventStream = EventStream;

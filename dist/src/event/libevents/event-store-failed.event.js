@@ -1,8 +1,11 @@
-import { DomainEvent } from "../domain-event/domain-event";
-import { Timestamp } from "foundation";
-import { EventClassifications } from "../domain-event/event-classification.enum";
-export class EventStoreFailed extends DomainEvent {
-    constructor(error, timestamp = Timestamp.Now(), id = undefined) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventStoreFailed = void 0;
+const domain_event_1 = require("../domain-event/domain-event");
+const foundation_1 = require("foundation");
+const event_classification_enum_1 = require("../domain-event/event-classification.enum");
+class EventStoreFailed extends domain_event_1.DomainEvent {
+    constructor(error, timestamp = foundation_1.Timestamp.Now(), id = undefined) {
         super(timestamp, id);
         this._error = error;
     }
@@ -10,7 +13,7 @@ export class EventStoreFailed extends DomainEvent {
         return 'event-store-failed';
     }
     static EventClassification() {
-        return EventClassifications.InternalError.toString();
+        return event_classification_enum_1.EventClassifications.InternalError.toString();
     }
     static EventVersion() {
         return 1.0;
@@ -24,3 +27,4 @@ export class EventStoreFailed extends DomainEvent {
         });
     }
 }
+exports.EventStoreFailed = EventStoreFailed;

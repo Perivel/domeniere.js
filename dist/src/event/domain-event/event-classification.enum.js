@@ -1,6 +1,9 @@
-export var EventClassifications;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventClassifications = void 0;
+var EventClassifications;
 (function (EventClassifications) {
     EventClassifications["InternalEvent"] = "framework.internal.general";
     EventClassifications["InternalError"] = "framework.internal.error";
     EventClassifications["Domain"] = "domain.general";
-})(EventClassifications || (EventClassifications = {}));
+})(EventClassifications = exports.EventClassifications || (exports.EventClassifications = {}));

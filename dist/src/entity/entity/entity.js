@@ -1,8 +1,11 @@
-import { InvalidArgumentException } from "foundation";
-export class Entity {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Entity = void 0;
+const foundation_1 = require("foundation");
+class Entity {
     constructor(id) {
         if (!id) {
-            throw new InvalidArgumentException("An entity's id cannot be undefined.");
+            throw new foundation_1.InvalidArgumentException("An entity's id cannot be undefined.");
         }
         this._id = id;
     }
@@ -13,3 +16,4 @@ export class Entity {
         this._id = id;
     }
 }
+exports.Entity = Entity;
