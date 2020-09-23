@@ -2,9 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventStore = void 0;
 const foundation_1 = require("foundation");
-const event_stream_1 = require("../event-stream/event-stream");
-const event_broadcast_failed_event_1 = require("../libevents/event-broadcast-failed.event");
-const event_store_failed_event_1 = require("../libevents/event-store-failed.event");
 const stored_event_1 = require("./stored-event");
 class EventStore {
     constructor() {
@@ -16,7 +13,8 @@ class EventStore {
             await this.boradcastEvents(this._publishQueue);
         }
         catch (error) {
-            await event_stream_1.EventStream.instance().emit(new event_broadcast_failed_event_1.EventBroadcastFailed(error));
+            throw error;
+            ;
         }
     }
     async persistEvents() {
@@ -24,7 +22,7 @@ class EventStore {
             await this.saveEvents(this._storageQueue);
         }
         catch (err) {
-            await event_stream_1.EventStream.instance().emit(new event_store_failed_event_1.EventStoreFailed(err));
+            throw err;
         }
     }
     shouldBroadcastInternalEvents() {

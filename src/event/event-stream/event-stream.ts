@@ -10,6 +10,8 @@ import { UUID } from "foundation";
 import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
 import { schedule as scheduleTask, ScheduledTask, validate as validateCronExpression } from 'node-cron';
 import { EventAggregate } from "../event-emitter/event-aggregate..type";
+import { EventStoreFailed } from "../libevents/event-store-failed.event";
+import { EventBroadcastFailed } from "../event.module";
 
 /**
  * Event Stream
@@ -127,7 +129,14 @@ export class EventStream implements EventStreamInterface {
         
         // register a handler to automatically save events on any event.
         this.subscribe(UUID.V4().id(), EventAggregate.Any.toString(), FrameworkEventHandlerPriority.HIGH, 'persist events', async () => {
-            await EventStream.instance().eventStore().persistEvents();
+            try {
+                await EventStream.instance().eventStore().persistEvents();
+            }
+            catch(err) {
+                // failed to store some or all the events.
+                await EventStream.instance().emit(new EventStoreFailed(err));
+            }
+
         }, false);
     }
 
@@ -148,11 +157,17 @@ export class EventStream implements EventStreamInterface {
         }
 
         this._eventPublisherTask = scheduleTask(cronExpression, async () => {
-            // publish the events.
-            await EventStream
-                .instance()
-                .eventStore()
-                .publishEvents();
+            try {
+                // publish the events.
+                await EventStream
+                    .instance()
+                    .eventStore()
+                    .publishEvents();
+            }
+            catch(err) {
+                // something went wrong broadcasting the events.
+                await EventStream.instance().emit(new EventBroadcastFailed(err as Error));
+            }
         });
     }
 }

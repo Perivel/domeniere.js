@@ -9,6 +9,8 @@ const foundation_1 = require("foundation");
 const framework_event_handler_priority_enum_1 = require("../subscriber/framework-event-handler-priority.enum");
 const node_cron_1 = require("node-cron");
 const event_aggregate__type_1 = require("../event-emitter/event-aggregate..type");
+const event_store_failed_event_1 = require("../libevents/event-store-failed.event");
+const event_module_1 = require("../event.module");
 class EventStream {
     constructor() {
         this.emitter = new event_emitter_1.EventEmitter();
@@ -45,7 +47,12 @@ class EventStream {
     }
     registerInternalEventHandlers() {
         this.subscribe(foundation_1.UUID.V4().id(), event_aggregate__type_1.EventAggregate.Any.toString(), framework_event_handler_priority_enum_1.FrameworkEventHandlerPriority.HIGH, 'persist events', async () => {
-            await EventStream.instance().eventStore().persistEvents();
+            try {
+                await EventStream.instance().eventStore().persistEvents();
+            }
+            catch (err) {
+                await EventStream.instance().emit(new event_store_failed_event_1.EventStoreFailed(err));
+            }
         }, false);
     }
     scheduleEventPublisherInterval(cronExpression) {
@@ -56,10 +63,15 @@ class EventStream {
             throw new Error('Invalid Interval.');
         }
         this._eventPublisherTask = node_cron_1.schedule(cronExpression, async () => {
-            await EventStream
-                .instance()
-                .eventStore()
-                .publishEvents();
+            try {
+                await EventStream
+                    .instance()
+                    .eventStore()
+                    .publishEvents();
+            }
+            catch (err) {
+                await EventStream.instance().emit(new event_module_1.EventBroadcastFailed(err));
+            }
         });
     }
 }

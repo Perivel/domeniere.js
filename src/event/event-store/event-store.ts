@@ -1,8 +1,5 @@
 import { Queue } from "foundation";
 import { DomainEvent } from "../domain-event/domain-event";
-import { EventStream } from "../event-stream/event-stream";
-import { EventBroadcastFailed } from "../libevents/event-broadcast-failed.event";
-import { EventStoreFailed } from "../libevents/event-store-failed.event";
 import { StoredEvent } from "./stored-event";
 
 /**
@@ -43,7 +40,8 @@ export abstract class EventStore {
         }
         catch(error) {
             // something went wrong broadcasting the events.
-            await EventStream.instance().emit(new EventBroadcastFailed(error as Error));
+            throw error;;
+            
         }
     }
 
@@ -51,7 +49,7 @@ export abstract class EventStore {
      * persistEvents()
      * 
      * persistEvents() perisists the events to storage.
-     * @emits EventStoreFailed evnet when there is an error persisting the events.
+     * 
      */
 
     public async persistEvents(): Promise<void> {
@@ -60,8 +58,8 @@ export abstract class EventStore {
             await this.saveEvents(this._storageQueue);
         }
         catch(err) {
-            // throw the EventStorageFailed event.
-            await EventStream.instance().emit(new EventStoreFailed(err as Error));
+            // something went wrong saving the event.
+            throw err;
         }
     }
 
@@ -71,6 +69,7 @@ export abstract class EventStore {
      * 
      * saveEvents() persists the events to storage..
      * @param event the queue of events to persist in storage.
+     * @throws Any kind of exception when an error occurs.
      */
 
     protected async abstract saveEvents(eventQueue: Queue<StoredEvent>): Promise<void>;
