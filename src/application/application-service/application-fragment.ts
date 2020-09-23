@@ -11,9 +11,10 @@ import { ApplicationServiceInterface } from "./application-service.interface";
 
 export abstract class ApplicationFragment extends EventEmittingObject implements ApplicationServiceInterface {
 
-    constructor(eventStore: EventStore, logDelegate: LoggerDelegate) {
+    constructor(eventStore: EventStore, logDelegate: LoggerDelegate, eventBroadcastInterval: number = 2) {
         super();
         EventStream.instance().setEventStore(eventStore);
+        EventStream.PublishEventsWithinInterval(eventBroadcastInterval);
         Logger.instance().setDelegate(logDelegate);
     }
 }

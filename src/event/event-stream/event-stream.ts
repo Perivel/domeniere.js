@@ -11,6 +11,11 @@ import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-han
 import { schedule as scheduleTask, ScheduledTask, validate as validateCronExpression } from 'node-cron';
 import { EventAggregate } from "../event-emitter/event-aggregate..type";
 
+/**
+ * Event Stream
+ * 
+ * Event Stream is the main Event Stream object responsible for emitting events.
+ */
 
 export class EventStream implements EventStreamInterface {
     // the global instance.
