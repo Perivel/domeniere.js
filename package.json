@@ -18,7 +18,9 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "dependencies": {
+    "@types/moment-timezone": "^0.5.30",
     "@types/node-cron": "^2.0.3",
+    "foundation": "https://github.com/Perivel/foundation.git",
     "node-cron": "^2.0.3"
   },
   "devDependencies": {
