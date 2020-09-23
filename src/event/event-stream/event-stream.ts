@@ -55,6 +55,11 @@ export class EventStream implements EventStreamInterface {
         return EventStream._instance;
     }
 
+    /**
+     * PublishEventsWithinInterval()
+     * @param interval The interval in minutes of when events should be broadcasted.
+     */
+
     public static PublishEventsWithinInterval(interval: number): void {
 
         if ((interval < 1) || (interval > 59)) {
