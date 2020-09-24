@@ -41,7 +41,6 @@ export abstract class EventStore {
         catch(error) {
             // something went wrong broadcasting the events.
             throw error;;
-            
         }
     }
 
