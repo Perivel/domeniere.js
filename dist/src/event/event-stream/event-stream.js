@@ -27,7 +27,7 @@ class EventStream {
     }
     static PublishEventsWithinInterval(interval) {
         if ((interval < 1) || (interval > 59)) {
-            throw new Error('out of range.');
+            throw new foundation_1.OutOfBoundsException('Interval must be between 1 and 59 minutes.');
         }
         EventStream.instance().scheduleEventPublisherInterval(`*/${interval} * * * *`);
     }

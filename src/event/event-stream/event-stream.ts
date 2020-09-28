@@ -6,7 +6,7 @@ import { Subscriber } from "../subscriber/subscriber";
 import { EventHandler } from "../subscriber/event-handler.type";
 import { SubscriberId } from "../subscriber/subscriber-id";
 import { DefaultEventStore } from "../event-store/default-event-store";
-import { UUID,  } from "foundation";
+import { OutOfBoundsException, UUID,  } from "foundation";
 import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
 import { schedule as scheduleTask, ScheduledTask, validate as validateCronExpression } from 'node-cron';
 import { EventAggregate } from "../event-emitter/event-aggregate..type";
@@ -61,12 +61,13 @@ export class EventStream implements EventStreamInterface {
     /**
      * PublishEventsWithinInterval()
      * @param interval The interval in minutes of when events should be broadcasted.
+     * @throws OutOfBoundsException when the interval is out of bounds.
      */
 
     public static PublishEventsWithinInterval(interval: number): void {
 
         if ((interval < 1) || (interval > 59)) {
-             throw new Error('out of range.');
+             throw new OutOfBoundsException('Interval must be between 1 and 59 minutes.');
         }
         EventStream.instance().scheduleEventPublisherInterval(`*/${interval} * * * *`);
     }
