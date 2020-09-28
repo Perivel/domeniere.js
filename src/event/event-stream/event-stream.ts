@@ -6,7 +6,7 @@ import { Subscriber } from "../subscriber/subscriber";
 import { EventHandler } from "../subscriber/event-handler.type";
 import { SubscriberId } from "../subscriber/subscriber-id";
 import { DefaultEventStore } from "../event-store/default-event-store";
-import { OutOfBoundsException, UUID,  } from "foundation";
+import { OutOfBoundsException, UUID } from "foundation";
 import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
 import { schedule as scheduleTask, ScheduledTask, validate as validateCronExpression } from 'node-cron';
 import { EventAggregate } from "../event-emitter/event-aggregate..type";
