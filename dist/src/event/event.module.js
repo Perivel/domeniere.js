@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventBroadcastFailed = exports.EventHandlerFailed = exports.OnAny = exports.OnError = exports.OnInternal = exports.On = exports.EventStream = exports.StoredEvent = exports.EventStore = exports.SubscriberId = exports.Subscriber = exports.DomainEventHandlerPriority = exports.DomainEventId = exports.DomainEvent = void 0;
+exports.InvalidEventPublishIntervalException = exports.EventBroadcastFailed = exports.EventHandlerFailed = exports.OnAny = exports.OnError = exports.OnInternal = exports.On = exports.EventStream = exports.StoredEvent = exports.EventStore = exports.SubscriberId = exports.Subscriber = exports.DomainEventHandlerPriority = exports.DomainEventId = exports.DomainEvent = void 0;
 var domain_event_1 = require("./domain-event/domain-event");
 Object.defineProperty(exports, "DomainEvent", { enumerable: true, get: function () { return domain_event_1.DomainEvent; } });
 var domain_event_id_1 = require("./domain-event/domain-event-id");
@@ -29,3 +29,5 @@ var event_handler_failed_event_1 = require("./libevents/event-handler-failed.eve
 Object.defineProperty(exports, "EventHandlerFailed", { enumerable: true, get: function () { return event_handler_failed_event_1.EventHandlerFailed; } });
 var event_broadcast_failed_event_1 = require("./libevents/event-broadcast-failed.event");
 Object.defineProperty(exports, "EventBroadcastFailed", { enumerable: true, get: function () { return event_broadcast_failed_event_1.EventBroadcastFailed; } });
+var invalid_event_publish_interval_exception_1 = require("./event-stream/invalid-event-publish-interval.exception");
+Object.defineProperty(exports, "InvalidEventPublishIntervalException", { enumerable: true, get: function () { return invalid_event_publish_interval_exception_1.InvalidEventPublishIntervalException; } });

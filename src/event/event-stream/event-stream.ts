@@ -6,12 +6,13 @@ import { Subscriber } from "../subscriber/subscriber";
 import { EventHandler } from "../subscriber/event-handler.type";
 import { SubscriberId } from "../subscriber/subscriber-id";
 import { DefaultEventStore } from "../event-store/default-event-store";
-import { UUID } from "foundation";
+import { UUID,  } from "foundation";
 import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
 import { schedule as scheduleTask, ScheduledTask, validate as validateCronExpression } from 'node-cron';
 import { EventAggregate } from "../event-emitter/event-aggregate..type";
 import { EventStoreFailed } from "../libevents/event-store-failed.event";
 import { EventBroadcastFailed } from "../event.module";
+import { InvalidEventPublishIntervalException } from './invalid-event-publish-interval.exception';
 
 /**
  * Event Stream
@@ -143,6 +144,7 @@ export class EventStream implements EventStreamInterface {
     /**
      * Schedules the interval when events are to be published to the public queue.
      * @param cronExpression THe cron expression
+     * @throws InvalidEventPublishIntercalException when an invalid event interval has been passed.
      */
 
     private scheduleEventPublisherInterval(cronExpression: string): void {
@@ -153,7 +155,7 @@ export class EventStream implements EventStreamInterface {
         // validate
         if (!validateCronExpression(cronExpression)) {
             // invalid chron expression.
-            throw new Error('Invalid Interval.');
+            throw new InvalidEventPublishIntervalException();
         }
 
         this._eventPublisherTask = scheduleTask(cronExpression, async () => {

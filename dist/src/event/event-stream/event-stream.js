@@ -11,6 +11,7 @@ const node_cron_1 = require("node-cron");
 const event_aggregate__type_1 = require("../event-emitter/event-aggregate..type");
 const event_store_failed_event_1 = require("../libevents/event-store-failed.event");
 const event_module_1 = require("../event.module");
+const invalid_event_publish_interval_exception_1 = require("./invalid-event-publish-interval.exception");
 class EventStream {
     constructor() {
         this.emitter = new event_emitter_1.EventEmitter();
@@ -60,7 +61,7 @@ class EventStream {
             this._eventPublisherTask.destroy();
         }
         if (!node_cron_1.validate(cronExpression)) {
-            throw new Error('Invalid Interval.');
+            throw new invalid_event_publish_interval_exception_1.InvalidEventPublishIntervalException();
         }
         this._eventPublisherTask = node_cron_1.schedule(cronExpression, async () => {
             try {
