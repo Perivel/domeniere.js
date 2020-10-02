@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoggerDelegate = exports.Logger = exports.OrNotSpecification = exports.OrSpecification = exports.AndNotSpecification = exports.AndSpecification = exports.CompositeSpecification = void 0;
+exports.ConsoleLoggerDelegate = exports.LoggerDelegate = exports.Logger = exports.OrNotSpecification = exports.OrSpecification = exports.AndNotSpecification = exports.AndSpecification = exports.CompositeSpecification = void 0;
 var composite_specification_1 = require("./specification/composite-specification");
 Object.defineProperty(exports, "CompositeSpecification", { enumerable: true, get: function () { return composite_specification_1.CompositeSpecification; } });
 var and_specification_1 = require("./specification/and-specification");
@@ -15,3 +15,5 @@ var logger_1 = require("./log/logger");
 Object.defineProperty(exports, "Logger", { enumerable: true, get: function () { return logger_1.Logger; } });
 var logger_delegate_1 = require("./log/logger-delegate");
 Object.defineProperty(exports, "LoggerDelegate", { enumerable: true, get: function () { return logger_delegate_1.LoggerDelegate; } });
+var console_logger_delegate_1 = require("./log/console-logger.delegate");
+Object.defineProperty(exports, "ConsoleLoggerDelegate", { enumerable: true, get: function () { return console_logger_delegate_1.ConsoleLoggerDelegate; } });

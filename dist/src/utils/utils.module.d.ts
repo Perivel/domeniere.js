@@ -5,4 +5,5 @@ export { OrSpecification } from './specification/or-specification';
 export { OrNotSpecification } from './specification/or-not-specification';
 export { Logger } from './log/logger';
 export { LoggerDelegate } from './log/logger-delegate';
+export { ConsoleLoggerDelegate } from './log/console-logger.delegate';
 //# sourceMappingURL=utils.module.d.ts.map
