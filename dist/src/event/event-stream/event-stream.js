@@ -32,7 +32,7 @@ class EventStream {
         EventStream.instance().scheduleEventPublisherInterval(`*/${interval} * * * *`);
     }
     async emit(event) {
-        this.eventStore().store(event);
+        await this.eventStore().store(event);
         await this.emitter.emit(event);
     }
     eventStore() {

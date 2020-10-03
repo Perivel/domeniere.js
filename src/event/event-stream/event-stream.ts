@@ -79,7 +79,7 @@ export class EventStream implements EventStreamInterface {
      */
 
     public async emit(event: DomainEvent): Promise<void> {
-        this.eventStore().store(event);
+        await this.eventStore().store(event);
         await this.emitter.emit(event);
     }
 

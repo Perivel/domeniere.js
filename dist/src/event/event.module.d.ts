@@ -15,4 +15,5 @@ export { OnAny } from './decorators/on-any.decorator';
 export { EventHandlerFailed } from './libevents/event-handler-failed.event';
 export { EventBroadcastFailed } from './libevents/event-broadcast-failed.event';
 export { InvalidEventPublishIntervalException } from './event-stream/invalid-event-publish-interval.exception';
+export { EventStoreFailed } from './libevents/event-store-failed.event';
 //# sourceMappingURL=event.module.d.ts.map
