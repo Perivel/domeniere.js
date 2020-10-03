@@ -4,7 +4,6 @@
   "description": "Frament is the domain layer framework.",
   "main": "dist/fragment.js",
   "types": "dist/fragment.d.ts",
-  "type": "commonjs",
   "repository": "https://github.com/Perivel/fragment",
   "author": "Patrick Luy <pluy@perivel.com>",
   "license": "MIT",
