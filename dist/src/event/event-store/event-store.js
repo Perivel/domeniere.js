@@ -9,20 +9,24 @@ class EventStore {
         this._publishQueue = new foundation_1.Queue();
     }
     async publishEvents() {
-        try {
-            await this.boradcastEvents(this._publishQueue);
-        }
-        catch (error) {
-            throw error;
-            ;
+        if (!this._publishQueue.isEmpty()) {
+            try {
+                await this.boradcastEvents(this._publishQueue);
+            }
+            catch (error) {
+                throw error;
+                ;
+            }
         }
     }
     async persistEvents() {
-        try {
-            await this.saveEvents(this._storageQueue);
-        }
-        catch (err) {
-            throw err;
+        if (!this._storageQueue.isEmpty()) {
+            try {
+                await this.saveEvents(this._storageQueue);
+            }
+            catch (err) {
+                throw err;
+            }
         }
     }
     shouldBroadcastInternalEvents() {

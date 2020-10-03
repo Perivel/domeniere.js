@@ -35,13 +35,17 @@ export abstract class EventStore {
      */
 
     public async publishEvents(): Promise<void> {
-        try {
-            await this.boradcastEvents(this._publishQueue);
+        
+        if (!this._publishQueue.isEmpty()) {
+            try {
+                await this.boradcastEvents(this._publishQueue);
+            }
+            catch (error) {
+                // something went wrong broadcasting the events.
+                throw error;;
+            }
         }
-        catch(error) {
-            // something went wrong broadcasting the events.
-            throw error;;
-        }
+
     }
 
     /**
@@ -53,12 +57,15 @@ export abstract class EventStore {
 
     public async persistEvents(): Promise<void> {
 
-        try {
-            await this.saveEvents(this._storageQueue);
-        }
-        catch(err) {
-            // something went wrong saving the event.
-            throw err;
+        if (!this._storageQueue.isEmpty()) {
+
+            try {
+                await this.saveEvents(this._storageQueue);
+            }
+            catch (err) {
+                // something went wrong saving the event.
+                throw err;
+            }
         }
     }
 
