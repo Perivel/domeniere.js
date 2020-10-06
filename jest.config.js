@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   roots: ["./tests/cases"],
   transform: {
     "^.+\\.tsx?$": "ts-jest",

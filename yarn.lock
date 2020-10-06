@@ -748,6 +748,11 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+awesome-phonenumber@^2.39.0:
+  version "2.39.0"
+  resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.39.0.tgz#7a6f3ef04df7e6168407ab73ac68a882e04ef5e7"
+  integrity sha512-GV1GZ/AZfsBU6EIYF4TlFhOuZus9IOT6wyVmFmFZvpUFCwsx8TRsyhEOhPxSUSdPgd/h4RehQmwgrWI/S26WKw==
+
 aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
@@ -1465,10 +1470,11 @@ form-data@~2.3.2:
 
 "foundation@https://github.com/Perivel/foundation.git":
   version "0.1.0"
-  resolved "https://github.com/Perivel/foundation.git#5fe334270516207213b905e922203e3f76d885a9"
+  resolved "https://github.com/Perivel/foundation.git#f2324414004c6cf5aa44b962f5d5512b9bd00093"
   dependencies:
     "@types/moment-timezone" "^0.5.30"
     "@types/uuid" "^8.3.0"
+    awesome-phonenumber "^2.39.0"
     email-validator "^2.0.4"
     i18n-iso-countries "^6.0.0"
     moment-timezone "^0.5.31"
