@@ -1,6 +1,6 @@
 {
   "name": "fragment",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Frament is the domain layer framework.",
   "main": "dist/fragment.js",
   "types": "dist/fragment.d.ts",

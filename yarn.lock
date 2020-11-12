@@ -562,6 +562,11 @@
     jest-diff "^25.2.1"
     pretty-format "^25.2.1"
 
+"@types/luxon@^1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.25.0.tgz#3d6fe591fac874f48dd225cb5660b2b785a21a05"
+  integrity sha512-iIJp2CP6C32gVqI08HIYnzqj55tlLnodIBMCcMf28q9ckqMfMzocCmIzd9JWI/ALLPMUiTkCu1JGv3FFtu6t3g==
+
 "@types/moment-timezone@^0.5.30":
   version "0.5.30"
   resolved "https://registry.yarnpkg.com/@types/moment-timezone/-/moment-timezone-0.5.30.tgz#340ed45fe3e715f4a011f5cfceb7cb52aad46fc7"
@@ -749,9 +754,9 @@ atob@^2.1.2:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 awesome-phonenumber@^2.39.0:
-  version "2.39.0"
-  resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.39.0.tgz#7a6f3ef04df7e6168407ab73ac68a882e04ef5e7"
-  integrity sha512-GV1GZ/AZfsBU6EIYF4TlFhOuZus9IOT6wyVmFmFZvpUFCwsx8TRsyhEOhPxSUSdPgd/h4RehQmwgrWI/S26WKw==
+  version "2.40.0"
+  resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.40.0.tgz#02963b7a1a372572e42fb827401eb78d9ac4e294"
+  integrity sha512-ViGH+iNPzFCQ1s0Lut8jQC2dP05SjnntlA10emT8ANXy3UtyWykeWvKaDG17eWIcSjXqPvdKkPCco9Nu+Egj1g==
 
 aws-sign2@~0.7.0:
   version "0.7.0"
@@ -1470,14 +1475,14 @@ form-data@~2.3.2:
 
 "foundation@https://github.com/Perivel/foundation.git":
   version "0.1.0"
-  resolved "https://github.com/Perivel/foundation.git#f2324414004c6cf5aa44b962f5d5512b9bd00093"
+  resolved "https://github.com/Perivel/foundation.git#89a7d4f2542fe4607aec555f547133471a60c200"
   dependencies:
-    "@types/moment-timezone" "^0.5.30"
+    "@types/luxon" "^1.25.0"
     "@types/uuid" "^8.3.0"
     awesome-phonenumber "^2.39.0"
     email-validator "^2.0.4"
     i18n-iso-countries "^6.0.0"
-    moment-timezone "^0.5.31"
+    luxon "^1.25.0"
     typescript "^3.9.7"
     uuid "^8.3.0"
 
@@ -1652,9 +1657,9 @@ human-signals@^1.1.1:
   integrity sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==
 
 i18n-iso-countries@^6.0.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/i18n-iso-countries/-/i18n-iso-countries-6.1.0.tgz#898ef755d91a35fa6f5f328b06bce84e43fff243"
-  integrity sha512-sUlRC0D3OQbHgp2JXCCsmHjCDpqguAuNFWmob5m/BhFRTEgPJYWYUgFcrfBvmJI844JfarWprvRybO9HaDJOfA==
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/i18n-iso-countries/-/i18n-iso-countries-6.2.2.tgz#6b63d00e90ee4022e8c159a9e688d2a8156b0e0b"
+  integrity sha512-sZJeKs5IP93Y+dq/8/NonrEdOudVVuH6BbZVd66edjxVkKVFMtvbM6EkpTbDO3B+d9qFW9XZqdgmGNgNDzciSw==
   dependencies:
     diacritics "1.3.0"
 
@@ -2451,6 +2456,11 @@ lodash@^4.17.19:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
 
+luxon@^1.25.0:
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.25.0.tgz#d86219e90bc0102c0eb299d65b2f5e95efe1fe72"
+  integrity sha512-hEgLurSH8kQRjY6i4YLey+mcKVAWXbDNlZRmM6AgWDJ1cY3atl8Ztf5wEY7VBReFbmGnwQPz7KYJblL8B2k0jQ==
+
 make-dir@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-3.1.0.tgz#415e967046b3a7f1d185277d84aa58203726a13f"
@@ -2556,7 +2566,7 @@ mkdirp@1.x:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment-timezone@*, moment-timezone@^0.5.31:
+moment-timezone@*:
   version "0.5.31"
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.31.tgz#9c40d8c5026f0c7ab46eda3d63e49c155148de05"
   integrity sha512-+GgHNg8xRhMXfEbv81iDtrVeTcWt0kWmTEY1XQK14dICTXnWJnT0dxdlPspwqF3keKMVPXwayEsk1DI0AA/jdA==
