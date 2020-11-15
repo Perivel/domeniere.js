@@ -1,4 +1,4 @@
-import { Timestamp } from "foundation";
+import { DateTime } from "foundation";
 
 /**
  * StoredEventInterface
@@ -65,5 +65,5 @@ export interface StoredEventInterface {
      * occuredOn()
      */
 
-    occuredOn(): Timestamp;
+    occuredOn(): DateTime;
 }

@@ -1,8 +1,8 @@
 import { DomainEvent } from "../domain-event/domain-event";
-import { Timestamp } from "foundation";
+import { DateTime } from "foundation";
 export declare class EventStoreFailed extends DomainEvent {
     private readonly _error;
-    constructor(error: Error, timestamp?: Timestamp, id?: string | undefined);
+    constructor(error: Error, timestamp?: DateTime, id?: string | undefined);
     static EventName(): string;
     static EventClassification(): string;
     static EventVersion(): number;

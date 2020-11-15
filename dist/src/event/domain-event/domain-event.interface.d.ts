@@ -1,4 +1,4 @@
-import { Timestamp } from "foundation";
+import { DateTime } from "foundation";
 import { DomainEventIdInterface } from "./domain-event-id.interface";
 export interface DomainEventInterface {
     eventClassification(): string;
@@ -6,7 +6,7 @@ export interface DomainEventInterface {
     eventName(): string;
     isError(): boolean;
     isInternal(): boolean;
-    occuredOn(): Timestamp;
+    occuredOn(): DateTime;
     eventVersion(): number;
     shouldBeBroadcasted(): boolean;
 }

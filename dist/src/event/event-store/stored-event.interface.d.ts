@@ -1,4 +1,4 @@
-import { Timestamp } from "foundation";
+import { DateTime } from "foundation";
 export interface StoredEventInterface {
     eventBody(): string;
     eventClassification(): string;
@@ -7,6 +7,6 @@ export interface StoredEventInterface {
     eventVersion(): number;
     isPublished(): boolean;
     markPublished(): void;
-    occuredOn(): Timestamp;
+    occuredOn(): DateTime;
 }
 //# sourceMappingURL=stored-event.interface.d.ts.map

@@ -9,6 +9,7 @@ export declare class EventStream implements EventStreamInterface {
     private _eventPublisherTask;
     private constructor();
     static instance(): EventStream;
+    static PublishEvents(): Promise<void>;
     static PublishEventsWithinInterval(interval: number): void;
     emit(event: DomainEvent): Promise<void>;
     eventStore(): EventStore;

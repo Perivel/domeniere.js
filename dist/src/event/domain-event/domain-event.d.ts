@@ -1,5 +1,5 @@
 import { DomainEventInterface } from "./domain-event.interface";
-import { Serializable, Timestamp } from "foundation";
+import { Serializable, DateTime } from "foundation";
 import { DomainEventId } from "./domain-event-id";
 export declare abstract class DomainEvent implements DomainEventInterface, Serializable {
     private _timestamp;
@@ -7,7 +7,7 @@ export declare abstract class DomainEvent implements DomainEventInterface, Seria
     private _eventName;
     private _eventClassification;
     private _eventVersion;
-    constructor(timestamp?: Timestamp, id?: string);
+    constructor(timestamp?: DateTime, id?: string);
     static EventClassification(): string;
     static EventName(): string;
     static EventVersion(): number;
@@ -17,7 +17,7 @@ export declare abstract class DomainEvent implements DomainEventInterface, Seria
     eventVersion(): number;
     isError(): boolean;
     isInternal(): boolean;
-    occuredOn(): Timestamp;
+    occuredOn(): DateTime;
     serialize(): string;
     shouldBeBroadcasted(): boolean;
 }

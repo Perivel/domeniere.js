@@ -1,4 +1,4 @@
-import { Timestamp } from "foundation";
+import { DateTime } from "foundation";
 import { DomainEventIdInterface } from "./domain-event-id.interface";
 
 
@@ -51,7 +51,7 @@ export interface DomainEventInterface {
      * occuredOn() gets the timestamp the event occured on.
      */
 
-    occuredOn(): Timestamp;
+    occuredOn(): DateTime;
 
     /**
      * version()

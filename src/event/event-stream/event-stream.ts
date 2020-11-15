@@ -59,6 +59,19 @@ export class EventStream implements EventStreamInterface {
     }
 
     /**
+     * PublishEvents()
+     * 
+     * PublishEvents() publishes (or broadcasts) all unpublished events.
+     */
+
+    public static async PublishEvents(): Promise<void> {
+        await EventStream
+            .instance()
+            .eventStore()
+            .publishEvents();
+    }
+
+    /**
      * PublishEventsWithinInterval()
      * @param interval The interval in minutes of when events should be broadcasted.
      * @throws OutOfBoundsException when the interval is out of bounds.

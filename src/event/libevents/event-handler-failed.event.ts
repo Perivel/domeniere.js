@@ -1,5 +1,5 @@
 import { DomainEvent } from "../domain-event/domain-event";
-import { Timestamp } from "foundation";
+import { DateTime } from "foundation";
 import { Subscriber } from "../subscriber/subscriber";
 import { EventClassifications } from "../domain-event/event-classification.enum";
 
@@ -14,7 +14,7 @@ export class EventHandlerFailed extends DomainEvent {
     private readonly _handler: Subscriber;
     private readonly _event: DomainEvent;
 
-    constructor(handler: Subscriber, event: DomainEvent, timestamp: Timestamp = Timestamp.Now(), id: string|undefined = undefined) {
+    constructor(handler: Subscriber, event: DomainEvent, timestamp: DateTime = DateTime.Now(), id: string|undefined = undefined) {
         super(timestamp, id);
         this._handler = handler;
         this._event = event;

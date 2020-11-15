@@ -5,7 +5,7 @@ const foundation_1 = require("foundation");
 const domain_event_id_1 = require("./domain-event-id");
 const event_classification_enum_1 = require("./event-classification.enum");
 class DomainEvent {
-    constructor(timestamp = foundation_1.Timestamp.Now(), id = "") {
+    constructor(timestamp = foundation_1.DateTime.Now(), id = "") {
         this._timestamp = timestamp;
         this._id = (id) ? new domain_event_id_1.DomainEventId(id) : domain_event_id_1.DomainEventId.Generate();
         this._eventName = this.constructor.EventName();

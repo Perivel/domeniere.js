@@ -25,6 +25,12 @@ class EventStream {
         }
         return EventStream._instance;
     }
+    static async PublishEvents() {
+        await EventStream
+            .instance()
+            .eventStore()
+            .publishEvents();
+    }
     static PublishEventsWithinInterval(interval) {
         if ((interval < 1) || (interval > 59)) {
             throw new foundation_1.OutOfBoundsException('Interval must be between 1 and 59 minutes.');

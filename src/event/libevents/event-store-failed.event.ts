@@ -1,5 +1,5 @@
 import { DomainEvent } from "../domain-event/domain-event"
-import { Timestamp } from "foundation";
+import { DateTime } from "foundation";
 import { EventClassifications } from "../domain-event/event-classification.enum";
 
 /**
@@ -12,7 +12,7 @@ export class EventStoreFailed extends DomainEvent {
 
     private readonly _error: Error;
 
-    constructor(error: Error, timestamp: Timestamp = Timestamp.Now(), id: string|undefined = undefined) {
+    constructor(error: Error, timestamp: DateTime = DateTime.Now(), id: string|undefined = undefined) {
         super(timestamp, id);
         this._error = error;
     }

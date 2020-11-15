@@ -1,5 +1,5 @@
 import { DomainEventInterface } from "./domain-event.interface";
-import { Serializable, Timestamp } from "foundation";
+import { Serializable, DateTime } from "foundation";
 import { DomainEventId } from "./domain-event-id";
 import { EventClassifications } from "./event-classification.enum";
 
@@ -15,7 +15,7 @@ import { EventClassifications } from "./event-classification.enum";
 
 export abstract class DomainEvent implements DomainEventInterface, Serializable {
 
-    private _timestamp: Timestamp;
+    private _timestamp: DateTime;
     private _id: DomainEventId;
     private _eventName: string;
     private _eventClassification: string;
@@ -28,7 +28,7 @@ export abstract class DomainEvent implements DomainEventInterface, Serializable 
      * @throws InvalidArgumentException if the event name is empty.
      */
 
-    constructor(timestamp: Timestamp = Timestamp.Now(), id: string = "") {
+    constructor(timestamp: DateTime = DateTime.Now(), id: string = "") {
         this._timestamp = timestamp;
         this._id = (id) ? new DomainEventId(id) : DomainEventId.Generate();
         this._eventName = (this.constructor as any).EventName();
@@ -135,7 +135,7 @@ export abstract class DomainEvent implements DomainEventInterface, Serializable 
      * occuredOn() gets the timestamp when the event occured.
      */
 
-    public occuredOn(): Timestamp {
+    public occuredOn(): DateTime {
         return this._timestamp;
     }
 

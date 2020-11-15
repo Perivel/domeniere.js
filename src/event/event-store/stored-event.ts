@@ -1,4 +1,4 @@
-import { Timestamp } from "foundation";
+import { DateTime } from "foundation";
 import { StoredEventInterface } from "./stored-event.interface";
 
 /**
@@ -14,11 +14,11 @@ export class StoredEvent implements StoredEventInterface {
     private _eventId: string;
     private _eventName: string;
     private _eventVersion: number;
-    private _occuredOn: Timestamp;
+    private _occuredOn: DateTime;
     private _isPublished: boolean;
 
 
-    constructor(eventId: string, eventName: string, eventClassification: string, eventVersion: number, body: string, occuredOn: Timestamp, isPublished: boolean = false) {
+    constructor(eventId: string, eventName: string, eventClassification: string, eventVersion: number, body: string, occuredOn: DateTime, isPublished: boolean = false) {
         this._eventBody = body;
         this._eventClassification = eventClassification;
         this._eventId = eventId;
@@ -101,7 +101,7 @@ export class StoredEvent implements StoredEventInterface {
      * occuredOn()
      */
 
-    public occuredOn(): Timestamp {
+    public occuredOn(): DateTime {
         return this._occuredOn;
     }
 }
