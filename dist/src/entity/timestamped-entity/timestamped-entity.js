@@ -4,7 +4,7 @@ exports.TimestampedEntity = void 0;
 const foundation_1 = require("foundation");
 const entity_1 = require("../entity/entity");
 class TimestampedEntity extends entity_1.Entity {
-    constructor(id, created = foundation_1.Timestamp.Now(), updated = foundation_1.Timestamp.Now(), deleted = null) {
+    constructor(id, created = foundation_1.DateTime.Now(), updated = foundation_1.DateTime.Now(), deleted = null) {
         try {
             super(id);
             this._createdOn = created;
@@ -25,7 +25,7 @@ class TimestampedEntity extends entity_1.Entity {
         return this._updatedOn;
     }
     commitStateChange() {
-        this._updatedOn = foundation_1.Timestamp.Now();
+        this._updatedOn = foundation_1.DateTime.Now();
     }
     setDeleted(timestamp) {
         this._deletedOn = timestamp;

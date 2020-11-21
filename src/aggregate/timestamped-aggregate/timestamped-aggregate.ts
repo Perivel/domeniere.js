@@ -1,20 +1,20 @@
 import { Aggregate } from "../aggregate/aggregate";
-import { TimestampedResource, Timestamp } from "foundation";
+import { TimestampedResource, DateTime } from "foundation";
 import { Entity } from "../../entity/entity.module";
 
 /**
- * TimestampedAggregate
+ * DateTimeedAggregate
  * 
- * TimestampedAggregate defines an aggregate as a Timestamped Resource.
+ * DateTimeedAggregate defines an aggregate as a DateTimeed Resource.
  */
 
 export abstract class TimestampedAggregate extends Aggregate implements TimestampedResource {
 
-    private readonly _createdOn: Timestamp;
-    private _updatedOn: Timestamp;
-    private _deletedOn: Timestamp | null;
+    private readonly _createdOn: DateTime;
+    private _updatedOn: DateTime;
+    private _deletedOn: DateTime | null;
 
-    constructor(root: Entity, created: Timestamp = Timestamp.Now(), updated: Timestamp = Timestamp.Now(), deleted: Timestamp | null = null) {
+    constructor(root: Entity, created: DateTime = DateTime.Now(), updated: DateTime = DateTime.Now(), deleted: DateTime | null = null) {
         try {
             super(root);
             this._createdOn = created;
@@ -31,30 +31,30 @@ export abstract class TimestampedAggregate extends Aggregate implements Timestam
     /**
      * createdOn()
      * 
-     * createdOn() gets the timestamp the entity was created on.
+     * createdOn() gets the DateTime the entity was created on.
      */
 
-    public createdOn(): Timestamp {
+    public createdOn(): DateTime {
         return this._createdOn;
     }
 
     /**
      * deletedOn()
      * 
-     * deletedOn() gets the timestamp the entity was deleted.
+     * deletedOn() gets the DateTime the entity was deleted.
      */
 
-    public deletedOn(): Timestamp | null {
+    public deletedOn(): DateTime | null {
         return this._deletedOn;
     }
 
     /**
      * updatedOn()
      * 
-     * updatedOn() gets the timestamp the entity was last updated on.
+     * updatedOn() gets the DateTime the entity was last updated on.
      */
 
-    public updatedOn(): Timestamp {
+    public updatedOn(): DateTime {
         return this._updatedOn;
     }
 
@@ -67,17 +67,17 @@ export abstract class TimestampedAggregate extends Aggregate implements Timestam
      */
 
     protected commitStateChange(): void {
-        this._updatedOn = Timestamp.Now();
+        this._updatedOn = DateTime.Now();
     }
 
     /**
      * setDeleted()
      * 
-     * setDeleted() sets the timestamp the resource was deleted.
-     * @param timestamp The timestamp to set.
+     * setDeleted() sets the DateTime the resource was deleted.
+     * @param DateTime The DateTime to set.
      */
 
-    protected setDeleted(timestamp: Timestamp) {
-        this._deletedOn = timestamp;
+    protected setDeleted(DateTime: DateTime) {
+        this._deletedOn = DateTime;
     }
 }

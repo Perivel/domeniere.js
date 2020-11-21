@@ -4,7 +4,7 @@ exports.TimestampedAggregate = void 0;
 const aggregate_1 = require("../aggregate/aggregate");
 const foundation_1 = require("foundation");
 class TimestampedAggregate extends aggregate_1.Aggregate {
-    constructor(root, created = foundation_1.Timestamp.Now(), updated = foundation_1.Timestamp.Now(), deleted = null) {
+    constructor(root, created = foundation_1.DateTime.Now(), updated = foundation_1.DateTime.Now(), deleted = null) {
         try {
             super(root);
             this._createdOn = created;
@@ -25,10 +25,10 @@ class TimestampedAggregate extends aggregate_1.Aggregate {
         return this._updatedOn;
     }
     commitStateChange() {
-        this._updatedOn = foundation_1.Timestamp.Now();
+        this._updatedOn = foundation_1.DateTime.Now();
     }
-    setDeleted(timestamp) {
-        this._deletedOn = timestamp;
+    setDeleted(DateTime) {
+        this._deletedOn = DateTime;
     }
 }
 exports.TimestampedAggregate = TimestampedAggregate;

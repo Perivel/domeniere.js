@@ -1,4 +1,4 @@
-import { Timestamp, TimestampedResource } from 'foundation';
+import { DateTime, TimestampedResource } from 'foundation';
 import { Entity } from "../entity/entity";
 import { Identifier } from '../../common/interfaces/identifier.interface';
 
@@ -11,9 +11,9 @@ import { Identifier } from '../../common/interfaces/identifier.interface';
 
 export abstract class TimestampedEntity extends Entity implements TimestampedResource {
 
-    private readonly _createdOn: Timestamp;
-    private _updatedOn: Timestamp;
-    private _deletedOn: Timestamp | null;
+    private readonly _createdOn: DateTime;
+    private _updatedOn: DateTime;
+    private _deletedOn: DateTime | null;
 
     /**
      * Creates a new instance of TimestampedEntity.
@@ -24,7 +24,7 @@ export abstract class TimestampedEntity extends Entity implements TimestampedRes
      * @throws InvalidArgumentException when the id is undefined.
      */
 
-    constructor(id: Identifier, created: Timestamp = Timestamp.Now(), updated: Timestamp = Timestamp.Now(), deleted: Timestamp | null = null) {
+    constructor(id: Identifier, created: DateTime = DateTime.Now(), updated: DateTime = DateTime.Now(), deleted: DateTime | null = null) {
         try {
             super(id)
             this._createdOn = created;
@@ -44,7 +44,7 @@ export abstract class TimestampedEntity extends Entity implements TimestampedRes
      * createdOn() gets the timestamp the entity was created on.
      */
 
-    public createdOn(): Timestamp {
+    public createdOn(): DateTime {
         return this._createdOn;
     }
 
@@ -54,7 +54,7 @@ export abstract class TimestampedEntity extends Entity implements TimestampedRes
      * deletedOn() gets the timestamp the entity was deleted.
      */
 
-    public deletedOn(): Timestamp | null {
+    public deletedOn(): DateTime | null {
         return this._deletedOn;
     }
 
@@ -64,7 +64,7 @@ export abstract class TimestampedEntity extends Entity implements TimestampedRes
      * updatedOn() gets the timestamp the entity was last updated on.
      */
 
-    public updatedOn(): Timestamp {
+    public updatedOn(): DateTime {
         return this._updatedOn;
     }
 
@@ -78,7 +78,7 @@ export abstract class TimestampedEntity extends Entity implements TimestampedRes
      */
 
     protected commitStateChange(): void {
-        this._updatedOn = Timestamp.Now();
+        this._updatedOn = DateTime.Now();
     }
 
     /**
@@ -88,7 +88,7 @@ export abstract class TimestampedEntity extends Entity implements TimestampedRes
      * @param timestamp The timestamp to set.
      */
 
-    protected setDeleted(timestamp: Timestamp) {
+    protected setDeleted(timestamp: DateTime) {
         this._deletedOn = timestamp;
     }
 
