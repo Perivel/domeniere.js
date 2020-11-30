@@ -747,9 +747,9 @@ atob@^2.1.2:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 awesome-phonenumber@^2.39.0:
-  version "2.40.0"
-  resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.40.0.tgz#02963b7a1a372572e42fb827401eb78d9ac4e294"
-  integrity sha512-ViGH+iNPzFCQ1s0Lut8jQC2dP05SjnntlA10emT8ANXy3UtyWykeWvKaDG17eWIcSjXqPvdKkPCco9Nu+Egj1g==
+  version "2.41.0"
+  resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.41.0.tgz#295a2d6ba305dc413eb5653af8ef846c630fb3b8"
+  integrity sha512-itJ6Tr/iGwqCYBludxk+Bl+oU0C9QfhUnAzVnKjZo8n1HOcw0SjWpvIX7IXt9VDTANEZXRus7c4dUsrUEpTpuA==
 
 aws-sign2@~0.7.0:
   version "0.7.0"
@@ -1468,7 +1468,7 @@ form-data@~2.3.2:
 
 "foundation@https://github.com/Perivel/foundation.git":
   version "0.1.0"
-  resolved "https://github.com/Perivel/foundation.git#e1bdefaa5554f28bd786429e9285866e5d49b8c8"
+  resolved "https://github.com/Perivel/foundation.git#6c57ffbd0a8508c97cd3676064d368203ca7c29b"
   dependencies:
     "@types/luxon" "^1.25.0"
     "@types/uuid" "^8.3.0"

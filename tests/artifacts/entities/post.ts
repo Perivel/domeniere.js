@@ -1,12 +1,12 @@
 import { TimestampedEntity } from '../../../src/entity/entity.module';
-import { Timestamp } from 'foundation';
+import { DateTime } from 'foundation';
 import { PostId } from './../values/post-id';
 
 export class Post extends TimestampedEntity {
 
     private _content: string;
     
-    constructor(id: PostId, content: string, created: Timestamp = Timestamp.Now(), updated: Timestamp = Timestamp.Now(), deleted: Timestamp|null = null) {
+    constructor(id: PostId, content: string, created: DateTime = DateTime.Now(), updated: DateTime = DateTime.Now(), deleted: DateTime|null = null) {
         super(id, created, updated, deleted);
         this._content = content;
     }
