@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConsoleLoggerDelegate = exports.LoggerDelegate = exports.Logger = exports.OrNotSpecification = exports.OrSpecification = exports.AndNotSpecification = exports.AndSpecification = exports.CompositeSpecification = void 0;
+// Utils API
 var composite_specification_1 = require("./specification/composite-specification");
 Object.defineProperty(exports, "CompositeSpecification", { enumerable: true, get: function () { return composite_specification_1.CompositeSpecification; } });
 var and_specification_1 = require("./specification/and-specification");

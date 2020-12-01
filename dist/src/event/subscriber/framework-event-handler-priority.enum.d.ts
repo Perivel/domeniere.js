@@ -1,3 +1,6 @@
+/**
+ * A custom type to specify the handler priority for internal framework handlers.
+ */
 export declare enum FrameworkEventHandlerPriority {
     VERY_HIGH = 10,
     HIGH = 20,

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Query = exports.Command = exports.DomainService = void 0;
+// The Service API
 var domain_service_1 = require("./service/domain.service");
 Object.defineProperty(exports, "DomainService", { enumerable: true, get: function () { return domain_service_1.DomainService; } });
 var command_1 = require("./command/command");

@@ -1,4 +1,7 @@
 "use strict";
+/**
+ * An Enumeration outlining the possible default classifications for events.
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventClassifications = void 0;
 var EventClassifications;

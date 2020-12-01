@@ -1,4 +1,7 @@
 "use strict";
+/**
+ * A custom type to specify the handler priority for internal framework handlers.
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FrameworkEventHandlerPriority = void 0;
 var FrameworkEventHandlerPriority;

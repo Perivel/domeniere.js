@@ -1467,8 +1467,8 @@ form-data@~2.3.2:
     mime-types "^2.1.12"
 
 "foundation@https://github.com/Perivel/foundation.git":
-  version "0.1.0"
-  resolved "https://github.com/Perivel/foundation.git#6c57ffbd0a8508c97cd3676064d368203ca7c29b"
+  version "1.0.0"
+  resolved "https://github.com/Perivel/foundation.git#77736b696808c6db463e73bc7c0370b5a7e15241"
   dependencies:
     "@types/luxon" "^1.25.0"
     "@types/uuid" "^8.3.0"

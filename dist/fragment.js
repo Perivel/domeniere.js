@@ -10,6 +10,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// Exports the framework API.
 __exportStar(require("./src/common/common.module"), exports);
 __exportStar(require("./src/value/value.module"), exports);
 __exportStar(require("./src/service/service.module"), exports);

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventStoreFailed = exports.InvalidEventPublishIntervalException = exports.EventBroadcastFailed = exports.EventHandlerFailed = exports.OnAny = exports.OnError = exports.OnInternal = exports.On = exports.EventStream = exports.StoredEvent = exports.EventStore = exports.SubscriberId = exports.Subscriber = exports.DomainEventHandlerPriority = exports.DomainEventId = exports.DomainEvent = void 0;
+// The Event API
 var domain_event_1 = require("./domain-event/domain-event");
 Object.defineProperty(exports, "DomainEvent", { enumerable: true, get: function () { return domain_event_1.DomainEvent; } });
 var domain_event_id_1 = require("./domain-event/domain-event-id");

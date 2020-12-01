@@ -1,3 +1,6 @@
+/**
+ * An Enumeration outlining the possible default classifications for events.
+ */
 export declare enum EventClassifications {
     InternalEvent = "framework.internal.general",
     InternalError = "framework.internal.error",

@@ -1,4 +1,7 @@
 "use strict";
+/**
+ * A Custom type to specify the priority of a domain event handler.
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DomainEventHandlerPriority = void 0;
 var DomainEventHandlerPriority;

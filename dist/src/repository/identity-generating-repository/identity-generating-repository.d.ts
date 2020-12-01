@@ -3,6 +3,11 @@ import { IdentityGeneratingRepositoryInterface } from "./identity-generating-rep
 import { Repository } from "../repository/repository";
 export declare abstract class IdentityGeneratingRepository extends Repository implements IdentityGeneratingRepositoryInterface {
     constructor();
+    /**
+     * generateIdentity()
+     *
+     * generateIdentity() generates a unique identity.
+     */
     abstract generateIdentity(): Identifier;
 }
 //# sourceMappingURL=identity-generating-repository.d.ts.map

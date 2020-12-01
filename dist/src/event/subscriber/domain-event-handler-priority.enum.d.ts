@@ -1,3 +1,6 @@
+/**
+ * A Custom type to specify the priority of a domain event handler.
+ */
 export declare enum DomainEventHandlerPriority {
     VERY_HIGH = 100,
     HIGH = 200,
