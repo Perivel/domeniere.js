@@ -747,9 +747,9 @@ atob@^2.1.2:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 awesome-phonenumber@^2.39.0:
-  version "2.41.0"
-  resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.41.0.tgz#295a2d6ba305dc413eb5653af8ef846c630fb3b8"
-  integrity sha512-itJ6Tr/iGwqCYBludxk+Bl+oU0C9QfhUnAzVnKjZo8n1HOcw0SjWpvIX7IXt9VDTANEZXRus7c4dUsrUEpTpuA==
+  version "2.43.0"
+  resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.43.0.tgz#0f168760b643e91cb48c93cae679f9c022e916e7"
+  integrity sha512-UjrT0oi4k5EDUoasCT0C6HszA2qqKaG5ZCM136Akgq+oDlevR2wIcAFQFpduGjV7/GHBaWpEwiQDh3mCMlpe+g==
 
 aws-sign2@~0.7.0:
   version "0.7.0"
@@ -1468,7 +1468,7 @@ form-data@~2.3.2:
 
 "foundation@https://github.com/Perivel/foundation.git":
   version "1.0.0"
-  resolved "https://github.com/Perivel/foundation.git#77736b696808c6db463e73bc7c0370b5a7e15241"
+  resolved "https://github.com/Perivel/foundation.git#2490bfe8009c4a18ca4dfd564a1f4ce3f8df3774"
   dependencies:
     "@types/luxon" "^1.25.0"
     "@types/uuid" "^8.3.0"
@@ -1476,7 +1476,7 @@ form-data@~2.3.2:
     email-validator "^2.0.4"
     i18n-iso-countries "^6.0.0"
     luxon "^1.25.0"
-    typescript "^3.9.7"
+    typescript "^4.1.3"
     uuid "^8.3.0"
 
 fragment-cache@^0.2.1:
@@ -1650,9 +1650,9 @@ human-signals@^1.1.1:
   integrity sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==
 
 i18n-iso-countries@^6.0.0:
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/i18n-iso-countries/-/i18n-iso-countries-6.2.2.tgz#6b63d00e90ee4022e8c159a9e688d2a8156b0e0b"
-  integrity sha512-sZJeKs5IP93Y+dq/8/NonrEdOudVVuH6BbZVd66edjxVkKVFMtvbM6EkpTbDO3B+d9qFW9XZqdgmGNgNDzciSw==
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/i18n-iso-countries/-/i18n-iso-countries-6.4.0.tgz#777582a5b7abb7505196b2e90c0b10ddf3789ac4"
+  integrity sha512-OTDUJq0OqCP+rXnWksTbMDsTE3ZGj92h8GCqIxxZM0eNtdkLVgd5c27q6C6uaZQHy0H/Vskyyx9ieMBBJCMdPw==
   dependencies:
     diacritics "1.3.0"
 
@@ -3502,15 +3502,15 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^3.9.7:
-  version "3.9.7"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
-  integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
-
 typescript@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.3.tgz#153bbd468ef07725c1df9c77e8b453f8d36abba5"
   integrity sha512-tEu6DGxGgRJPb/mVPIZ48e69xCn2yRmCgYmDugAVwmJ6o+0u1RI18eO7E7WBTLYLaEVVOhwQmcdhQHweux/WPg==
+
+typescript@^4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.3.tgz#519d582bd94cba0cf8934c7d8e8467e473f53bb7"
+  integrity sha512-B3ZIOf1IKeH2ixgHhj6la6xdwR9QrLC5d1VKeCSY4tvkqhF2eqd9O7txNlS0PO3GrBAFIdr3L1ndNwteUbZLYg==
 
 tz-offset@0.0.1:
   version "0.0.1"
