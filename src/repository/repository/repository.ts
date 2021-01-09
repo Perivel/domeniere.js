@@ -18,7 +18,7 @@ export abstract class Repository implements RepositoryInterface {
      * @param aggregate 
      */
 
-    public async abstract remove(aggregate: AggregateInterface): Promise<void>;
+    public abstract remove(aggregate: AggregateInterface): Promise<void>;
 
     /**
      * save()
@@ -27,7 +27,7 @@ export abstract class Repository implements RepositoryInterface {
      * @param aggregate 
      */
 
-    public async abstract save(aggregate: AggregateInterface): Promise<void>;
+    public abstract save(aggregate: AggregateInterface): Promise<void>;
 
     /**
      * size()
@@ -35,5 +35,5 @@ export abstract class Repository implements RepositoryInterface {
      * size() gets the number of items in the repository.
      */
 
-    public async abstract size(): Promise<number>;
+    public abstract size(): Promise<number>;
 }

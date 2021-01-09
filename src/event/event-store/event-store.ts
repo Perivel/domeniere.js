@@ -25,7 +25,7 @@ export abstract class EventStore {
      * @param eventQueue The queue of events to broadcast.
      */
 
-    protected async abstract boradcastEvents(eventQueue: Queue<DomainEvent>): Promise<void>;
+    protected abstract boradcastEvents(eventQueue: Queue<DomainEvent>): Promise<void>;
 
     /**
      * publishEvents()
@@ -78,7 +78,7 @@ export abstract class EventStore {
      * @throws Any kind of exception when an error occurs.
      */
 
-    protected async abstract saveEvents(eventQueue: Queue<StoredEvent>): Promise<void>;
+    protected abstract saveEvents(eventQueue: Queue<StoredEvent>): Promise<void>;
 
     /**
      * shouldBroadcastInternalEvents()

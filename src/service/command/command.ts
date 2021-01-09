@@ -21,5 +21,5 @@ export abstract class Command extends DomainService implements CommandInterface 
      *
      */
 
-    public async abstract execute(...args: any): Promise<void>;
+    public abstract execute(...args: any): Promise<void>;
 }

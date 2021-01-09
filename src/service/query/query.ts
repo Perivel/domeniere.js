@@ -21,5 +21,5 @@ export abstract class Query extends DomainService implements QueryInterface {
      * @param data The data to be passed to the query.
      */
 
-    public async abstract execute(...data: any): Promise<any>;
+    public abstract execute(...data: any): Promise<any>;
 }
