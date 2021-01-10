@@ -1507,7 +1507,7 @@ form-data@~2.3.2:
 
 "foundation@https://github.com/Perivel/foundation.git":
   version "1.0.0"
-  resolved "https://github.com/Perivel/foundation.git#36e65b818d35815d0a47cf18542961fbc2f23a43"
+  resolved "https://github.com/Perivel/foundation.git#742fb2c701cbd3db3b164aad80da3f53c885ff1f"
   dependencies:
     "@types/luxon" "^1.25.0"
     "@types/uuid" "^8.3.0"
