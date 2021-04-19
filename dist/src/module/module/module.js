@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Module = void 0;
 const module_factory_entry_1 = require("../module-entry/module-factory-entry");
 const module_instance_entry_1 = require("../module-entry/module-instance-entry");
+const registration_not_found_exception_1 = require("../exceptions/registration-not-found.exception");
+const duplicate_binding_exception_1 = require("../exceptions/duplicate-binding.exception");
 /**
  * Module
  */
@@ -43,6 +45,7 @@ class Module {
      * registers a repository instance.
      * @param token The token to attach the instance to.
      * @param instance The instance to attach.
+     * @throws RegistrationNotFoundException when there is no registration for the token
      */
     registerRepositoryInstance(token, instance) {
         const id = this.getIdFromToken(token);
@@ -50,7 +53,7 @@ class Module {
             this._repositoryInstances.get(id).setInstance(instance);
         }
         else {
-            throw new Error("Repository Not Found");
+            throw new registration_not_found_exception_1.RegistrationNotFoundException(`No registration found for ${id}`);
         }
     }
     /**
@@ -59,7 +62,7 @@ class Module {
      * registerServiceInstance() registers a service instance.
      * @param token the token to attach the instance to.
      * @param instance The instance to register.
-     * @throws ServiceNotFoundException when the service cannot be found.
+     * @throws RegistrationNotFoundException when the service cannot be found.
      */
     registerServiceInstance(token, instance) {
         const id = this.getIdFromToken(token);
@@ -67,13 +70,15 @@ class Module {
             this._serviceInstances.get(id).setInstance(instance);
         }
         else {
-            throw new Error("Registration Not Found");
+            throw new registration_not_found_exception_1.RegistrationNotFoundException(`No registration found for ${id}`);
         }
     }
     /**
      * repositoryInstances()
      *
      * gets the repository instances.
+     * @throws RegistrationNotFoundException when the registration token is not found
+     * @throws RegistrationNotFoundException when there is a missing instance binding.
      */
     repositoryInstances() {
         const instances = new Map();
@@ -82,7 +87,7 @@ class Module {
                 instances.set(value.token(), value.instance());
             }
             else {
-                throw new Error("Registration Not Found");
+                throw new registration_not_found_exception_1.RegistrationNotFoundException(`No instance declared for ${this.getIdFromToken(value.token())}`);
             }
         });
         return instances;
@@ -104,6 +109,7 @@ class Module {
      * serviceInstances()
      *
      * gets the service instances.
+     * @throws UndefinedInstanceBindingException
      */
     serviceInstances() {
         const instances = new Map();
@@ -113,7 +119,7 @@ class Module {
             }
             else {
                 // no instance
-                throw new Error("No Instance");
+                throw new registration_not_found_exception_1.RegistrationNotFoundException(`No instance declared for ${this.getIdFromToken(value.token())}`);
             }
         });
         return instances;
@@ -137,7 +143,7 @@ class Module {
         }
         else {
             // binding already exists.
-            throw new Error("Duplicate Binding");
+            throw new duplicate_binding_exception_1.DuplicateBindingException(`Duplicate Binding for token ${id}`);
         }
     }
     /**
@@ -155,7 +161,7 @@ class Module {
         }
         else {
             // duplicate repository.
-            throw new Error("Duplicate Binding");
+            throw new duplicate_binding_exception_1.DuplicateBindingException(`Duplicate Binding for token ${id}`);
         }
     }
     /**
@@ -173,7 +179,7 @@ class Module {
         }
         else {
             // duplicate entry.
-            throw new Error("Duplicate Binding");
+            throw new duplicate_binding_exception_1.DuplicateBindingException(`Duplicate Binding for token ${id}`);
         }
     }
     /**
@@ -192,7 +198,7 @@ class Module {
         }
         else {
             // duplicate binding.
-            throw new Error("Duplicate binding");
+            throw new duplicate_binding_exception_1.DuplicateBindingException(`Duplicate Binding for token ${id}`);
         }
     }
     /**

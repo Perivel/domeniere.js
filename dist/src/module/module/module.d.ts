@@ -42,6 +42,7 @@ export declare abstract class Module implements ModuleInterface {
      * registers a repository instance.
      * @param token The token to attach the instance to.
      * @param instance The instance to attach.
+     * @throws RegistrationNotFoundException when there is no registration for the token
      */
     registerRepositoryInstance<T extends Repository>(token: DependencyToken<T>, instance: T): void;
     /**
@@ -50,13 +51,15 @@ export declare abstract class Module implements ModuleInterface {
      * registerServiceInstance() registers a service instance.
      * @param token the token to attach the instance to.
      * @param instance The instance to register.
-     * @throws ServiceNotFoundException when the service cannot be found.
+     * @throws RegistrationNotFoundException when the service cannot be found.
      */
     registerServiceInstance<T extends DomainService>(token: DependencyToken<T>, instance: T): void;
     /**
      * repositoryInstances()
      *
      * gets the repository instances.
+     * @throws RegistrationNotFoundException when the registration token is not found
+     * @throws RegistrationNotFoundException when there is a missing instance binding.
      */
     repositoryInstances(): ModuleInstances;
     /**
@@ -69,6 +72,7 @@ export declare abstract class Module implements ModuleInterface {
      * serviceInstances()
      *
      * gets the service instances.
+     * @throws UndefinedInstanceBindingException
      */
     serviceInstances(): ModuleInstances;
     /**

@@ -7,6 +7,8 @@ import { ModuleInstanceEntry } from '../module-entry/module-instance-entry';
 import { ModuleBindings } from '../types/module-bindings.type';
 import { ModuleInstances } from '../types/module-instances.type';
 import { ModuleInterface } from './module.interface';
+import { RegistrationNotFoundException } from '../exceptions/registration-not-found.exception';
+import { DuplicateBindingException } from '../exceptions/duplicate-binding.exception';
 
 /**
  * Module
@@ -75,6 +77,7 @@ export abstract class Module implements ModuleInterface {
      * registers a repository instance.
      * @param token The token to attach the instance to.
      * @param instance The instance to attach.
+     * @throws RegistrationNotFoundException when there is no registration for the token
      */
 
     public registerRepositoryInstance<T extends Repository>(token: DependencyToken<T>, instance: T): void {
@@ -84,7 +87,7 @@ export abstract class Module implements ModuleInterface {
             this._repositoryInstances.get(id)!.setInstance(instance);
         }
         else {
-            throw new Error("Repository Not Found");
+            throw new RegistrationNotFoundException(`No registration found for ${id}`);
         }
     }
 
@@ -94,7 +97,7 @@ export abstract class Module implements ModuleInterface {
      * registerServiceInstance() registers a service instance.
      * @param token the token to attach the instance to.
      * @param instance The instance to register.
-     * @throws ServiceNotFoundException when the service cannot be found.
+     * @throws RegistrationNotFoundException when the service cannot be found.
      */
 
     public registerServiceInstance<T extends DomainService>(token: DependencyToken<T>, instance: T): void {
@@ -104,7 +107,7 @@ export abstract class Module implements ModuleInterface {
             this._serviceInstances.get(id)!.setInstance(instance);
         } 
         else {
-            throw new Error("Registration Not Found");
+            throw new RegistrationNotFoundException(`No registration found for ${id}`);
         }
     }
 
@@ -112,6 +115,8 @@ export abstract class Module implements ModuleInterface {
      * repositoryInstances()
      * 
      * gets the repository instances.
+     * @throws RegistrationNotFoundException when the registration token is not found
+     * @throws RegistrationNotFoundException when there is a missing instance binding.
      */
 
     public repositoryInstances(): ModuleInstances {
@@ -122,7 +127,7 @@ export abstract class Module implements ModuleInterface {
                 instances.set(value.token(), value.instance());
             }
             else {
-                throw new Error("Registration Not Found");
+                throw new RegistrationNotFoundException(`No instance declared for ${this.getIdFromToken(value.token())}`);
             }
         });
 
@@ -150,6 +155,7 @@ export abstract class Module implements ModuleInterface {
      * serviceInstances()
      * 
      * gets the service instances.
+     * @throws UndefinedInstanceBindingException
      */
 
     public serviceInstances(): ModuleInstances {
@@ -161,7 +167,7 @@ export abstract class Module implements ModuleInterface {
             }
             else {
                 // no instance
-                throw new Error("No Instance");
+                throw new RegistrationNotFoundException(`No instance declared for ${this.getIdFromToken(value.token())}`);
             }
         });
 
@@ -190,7 +196,7 @@ export abstract class Module implements ModuleInterface {
         }
         else {
             // binding already exists.
-            throw new Error("Duplicate Binding");
+            throw new DuplicateBindingException(`Duplicate Binding for token ${id}`);
         }
     }
 
@@ -211,7 +217,7 @@ export abstract class Module implements ModuleInterface {
         }
         else {
             // duplicate repository.
-            throw new Error("Duplicate Binding");
+            throw new DuplicateBindingException(`Duplicate Binding for token ${id}`);
         }
     }
 
@@ -232,7 +238,7 @@ export abstract class Module implements ModuleInterface {
         }
         else {
             // duplicate entry.
-            throw new Error("Duplicate Binding");
+            throw new DuplicateBindingException(`Duplicate Binding for token ${id}`);
         }
     }
 
@@ -253,7 +259,7 @@ export abstract class Module implements ModuleInterface {
         }
         else {
             // duplicate binding.
-            throw new Error("Duplicate binding");
+            throw new DuplicateBindingException(`Duplicate Binding for token ${id}`)
         }
     }
 
