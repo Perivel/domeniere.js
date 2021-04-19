@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventStore = void 0;
-const foundation_1 = require("foundation");
+const foundation_1 = require("@perivel/foundation");
 const stored_event_1 = require("./stored-event");
 /**
  * EventStore

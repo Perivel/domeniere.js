@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventHandlerFailed = void 0;
 const domain_event_1 = require("../domain-event/domain-event");
-const foundation_1 = require("foundation");
+const foundation_1 = require("@perivel/foundation");
 const event_classification_enum_1 = require("../domain-event/event-classification.enum");
 /**
  * EventHandlerFailed

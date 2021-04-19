@@ -1,4 +1,4 @@
-import { DateTime } from "foundation";
+import { DateTime } from "@perivel/foundation";
 import { StoredEventInterface } from "./stored-event.interface";
 /**
  * StoredEvent

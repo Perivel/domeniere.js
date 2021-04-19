@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DomainEvent = void 0;
-const foundation_1 = require("foundation");
+const foundation_1 = require("@perivel/foundation");
 const domain_event_id_1 = require("./domain-event-id");
 const event_classification_enum_1 = require("./event-classification.enum");
 /**
@@ -109,14 +109,6 @@ class DomainEvent {
      */
     occuredOn() {
         return this._timestamp;
-    }
-    /**
-     * serialize()
-     *
-     * serialize() serializes the event data.
-     */
-    serialize() {
-        return "";
     }
     /**
      * shouldBeBroadcasted()

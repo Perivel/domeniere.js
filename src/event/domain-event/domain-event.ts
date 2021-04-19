@@ -1,5 +1,5 @@
 import { DomainEventInterface } from "./domain-event.interface";
-import { Serializable, DateTime } from "foundation";
+import { Serializable, DateTime } from "@perivel/foundation";
 import { DomainEventId } from "./domain-event-id";
 import { EventClassifications } from "./event-classification.enum";
 
@@ -145,9 +145,7 @@ export abstract class DomainEvent implements DomainEventInterface, Serializable 
      * serialize() serializes the event data.
      */
 
-    public serialize(): string {
-        return "";
-    }
+    public abstract  serialize(): string;
 
     /**
      * shouldBeBroadcasted()

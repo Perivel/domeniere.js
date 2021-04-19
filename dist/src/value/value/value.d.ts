@@ -1,5 +1,5 @@
 import { ValueInterface } from './value.interface';
-import { Equatable } from 'foundation';
+import { Equatable } from '@perivel/foundation';
 /**
  * Value
  *

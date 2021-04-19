@@ -1,4 +1,4 @@
-import { InvalidArgumentException } from 'foundation'
+import { InvalidArgumentException } from '@perivel/foundation'
 
 
 export class InvalidEventPublishIntervalException extends InvalidArgumentException {

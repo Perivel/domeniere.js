@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.On = void 0;
-const foundation_1 = require("foundation");
+const foundation_1 = require("@perivel/foundation");
 const domain_module_1 = require("../../domain/domain.module");
 const domain_event_handler_priority_enum_1 = require("../subscriber/domain-event-handler-priority.enum");
 /**

@@ -17,6 +17,7 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "dependencies": {
+    "@perivel/foundation": "https://github.com/Perivel/foundation.git",
     "@perivel/verdic": "^1.0.2",
     "@types/node-cron": "^2.0.3",
     "foundation": "https://github.com/Perivel/foundation.git",

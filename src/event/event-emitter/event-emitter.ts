@@ -1,7 +1,7 @@
 import { EventEmitterInterface } from "./event-emitter.interface";
 import { Subscriber } from "../subscriber/subscriber";
 import { DomainEvent } from "../domain-event/domain-event";
-import { PriorityQueue } from "foundation";
+import { PriorityQueue } from "@perivel/foundation";
 import { EventAggregate } from "./event-aggregate..type";
 import { EventHandlerFailed } from "../libevents/event-handler-failed.event";
 import { Domain } from "../../domain/domain.module";

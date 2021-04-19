@@ -1,4 +1,4 @@
-import { DateTime, TimestampedResource } from 'foundation';
+import { DateTime, TimestampedResource } from '@perivel/foundation';
 import { Entity } from "../entity/entity";
 import { Identifier } from '../../common/interfaces/identifier.interface';
 

@@ -1,5 +1,5 @@
 import { Aggregate } from "../aggregate/aggregate";
-import { TimestampedResource, DateTime } from "foundation";
+import { TimestampedResource, DateTime } from "@perivel/foundation";
 import { Entity } from "../../entity/entity.module";
 /**
  * DateTimeedAggregate

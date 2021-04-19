@@ -1,5 +1,5 @@
 import { NetworkEventQueue } from "./network-event-queue";
-import { Queue } from "foundation";
+import { Queue } from "@perivel/foundation";
 import { DomainEvent } from "../../event/event.module";
 
 

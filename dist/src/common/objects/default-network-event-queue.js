@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DefaultNetworkEventQueue = void 0;
 const network_event_queue_1 = require("./network-event-queue");
-const foundation_1 = require("foundation");
+const foundation_1 = require("@perivel/foundation");
 /**
  * The Default Network Event Queue
  */

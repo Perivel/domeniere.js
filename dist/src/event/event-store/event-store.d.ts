@@ -1,4 +1,4 @@
-import { Queue } from "foundation";
+import { Queue } from "@perivel/foundation";
 import { DomainEvent } from "../domain-event/domain-event";
 import { StoredEvent } from "./stored-event";
 /**

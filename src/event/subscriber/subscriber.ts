@@ -1,7 +1,7 @@
 import { SubscriberInterface } from "./subscriber.interface";
 import { SubscriberId } from "./subscriber-id";
 import { DomainEvent } from "../domain-event/domain-event";
-import { Equatable } from "foundation";
+import { Equatable } from "@perivel/foundation";
 import { EventHandler } from "./event-handler.type";
 
 /**

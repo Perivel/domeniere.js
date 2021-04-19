@@ -1,5 +1,5 @@
 import { DomainEvent } from "../domain-event/domain-event";
-import { DateTime } from "foundation";
+import { DateTime } from "@perivel/foundation";
 /**
  * EventBroadcastFailed
  *

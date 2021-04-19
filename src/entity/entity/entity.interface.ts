@@ -1,4 +1,4 @@
-import { Equatable } from "foundation";
+import { Equatable } from "@perivel/foundation";
 import { Identifier } from "../../common/interfaces/identifier.interface";
 
 /**

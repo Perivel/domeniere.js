@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventEmitter = void 0;
-const foundation_1 = require("foundation");
+const foundation_1 = require("@perivel/foundation");
 const event_aggregate__type_1 = require("./event-aggregate..type");
 const event_handler_failed_event_1 = require("../libevents/event-handler-failed.event");
 const domain_module_1 = require("../../domain/domain.module");

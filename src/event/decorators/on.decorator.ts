@@ -1,4 +1,4 @@
-import { UUID } from "foundation";
+import { UUID } from "@perivel/foundation";
 import { Domain } from "../../domain/domain.module";
 import { DomainEventHandlerPriority } from "../subscriber/domain-event-handler-priority.enum";
 import { EventDescriptor } from "./event-decryptor";

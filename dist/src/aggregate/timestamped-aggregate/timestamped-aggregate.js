@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TimestampedAggregate = void 0;
 const aggregate_1 = require("../aggregate/aggregate");
-const foundation_1 = require("foundation");
+const foundation_1 = require("@perivel/foundation");
 /**
  * DateTimeedAggregate
  *

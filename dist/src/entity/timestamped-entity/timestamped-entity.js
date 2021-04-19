@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TimestampedEntity = void 0;
-const foundation_1 = require("foundation");
+const foundation_1 = require("@perivel/foundation");
 const entity_1 = require("../entity/entity");
 /**
  * TimestampedEntity

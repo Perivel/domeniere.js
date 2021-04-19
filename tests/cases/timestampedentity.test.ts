@@ -1,6 +1,6 @@
 import { Post } from './../artifacts/entities/post'
 import { PostId } from './../artifacts/values/post-id';
-import { DateTime } from 'foundation';
+import { DateTime } from '@perivel/foundation';
 
 test("Test the timestamped entity function defaults.", () => {
     const postId = new PostId('123');
