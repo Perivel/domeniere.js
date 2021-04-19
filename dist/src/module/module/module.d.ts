@@ -5,6 +5,9 @@ import { AbstractFactory } from './../../factory/factory.module';
 import { ModuleBindings } from '../types/module-bindings.type';
 import { ModuleInstances } from '../types/module-instances.type';
 import { ModuleInterface } from './module.interface';
+/**
+ * Module
+ */
 export declare abstract class Module implements ModuleInterface {
     private readonly _factoryBindings;
     private readonly _serviceBindings;
@@ -47,6 +50,7 @@ export declare abstract class Module implements ModuleInterface {
      * registerServiceInstance() registers a service instance.
      * @param token the token to attach the instance to.
      * @param instance The instance to register.
+     * @throws ServiceNotFoundException when the service cannot be found.
      */
     registerServiceInstance<T extends DomainService>(token: DependencyToken<T>, instance: T): void;
     /**

@@ -3,6 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Module = void 0;
 const module_factory_entry_1 = require("../module-entry/module-factory-entry");
 const module_instance_entry_1 = require("../module-entry/module-instance-entry");
+/**
+ * Module
+ */
 class Module {
     constructor(path) {
         this._path = path;
@@ -42,8 +45,13 @@ class Module {
      * @param instance The instance to attach.
      */
     registerRepositoryInstance(token, instance) {
-        var _a;
-        (_a = this._repositoryInstances.get(this.getIdFromToken(token))) === null || _a === void 0 ? void 0 : _a.setInstance(instance);
+        const id = this.getIdFromToken(token);
+        if (this._repositoryInstances.has(id)) {
+            this._repositoryInstances.get(id).setInstance(instance);
+        }
+        else {
+            throw new Error("Repository Not Found");
+        }
     }
     /**
      * regosterServoceInstance()
@@ -51,10 +59,16 @@ class Module {
      * registerServiceInstance() registers a service instance.
      * @param token the token to attach the instance to.
      * @param instance The instance to register.
+     * @throws ServiceNotFoundException when the service cannot be found.
      */
     registerServiceInstance(token, instance) {
-        var _a;
-        (_a = this._serviceInstances.get(this.getIdFromToken(token))) === null || _a === void 0 ? void 0 : _a.setInstance(instance);
+        const id = this.getIdFromToken(token);
+        if (this._serviceInstances.has(id)) {
+            this._serviceInstances.get(id).setInstance(instance);
+        }
+        else {
+            throw new Error("Registration Not Found");
+        }
     }
     /**
      * repositoryInstances()
@@ -68,7 +82,7 @@ class Module {
                 instances.set(value.token(), value.instance());
             }
             else {
-                throw new Error("Undefined Instance");
+                throw new Error("Registration Not Found");
             }
         });
         return instances;
@@ -99,6 +113,7 @@ class Module {
             }
             else {
                 // no instance
+                throw new Error("No Instance");
             }
         });
         return instances;
