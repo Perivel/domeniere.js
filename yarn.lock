@@ -483,7 +483,7 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@perivel/foundation@https://github.com/Perivel/foundation.git":
+"@perivel/foundation@https://github.com/Perivel/foundation.git", "foundation@https://github.com/Perivel/foundation.git":
   version "1.2.0"
   resolved "https://github.com/Perivel/foundation.git#9650d80f4a78ea319b670f36e4dba01b938773ff"
   dependencies:

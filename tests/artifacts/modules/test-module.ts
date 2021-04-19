@@ -25,7 +25,7 @@ export class TestModule extends Module {
 export class TestModule2 extends Module {
     
     constructor() {
-        super("testmod2");
+        super("anothermod");
     }
 
     protected createdBindings(): void {

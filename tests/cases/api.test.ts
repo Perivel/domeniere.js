@@ -5,9 +5,9 @@ import { ValidAPI, InvalidAPI } from './../artifacts/API/api';
 
 test("Test the API", async () => {
     expect.assertions(3);
-    expect(new ValidAPI()).toBeInstanceOf(ValidAPI);
+    const validApi = new ValidAPI();
+    expect(validApi).toBeInstanceOf(ValidAPI);
     expect(() => new InvalidAPI()).toThrow(RegistrationNotFoundException);
-    const api = new ValidAPI();
-    const str = await  api.getString();
+    const str = await  validApi.getString();
     expect(str).toEqual("Foo");
 });
