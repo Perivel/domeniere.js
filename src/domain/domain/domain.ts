@@ -19,9 +19,9 @@ export class Domain implements DomainInterface {
     private readonly _eventStream: EventStream;
 
     // constants
-    private static BASE_SERVICE_MODULE_NAME = "services";
-    private static BASE_FACTORY_MODULE_NAME = "factories"
-    private static BASE_REPOSITORY_MODULE_NAME = "repositories";
+    //private static BASE_SERVICE_MODULE_NAME = "services";
+    //private static BASE_FACTORY_MODULE_NAME = "factories"
+    //private static BASE_REPOSITORY_MODULE_NAME = "repositories";
 
     /**
      * We keep the constructor private because Domain is a singleton.
@@ -29,7 +29,7 @@ export class Domain implements DomainInterface {
     private constructor() {
         this.container = new VerdicContainer();
         this._eventStream = new EventStream();
-        this.createBaseSubmodulesForModule();
+        //this.createBaseSubmodulesForModule();
     }
 
     /**
@@ -41,7 +41,7 @@ export class Domain implements DomainInterface {
 
     public static CreateModule(path: string): void {
         Domain.instance().container.createModule(path);
-        Domain.instance().createBaseSubmodulesForModule(path);
+        //Domain.instance().createBaseSubmodulesForModule(path);
     }
 
     /**
@@ -81,10 +81,10 @@ export class Domain implements DomainInterface {
      * @throws ModuleNotFoundException when the specified module could not be found.
      * @throws InvalidModuleException when the module path is invalid.
      */
-    public static Factory(modulePath: string = ''): VerdicContainer {
-        const absolutePath = modulePath.length === 0 ? Domain.BASE_FACTORY_MODULE_NAME :`${modulePath}.${Domain.BASE_FACTORY_MODULE_NAME}`;
-        return Domain.instance().container.module(absolutePath);
-    }
+    // public static Factory(modulePath: string = ''): VerdicContainer {
+    //     const absolutePath = modulePath.length === 0 ? Domain.BASE_FACTORY_MODULE_NAME :`${modulePath}.${Domain.BASE_FACTORY_MODULE_NAME}`;
+    //     return Domain.instance().container.module(absolutePath);
+    // }
 
     /**
      * Module()
@@ -98,7 +98,9 @@ export class Domain implements DomainInterface {
         if (path.length == 0) {
             return Domain.instance().container;
         }
-        else return Domain.instance().container.module(path);
+        else {
+            return Domain.instance().container.module(path);
+        }
     }
 
     /**
@@ -122,10 +124,10 @@ export class Domain implements DomainInterface {
      * @throws InvalidModuleException when the module path is invalid.
      */
 
-    public static Repository(modulePath: string = ""): VerdicContainer {
-        const absolutePath = modulePath.length === 0 ? Domain.BASE_REPOSITORY_MODULE_NAME : `${modulePath}.${Domain.BASE_REPOSITORY_MODULE_NAME}`;
-        return Domain.instance().container.module(absolutePath);
-    }
+    // public static Repository(modulePath: string = ""): VerdicContainer {
+    //     const absolutePath = modulePath.length === 0 ? Domain.BASE_REPOSITORY_MODULE_NAME : `${modulePath}.${Domain.BASE_REPOSITORY_MODULE_NAME}`;
+    //     return Domain.instance().container.module(absolutePath);
+    // }
 
     /**
      * Service()
@@ -138,10 +140,10 @@ export class Domain implements DomainInterface {
      * @throws InvalidModuleException when the module path is invalid.
      */
 
-    public static Service(modulePath: string = ''): VerdicContainer {
-        const absolutePath = modulePath.length === 0 ? Domain.BASE_SERVICE_MODULE_NAME : `${modulePath}.${Domain.BASE_SERVICE_MODULE_NAME}`;
-        return Domain.instance().container.module(absolutePath);
-    }
+    // public static Service(modulePath: string = ''): VerdicContainer {
+    //     const absolutePath = modulePath.length === 0 ? Domain.BASE_SERVICE_MODULE_NAME : `${modulePath}.${Domain.BASE_SERVICE_MODULE_NAME}`;
+    //     return Domain.instance().container.module(absolutePath);
+    // }
 
     /**
      * eventStream()
@@ -164,21 +166,21 @@ export class Domain implements DomainInterface {
      * @param modulePath the module path to create the submodules.
      */
 
-    private createBaseSubmodulesForModule(modulePath: string = ""): void {
-        const absoluteFactoriesPath = modulePath.length > 0 ? `${modulePath}.${Domain.BASE_FACTORY_MODULE_NAME}` : Domain.BASE_FACTORY_MODULE_NAME;
-        const absoluteRepositoriesPath = modulePath.length > 0 ? `${modulePath}.${Domain.BASE_REPOSITORY_MODULE_NAME}` : Domain.BASE_REPOSITORY_MODULE_NAME;
-        const absoluteServicesPath = modulePath.length > 0 ? `${modulePath}.${Domain.BASE_SERVICE_MODULE_NAME}` : Domain.BASE_SERVICE_MODULE_NAME;
+    // private createBaseSubmodulesForModule(modulePath: string = ""): void {
+    //     const absoluteFactoriesPath = modulePath.length > 0 ? `${modulePath}.${Domain.BASE_FACTORY_MODULE_NAME}` : Domain.BASE_FACTORY_MODULE_NAME;
+    //     const absoluteRepositoriesPath = modulePath.length > 0 ? `${modulePath}.${Domain.BASE_REPOSITORY_MODULE_NAME}` : Domain.BASE_REPOSITORY_MODULE_NAME;
+    //     const absoluteServicesPath = modulePath.length > 0 ? `${modulePath}.${Domain.BASE_SERVICE_MODULE_NAME}` : Domain.BASE_SERVICE_MODULE_NAME;
 
-        if (!this.container.containsModule(absoluteFactoriesPath)) {
-            this.container.createModule(absoluteFactoriesPath);
-        }
+    //     if (!this.container.containsModule(absoluteFactoriesPath)) {
+    //         this.container.createModule(absoluteFactoriesPath);
+    //     }
 
-        if (!this.container.containsModule(absoluteRepositoriesPath)) {
-            this.container.createModule(absoluteRepositoriesPath);
-        }
+    //     if (!this.container.containsModule(absoluteRepositoriesPath)) {
+    //         this.container.createModule(absoluteRepositoriesPath);
+    //     }
 
-        if (!this.container.containsModule(absoluteServicesPath)) {
-            this.container.createModule(absoluteServicesPath);
-        }
-    }
+    //     if (!this.container.containsModule(absoluteServicesPath)) {
+    //         this.container.createModule(absoluteServicesPath);
+    //     }
+    // }
 }

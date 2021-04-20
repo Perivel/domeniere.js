@@ -24,8 +24,8 @@ export abstract class Api extends EventEmittingObject implements ApiInterface {
         super();
         Domain.EventStream().setEventStore(eventStore);
         
-        if (!Domain.Service().has(Logger)) {
-            Domain.Service().bindInstance(Logger, logger);
+        if (!Domain.Module().has(Logger)) {
+            Domain.Module().bindInstance(Logger, logger);
         }
     }
 
@@ -51,22 +51,22 @@ export abstract class Api extends EventEmittingObject implements ApiInterface {
 
         // register the factories
         factories.forEach((factory, token) => {
-            Domain.Factory(path).bindFactory(token, factory);
+            Domain.Module(path).bindFactory(token, factory);
         });
 
         // register repositories
         repositories.forEach((instance, token) => {
-            Domain.Repository(path).bindInstance(token, instance);
+            Domain.Module(path).bindInstance(token, instance);
         });
 
         // register service binding
         serviceBindings.forEach((factory, token) => {
-            Domain.Service(path).bindFactory(token, factory);
+            Domain.Module(path).bindFactory(token, factory);
         });
 
         // service instances
         serviceInstances.forEach((instance, token) => {
-            Domain.Service(path).bindInstance(token, instance);
+            Domain.Module(path).bindInstance(token, instance);
         });
     }
 }

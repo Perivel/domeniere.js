@@ -24,7 +24,7 @@ export class ValidAPI extends Api {
     }
 
     public async getString(): Promise<string> {
-        return await Domain.Service('testmod').get(HashStringQuery).execute("Foo");
+        return await Domain.Module('testmod').get(HashStringQuery).execute("Foo");
     }
 }
 
@@ -36,6 +36,6 @@ export class InvalidAPI extends Api {
     }
 
     public async getString(): Promise<string> {
-        return await Domain.Service('testmod').get(HashStringQuery).execute("Foo");
+        return await Domain.Module('testmod').get(HashStringQuery).execute("Foo");
     }
 }

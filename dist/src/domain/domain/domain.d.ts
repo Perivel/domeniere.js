@@ -10,9 +10,6 @@ export declare class Domain implements DomainInterface {
     private static _instance;
     private readonly container;
     private readonly _eventStream;
-    private static BASE_SERVICE_MODULE_NAME;
-    private static BASE_FACTORY_MODULE_NAME;
-    private static BASE_REPOSITORY_MODULE_NAME;
     /**
      * We keep the constructor private because Domain is a singleton.
      */
@@ -48,7 +45,6 @@ export declare class Domain implements DomainInterface {
      * @throws ModuleNotFoundException when the specified module could not be found.
      * @throws InvalidModuleException when the module path is invalid.
      */
-    static Factory(modulePath?: string): VerdicContainer;
     /**
      * Module()
      *
@@ -73,7 +69,6 @@ export declare class Domain implements DomainInterface {
      * @throws ModuleNotFoundException when the specified module could not be found.
      * @throws InvalidModuleException when the module path is invalid.
      */
-    static Repository(modulePath?: string): VerdicContainer;
     /**
      * Service()
      *
@@ -84,19 +79,11 @@ export declare class Domain implements DomainInterface {
      * @throws ModuleNotFoundException when the specified module could not be found.
      * @throws InvalidModuleException when the module path is invalid.
      */
-    static Service(modulePath?: string): VerdicContainer;
     /**
      * eventStream()
      *
      * eventStream() gets the event stream.
      */
     eventStream(): EventStream;
-    /**
-     * createBaseSubmodulesForModule()
-     *
-     * creates the base submodules for a given module.
-     * @param modulePath the module path to create the submodules.
-     */
-    private createBaseSubmodulesForModule;
 }
 //# sourceMappingURL=domain.d.ts.map

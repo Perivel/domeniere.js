@@ -18,8 +18,8 @@ class Api extends common_module_1.EventEmittingObject {
     constructor(eventStore, logger = new utils_module_1.ConsoleLogger()) {
         super();
         domain_module_1.Domain.EventStream().setEventStore(eventStore);
-        if (!domain_module_1.Domain.Service().has(utils_module_1.Logger)) {
-            domain_module_1.Domain.Service().bindInstance(utils_module_1.Logger, logger);
+        if (!domain_module_1.Domain.Module().has(utils_module_1.Logger)) {
+            domain_module_1.Domain.Module().bindInstance(utils_module_1.Logger, logger);
         }
     }
     /**
@@ -40,19 +40,19 @@ class Api extends common_module_1.EventEmittingObject {
         domain_module_1.Domain.CreateModule(path);
         // register the factories
         factories.forEach((factory, token) => {
-            domain_module_1.Domain.Factory(path).bindFactory(token, factory);
+            domain_module_1.Domain.Module(path).bindFactory(token, factory);
         });
         // register repositories
         repositories.forEach((instance, token) => {
-            domain_module_1.Domain.Repository(path).bindInstance(token, instance);
+            domain_module_1.Domain.Module(path).bindInstance(token, instance);
         });
         // register service binding
         serviceBindings.forEach((factory, token) => {
-            domain_module_1.Domain.Service(path).bindFactory(token, factory);
+            domain_module_1.Domain.Module(path).bindFactory(token, factory);
         });
         // service instances
         serviceInstances.forEach((instance, token) => {
-            domain_module_1.Domain.Service(path).bindInstance(token, instance);
+            domain_module_1.Domain.Module(path).bindInstance(token, instance);
         });
     }
 }
