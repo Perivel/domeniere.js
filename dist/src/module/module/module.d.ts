@@ -1,7 +1,6 @@
 import { ConcreteDependencyToken, BindingFactory, DependencyToken } from '@perivel/verdic';
 import { Repository } from '../../repository/repository.module';
 import { DomainService } from '../../service/service.module';
-import { AbstractFactory } from './../../factory/factory.module';
 import { ModuleBindings } from '../types/module-bindings.type';
 import { ModuleInstances } from '../types/module-instances.type';
 import { ModuleInterface } from './module.interface';
@@ -83,7 +82,7 @@ export declare abstract class Module implements ModuleInterface {
      * @param factory the factory.
      * @throw DuplicateBindingException when adding a duplicate binding.
      */
-    protected addFactoryBinding<T extends AbstractFactory>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void;
+    protected addFactoryBinding<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void;
     /**
      * addRepository()
      *
@@ -91,7 +90,7 @@ export declare abstract class Module implements ModuleInterface {
      * @param token the token to bind the repository to.
      * @throw DuplicateBindingException when attempting to add a duplicate repository entry.
      */
-    protected addRepository<T extends Repository>(token: DependencyToken<T>): void;
+    protected addRepository<T>(token: DependencyToken<T>): void;
     /**
      * addServiceBinding()
      *
@@ -99,7 +98,7 @@ export declare abstract class Module implements ModuleInterface {
      * @param token the token to bind the factory to.
      * @param factory the factory.
      */
-    protected addServiceBinding<T extends DomainService>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void;
+    protected addServiceBinding<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void;
     /**
      * addServiceInstance()
      *

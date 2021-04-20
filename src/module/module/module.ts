@@ -1,7 +1,6 @@
 import { ConcreteDependencyToken, BindingFactory, DependencyToken} from '@perivel/verdic';
 import { Repository } from '../../repository/repository.module';
 import { DomainService } from '../../service/service.module';
-import { AbstractFactory } from './../../factory/factory.module';
 import { ModuleFactoryEntry } from '../module-entry/module-factory-entry';
 import { ModuleInstanceEntry } from '../module-entry/module-instance-entry';
 import { ModuleBindings } from '../types/module-bindings.type';
@@ -187,7 +186,7 @@ export abstract class Module implements ModuleInterface {
      * @throw DuplicateBindingException when adding a duplicate binding.
      */
 
-    protected addFactoryBinding<T extends AbstractFactory>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>) {
+    protected addFactoryBinding<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>) {
         const id = this.getIdFromToken(token);
 
         if (!this._factoryBindings.has(id)) {
@@ -208,7 +207,7 @@ export abstract class Module implements ModuleInterface {
      * @throw DuplicateBindingException when attempting to add a duplicate repository entry.
      */
 
-    protected addRepository<T extends Repository>(token: DependencyToken<T>): void {
+    protected addRepository<T>(token: DependencyToken<T>): void {
         const id = this.getIdFromToken(token);
 
         if (!this._repositoryInstances.has(id)) {
@@ -229,7 +228,7 @@ export abstract class Module implements ModuleInterface {
      * @param factory the factory.
      */
 
-    protected addServiceBinding<T extends DomainService>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void {
+    protected addServiceBinding<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void {
         const id = this.getIdFromToken(token);
 
         if (!this._serviceBindings.has(id)) {
