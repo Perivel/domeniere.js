@@ -1,6 +1,4 @@
 import { ConcreteDependencyToken, BindingFactory, DependencyToken} from '@perivel/verdic';
-import { Repository } from '../../repository/repository.module';
-import { DomainService } from '../../service/service.module';
 import { ModuleFactoryEntry } from '../module-entry/module-factory-entry';
 import { ModuleInstanceEntry } from '../module-entry/module-instance-entry';
 import { ModuleBindings } from '../types/module-bindings.type';
@@ -79,7 +77,7 @@ export abstract class Module implements ModuleInterface {
      * @throws RegistrationNotFoundException when there is no registration for the token
      */
 
-    public registerRepositoryInstance<T extends Repository>(token: DependencyToken<T>, instance: T): void {
+    public registerRepositoryInstance<T>(token: DependencyToken<T>, instance: T): void {
 
         const id  = this.getIdFromToken(token);
         if (this._repositoryInstances.has(id)) {
@@ -99,7 +97,7 @@ export abstract class Module implements ModuleInterface {
      * @throws RegistrationNotFoundException when the service cannot be found.
      */
 
-    public registerServiceInstance<T extends DomainService>(token: DependencyToken<T>, instance: T): void {
+    public registerServiceInstance<T>(token: DependencyToken<T>, instance: T): void {
         const id = this.getIdFromToken(token);
         
         if (this._serviceInstances.has(id)) {

@@ -1,6 +1,4 @@
 import { ConcreteDependencyToken, BindingFactory, DependencyToken } from '@perivel/verdic';
-import { Repository } from '../../repository/repository.module';
-import { DomainService } from '../../service/service.module';
 import { ModuleBindings } from '../types/module-bindings.type';
 import { ModuleInstances } from '../types/module-instances.type';
 import { ModuleInterface } from './module.interface';
@@ -43,7 +41,7 @@ export declare abstract class Module implements ModuleInterface {
      * @param instance The instance to attach.
      * @throws RegistrationNotFoundException when there is no registration for the token
      */
-    registerRepositoryInstance<T extends Repository>(token: DependencyToken<T>, instance: T): void;
+    registerRepositoryInstance<T>(token: DependencyToken<T>, instance: T): void;
     /**
      * regosterServoceInstance()
      *
@@ -52,7 +50,7 @@ export declare abstract class Module implements ModuleInterface {
      * @param instance The instance to register.
      * @throws RegistrationNotFoundException when the service cannot be found.
      */
-    registerServiceInstance<T extends DomainService>(token: DependencyToken<T>, instance: T): void;
+    registerServiceInstance<T>(token: DependencyToken<T>, instance: T): void;
     /**
      * repositoryInstances()
      *
