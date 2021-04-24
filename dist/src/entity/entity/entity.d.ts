@@ -1,11 +1,12 @@
 import { EntityInterface } from "./entity.interface";
+import { Serializable } from "@perivel/foundation";
 import { Identifier } from "../../common/interfaces/identifier.interface";
 /**
  * Entity
  *
  * An entity is a domain object with an established identity.
  */
-export declare abstract class Entity implements EntityInterface {
+export declare abstract class Entity implements EntityInterface, Serializable {
     private _id;
     /**
      * creates a new entity instance.
@@ -26,6 +27,7 @@ export declare abstract class Entity implements EntityInterface {
      * id() gets the id value of the entity.
      */
     id(): Identifier;
+    serialize(): string;
     toString(): string;
     /**
      * setId()

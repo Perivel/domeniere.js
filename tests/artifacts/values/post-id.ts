@@ -29,4 +29,7 @@ export class PostId extends Value implements Identifier {
         return isEqual;
     }
 
+    public serialize(): string {
+        return this.id();
+    }
 }

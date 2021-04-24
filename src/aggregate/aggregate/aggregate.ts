@@ -1,6 +1,6 @@
 import { AggregateInterface } from "./aggregate.interface";
 import { Entity } from "../../entity/entity.module";
-import { InvalidArgumentException } from "@perivel/foundation";
+import { InvalidArgumentException, Serializable } from "@perivel/foundation";
 import { Identifier } from "../../common/common.module";
 
 /**
@@ -12,7 +12,7 @@ import { Identifier } from "../../common/common.module";
  */
 
 
-export abstract class Aggregate implements AggregateInterface {
+export abstract class Aggregate implements AggregateInterface, Serializable {
 
     private _root: Entity;
     private _dirty: boolean;
@@ -73,6 +73,12 @@ export abstract class Aggregate implements AggregateInterface {
 
     public _isDirty(): boolean {
         return this._dirty;
+    }
+
+    public serialize(): string {
+        return JSON.stringify({
+            root: this.root().serialize(),
+        });
     }
 
     public toString(): string {

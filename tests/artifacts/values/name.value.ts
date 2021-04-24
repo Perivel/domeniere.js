@@ -29,4 +29,8 @@ export class Name extends Value {
     public last(): string {
         return this._last
     }
+
+    public serialize(): string {
+        return this.first() + " " + this.last();
+    }
 }

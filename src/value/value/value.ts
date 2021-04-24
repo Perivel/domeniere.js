@@ -1,5 +1,5 @@
 import { ValueInterface } from './value.interface';
-import { Equatable } from '@perivel/foundation';
+import { Equatable, Serializable } from '@perivel/foundation';
 
 /**
  * Value
@@ -7,7 +7,7 @@ import { Equatable } from '@perivel/foundation';
  * Value represents a generic Domain Value.
  */
 
-export abstract class Value implements ValueInterface, Equatable {
+export abstract class Value implements ValueInterface, Equatable, Serializable {
 
     constructor() {}
 
@@ -21,4 +21,6 @@ export abstract class Value implements ValueInterface, Equatable {
      */
 
     public abstract equals(suspect: any): boolean;
+
+    public abstract serialize(): string;
 }

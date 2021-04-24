@@ -1,5 +1,5 @@
 import { EntityInterface } from "./entity.interface";
-import { InvalidArgumentException } from "@perivel/foundation";
+import { InvalidArgumentException, Serializable } from "@perivel/foundation";
 import { Identifier } from "../../common/interfaces/identifier.interface";
 
 /**
@@ -8,7 +8,7 @@ import { Identifier } from "../../common/interfaces/identifier.interface";
  * An entity is a domain object with an established identity.
  */
 
-export abstract class Entity implements EntityInterface {
+export abstract class Entity implements EntityInterface, Serializable {
     private _id: Identifier;
 
     /**
@@ -45,6 +45,12 @@ export abstract class Entity implements EntityInterface {
 
     public id(): Identifier {
         return this._id;
+    }
+
+    public serialize(): string {
+        return JSON.stringify({
+            id: this.id().id().toString()
+        });
     }
 
     public toString(): string {

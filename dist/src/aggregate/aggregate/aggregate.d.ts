@@ -1,5 +1,6 @@
 import { AggregateInterface } from "./aggregate.interface";
 import { Entity } from "../../entity/entity.module";
+import { Serializable } from "@perivel/foundation";
 import { Identifier } from "../../common/common.module";
 /**
  * Aggregate
@@ -8,7 +9,7 @@ import { Identifier } from "../../common/common.module";
  * around a root entity, that is required to fulfill some
  * boundary of consistency.
  */
-export declare abstract class Aggregate implements AggregateInterface {
+export declare abstract class Aggregate implements AggregateInterface, Serializable {
     private _root;
     private _dirty;
     /**
@@ -42,6 +43,7 @@ export declare abstract class Aggregate implements AggregateInterface {
      * determines if the aggregate data is dirty.
      */
     _isDirty(): boolean;
+    serialize(): string;
     toString(): string;
     /**
      * markDirty()

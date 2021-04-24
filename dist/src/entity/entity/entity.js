@@ -28,6 +28,11 @@ class Entity {
     id() {
         return this._id;
     }
+    serialize() {
+        return JSON.stringify({
+            id: this.id().id().toString()
+        });
+    }
     toString() {
         return this.id().toString();
     }

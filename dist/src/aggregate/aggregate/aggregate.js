@@ -56,6 +56,11 @@ class Aggregate {
     _isDirty() {
         return this._dirty;
     }
+    serialize() {
+        return JSON.stringify({
+            root: this.root().serialize(),
+        });
+    }
     toString() {
         return this.identity().toString();
     }

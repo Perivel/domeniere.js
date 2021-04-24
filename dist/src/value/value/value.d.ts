@@ -1,11 +1,11 @@
 import { ValueInterface } from './value.interface';
-import { Equatable } from '@perivel/foundation';
+import { Equatable, Serializable } from '@perivel/foundation';
 /**
  * Value
  *
  * Value represents a generic Domain Value.
  */
-export declare abstract class Value implements ValueInterface, Equatable {
+export declare abstract class Value implements ValueInterface, Equatable, Serializable {
     constructor();
     /**
      * equals()
@@ -16,5 +16,6 @@ export declare abstract class Value implements ValueInterface, Equatable {
      * @param suspect The value being compared.
      */
     abstract equals(suspect: any): boolean;
+    abstract serialize(): string;
 }
 //# sourceMappingURL=value.d.ts.map
