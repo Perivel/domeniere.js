@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Api = void 0;
 const common_module_1 = require("../../common/common.module");
 const domain_module_1 = require("../../domain/domain.module");
+const event_module_1 = require("../../event/event.module");
 const utils_module_1 = require("../../utils/utils.module");
 /**
  * ApplicationFragment
@@ -30,6 +31,27 @@ class Api extends common_module_1.EventEmittingObject {
     async broadcastEvents() {
         await domain_module_1.Domain.EventStream().publishEvents();
     }
+    /**
+     * getEventsWithinInterval()
+     *
+     * gets the domain events within the interval.
+     * @param from the start date of events to look for.
+     * @param to the end date of events to look for.
+     */
+    async getEventsWithinInterval(from, to) {
+        try {
+            return await domain_module_1.Domain.EventStream().eventStore().getEventsWithinInterval(from, to);
+        }
+        catch (err) {
+            throw new event_module_1.EventStoreException(err.message);
+        }
+    }
+    /**
+     * registerModule()
+     *
+     * registers a module.
+     * @param module the module to register.
+     */
     registerModule(module) {
         const path = module.path();
         const factories = module.factoryBindings();

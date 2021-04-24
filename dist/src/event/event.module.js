@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventAggregate = exports.FrameworkEventHandlerPriority = exports.EventStoreFailed = exports.InvalidEventPublishIntervalException = exports.EventBroadcastFailed = exports.EventHandlerFailed = exports.OnAny = exports.OnError = exports.OnInternal = exports.On = exports.EventStream = exports.StoredEvent = exports.EventStore = exports.SubscriberId = exports.Subscriber = exports.DomainEventHandlerPriority = exports.DomainEventId = exports.DomainEvent = void 0;
+exports.EventAggregate = exports.FrameworkEventHandlerPriority = exports.EventStoreFailed = exports.InvalidEventPublishIntervalException = exports.EventBroadcastFailed = exports.EventHandlerFailed = exports.OnAny = exports.OnError = exports.OnInternal = exports.On = exports.EventStream = exports.StoredEvent = exports.EventStoreException = exports.EventStore = exports.SubscriberId = exports.Subscriber = exports.DomainEventHandlerPriority = exports.DomainEventId = exports.DomainEvent = void 0;
 // The Event API
 var domain_event_1 = require("./domain-event/domain-event");
 Object.defineProperty(exports, "DomainEvent", { enumerable: true, get: function () { return domain_event_1.DomainEvent; } });
@@ -14,6 +14,8 @@ var subscriber_id_1 = require("./subscriber/subscriber-id");
 Object.defineProperty(exports, "SubscriberId", { enumerable: true, get: function () { return subscriber_id_1.SubscriberId; } });
 var event_store_1 = require("./event-store/event-store");
 Object.defineProperty(exports, "EventStore", { enumerable: true, get: function () { return event_store_1.EventStore; } });
+var event_store_exception_1 = require("./event-store/event-store.exception");
+Object.defineProperty(exports, "EventStoreException", { enumerable: true, get: function () { return event_store_exception_1.EventStoreException; } });
 var stored_event_1 = require("./event-store/stored-event");
 Object.defineProperty(exports, "StoredEvent", { enumerable: true, get: function () { return stored_event_1.StoredEvent; } });
 var event_stream_1 = require("./event-stream/event-stream");

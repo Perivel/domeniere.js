@@ -1,4 +1,4 @@
-import { Queue } from "@perivel/foundation";
+import { DateTime, Queue } from "@perivel/foundation";
 import { DomainEvent } from "../domain-event/domain-event";
 import { StoredEvent } from "./stored-event";
 /**
@@ -17,6 +17,15 @@ export declare abstract class EventStore {
      * @param eventQueue The queue of events to broadcast.
      */
     protected abstract boradcastEvents(eventQueue: Queue<DomainEvent>): Promise<void>;
+    /**
+     * getEventsWithinInterval()
+     *
+     * gets the domain events within the interval.
+     * @param from the start date of events to look for.
+     * @param to the end date of events to look for.
+     * @throws any exceptin when there is a problem obtainting the events.
+     */
+    abstract getEventsWithinInterval(from: DateTime, to: DateTime): Promise<Array<StoredEvent>>;
     /**
      * publishEvents()
      *
