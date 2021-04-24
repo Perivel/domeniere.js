@@ -45,6 +45,17 @@ export class Domain implements DomainInterface {
     }
 
     /**
+     * ContainsModule()
+     * 
+     * determines if the module exists
+     * @param path The path of the module.
+     * @returns TRUE if the domain contains the module. FALSE otherwise.
+     */
+    public static ContainsModule(path: string): boolean {
+        return Domain.instance().container.containsModule(path);
+    }
+
+    /**
      * instance()
      * 
      * instance() gets the instance of the context.

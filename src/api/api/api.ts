@@ -77,7 +77,9 @@ export abstract class Api extends EventEmittingObject implements ApiInterface {
         const serviceInstances = module.serviceInstances();
 
         // create the module.
-        Domain.CreateModule(path);
+        if (!Domain.ContainsModule(path)) {
+            Domain.CreateModule(path);
+        }
 
         // register the factories
         factories.forEach((factory, token) => {

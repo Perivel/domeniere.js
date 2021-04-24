@@ -32,6 +32,16 @@ class Domain {
         //Domain.instance().createBaseSubmodulesForModule(path);
     }
     /**
+     * ContainsModule()
+     *
+     * determines if the module exists
+     * @param path The path of the module.
+     * @returns TRUE if the domain contains the module. FALSE otherwise.
+     */
+    static ContainsModule(path) {
+        return Domain.instance().container.containsModule(path);
+    }
+    /**
      * instance()
      *
      * instance() gets the instance of the context.

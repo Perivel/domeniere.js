@@ -22,6 +22,14 @@ export declare class Domain implements DomainInterface {
      */
     static CreateModule(path: string): void;
     /**
+     * ContainsModule()
+     *
+     * determines if the module exists
+     * @param path The path of the module.
+     * @returns TRUE if the domain contains the module. FALSE otherwise.
+     */
+    static ContainsModule(path: string): boolean;
+    /**
      * instance()
      *
      * instance() gets the instance of the context.

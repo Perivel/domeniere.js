@@ -61,7 +61,9 @@ class Api extends common_module_1.EventEmittingObject {
         const serviceBindings = module.serviceBindings();
         const serviceInstances = module.serviceInstances();
         // create the module.
-        domain_module_1.Domain.CreateModule(path);
+        if (!domain_module_1.Domain.ContainsModule(path)) {
+            domain_module_1.Domain.CreateModule(path);
+        }
         // register the factories
         factories.forEach((factory, token) => {
             domain_module_1.Domain.Module(path).bindFactory(token, factory);
