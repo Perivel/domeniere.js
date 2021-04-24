@@ -28,8 +28,9 @@ export declare abstract class Api extends EventEmittingObject implements ApiInte
      * gets the domain events within the interval.
      * @param from the start date of events to look for.
      * @param to the end date of events to look for.
+     * @throws EventStoreException when there is an issue retrieving the events.
      */
-    getEventsWithinInterval(from: DateTime, to: DateTime): Promise<Array<StoredEvent>>;
+    getEventsWithinInterval(from: DateTime, to?: DateTime): Promise<Array<StoredEvent>>;
     /**
      * registerModule()
      *

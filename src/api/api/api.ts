@@ -2,7 +2,11 @@
 import { EventEmittingObject } from "../../common/common.module";
 import { Domain } from '../../domain/domain.module';
 import { Module } from './../../module/module.module';
-import { EventStore, StoredEvent, EventStoreException } from "../../event/event.module";
+import { 
+    EventStore, 
+    StoredEvent, 
+    EventStoreException 
+} from "../../event/event.module";
 import { Logger, ConsoleLogger } from "../../utils/utils.module";
 import { ApiInterface } from "./api.interface";
 import { DateTime } from "@perivel/foundation";
@@ -46,9 +50,10 @@ export abstract class Api extends EventEmittingObject implements ApiInterface {
      * gets the domain events within the interval.
      * @param from the start date of events to look for.
      * @param to the end date of events to look for.
+     * @throws EventStoreException when there is an issue retrieving the events.
      */
 
-     public async getEventsWithinInterval(from: DateTime, to: DateTime): Promise<Array<StoredEvent>> {
+     public async getEventsWithinInterval(from: DateTime, to: DateTime = DateTime.Now()): Promise<Array<StoredEvent>> {
         try {
             return await Domain.EventStream().eventStore().getEventsWithinInterval(from, to);
         }

@@ -5,6 +5,7 @@ const common_module_1 = require("../../common/common.module");
 const domain_module_1 = require("../../domain/domain.module");
 const event_module_1 = require("../../event/event.module");
 const utils_module_1 = require("../../utils/utils.module");
+const foundation_1 = require("@perivel/foundation");
 /**
  * ApplicationFragment
  *
@@ -37,8 +38,9 @@ class Api extends common_module_1.EventEmittingObject {
      * gets the domain events within the interval.
      * @param from the start date of events to look for.
      * @param to the end date of events to look for.
+     * @throws EventStoreException when there is an issue retrieving the events.
      */
-    async getEventsWithinInterval(from, to) {
+    async getEventsWithinInterval(from, to = foundation_1.DateTime.Now()) {
         try {
             return await domain_module_1.Domain.EventStream().eventStore().getEventsWithinInterval(from, to);
         }
