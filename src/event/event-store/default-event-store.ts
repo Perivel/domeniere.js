@@ -18,9 +18,5 @@ export class DefaultEventStore extends EventStore {
 
     protected async boradcastEvents(eventQueue: Queue<DomainEvent>): Promise<void> {}
 
-     public async getEventsWithinInterval(from: DateTime, to: DateTime): Promise<Array<StoredEvent>> {
-         return [];
-     }
-
     protected async saveEvents(eventQueue: Queue<StoredEvent>): Promise<void> {}
 }

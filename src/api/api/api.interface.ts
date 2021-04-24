@@ -3,9 +3,6 @@
  * ApplicationServiceInterface.
  */
 
-import { DateTime } from "@perivel/foundation";
-import { StoredEvent } from "../../event/event.module";
-
 export interface ApiInterface {
 
     /**
@@ -15,15 +12,4 @@ export interface ApiInterface {
      */
     
     broadcastEvents(): Promise<void>;
-
-
-    /**
-     * getEventsWithinInterval()
-     * 
-     * gets the domain events within the interval.
-     * @param from the start date of events to look for.
-     * @param to the end date of events to look for.
-     */
-
-    getEventsWithinInterval(from: DateTime, to: DateTime): Promise<Array<StoredEvent>>;
 }

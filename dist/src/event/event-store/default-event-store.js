@@ -12,9 +12,6 @@ class DefaultEventStore extends event_store_1.EventStore {
         super();
     }
     async boradcastEvents(eventQueue) { }
-    async getEventsWithinInterval(from, to) {
-        return [];
-    }
     async saveEvents(eventQueue) { }
 }
 exports.DefaultEventStore = DefaultEventStore;

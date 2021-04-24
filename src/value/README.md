@@ -1,4 +1,93 @@
-# Domain Value
-A Value Object is an object that represents a descriptive aspect of a domain with no 
+# Value Object
+A Value Object is an immutable object that represents a descriptive aspect of a domain with no 
 conceptual identity. Value Objects are instanciated to implement design elements in 
 which we only care about what they are. 
+
+## Defining Value Objects
+All Value objects are derived from the `Value` base class.
+
+Belew is an example of UserId value object that we will define.
+```ts
+import { Value } from '@perivel/fragment';
+
+export class UserId extends Value {
+    // code goes here.
+}
+```
+You are free to define your value objects in whatever way your requirements dictate. 
+```ts
+export class UserId extends Value {
+    
+    private readonly _value: string
+
+    constructor(val: string) {
+        super();
+        this._value = val;
+    }
+
+    public id(): string {
+        return this._value;
+    }
+}
+```
+In our above example, we create a value object to represents a simple UserId. This object is pretty straightforward, consisting of only one property -- the id value.
+
+When defining a Value Object, there are two methods that we need to override. The `equals()` method defines how we determine equality. The `serialize()` mehtod defines how this object will be serialized. Let's first define our `equals()` method.
+```ts
+export class UserId extends Value {
+    
+    private readonly _value: string
+
+    constructor(val: string) {
+        super();
+        this._value = val;
+    }
+
+    public id(): string {
+        return this._value;
+    }
+
+    public equals(suspect: any): boolean {
+        if (suspect instanceof UserId) {
+            const other = suspect as UserId;
+            return this.id() === other.id();
+        }
+        else {
+            return false;
+        }
+    }
+}
+```
+Here, our `UserId`'s `equal()` method returns true if the suspect is also a UserId instance, and their id values are equal. Otherwise, it returns false.
+
+Next, let's define our `serialize()` method.
+```ts
+export class UserId extends Value {
+    
+    private readonly _value: string
+
+    constructor(val: string) {
+        super();
+        this._value = val;
+    }
+
+    public id(): string {
+        return this._value;
+    }
+
+    public equals(suspect: any): boolean {
+        if (suspect instanceof UserId) {
+            const other = suspect as UserId;
+            return this.id() === other.id();
+        }
+        else {
+            return false;
+        }
+    }
+
+    public serialize(): string {
+        return this.id();
+    }
+}
+```
+Here, our serialize method is pretty straightforward. Since the value of UserId is already a string, we simply return the value of the id. 
