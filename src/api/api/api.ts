@@ -83,22 +83,30 @@ export abstract class Api extends EventEmittingObject implements ApiInterface {
 
         // register the factories
         factories.forEach((factory, token) => {
-            Domain.Module(path).bindFactory(token, factory);
+            if (!Domain.Module(path).has(token)) {
+                Domain.Module(path).bindFactory(token, factory);
+            }
         });
 
         // register repositories
         repositories.forEach((instance, token) => {
-            Domain.Module(path).bindInstance(token, instance);
+            if (!Domain.Module(path).has(token)) {
+                Domain.Module(path).bindInstance(token, instance);
+            }
         });
 
         // register service binding
         serviceBindings.forEach((factory, token) => {
-            Domain.Module(path).bindFactory(token, factory);
+            if (!Domain.Module(path).has(token)) {
+                Domain.Module(path).bindFactory(token, factory);
+            }
         });
 
         // service instances
         serviceInstances.forEach((instance, token) => {
-            Domain.Module(path).bindInstance(token, instance);
+            if (!Domain.Module(path).has(token)) {
+                Domain.Module(path).bindInstance(token, instance);
+            }
         });
     }
 }

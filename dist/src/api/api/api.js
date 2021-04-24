@@ -66,19 +66,27 @@ class Api extends common_module_1.EventEmittingObject {
         }
         // register the factories
         factories.forEach((factory, token) => {
-            domain_module_1.Domain.Module(path).bindFactory(token, factory);
+            if (!domain_module_1.Domain.Module(path).has(token)) {
+                domain_module_1.Domain.Module(path).bindFactory(token, factory);
+            }
         });
         // register repositories
         repositories.forEach((instance, token) => {
-            domain_module_1.Domain.Module(path).bindInstance(token, instance);
+            if (!domain_module_1.Domain.Module(path).has(token)) {
+                domain_module_1.Domain.Module(path).bindInstance(token, instance);
+            }
         });
         // register service binding
         serviceBindings.forEach((factory, token) => {
-            domain_module_1.Domain.Module(path).bindFactory(token, factory);
+            if (!domain_module_1.Domain.Module(path).has(token)) {
+                domain_module_1.Domain.Module(path).bindFactory(token, factory);
+            }
         });
         // service instances
         serviceInstances.forEach((instance, token) => {
-            domain_module_1.Domain.Module(path).bindInstance(token, instance);
+            if (!domain_module_1.Domain.Module(path).has(token)) {
+                domain_module_1.Domain.Module(path).bindInstance(token, instance);
+            }
         });
     }
 }
