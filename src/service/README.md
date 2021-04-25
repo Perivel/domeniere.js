@@ -1,4 +1,4 @@
-# Domain Service
+# Service
 A Domain Service represents an operation on a Domain Object. Domain Services usually represent high-level operations like "create user" or "get the profile information of the user with this id". In most cases, each domain service will be responsible for ***one*** single task. In the vast majority of cases, domain services will fall into two general categories. A `Command` is used to update some state in your domain. A `Query` retrieves data from a Data source. 
 
 ## Commands
