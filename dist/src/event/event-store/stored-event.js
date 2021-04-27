@@ -7,7 +7,7 @@ exports.StoredEvent = void 0;
  * StoredEvent represents a stored event.
  */
 class StoredEvent {
-    constructor(eventId, eventName, eventClassification, eventVersion, body, occuredOn, isPublished = false) {
+    constructor(eventId, eventName, eventClassification, eventVersion, body, occuredOn, shouldBePublishd, isPublished = false) {
         this._eventBody = body;
         this._eventClassification = eventClassification;
         this._eventId = eventId;
@@ -15,6 +15,7 @@ class StoredEvent {
         this._eventVersion = eventVersion;
         this._occuredOn = occuredOn;
         this._isPublished = isPublished;
+        this._shouldBePublished = shouldBePublishd;
     }
     /**
      * eventBody()
@@ -79,6 +80,14 @@ class StoredEvent {
      */
     occuredOn() {
         return this._occuredOn;
+    }
+    /**
+     * shouldBePublished()
+     *
+     * indicates whether or not the event should be published.
+     */
+    shouldBePublished() {
+        return this._shouldBePublished;
     }
 }
 exports.StoredEvent = StoredEvent;

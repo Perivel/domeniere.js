@@ -1,20 +1,20 @@
 import { DomainEvent } from "../domain-event/domain-event"
-import { DateTime } from "@perivel/foundation";
+import { DateTime, Queue } from "@perivel/foundation";
 import { EventClassifications } from "../domain-event/event-classification.enum";
 
 /**
- * EventBroadcastFailed
+ * EventsPublished
  * 
- * The EventBroadcastFailed event indicates that the event broadcasting service failed.
+ * An event indicating that domain events were published successfully.
  */
 
-export class EventBroadcastFailed extends DomainEvent {
+export class EventsPublished extends DomainEvent {
 
-    private readonly _error: Error;
+    private readonly _events: Queue<DomainEvent>
 
-    constructor(error: Error, timestamp: DateTime = DateTime.Now(), id: string | undefined = undefined) {
+    constructor(events: Queue<DomainEvent>, timestamp: DateTime = DateTime.Now(), id: string | undefined = undefined) {
         super(timestamp, id);
-        this._error = error;
+        this._events = events;
     }
 
     /**
@@ -24,7 +24,7 @@ export class EventBroadcastFailed extends DomainEvent {
      */
 
     public static EventName(): string {
-        return 'event-broadcast-failed';
+        return 'event-published';
     }
 
     /**
@@ -34,7 +34,7 @@ export class EventBroadcastFailed extends DomainEvent {
      */
 
     public static EventClassification(): string {
-        return EventClassifications.InternalError.toString();
+        return EventClassifications.InternalEvent.toString();
     }
 
     /**
@@ -48,13 +48,13 @@ export class EventBroadcastFailed extends DomainEvent {
     }
 
     /**
-     * error()
+     * events()
      * 
-     * error() gets the error that occcured.
+     * events() gets the events that were published.
      */
 
-    public error(): Error {
-        return this._error;
+    public events(): Queue<DomainEvent> {
+        return this._events;
     }
 
     /**
@@ -65,7 +65,9 @@ export class EventBroadcastFailed extends DomainEvent {
 
     public serializeData(): string {
         return JSON.stringify({
-            error: this.error().message
+            events: this.events().toArray().map(event => {
+                event.serialize();
+            })
         });
     }
 }

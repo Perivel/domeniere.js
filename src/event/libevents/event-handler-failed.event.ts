@@ -13,11 +13,13 @@ export class EventHandlerFailed extends DomainEvent {
 
     private readonly _handler: Subscriber;
     private readonly _event: DomainEvent;
+    private readonly _error: Error;
 
-    constructor(handler: Subscriber, event: DomainEvent, timestamp: DateTime = DateTime.Now(), id: string|undefined = undefined) {
+    constructor(handler: Subscriber, event: DomainEvent, error: Error, timestamp: DateTime = DateTime.Now(), id: string|undefined = undefined) {
         super(timestamp, id);
         this._handler = handler;
         this._event = event;
+        this._error = error;
     }
 
     /**
@@ -61,6 +63,17 @@ export class EventHandlerFailed extends DomainEvent {
     }
 
     /**
+     * error()
+     * 
+     * the error that occured.
+     * @returns the error that occured.
+     */
+
+    public error(): Error {
+        return this._error;
+    }
+
+    /**
      * handler()
      * 
      * handler() gets 4he event handler.
@@ -86,12 +99,10 @@ export class EventHandlerFailed extends DomainEvent {
      * serialsie() serializes the event data.
      */
 
-    public serialize(): string {
-        const obj = {
-            event: this.event(),
-            handler: this.handler()
-        };
-
-        return JSON.stringify(obj);
+    public serializeData(): string {
+        return JSON.stringify({
+            event: this.event().serialize(),
+            handler: this.handler().serialize()
+        });
     }
 }

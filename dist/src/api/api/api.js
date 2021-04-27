@@ -31,6 +31,15 @@ class Api extends common_module_1.EventEmittingObject {
         await domain_module_1.Domain.EventStream().publishEvents();
     }
     /**
+     * processTransmittedEvent()
+     *
+     * processes a transmitted event.
+     * @param event the event to intake.
+     */
+    async processTransmittedEvent(event) {
+        await domain_module_1.Domain.EventStream().processTransmittedEvent(event);
+    }
+    /**
      * registerModule()
      *
      * registers a module.

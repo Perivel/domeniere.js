@@ -121,7 +121,7 @@ export class EventEmitter implements EventEmitterInterface{
                 sub.incrementFailedHandleAttempts();
 
                 // emit the event handler failed event.
-                await Domain.EventStream().emit(new EventHandlerFailed(sub, event));
+                await Domain.EventStream().emit(new EventHandlerFailed(sub, event, error));
                 
                 if (sub.shouldStopPropogationOnError()) {
                     return false;

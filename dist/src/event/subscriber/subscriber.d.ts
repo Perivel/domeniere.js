@@ -84,5 +84,6 @@ export declare class Subscriber implements SubscriberInterface, Equatable {
      * should stop if the handler encounters an error.
      */
     shouldStopPropogationOnError(): boolean;
+    serialize(): string;
 }
 //# sourceMappingURL=subscriber.d.ts.map

@@ -7,12 +7,10 @@ const subscriber_id_1 = require("../subscriber/subscriber-id");
 const default_event_store_1 = require("../event-store/default-event-store");
 const foundation_1 = require("@perivel/foundation");
 const framework_event_handler_priority_enum_1 = require("../subscriber/framework-event-handler-priority.enum");
-const node_cron_1 = require("node-cron");
 const event_aggregate__type_1 = require("../event-emitter/event-aggregate..type");
 const event_store_failed_event_1 = require("../libevents/event-store-failed.event");
-const event_module_1 = require("../event.module");
-const invalid_event_publish_interval_exception_1 = require("./invalid-event-publish-interval.exception");
 const domain_event_handler_priority_enum_1 = require("../subscriber/domain-event-handler-priority.enum");
+const events_published_event_1 = require("../libevents/events-published.event");
 /**
  * Event Stream
  *
@@ -27,12 +25,62 @@ class EventStream {
         this.registerInternalEventHandlers();
     }
     /**
+     * initializeEvents()
+     *
+     * initializes the state of the event stream.
+     */
+    async initializeEvents(getTransmitted = true) {
+        // process transmitted events.
+        const lastEventDate = await this.eventStore().getDateOfLastEvent();
+        const events = new Array();
+        if (lastEventDate) {
+            const transmittedEvents = await this.eventStore().getTransmittedEventsSince(lastEventDate);
+            const foreignEvents = transmittedEvents.map(event => {
+                return this.eventStore().mapTransmittedEventToDomainEvent(event);
+            });
+            events.push(...foreignEvents);
+        }
+        // sort the events.
+        events.sort((a, b) => {
+            if (a.occuredOn().isBefore(b.occuredOn())) {
+                // a came before b
+                return -1;
+            }
+            else if (b.occuredOn().isBefore(a.occuredOn())) {
+                // b came before a
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        });
+        // emit all the events
+        await Promise.all(events.map(async (event) => {
+            await this.emit(event);
+        }));
+    }
+    /**
      * publishEvents()
      *
      * publishEvents() publishes (or broadcasts) all unpublished events.
      */
     async publishEvents() {
         await this.eventStore().publishEvents();
+    }
+    /**
+     * processTransmittedEvent()
+     *
+     * processes a transmitted event.
+     * @param transmittedEvent the event to process.
+     */
+    async processTransmittedEvent(transmittedEvent) {
+        try {
+            const event = this.eventStore().mapTransmittedEventToDomainEvent(transmittedEvent);
+            await this.emit(event);
+        }
+        catch (e) {
+            await this.emit(new event_store_failed_event_1.EventStoreFailed(e));
+        }
     }
     /**
      * emit()
@@ -89,31 +137,20 @@ class EventStream {
                 await this.emit(new event_store_failed_event_1.EventStoreFailed(err));
             }
         }, framework_event_handler_priority_enum_1.FrameworkEventHandlerPriority.HIGH, 'persist events', false);
-    }
-    /**
-     * Schedules the interval when events are to be published to the public queue.
-     * @param cronExpression THe cron expression
-     * @throws InvalidEventPublishIntercalException when an invalid event interval has been passed.
-     */
-    scheduleEventPublisherInterval(cronExpression) {
-        if (this._eventPublisherTask) {
-            this._eventPublisherTask.destroy();
-        }
-        // validate
-        if (!node_cron_1.validate(cronExpression)) {
-            // invalid chron expression.
-            throw new invalid_event_publish_interval_exception_1.InvalidEventPublishIntervalException();
-        }
-        this._eventPublisherTask = node_cron_1.schedule(cronExpression, async () => {
+        // register event to process braodcasted events.
+        this.subscribe(events_published_event_1.EventsPublished.EventName(), async (event) => {
+            this.eventStore().processPublishedEvents();
+        }, framework_event_handler_priority_enum_1.FrameworkEventHandlerPriority.LOW, 'Process published events', false);
+        // Register a handler to automatically update the status of published events in storage.
+        this.subscribe(events_published_event_1.EventsPublished.EventName(), async (event) => {
             try {
-                // publish the events.
-                await this.eventStore().publishEvents();
+                await this.eventStore().updatePublishedEvents();
             }
             catch (err) {
-                // something went wrong broadcasting the events.
-                await this.emit(new event_module_1.EventBroadcastFailed(err));
+                // failed to store some or all the events.
+                await this.emit(new event_store_failed_event_1.EventStoreFailed(err));
             }
-        });
+        }, framework_event_handler_priority_enum_1.FrameworkEventHandlerPriority.VERY_LOW, 'update events in storage.', false);
     }
 }
 exports.EventStream = EventStream;

@@ -13,7 +13,8 @@ export declare class StoredEvent implements StoredEventInterface {
     private _eventVersion;
     private _occuredOn;
     private _isPublished;
-    constructor(eventId: string, eventName: string, eventClassification: string, eventVersion: number, body: string, occuredOn: DateTime, isPublished?: boolean);
+    private _shouldBePublished;
+    constructor(eventId: string, eventName: string, eventClassification: string, eventVersion: number, body: string, occuredOn: DateTime, shouldBePublishd: boolean, isPublished?: boolean);
     /**
      * eventBody()
      *
@@ -62,5 +63,11 @@ export declare class StoredEvent implements StoredEventInterface {
      * occuredOn()
      */
     occuredOn(): DateTime;
+    /**
+     * shouldBePublished()
+     *
+     * indicates whether or not the event should be published.
+     */
+    shouldBePublished(): boolean;
 }
 //# sourceMappingURL=stored-event.d.ts.map

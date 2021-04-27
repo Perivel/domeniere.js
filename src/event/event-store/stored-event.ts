@@ -16,9 +16,10 @@ export class StoredEvent implements StoredEventInterface {
     private _eventVersion: number;
     private _occuredOn: DateTime;
     private _isPublished: boolean;
+    private _shouldBePublished: boolean;
 
 
-    constructor(eventId: string, eventName: string, eventClassification: string, eventVersion: number, body: string, occuredOn: DateTime, isPublished: boolean = false) {
+    constructor(eventId: string, eventName: string, eventClassification: string, eventVersion: number, body: string, occuredOn: DateTime, shouldBePublishd: boolean, isPublished: boolean = false) {
         this._eventBody = body;
         this._eventClassification = eventClassification;
         this._eventId = eventId;
@@ -26,6 +27,7 @@ export class StoredEvent implements StoredEventInterface {
         this._eventVersion = eventVersion;
         this._occuredOn = occuredOn;
         this._isPublished = isPublished;
+        this._shouldBePublished = shouldBePublishd;
     }
 
     /**
@@ -103,5 +105,15 @@ export class StoredEvent implements StoredEventInterface {
 
     public occuredOn(): DateTime {
         return this._occuredOn;
+    }
+
+    /**
+     * shouldBePublished()
+     * 
+     * indicates whether or not the event should be published.
+     */
+    
+    public shouldBePublished(): boolean {
+        return this._shouldBePublished;
     }
 }

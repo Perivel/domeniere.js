@@ -28,5 +28,8 @@ class SubscriberId extends foundation_1.Id {
     id() {
         return super.id();
     }
+    serialize() {
+        return this.id();
+    }
 }
 exports.SubscriberId = SubscriberId;

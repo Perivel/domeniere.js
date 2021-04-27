@@ -1,18 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventBroadcastFailed = void 0;
+exports.EventsPublished = void 0;
 const domain_event_1 = require("../domain-event/domain-event");
 const foundation_1 = require("@perivel/foundation");
 const event_classification_enum_1 = require("../domain-event/event-classification.enum");
 /**
- * EventBroadcastFailed
+ * EventsPublished
  *
- * The EventBroadcastFailed event indicates that the event broadcasting service failed.
+ * An event indicating that domain events were published successfully.
  */
-class EventBroadcastFailed extends domain_event_1.DomainEvent {
-    constructor(error, timestamp = foundation_1.DateTime.Now(), id = undefined) {
+class EventsPublished extends domain_event_1.DomainEvent {
+    constructor(events, timestamp = foundation_1.DateTime.Now(), id = undefined) {
         super(timestamp, id);
-        this._error = error;
+        this._events = events;
     }
     /**
      * EventName()
@@ -20,7 +20,7 @@ class EventBroadcastFailed extends domain_event_1.DomainEvent {
      * EventName() gets the event name.
      */
     static EventName() {
-        return 'event-broadcast-failed';
+        return 'event-published';
     }
     /**
      * EventClassification()
@@ -28,7 +28,7 @@ class EventBroadcastFailed extends domain_event_1.DomainEvent {
      * EventClassification() gets the event classification.
      */
     static EventClassification() {
-        return event_classification_enum_1.EventClassifications.InternalError.toString();
+        return event_classification_enum_1.EventClassifications.InternalEvent.toString();
     }
     /**
      * EventVersion()
@@ -39,12 +39,12 @@ class EventBroadcastFailed extends domain_event_1.DomainEvent {
         return 1.0;
     }
     /**
-     * error()
+     * events()
      *
-     * error() gets the error that occcured.
+     * events() gets the events that were published.
      */
-    error() {
-        return this._error;
+    events() {
+        return this._events;
     }
     /**
      * serializeData()
@@ -53,8 +53,10 @@ class EventBroadcastFailed extends domain_event_1.DomainEvent {
      */
     serializeData() {
         return JSON.stringify({
-            error: this.error().message
+            events: this.events().toArray().map(event => {
+                event.serialize();
+            })
         });
     }
 }
-exports.EventBroadcastFailed = EventBroadcastFailed;
+exports.EventsPublished = EventsPublished;

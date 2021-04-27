@@ -2,8 +2,9 @@
 import { EventEmittingObject } from "../../common/common.module";
 import { Domain } from '../../domain/domain.module';
 import { Module } from './../../module/module.module';
-import { 
-    EventStore} from "../../event/event.module";
+import {
+    EventStore, TransmittedEvent
+} from "../../event/event.module";
 import { Logger, ConsoleLogger } from "../../utils/utils.module";
 import { ApiInterface } from "./api.interface";
 
@@ -24,7 +25,7 @@ export abstract class Api extends EventEmittingObject implements ApiInterface {
     constructor(eventStore: EventStore, logger: Logger = new ConsoleLogger()) {
         super();
         Domain.EventStream().setEventStore(eventStore);
-        
+
         if (!Domain.Module().has(Logger)) {
             Domain.Module().bindInstance(Logger, logger);
         }
@@ -35,9 +36,20 @@ export abstract class Api extends EventEmittingObject implements ApiInterface {
      * 
      * broadcastEvents() broadcasts all unpublished events to the network.
      */
-    
+
     public async broadcastEvents(): Promise<void> {
         await Domain.EventStream().publishEvents();
+    }
+
+    /**
+     * processTransmittedEvent()
+     * 
+     * processes a transmitted event.
+     * @param event the event to intake.
+     */
+
+    public async processTransmittedEvent(event: TransmittedEvent): Promise<void> {
+        await Domain.EventStream().processTransmittedEvent(event);
     }
 
     /**

@@ -1,13 +1,13 @@
 import { DomainEvent } from "../domain-event/domain-event";
-import { DateTime } from "@perivel/foundation";
+import { DateTime, Queue } from "@perivel/foundation";
 /**
- * EventBroadcastFailed
+ * EventsPublished
  *
- * The EventBroadcastFailed event indicates that the event broadcasting service failed.
+ * An event indicating that domain events were published successfully.
  */
-export declare class EventBroadcastFailed extends DomainEvent {
-    private readonly _error;
-    constructor(error: Error, timestamp?: DateTime, id?: string | undefined);
+export declare class EventsPublished extends DomainEvent {
+    private readonly _events;
+    constructor(events: Queue<DomainEvent>, timestamp?: DateTime, id?: string | undefined);
     /**
      * EventName()
      *
@@ -27,11 +27,11 @@ export declare class EventBroadcastFailed extends DomainEvent {
      */
     static EventVersion(): number;
     /**
-     * error()
+     * events()
      *
-     * error() gets the error that occcured.
+     * events() gets the events that were published.
      */
-    error(): Error;
+    events(): Queue<DomainEvent>;
     /**
      * serializeData()
      *
@@ -39,4 +39,4 @@ export declare class EventBroadcastFailed extends DomainEvent {
      */
     serializeData(): string;
 }
-//# sourceMappingURL=event-broadcast-failed.event.d.ts.map
+//# sourceMappingURL=events-published.event.d.ts.map

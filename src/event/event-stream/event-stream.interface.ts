@@ -4,6 +4,7 @@ import { EventStore } from "../event-store/event-store";
 import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
 import { DomainEventHandlerPriority } from "../subscriber/domain-event-handler-priority.enum";
 import { EventAggregate } from "../event-emitter/event-aggregate..type";
+import { TransmittedEvent } from "../event-store/transmitted-event";
 
 /**
  * EventStreamInterface
@@ -12,6 +13,14 @@ import { EventAggregate } from "../event-emitter/event-aggregate..type";
  */
 
 export interface EventStreamInterface {
+
+    /**
+     * initializeEvents()
+     * 
+     * initializes the state of the event stream.
+     */
+
+    initializeEvents(): Promise<void>;
 
     /**
      * emit()
@@ -36,6 +45,15 @@ export interface EventStreamInterface {
      */
 
     publishEvents(): Promise<void>;
+
+    /**
+     * processTransmittedEvent()
+     * 
+     * processes a transmitted event.
+     * @param transmittedEvent the event to process.
+     */
+
+    processTransmittedEvent(transmittedEvent: TransmittedEvent): Promise<void>;
 
     /**
      * setEventStore()

@@ -50,5 +50,11 @@ export interface DomainEventInterface {
      * shouldBeBroadcasted() determines if the event should be broadcasted to the network.
      */
     shouldBeBroadcasted(): boolean;
+    /**
+     * serializeData()
+     *
+     * serializes the event data.
+     */
+    serializeData(): string;
 }
 //# sourceMappingURL=domain-event.interface.d.ts.map

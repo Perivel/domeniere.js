@@ -145,7 +145,23 @@ export abstract class DomainEvent implements DomainEventInterface, Serializable 
      * serialize() serializes the event data.
      */
 
-    public abstract  serialize(): string;
+    public serialize(): string {
+        return JSON.stringify({
+            id: this.eventId().serialize(),
+            name: this.eventName(),
+            classification: this.eventClassification(),
+            version: this.eventVersion(),
+            data: this.serializeData()
+        });
+    }
+
+    /**
+     * serializeData()
+     * 
+     * serializes the event data.
+     */
+    
+    public abstract serializeData(): string;
 
     /**
      * shouldBeBroadcasted()

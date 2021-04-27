@@ -15,5 +15,6 @@ export declare class SubscriberId extends Id implements SubscriberIdInterface {
      */
     equals(suspect: any): boolean;
     id(): string;
+    serialize(): string;
 }
 //# sourceMappingURL=subscriber-id.d.ts.map

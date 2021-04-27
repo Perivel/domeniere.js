@@ -108,5 +108,15 @@ class Subscriber {
     shouldStopPropogationOnError() {
         return this._stopPropogationOnError;
     }
+    serialize() {
+        return JSON.stringify({
+            id: this.id().serialize(),
+            event: this.eventName(),
+            label: this.label(),
+            priority: this.priority(),
+            attempts: this.handleAttempts(),
+            stop_propogation_on_error: this.shouldStopPropogationOnError(),
+        });
+    }
 }
 exports.Subscriber = Subscriber;

@@ -37,6 +37,6 @@ export declare class EventStoreFailed extends DomainEvent {
      *
      * serialize() serializes the event data.
      */
-    serialize(): string;
+    serializeData(): string;
 }
 //# sourceMappingURL=event-store-failed.event.d.ts.map

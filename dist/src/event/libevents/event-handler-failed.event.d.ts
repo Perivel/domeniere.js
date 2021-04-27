@@ -9,7 +9,8 @@ import { Subscriber } from "../subscriber/subscriber";
 export declare class EventHandlerFailed extends DomainEvent {
     private readonly _handler;
     private readonly _event;
-    constructor(handler: Subscriber, event: DomainEvent, timestamp?: DateTime, id?: string | undefined);
+    private readonly _error;
+    constructor(handler: Subscriber, event: DomainEvent, error: Error, timestamp?: DateTime, id?: string | undefined);
     /**
      * EventName()
      *
@@ -35,6 +36,13 @@ export declare class EventHandlerFailed extends DomainEvent {
      */
     event(): DomainEvent;
     /**
+     * error()
+     *
+     * the error that occured.
+     * @returns the error that occured.
+     */
+    error(): Error;
+    /**
      * handler()
      *
      * handler() gets 4he event handler.
@@ -51,6 +59,6 @@ export declare class EventHandlerFailed extends DomainEvent {
      *
      * serialsie() serializes the event data.
      */
-    serialize(): string;
+    serializeData(): string;
 }
 //# sourceMappingURL=event-handler-failed.event.d.ts.map

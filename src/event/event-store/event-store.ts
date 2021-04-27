@@ -1,6 +1,10 @@
 import { DateTime, Queue } from "@perivel/foundation";
+import { Domain } from "../../domain/domain.module";
 import { DomainEvent } from "../domain-event/domain-event";
+import { EventsPublished } from "../libevents/events-published.event";
 import { StoredEvent } from "./stored-event";
+import { TransmittedEvent } from "./transmitted-event";
+import { TransmittedEventInterface } from "./transmitted-event.interface";
 
 /**
  * EventStore
@@ -10,22 +14,109 @@ import { StoredEvent } from "./stored-event";
 
 export abstract class EventStore {
 
+    // queue of events to be persisted in storage.
     private _storageQueue: Queue<StoredEvent>;
+
+    // queue of events to be published
     private _publishQueue: Queue<DomainEvent>;
+
+    // queue of events that have been published.
+    private _broadcastedQueue: Queue<DomainEvent>;
+
+    private _updateQueue: Queue<StoredEvent>;
 
     constructor() {
         this._storageQueue = new Queue<StoredEvent>();
         this._publishQueue = new Queue<DomainEvent>();
+        this._broadcastedQueue = new Queue<DomainEvent>();
+        this._updateQueue = new Queue<StoredEvent>();
     }
 
     /**
      * broadcastEvents()
      * 
      * broadcastEvents() braodcasts the domain events.
-     * @param eventQueue The queue of events to broadcast.
+     * @param eventsToPublish The queue of events to broadcast.
+     * @param publishedEvents The events that have been successfully broadcasted.
      */
 
-    protected abstract boradcastEvents(eventQueue: Queue<DomainEvent>): Promise<void>;
+    protected abstract boradcastEvents(eventsToPublish: Queue<DomainEvent>, publishedEvents: Queue<DomainEvent>): Promise<void>;
+
+
+    /**
+     * getDateOfLatestEvent()
+     * 
+     * gets the date of the most recent event.
+     * @returns the date of the most recent event.
+     */
+    public async getDateOfLastEvent(): Promise<DateTime|null> {
+        const latestEvent = await this.getLatestStoredEvent();
+        return latestEvent ? latestEvent.occuredOn() : null;
+    }
+
+    /**
+     * getLatestStoredEvent()
+     * 
+     * gets the most reent stored event.
+     * @throws any exception when there is an error.
+     */
+
+    protected abstract getLatestStoredEvent(): Promise<StoredEvent|null>;
+
+    /**
+     * getTransmittedEventSince()
+     * 
+     * Gets a list of all the events since the specified time period.
+     * @param date The date to start from. If null, get all events.
+     */
+
+    public abstract getTransmittedEventsSince(date: DateTime|null): Promise<Array<TransmittedEvent>>;
+
+    /**
+     * mapStoredEventToDomainEvent()
+     * 
+     * converts a given stored event to a domain event.
+     * @param storedEvent the event to convert.
+     */
+
+    protected abstract mapStoredEventToDomainEvent(storedEvent: StoredEvent): DomainEvent;
+
+    /**
+     * mapTransmittedEventToDomainEvent()
+     * 
+     * converts a transmitted event into a domain event.
+     * @param transmittedEvent the transmitted event to convert.
+     * @throws any exception when it is unable to convert the transmitted event.
+     */
+    
+    public abstract mapTransmittedEventToDomainEvent(transmittedEvent: TransmittedEvent): DomainEvent;
+
+    /**
+     * markEventsAsPublished()
+     * 
+     * Updates the events in storage that have been updated.
+     */
+
+    public async updatePublishedEvents(): Promise<void> {
+        // save the updated events.
+        if (!this._updateQueue.isEmpty()) {
+            await this.saveEvents(this._updateQueue);
+        }
+    }
+
+    /**
+     * processPublishedEvents()
+     * 
+     * performs necessary processing to published events.
+     */
+
+    public processPublishedEvents(): void {
+        // convert to stored events.
+        while (!this._broadcastedQueue.isEmpty()) {
+            this._updateQueue.enqueue(this.convertEventToStoredEvent(this._broadcastedQueue.peek()!, true));
+            this._broadcastedQueue.dequeue();
+        }
+    }
 
     /**
      * publishEvents()
@@ -38,11 +129,17 @@ export abstract class EventStore {
         
         if (!this._publishQueue.isEmpty()) {
             try {
-                await this.boradcastEvents(this._publishQueue);
+                await this.boradcastEvents(this._publishQueue, this._broadcastedQueue);
             }
             catch (error) {
                 // something went wrong broadcasting the events.
                 throw error;;
+            }
+            finally {
+                if (!this._broadcastedQueue.isEmpty()) {
+                    // if there were some events that were broadcasted, we emit the EventsPublished event with these events.
+                    await Domain.EventStream().emit(new EventsPublished(this._broadcastedQueue));
+                }
             }
         }
     }
@@ -109,15 +206,7 @@ export abstract class EventStore {
 
         // determine if the event should be stored.
         if (!event.isInternal() || this.shouldSaveInternalEvents()) {
-            // create the SotoredEvent
-            const storedEvent = new StoredEvent(
-                event.eventId().id(),
-                event.eventName(),
-                event.eventClassification(),
-                event.eventVersion(),
-                event.serialize(),
-                event.occuredOn()
-            );
+            const storedEvent = this.convertEventToStoredEvent(event);
 
             // add the event to the storage queue.
             this._storageQueue.enqueue(storedEvent);
@@ -129,5 +218,30 @@ export abstract class EventStore {
                 this._publishQueue.enqueue(event);
             }
         }
+    }
+
+    // ==================================
+    // Helpers
+    // ==================================
+
+    /**
+     * convertEventToStoredEvent()
+     * 
+     * converts an event to a strored event.
+     * @param event The event to convert
+     * @returns the created stored event.
+     */
+
+    private convertEventToStoredEvent(event: DomainEvent, markPublished: boolean = false): StoredEvent {
+        return new StoredEvent(
+            event.eventId().id(),
+            event.eventName(),
+            event.eventClassification(),
+            event.eventVersion(),
+            event.serializeData(),
+            event.occuredOn(),
+            event.shouldBeBroadcasted(),
+            markPublished
+        );
     }
 }

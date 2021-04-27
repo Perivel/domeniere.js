@@ -5,6 +5,7 @@ import { EventHandler } from "../subscriber/event-handler.type";
 import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
 import { EventAggregate } from "../event-emitter/event-aggregate..type";
 import { DomainEventHandlerPriority } from "../subscriber/domain-event-handler-priority.enum";
+import { TransmittedEvent } from "../event-store/transmitted-event";
 /**
  * Event Stream
  *
@@ -17,11 +18,24 @@ export declare class EventStream implements EventStreamInterface {
     private _eventPublisherTask;
     constructor();
     /**
+     * initializeEvents()
+     *
+     * initializes the state of the event stream.
+     */
+    initializeEvents(getTransmitted?: boolean): Promise<void>;
+    /**
      * publishEvents()
      *
      * publishEvents() publishes (or broadcasts) all unpublished events.
      */
     publishEvents(): Promise<void>;
+    /**
+     * processTransmittedEvent()
+     *
+     * processes a transmitted event.
+     * @param transmittedEvent the event to process.
+     */
+    processTransmittedEvent(transmittedEvent: TransmittedEvent): Promise<void>;
     /**
      * emit()
      *
@@ -55,11 +69,5 @@ export declare class EventStream implements EventStreamInterface {
      * reigster internal handlers here.
      */
     private registerInternalEventHandlers;
-    /**
-     * Schedules the interval when events are to be published to the public queue.
-     * @param cronExpression THe cron expression
-     * @throws InvalidEventPublishIntercalException when an invalid event interval has been passed.
-     */
-    private scheduleEventPublisherInterval;
 }
 //# sourceMappingURL=event-stream.d.ts.map

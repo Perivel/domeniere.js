@@ -6,14 +6,14 @@ import { Subscriber } from "../subscriber/subscriber";
 import { EventHandler } from "../subscriber/event-handler.type";
 import { SubscriberId } from "../subscriber/subscriber-id";
 import { DefaultEventStore } from "../event-store/default-event-store";
-import { OutOfBoundsException, UUID, Duration, MethodUndefinedException } from "@perivel/foundation";
+import { UUID } from "@perivel/foundation";
 import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
-import { schedule as scheduleTask, ScheduledTask, validate as validateCronExpression } from 'node-cron';
+import { ScheduledTask } from 'node-cron';
 import { EventAggregate } from "../event-emitter/event-aggregate..type";
 import { EventStoreFailed } from "../libevents/event-store-failed.event";
-import { EventBroadcastFailed } from "../event.module";
-import { InvalidEventPublishIntervalException } from './invalid-event-publish-interval.exception';
 import { DomainEventHandlerPriority } from "../subscriber/domain-event-handler-priority.enum";
+import { EventsPublished } from "../libevents/events-published.event";
+import { TransmittedEvent } from "../event-store/transmitted-event";
 
 /**
  * Event Stream
@@ -32,7 +32,7 @@ export class EventStream implements EventStreamInterface {
     private _eventStore: EventStore;
 
     // The event publisher task
-    private _eventPublisherTask: ScheduledTask|null;
+    private _eventPublisherTask: ScheduledTask | null;
 
     constructor() {
         this.emitter = new EventEmitter();
@@ -45,6 +45,46 @@ export class EventStream implements EventStreamInterface {
     }
 
     /**
+     * initializeEvents()
+     * 
+     * initializes the state of the event stream.
+     */
+
+    public async initializeEvents(getTransmitted: boolean = true): Promise<void> {
+        // process transmitted events.
+        const lastEventDate = await this.eventStore().getDateOfLastEvent();
+        const events = new Array<DomainEvent>();
+
+        if (lastEventDate) {
+            const transmittedEvents = await this.eventStore().getTransmittedEventsSince(lastEventDate);
+            const foreignEvents = transmittedEvents.map(event => {
+                return this.eventStore().mapTransmittedEventToDomainEvent(event);
+            });
+            events.push(...foreignEvents);
+        }
+
+        // sort the events.
+        events.sort((a, b) => {
+            if (a.occuredOn().isBefore(b.occuredOn())) {
+                // a came before b
+                return -1;
+            }
+            else if (b.occuredOn().isBefore(a.occuredOn())) {
+                // b came before a
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        });
+
+        // emit all the events
+        await Promise.all(events.map(async event => {
+            await this.emit(event);
+        }));
+    }
+
+    /**
      * publishEvents()
      * 
      * publishEvents() publishes (or broadcasts) all unpublished events.
@@ -52,6 +92,24 @@ export class EventStream implements EventStreamInterface {
 
     public async publishEvents(): Promise<void> {
         await this.eventStore().publishEvents();
+    }
+
+    /**
+     * processTransmittedEvent()
+     * 
+     * processes a transmitted event.
+     * @param transmittedEvent the event to process.
+     */
+
+    public async processTransmittedEvent(transmittedEvent: TransmittedEvent): Promise<void> {
+
+        try {
+            const event = this.eventStore().mapTransmittedEventToDomainEvent(transmittedEvent);
+            await this.emit(event);
+        }
+        catch (e) {
+            await this.emit(new EventStoreFailed(e));
+        }
     }
 
     /**
@@ -94,7 +152,7 @@ export class EventStream implements EventStreamInterface {
      * @param stopPropogationOnError indicates if the event propogation should stop when the subscriber handler encounters an error.
      */
 
-    public subscribe(eventName: string|EventAggregate, handler: EventHandler, priority: FrameworkEventHandlerPriority|DomainEventHandlerPriority = DomainEventHandlerPriority.MEDIUM, label: string = '', stopPropogationOnError: boolean = false): void {
+    public subscribe(eventName: string | EventAggregate, handler: EventHandler, priority: FrameworkEventHandlerPriority | DomainEventHandlerPriority = DomainEventHandlerPriority.MEDIUM, label: string = '', stopPropogationOnError: boolean = false): void {
         const subscriberId = new SubscriberId(UUID.V4().id());
         const subscriber = new Subscriber(subscriberId, eventName.toString(), Number(priority), label, handler, stopPropogationOnError);
         this.emitter.addSubscriber(subscriber);
@@ -109,46 +167,35 @@ export class EventStream implements EventStreamInterface {
      */
 
     private registerInternalEventHandlers(): void {
-        
+
         // register a handler to automatically save events on any event.
-        this.subscribe(EventAggregate.Any.toString(),async () => {
+        this.subscribe(EventAggregate.Any.toString(), async () => {
             try {
                 await this.eventStore().persistEvents();
             }
-            catch(err) {
+            catch (err) {
                 // failed to store some or all the events.
                 await this.emit(new EventStoreFailed(err));
             }
 
         }, FrameworkEventHandlerPriority.HIGH, 'persist events', false);
-    }
 
-    /**
-     * Schedules the interval when events are to be published to the public queue.
-     * @param cronExpression THe cron expression
-     * @throws InvalidEventPublishIntercalException when an invalid event interval has been passed.
-     */
+        // register event to process braodcasted events.
+        this.subscribe(EventsPublished.EventName(), async (event: DomainEvent) => {
+            this.eventStore().processPublishedEvents();
+        }, FrameworkEventHandlerPriority.LOW, 'Process published events', false);
 
-    private scheduleEventPublisherInterval(cronExpression: string): void {
-        if (this._eventPublisherTask) {
-            this._eventPublisherTask.destroy();
-        }
-
-        // validate
-        if (!validateCronExpression(cronExpression)) {
-            // invalid chron expression.
-            throw new InvalidEventPublishIntervalException();
-        }
-
-        this._eventPublisherTask = scheduleTask(cronExpression, async () => {
+        // Register a handler to automatically update the status of published events in storage.
+        this.subscribe(EventsPublished.EventName(), async (event: DomainEvent) => {
             try {
-                // publish the events.
-                await this.eventStore().publishEvents();
+                await this.eventStore().updatePublishedEvents();
             }
-            catch(err) {
-                // something went wrong broadcasting the events.
-                await this.emit(new EventBroadcastFailed(err as Error));
+            catch (err) {
+                // failed to store some or all the events.
+                await this.emit(new EventStoreFailed(err));
             }
-        });
+
+        }, FrameworkEventHandlerPriority.VERY_LOW, 'update events in storage.', false);
+
     }
 }

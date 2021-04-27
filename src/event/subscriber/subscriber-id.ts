@@ -35,4 +35,8 @@ export class SubscriberId extends Id implements SubscriberIdInterface {
     public id(): string {
         return super.id() as string;
     }
+
+    public serialize(): string {
+        return this.id();
+    }
 }

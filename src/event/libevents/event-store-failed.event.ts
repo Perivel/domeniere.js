@@ -63,7 +63,7 @@ export class EventStoreFailed extends DomainEvent {
      * serialize() serializes the event data.
      */
 
-    public serialize(): string {
+    public serializeData(): string {
         return JSON.stringify({
             error: this.error()
         });

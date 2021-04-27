@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventAggregate = exports.FrameworkEventHandlerPriority = exports.EventStoreFailed = exports.InvalidEventPublishIntervalException = exports.EventBroadcastFailed = exports.EventHandlerFailed = exports.OnAny = exports.OnError = exports.OnInternal = exports.On = exports.EventStream = exports.StoredEvent = exports.EventStoreException = exports.EventStore = exports.SubscriberId = exports.Subscriber = exports.DomainEventHandlerPriority = exports.DomainEventId = exports.DomainEvent = void 0;
+exports.EventAggregate = exports.FrameworkEventHandlerPriority = exports.EventsPublished = exports.EventStoreFailed = exports.InvalidEventPublishIntervalException = exports.EventBroadcastFailed = exports.EventHandlerFailed = exports.OnAny = exports.OnError = exports.OnInternal = exports.On = exports.EventStream = exports.TransmittedEvent = exports.StoredEvent = exports.EventStoreException = exports.EventStore = exports.SubscriberId = exports.Subscriber = exports.DomainEventHandlerPriority = exports.DomainEventId = exports.DomainEvent = void 0;
 // The Event API
 var domain_event_1 = require("./domain-event/domain-event");
 Object.defineProperty(exports, "DomainEvent", { enumerable: true, get: function () { return domain_event_1.DomainEvent; } });
@@ -18,6 +18,8 @@ var event_store_exception_1 = require("./event-store/event-store.exception");
 Object.defineProperty(exports, "EventStoreException", { enumerable: true, get: function () { return event_store_exception_1.EventStoreException; } });
 var stored_event_1 = require("./event-store/stored-event");
 Object.defineProperty(exports, "StoredEvent", { enumerable: true, get: function () { return stored_event_1.StoredEvent; } });
+var transmitted_event_1 = require("./event-store/transmitted-event");
+Object.defineProperty(exports, "TransmittedEvent", { enumerable: true, get: function () { return transmitted_event_1.TransmittedEvent; } });
 var event_stream_1 = require("./event-stream/event-stream");
 Object.defineProperty(exports, "EventStream", { enumerable: true, get: function () { return event_stream_1.EventStream; } });
 var on_decorator_1 = require("./decorators/on.decorator");
@@ -36,6 +38,8 @@ var invalid_event_publish_interval_exception_1 = require("./event-stream/invalid
 Object.defineProperty(exports, "InvalidEventPublishIntervalException", { enumerable: true, get: function () { return invalid_event_publish_interval_exception_1.InvalidEventPublishIntervalException; } });
 var event_store_failed_event_1 = require("./libevents/event-store-failed.event");
 Object.defineProperty(exports, "EventStoreFailed", { enumerable: true, get: function () { return event_store_failed_event_1.EventStoreFailed; } });
+var events_published_event_1 = require("./libevents/events-published.event");
+Object.defineProperty(exports, "EventsPublished", { enumerable: true, get: function () { return events_published_event_1.EventsPublished; } });
 var framework_event_handler_priority_enum_1 = require("./subscriber/framework-event-handler-priority.enum");
 Object.defineProperty(exports, "FrameworkEventHandlerPriority", { enumerable: true, get: function () { return framework_event_handler_priority_enum_1.FrameworkEventHandlerPriority; } });
 var event_aggregate__type_1 = require("./event-emitter/event-aggregate..type");

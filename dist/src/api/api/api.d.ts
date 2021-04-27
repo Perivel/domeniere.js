@@ -1,6 +1,6 @@
 import { EventEmittingObject } from "../../common/common.module";
 import { Module } from './../../module/module.module';
-import { EventStore } from "../../event/event.module";
+import { EventStore, TransmittedEvent } from "../../event/event.module";
 import { Logger } from "../../utils/utils.module";
 import { ApiInterface } from "./api.interface";
 /**
@@ -21,6 +21,13 @@ export declare abstract class Api extends EventEmittingObject implements ApiInte
      * broadcastEvents() broadcasts all unpublished events to the network.
      */
     broadcastEvents(): Promise<void>;
+    /**
+     * processTransmittedEvent()
+     *
+     * processes a transmitted event.
+     * @param event the event to intake.
+     */
+    processTransmittedEvent(event: TransmittedEvent): Promise<void>;
     /**
      * registerModule()
      *

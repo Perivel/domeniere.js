@@ -44,4 +44,8 @@ export class DomainEventId extends Id implements DomainEventIdInterface {
     public id(): string {
         return super.id() as string;
     }
+
+    public serialize(): string {
+        return this.id();
+    }
 }

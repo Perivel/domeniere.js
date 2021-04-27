@@ -111,6 +111,20 @@ class DomainEvent {
         return this._timestamp;
     }
     /**
+     * serialize()
+     *
+     * serialize() serializes the event data.
+     */
+    serialize() {
+        return JSON.stringify({
+            id: this.eventId().serialize(),
+            name: this.eventName(),
+            classification: this.eventClassification(),
+            version: this.eventVersion(),
+            data: this.serializeData()
+        });
+    }
+    /**
      * shouldBeBroadcasted()
      *
      * shouldBeBroadcasted() determines if the event should be broadcasted to the network.

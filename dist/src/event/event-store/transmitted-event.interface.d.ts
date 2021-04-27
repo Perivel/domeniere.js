@@ -1,13 +1,10 @@
 import { DateTime } from "@perivel/foundation";
-/**
- * StoredEventInterface
- */
-export interface StoredEventInterface {
+export interface TransmittedEventInterface {
     /**
-     * eventBody()
-     *
-     * eventBody() gets the event body.
-     */
+    * eventBody()
+    *
+    * eventBody() gets the event body.
+    */
     eventBody(): string;
     /**
      * evnetClassification()
@@ -34,28 +31,10 @@ export interface StoredEventInterface {
      */
     eventVersion(): number;
     /**
-     * isPublished()
-     *
-     * isPublished() determines if an event has been published.
-     */
-    isPublished(): boolean;
-    /**
-     * markPublished()
-     *
-     * markPublished() marks a stored event as published.
-     */
-    markPublished(): void;
-    /**
      * occuredOn()
      *
      * occuredOn()
      */
     occuredOn(): DateTime;
-    /**
-     * shouldBePublished()
-     *
-     * indicates whether or not the event should be published.
-     */
-    shouldBePublished(): boolean;
 }
-//# sourceMappingURL=stored-event.interface.d.ts.map
+//# sourceMappingURL=transmitted-event.interface.d.ts.map

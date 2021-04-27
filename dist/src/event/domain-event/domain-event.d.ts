@@ -91,7 +91,13 @@ export declare abstract class DomainEvent implements DomainEventInterface, Seria
      *
      * serialize() serializes the event data.
      */
-    abstract serialize(): string;
+    serialize(): string;
+    /**
+     * serializeData()
+     *
+     * serializes the event data.
+     */
+    abstract serializeData(): string;
     /**
      * shouldBeBroadcasted()
      *

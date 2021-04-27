@@ -1,7 +1,8 @@
-import { DateTime, Queue } from "@perivel/foundation";
+import { DateTime, MethodUndefinedException, Queue } from "@perivel/foundation";
 import { DomainEvent } from "../event.module";
 import { EventStore } from "./event-store";
 import { StoredEvent } from "./stored-event";
+import { TransmittedEvent } from "./transmitted-event";
 
 /**
  * DefaultEventStore
@@ -16,7 +17,27 @@ export class DefaultEventStore extends EventStore {
         super();
     }
 
-    protected async boradcastEvents(eventQueue: Queue<DomainEvent>): Promise<void> {}
+    protected async boradcastEvents(eventsToPublish: Queue<DomainEvent>, publishedEvents: Queue<DomainEvent>): Promise<void> {
+        while (!eventsToPublish.isEmpty()) {
+            publishedEvents.enqueue(eventsToPublish.dequeue()!);
+        }
+    }
+
+    protected getLatestStoredEvent(): Promise<StoredEvent | null> {
+        throw new MethodUndefinedException();
+    }
+    
+    public async getTransmittedEventsSince(date: DateTime|null): Promise<TransmittedEvent[]> {
+        return [];
+    }
+
+    protected mapStoredEventToDomainEvent(storedEvent: StoredEvent): DomainEvent {
+        throw new MethodUndefinedException();
+    }
+    
+    public mapTransmittedEventToDomainEvent(transmittedEvent: TransmittedEvent): DomainEvent {
+        throw new MethodUndefinedException();
+    }
 
     protected async saveEvents(eventQueue: Queue<StoredEvent>): Promise<void> {}
 }

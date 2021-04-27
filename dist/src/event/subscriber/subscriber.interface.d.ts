@@ -3,7 +3,8 @@
  */
 import { SubscriberIdInterface } from "./subscriber-id.interface";
 import { DomainEventInterface } from "../domain-event/domain-event.interface";
-export interface SubscriberInterface {
+import { Serializable } from "@perivel/foundation";
+export interface SubscriberInterface extends Serializable {
     /**
      * eventName()
      *

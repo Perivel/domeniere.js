@@ -51,7 +51,7 @@ class EventStoreFailed extends domain_event_1.DomainEvent {
      *
      * serialize() serializes the event data.
      */
-    serialize() {
+    serializeData() {
         return JSON.stringify({
             error: this.error()
         });

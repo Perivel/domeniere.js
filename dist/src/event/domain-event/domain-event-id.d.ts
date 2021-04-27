@@ -20,5 +20,6 @@ export declare class DomainEventId extends Id implements DomainEventIdInterface 
      * id() gets the value of the Domain event id.
      */
     id(): string;
+    serialize(): string;
 }
 //# sourceMappingURL=domain-event-id.d.ts.map

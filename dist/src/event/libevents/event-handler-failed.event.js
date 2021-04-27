@@ -10,10 +10,11 @@ const event_classification_enum_1 = require("../domain-event/event-classificatio
  * EventHandlerFailed indicates that an event handler has failed.
  */
 class EventHandlerFailed extends domain_event_1.DomainEvent {
-    constructor(handler, event, timestamp = foundation_1.DateTime.Now(), id = undefined) {
+    constructor(handler, event, error, timestamp = foundation_1.DateTime.Now(), id = undefined) {
         super(timestamp, id);
         this._handler = handler;
         this._event = event;
+        this._error = error;
     }
     /**
      * EventName()
@@ -48,6 +49,15 @@ class EventHandlerFailed extends domain_event_1.DomainEvent {
         return this._event;
     }
     /**
+     * error()
+     *
+     * the error that occured.
+     * @returns the error that occured.
+     */
+    error() {
+        return this._error;
+    }
+    /**
      * handler()
      *
      * handler() gets 4he event handler.
@@ -68,12 +78,11 @@ class EventHandlerFailed extends domain_event_1.DomainEvent {
      *
      * serialsie() serializes the event data.
      */
-    serialize() {
-        const obj = {
-            event: this.event(),
-            handler: this.handler()
-        };
-        return JSON.stringify(obj);
+    serializeData() {
+        return JSON.stringify({
+            event: this.event().serialize(),
+            handler: this.handler().serialize()
+        });
     }
 }
 exports.EventHandlerFailed = EventHandlerFailed;

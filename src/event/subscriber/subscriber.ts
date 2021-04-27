@@ -143,4 +143,15 @@ export class Subscriber implements SubscriberInterface, Equatable {
     public shouldStopPropogationOnError(): boolean {
         return this._stopPropogationOnError;
     }
+
+    public serialize(): string {
+        return JSON.stringify({
+            id: this.id().serialize(),
+            event: this.eventName(),
+            label: this.label(),
+            priority: this.priority(),
+            attempts: this.handleAttempts(),
+            stop_propogation_on_error: this.shouldStopPropogationOnError(),
+        });
+    }
 }

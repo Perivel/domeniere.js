@@ -94,7 +94,7 @@ class EventEmitter {
                 // The handler failed.
                 sub.incrementFailedHandleAttempts();
                 // emit the event handler failed event.
-                await domain_module_1.Domain.EventStream().emit(new event_handler_failed_event_1.EventHandlerFailed(sub, event));
+                await domain_module_1.Domain.EventStream().emit(new event_handler_failed_event_1.EventHandlerFailed(sub, event, error));
                 if (sub.shouldStopPropogationOnError()) {
                     return false;
                 }
