@@ -1,11 +1,23 @@
-import { Queue } from "@perivel/foundation";
+import { DateTime, Queue } from "@perivel/foundation";
 import { Api } from "../../../src/api/api.module";
 import { Domain } from "../../../src/domain/domain.module";
-import { DomainEvent, EventStore, StoredEvent } from "../../../src/event/event.module";
+import { DomainEvent, EventStore, StoredEvent, TransmittedEvent } from "../../../src/event/event.module";
 import { TestModule, TestModule2 } from "../modules/test-module";
 import { HashStringQuery, RegularHashQuery } from "../services/reverse-string.query";
 
 class MyEventStore extends EventStore {
+    protected async getLatestStoredEvent(): Promise<StoredEvent|null> {
+        return null;
+    }
+    public async getTransmittedEventsSince(date: DateTime): Promise<TransmittedEvent[]> {
+        return [];
+    }
+    protected mapStoredEventToDomainEvent(storedEvent: StoredEvent): DomainEvent {
+        throw new Error("Method not implemented.");
+    }
+    public mapTransmittedEventToDomainEvent(transmittedEvent: TransmittedEvent): DomainEvent {
+        throw new Error("Method not implemented.");
+    }
     protected async boradcastEvents(eventQueue: Queue<DomainEvent>): Promise<void> {
         
     }

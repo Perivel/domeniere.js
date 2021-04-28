@@ -16,6 +16,14 @@ export interface ApiInterface {
     broadcastEvents(): Promise<void>;
 
     /**
+     * initializeEvents()
+     * 
+     * initializes the service's state.
+     */
+
+    initializeEvents(): Promise<void>;
+
+    /**
      * processTransmittedEvent()
      * 
      * processes a transmitted event.

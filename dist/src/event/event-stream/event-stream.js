@@ -41,7 +41,7 @@ class EventStream {
             events.push(...foreignEvents);
         }
         // sort the events.
-        events.sort((a, b) => {
+        const sortedEvents = events.sort((a, b) => {
             if (a.occuredOn().isBefore(b.occuredOn())) {
                 // a came before b
                 return -1;
@@ -55,7 +55,7 @@ class EventStream {
             }
         });
         // emit all the events
-        await Promise.all(events.map(async (event) => {
+        await Promise.all(sortedEvents.map(async (event) => {
             await this.emit(event);
         }));
     }

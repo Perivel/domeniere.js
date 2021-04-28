@@ -22,6 +22,12 @@ export declare abstract class Api extends EventEmittingObject implements ApiInte
      */
     broadcastEvents(): Promise<void>;
     /**
+     * initializeEvents()
+     *
+     * initializes the service's state.
+     */
+    initializeEvents(): Promise<void>;
+    /**
      * processTransmittedEvent()
      *
      * processes a transmitted event.

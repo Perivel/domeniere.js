@@ -42,6 +42,16 @@ export abstract class Api extends EventEmittingObject implements ApiInterface {
     }
 
     /**
+     * initializeEvents()
+     * 
+     * initializes the service's state.
+     */
+
+    public async initializeEvents(): Promise<void> {
+        await Domain.EventStream().initializeEvents();
+    }
+
+    /**
      * processTransmittedEvent()
      * 
      * processes a transmitted event.

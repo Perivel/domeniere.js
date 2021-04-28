@@ -31,6 +31,14 @@ class Api extends common_module_1.EventEmittingObject {
         await domain_module_1.Domain.EventStream().publishEvents();
     }
     /**
+     * initializeEvents()
+     *
+     * initializes the service's state.
+     */
+    async initializeEvents() {
+        await domain_module_1.Domain.EventStream().initializeEvents();
+    }
+    /**
      * processTransmittedEvent()
      *
      * processes a transmitted event.
