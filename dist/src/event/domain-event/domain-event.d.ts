@@ -104,5 +104,6 @@ export declare abstract class DomainEvent implements DomainEventInterface, Seria
      * shouldBeBroadcasted() determines if the event should be broadcasted to the network.
      */
     shouldBeBroadcasted(): boolean;
+    toString(): string;
 }
 //# sourceMappingURL=domain-event.d.ts.map

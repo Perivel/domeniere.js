@@ -132,5 +132,8 @@ class DomainEvent {
     shouldBeBroadcasted() {
         return true;
     }
+    toString() {
+        return this.serialize();
+    }
 }
 exports.DomainEvent = DomainEvent;

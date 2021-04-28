@@ -8,5 +8,8 @@ exports.Data = void 0;
  */
 class Data {
     constructor() { }
+    toString() {
+        return this.serialize();
+    }
 }
 exports.Data = Data;

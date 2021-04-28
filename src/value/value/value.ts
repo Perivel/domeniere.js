@@ -23,4 +23,8 @@ export abstract class Value implements ValueInterface, Equatable, Serializable {
     public abstract equals(suspect: any): boolean;
 
     public abstract serialize(): string;
+
+    public toString(): string {
+        return this.serialize();
+    }
 }

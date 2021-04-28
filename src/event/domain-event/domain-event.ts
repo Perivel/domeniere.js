@@ -172,4 +172,8 @@ export abstract class DomainEvent implements DomainEventInterface, Serializable 
     public shouldBeBroadcasted(): boolean {
         return true;
     }
+
+    public toString(): string {
+        return this.serialize();
+    }
 }

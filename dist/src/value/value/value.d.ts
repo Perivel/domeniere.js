@@ -17,5 +17,6 @@ export declare abstract class Value implements ValueInterface, Equatable, Serial
      */
     abstract equals(suspect: any): boolean;
     abstract serialize(): string;
+    toString(): string;
 }
 //# sourceMappingURL=value.d.ts.map
