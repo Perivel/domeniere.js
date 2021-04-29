@@ -59,6 +59,7 @@ class Aggregate {
     serialize() {
         return JSON.stringify({
             root: this.root().serialize(),
+            data: this.serializeData(),
         });
     }
     toString() {

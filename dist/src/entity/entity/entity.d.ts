@@ -28,6 +28,12 @@ export declare abstract class Entity implements EntityInterface, Serializable {
      */
     id(): Identifier;
     serialize(): string;
+    /**
+     * serializeData()
+     *
+     * serializes the data.
+     */
+    protected abstract serializeData(): string;
     toString(): string;
     /**
      * setId()

@@ -30,7 +30,8 @@ class Entity {
     }
     serialize() {
         return JSON.stringify({
-            id: this.id().id().toString()
+            id: this.id().id().toString(),
+            data: this.serializeData(),
         });
     }
     toString() {

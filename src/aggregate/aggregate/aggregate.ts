@@ -78,8 +78,16 @@ export abstract class Aggregate implements AggregateInterface, Serializable {
     public serialize(): string {
         return JSON.stringify({
             root: this.root().serialize(),
+            data: this.serializeData(),
         });
     }
+
+    /**
+     * serializeData()
+     * 
+     * serializes the data
+     */
+    protected abstract serializeData(): string;
 
     public toString(): string {
         return this.identity().toString();

@@ -15,6 +15,10 @@ export class Post extends TimestampedEntity {
         return super.id() as PostId;
     }
 
+    public content(): string {
+        return this._content;
+    }
+
     public equals(suspect: any): boolean {
         let isEqual = false;
 
@@ -26,4 +30,9 @@ export class Post extends TimestampedEntity {
         return isEqual;
     }
 
+    protected serializeData(): string {
+        return JSON.stringify({
+            content: this.content()
+        });
+    }
 }

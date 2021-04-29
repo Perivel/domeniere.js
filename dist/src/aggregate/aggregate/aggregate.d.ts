@@ -44,6 +44,12 @@ export declare abstract class Aggregate implements AggregateInterface, Serializa
      */
     _isDirty(): boolean;
     serialize(): string;
+    /**
+     * serializeData()
+     *
+     * serializes the data
+     */
+    protected abstract serializeData(): string;
     toString(): string;
     /**
      * markDirty()

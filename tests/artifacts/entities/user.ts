@@ -29,4 +29,10 @@ export class User extends Entity {
 
         return isEquals;
     }
+
+    protected serializeData(): string {
+        return JSON.stringify({
+            name: this.name().serialize(),
+        });
+    }
 }

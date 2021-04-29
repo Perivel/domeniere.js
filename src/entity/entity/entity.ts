@@ -49,9 +49,18 @@ export abstract class Entity implements EntityInterface, Serializable {
 
     public serialize(): string {
         return JSON.stringify({
-            id: this.id().id().toString()
+            id: this.id().id().toString(),
+            data: this.serializeData(),
         });
     }
+
+    /**
+     * serializeData()
+     * 
+     * serializes the data.
+     */
+    
+    protected abstract serializeData(): string;
 
     public toString(): string {
         return this.id().toString();
