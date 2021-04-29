@@ -314,6 +314,29 @@ Notice here our completed `UserCreated` event class. We simply add one additiona
 
 Notice our `serializeData()` method how includes a field for our user. 
 
+### Event Metadata
+Sometimes, we want to modify the behavior of our events. To do so, we can override a few methods in our event class.
+
+**Error Events**
+Error Events are events that indicate an error has occured. Examples of such events include Fragment's very own `EventHandlerFailed` event. Error events are dispatched to handlers intended to execute on any kind of error (that is, handlers decorated with the `@OnError()` decorator). 
+
+To mark an event as an error event, we override the `isError()` method.
+```ts
+public isError(): boolean {
+    return true;
+}
+```
+By default, events are not marked as error events.
+
+**Broadcasting Events**
+By default, all custom events are automatically marked to be broadcasted. An event marked to be broadcasted will be add to the publish queue and broadcasted to other domains in your network. If we do not want a custom event to be broadcasted, we can override the `shouldBeBroadcasted()` method of our event class.
+```ts
+public shouldBeBroadcasted(): boolean {
+        return false;
+    }
+```
+By default, all custom events are marked to be broadcasted.
+
 ## Emitting Events
 Now that we have created our event, it is time to use it. In most cases, Domain Services are the primary objects that will be emitting events. As such, Domain Services can emit events through their built in `emit()` method.
 ```ts
