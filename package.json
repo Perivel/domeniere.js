@@ -1,7 +1,7 @@
 {
   "name": "@perivel/fragment",
   "version": "1.3.0",
-  "description": "An application-layer library that helps developers make portable, framework-independent applications.",
+  "description": "A library that helps developers make portable, framework-independent applications.",
   "main": "dist/fragment.js",
   "types": "dist/fragment.d.ts",
   "repository": "https://github.com/Perivel/fragment",
