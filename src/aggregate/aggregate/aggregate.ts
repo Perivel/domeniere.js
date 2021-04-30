@@ -4,7 +4,7 @@ import { InvalidArgumentException, Serializable } from "@perivel/foundation";
 import { Identifier } from "../../common/common.module";
 
 /**
- * Aggregate
+ * Aggregate 
  * 
  * Aggregate is a cluster of objects and entities, centered 
  * around a root entity, that is required to fulfill some 
