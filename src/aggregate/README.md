@@ -1,2 +1,2 @@
 # Aggregate
-An Aggregate is a cluster of associated objects, with a root and a consistency boundary.
+An Aggregate is a cluster of associated objects, which can be treated as a single unit. All aggregates have a root,  
