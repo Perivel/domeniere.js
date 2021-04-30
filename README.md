@@ -4,9 +4,8 @@ Fragment is a library to assist in creating framework-independent applications.
 # How Fragment Fits into Your Architecture
 
 # How Fragment Helps
-- Fragment provides a clean, consistent architecture while still giving you the freedom to make it your own.
-- A heacy fcus on Inversion of Control helps keep your applications flexible and portable across different frameworks and technologies.
-- Design your applications in small separate "domains" ideal for distributed systems.
+**Clean Architecture**: Fragment helps keep your architectures small, simple, and clean.
+**Create Portable Applications**: Fragment makes no assumptions as to which Framework, Database, or external services you are using. Instead the details of these services can be injected to work with your fragment application.
 
 # Domain Drien Design
 Fragment makes use of a lot of concepts from [Domain Driven Design](https://martinfowler.com/tags/domain%20driven%20design.html).
