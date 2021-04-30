@@ -1,13 +1,25 @@
 # Fragment
-Fragment is a library to assist in creating framework-independent code.
+Fragment is a library to assist in creating framework-independent applications.
 
-# The Problem
+# How Fragment Fits into Your Architecture
 
 # How Fragment Helps
+- Fragment provides a clean, consistent architecture while still giving you the freedom to make it your own.
+- A heacy fcus on Inversion of Control helps keep your applications flexible and portable across different frameworks and technologies.
+- Design your applications in small separate "domains" ideal for distributed systems.
 
 # Domain Drien Design
+Fragment makes use of a lot of concepts from [Domain Driven Design](https://martinfowler.com/tags/domain%20driven%20design.html).
 
 # Getting Started
+Copy the repository link and run the following command in your project
+```
+npm install <link>
+```
+Or with Yarn
+```
+yarn add <link>
+```
 
 # The Building Blocks of a Fragment Application
 - [Values](src/value/README.md): Representing Descriptive Objects
