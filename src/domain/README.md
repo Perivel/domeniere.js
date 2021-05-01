@@ -5,7 +5,7 @@ The domain represents the context or area in which your code operates on. Your d
 Your `Domain` is responsible for managing modules. As such, we can access module services, factories, and repositories from the `Domain`.
 
 ### Registering Modules
-It is recommended that modules be registered at the `Api` class. For more informatioin about registering modules with the `API` class, see the `API` section.
+It is recommended that modules be registered at the `Api` class. For more informatioin about registering modules with the `Api` class, see the [Api](./../api/README.md) section.
 
 ### Accessing Modules
 To access objects in your module using the `Module()` method. 
@@ -37,4 +37,4 @@ We can also emit events directly from the `Domain`'s `EventStream`. To do so, we
 ```ts
 await Domain.EventStream().emit(new UserCreated(user));
 ```
-We pass the instance of the event we are emitting as the argument to the `emit()` method. This will initiate the `Event Lifecycle` as described in detail in the Events section. 
+We pass the instance of the event we are emitting as the argument to the `emit()` method. This will initiate the `Event Lifecycle` as described in detail in the [Events](./../event/README.md) section. 

@@ -130,4 +130,4 @@ await this.emit(new UserCreated(user));
 ```
 In many cases, different parts of your domain may need to respond to state changes. In order to notify your domain about a state change, services can emit events to inform interested parties about changes through the built in `emit()` method. 
 
-To learn more about events, refer to the Events section.
+To learn more about events, refer to the [Events](./../event/README.md) section.

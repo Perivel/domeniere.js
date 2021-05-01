@@ -1,6 +1,5 @@
 # APIs
-APIs define how your domain communicates with the outside 
-world. Your API has three responsibilities -- communicating with external consumers (your infrastructure), registering modules, and broadcasting events to external domains.
+APIs define how your domain communicates with the outside world. Your API has three responsibilities -- communicating with external consumers (your infrastructure), registering modules, and broadcasting events to external domains.
 
 ## Defining Your API
 To define an API, we override the `Api` class.
@@ -16,7 +15,7 @@ export class UsersApi extends Api {
 ```
 The Api accepts an instance of your `EventStore` and `Logger` as its arguments. The logger is optional and will use the console (console.log)()) if it is omitted.
 
-For more information about `EventStore`s, see the `Events` section.
+For more information about `EventStore`s, see the [Events](./../event/README.md) section.
 
 ## Registering Modules
 It is in the API where modules are registered and made available to the `Domain` object (see `Domain` section for more information on the `Domain`). We register our modules in the constructor of our API.
@@ -35,7 +34,7 @@ export class UsersApi extends Api {
     }
 }
 ```
-Notice here we use our module's `registerRepositoryInstance()` method to bind a repository that is defined in our infrastructure layer to the module (see the `Modules` section for more information about modules). We then register our module using the `registerModule()` methiod provided by our API. In this example, we only had one module with one external dependency. However, it is very common to have multiple modules with multiple dependencies. The concept for handling which, however, will remain the same.
+Notice here we use our module's `registerRepositoryInstance()` method to bind a repository that is defined in our infrastructure layer to the module (see the [Modules](./../module/README.md) section for more information about modules). We then register our module using the `registerModule()` methiod provided by our API. In this example, we only had one module with one external dependency. However, it is very common to have multiple modules with multiple dependencies. The concept for handling which, however, will remain the same.
 
 ## Broadcasting Events
 Broadcastng Events is a responsibility delegated to the Infrasstructure layer, instead of being done automatically. The reasoning for this is that most infrastructure/cloud services have their own mechanisms for things like scheduled jobs (CRON jobs). To tell Fragment to broadcast your events, we can invoke the `broadcastEvents()` method.

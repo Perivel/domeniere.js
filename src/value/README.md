@@ -30,7 +30,7 @@ export class UserId extends Value {
     }
 }
 ```
-In our above example, we create a value object to represents a simple UserId. This object is pretty straightforward, consisting of only one property -- the id value.
+In our above example, we create a value object to represents a simple UserId. This object is pretty straightforward, consisting of only one property -- the id value. Notice here that the properties of our Value object are immutable. As a general rule, Value objects should be immutable, favoring replacing them altogether when their values must change.
 
 When defining a Value Object, there are two methods that we need to override. The `equals()` method defines how we determine equality. The `serialize()` mehtod defines how this object will be serialized. Let's first define our `equals()` method.
 ```ts

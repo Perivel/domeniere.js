@@ -1,5 +1,5 @@
 # Repository
-A repository encapsulates logic partaining to querying and retrieving data, and in some cases, logic to retrieve certain summary information. Repositories are often used as an abstraction between the application logic and data persistance capabilities. Repositories are defined within the domain layer and implemented in the infrastructure layer. There is usually a 1-to-1 relationship between Aggregates and Repositories, where for every aggregate in the domain, there is one corresponding repository.
+A repository encapsulates logic partaining to querying and retrieving data, and in some cases, logic to retrieve certain summary information. Repositories are used as an abstraction between the application logic and data persistance capabilities. Repositories are defined within the domain layer and implemented in the infrastructure layer. There is usually a 1-to-1 relationship between Aggregates and Repositories, where for every aggregate in the domain, there is one corresponding repository.
 
 ## Defining a Repository
 To define a repository, we override the `Repository` class. 
@@ -13,7 +13,7 @@ export abstract class UserRepository extends Repository {
     }
 }
 ```
-Since repositories are only defined in the domain layer, we will usually declare our repositories as abstract classes, and implement them later in the infrastructure layer (i.e. in the framewoerk we decide to use). Every repository has three methods that must be overriden. The `remove()` method removes the specified aggregate from the repository. The `save()` method updates (or creates) the specified aggregate to the repository. And the `size()` method gets the number of objects in the repository.
+Since repositories are only defined in the domain layer, we declare our repositories as abstract classes, and implement them later in the infrastructure layer (i.e. in the framewoerk we decide to use). Every repository has three methods that must be overriden. The `remove()` method removes the specified aggregate from the repository. The `save()` method updates (or creates) the specified aggregate to the repository. And the `size()` method gets the number of objects in the repository.
 ```ts
 import { Repository } from '@perivel/fragment';
 
@@ -30,7 +30,7 @@ export abstract class UserRepository extends Repository {
     public abstract size(): Promise<number>;
 }
 ```
-Since we are creating this repository to specifically handle User aggregates, we specify our method arguments to accept aggregate instances of the type User, where User is an aggregate. We cover aggregates in more deltail in the Aggregates section.
+Since we are creating this repository to specifically handle User aggregates, we specify our method arguments to accept aggregate instances of the type User, where User is an aggregate. We cover aggregates in more deltail in the [Aggregates](./../aggregate/README.md) section.
 
 In addition to our basic persistence methods, repositories also contain functionalities to retrieve data. To add these functionalities, we just define them in our abstract class.
 ```ts

@@ -349,13 +349,13 @@ export class CreateUser extends Command {
     }
 }
 ```
-Notice here we use the `emit()` method to emit an event from the Domain Service (to learn more about Domain Services, see the Domain Services section).
+Notice here we use the `emit()` method to emit an event from the Domain Service (to learn more about Domain Services, see the [Services](./../service/README.md) section).
 
 There are, however, some cases when you want to emit an event from somewhere else. A common use case is within event handlers. In this situation, we can emit an event from anywhere like so.
 ```ts
 await Domain.EventStream().emit(new UserCreated(user));
 ```
-Notice here, that we are accessing the global `Domain` object's event stream to emit the event. To learn more about the `Domain`, see the Domain section.
+Notice here, that we are accessing the global `Domain` object's event stream to emit the event. To learn more about the `Domain`, see the [Domain](./../domain/README.md) section.
 
 ## Broadcasting Events
-To broadcast our events over a network, we use our `Api`'s `broadcastEvents()` method. To learn more about the `Api`, see the `Api` section.
+To broadcast our events over a network, we use our `Api`'s `broadcastEvents()` method. To learn more about the `Api`, see the [Api](./../api/README.md) section.

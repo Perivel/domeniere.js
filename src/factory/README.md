@@ -1,5 +1,5 @@
 # Factory
-A Factory s an object responsible for the creation of other objects. 
+A Factory is responsible for the creation of other objects. 
 
 ## Defining a Factory
 We define a factory by extending the `AbstractFactory` class.
@@ -27,3 +27,4 @@ export class UserFactory {
     }
 }
 ```
+A handy guideline for defining factories is that we define our factory methods based on the ways we instanciate our objects.
