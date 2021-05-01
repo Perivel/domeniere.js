@@ -1,5 +1,5 @@
 # Service
-A Domain Service represents an operation on a Domain Object. Domain Services usually represent high-level operations like "create user" or "get the profile information of the user with this id". In most cases, each domain service will be responsible for ***one*** single task. In the vast majority of cases, domain services will fall into two general categories. A `Command` is used to update some state in your domain. A `Query` retrieves data from a Data source. 
+A Domain Service represents an operation on a Domain Object. Domain Services usually represent high-level operations like "create user" or "get the profile information of the user with this id". In most cases, each domain service will be responsible for ***one*** single task. Services follow the [CQRS pattern](https://martinfowler.com/bliki/CQRS.html#:~:text=CQRS%20stands%20for%20Command%20Query,you%20use%20to%20read%20information.) A `Command` is used to update some state in your domain. A `Query` retrieves data from a Data source. 
 
 ## Commands
 A command is an operation that updates some state in your domain. Think of a command as a write operation. A command does not return any value. Its sole purpose is to change some state in our data. `Commands` should be task-based, instead of data centric.
