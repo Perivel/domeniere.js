@@ -76,6 +76,22 @@ protected async saveEvents(eventQueue: Queue<StoredEvent>): Promise<void>
 ```
 As each event is successfully persisted, the event should be removed from the events queue. If there is an error, an exception should be thrown. It is also a good idea to insert some retry logic into this method. Here, the events that are passed into `saveEvents()` are not neccesarily new events. Some of these events have already been previously persisted and are just being updated (marked as published).
 
+### Persisting Internal Events (Optional)
+By default, Internal Events are not persisted. If you wish to save internal events, you can override the `shouldSaveInternalEvents()` method.
+```ts
+protected shouldSaveInternalEvents(): boolean {
+    return ture;
+}
+```
+
+### Broadcasting Internal Events
+By default, Internal Events are not broadcasted. if this is a behavior you wish to change, override the `shouldBroadcastInternalEvents()` method.
+```ts
+protected shouldBroadcastInternalEvents(): boolean {
+    return true;
+}
+```
+
 ## Internal Events
 Fragment defines a few internal events when certain thingxs occur in your domain.
 
