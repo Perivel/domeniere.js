@@ -23,6 +23,9 @@ class DefaultEventStore extends event_store_1.EventStore {
     async getTransmittedEventsSince(date) {
         return [];
     }
+    async getUnpublishedEvents() {
+        return [];
+    }
     mapStoredEventToDomainEvent(storedEvent) {
         throw new foundation_1.MethodUndefinedException();
     }

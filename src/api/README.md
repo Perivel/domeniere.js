@@ -101,3 +101,10 @@ catch(e) {
 Notice here we call the api method like any other method in our infrastructure layer. Since this method has the possibility of throwiing an exception, we surround it in a try-catch block. Notice we also pass in a DTO as the parameters of our method.
 
 You are free to define your API methods in however way you like. However, it is recommended these methods remain high level (that is, align with your requirements) and th low level details be left to the modules, repositories, services, and factories to handle.
+
+## Important Notes
+In your framework or infrastructure layer, it is highly recommended that you run the `initializeEvents()` method within youur startup script to properly sync events with your event store and the rest of your network.
+```ts
+// somewhere in your startup script
+await api.initializeEvents();
+```

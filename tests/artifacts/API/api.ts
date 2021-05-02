@@ -6,6 +6,9 @@ import { TestModule, TestModule2 } from "../modules/test-module";
 import { HashStringQuery, RegularHashQuery } from "../services/reverse-string.query";
 
 class MyEventStore extends EventStore {
+    public async getUnpublishedEvents(): Promise<StoredEvent[]> {
+        return [];
+    }
     protected async getLatestStoredEvent(): Promise<StoredEvent|null> {
         return null;
     }

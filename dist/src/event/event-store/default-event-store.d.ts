@@ -13,6 +13,7 @@ export declare class DefaultEventStore extends EventStore {
     protected boradcastEvents(eventsToPublish: Queue<DomainEvent>, publishedEvents: Queue<DomainEvent>): Promise<void>;
     protected getLatestStoredEvent(): Promise<StoredEvent | null>;
     getTransmittedEventsSince(date: DateTime | null): Promise<TransmittedEvent[]>;
+    getUnpublishedEvents(): Promise<Array<StoredEvent>>;
     protected mapStoredEventToDomainEvent(storedEvent: StoredEvent): DomainEvent;
     mapTransmittedEventToDomainEvent(transmittedEvent: TransmittedEvent): DomainEvent;
     protected saveEvents(eventQueue: Queue<StoredEvent>): Promise<void>;

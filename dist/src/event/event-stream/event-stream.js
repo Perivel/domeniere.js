@@ -28,8 +28,11 @@ class EventStream {
      * initializeEvents()
      *
      * initializes the state of the event stream.
+     * @throws EventStoreException when there is an error loading unpublished events from the event store.
      */
-    async initializeEvents(getTransmitted = true) {
+    async initializeEvents() {
+        // load unpublished events.
+        await this.eventStore().loadUnpublishedEvents();
         // process transmitted events.
         const lastEventDate = await this.eventStore().getDateOfLastEvent();
         const events = new Array();

@@ -4,6 +4,7 @@ exports.EventStore = void 0;
 const foundation_1 = require("@perivel/foundation");
 const domain_module_1 = require("../../domain/domain.module");
 const events_published_event_1 = require("../libevents/events-published.event");
+const event_store_exception_1 = require("./event-store.exception");
 const stored_event_1 = require("./stored-event");
 /**
  * EventStore
@@ -26,6 +27,39 @@ class EventStore {
     async getDateOfLastEvent() {
         const latestEvent = await this.getLatestStoredEvent();
         return latestEvent ? latestEvent.occuredOn() : null;
+    }
+    /**
+     * loadUnpublishedEvents()
+     *
+     * loads the unpublished events from storage.
+     * @thorws EventStoreException when there is a problem processing the events.
+     */
+    async loadUnpublishedEvents() {
+        try {
+            // load unpublished events.
+            const unpublishedStoredEvents = await this.getUnpublishedEvents();
+            const sortedEvents = unpublishedStoredEvents.sort((a, b) => {
+                if (a.occuredOn().isBefore(b.occuredOn())) {
+                    return -1;
+                }
+                else if (b.occuredOn().isBefore(a.occuredOn())) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            });
+            // map the stored events to domain events
+            sortedEvents.forEach(event => {
+                // convert to domain event.
+                const domainEvent = this.mapStoredEventToDomainEvent(event);
+                // add unpublished events to publish queue.
+                this._publishQueue.enqueue(domainEvent);
+            });
+        }
+        catch (e) {
+            throw new event_store_exception_1.EventStoreException(e.message);
+        }
     }
     /**
      * markEventsAsPublished()

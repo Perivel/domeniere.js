@@ -43,6 +43,20 @@ export declare abstract class EventStore {
      */
     abstract getTransmittedEventsSince(date: DateTime | null): Promise<Array<TransmittedEvent>>;
     /**
+     * getUnpublishedEvents()
+     *
+     * gets the unpublished events from storage.
+     * @throws An exception if there is an error.
+     */
+    abstract getUnpublishedEvents(): Promise<Array<StoredEvent>>;
+    /**
+     * loadUnpublishedEvents()
+     *
+     * loads the unpublished events from storage.
+     * @thorws EventStoreException when there is a problem processing the events.
+     */
+    loadUnpublishedEvents(): Promise<void>;
+    /**
      * mapStoredEventToDomainEvent()
      *
      * converts a given stored event to a domain event.

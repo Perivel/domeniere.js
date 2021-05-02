@@ -31,6 +31,10 @@ export class DefaultEventStore extends EventStore {
         return [];
     }
 
+    public async getUnpublishedEvents(): Promise<Array<StoredEvent>> {
+        return [];
+    }
+
     protected mapStoredEventToDomainEvent(storedEvent: StoredEvent): DomainEvent {
         throw new MethodUndefinedException();
     }

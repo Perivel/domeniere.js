@@ -49,6 +49,17 @@ public async getTransmittedEventsSince(date: DateTime|null): Promise<Transmitted
 ```
 The `getTransmittedEventsSince()` method gets the date of the last event the event store knows of, or null if the event store has no events. It then returns an array of `TransmittedEvents` containing the event data. If there is an error, an exception is thrown.
 
+**getUnpublishedEvents()**
+The `getUnpublishedEvents()` gets the unpublished events from storage.
+
+The `getUnpublishedEvents()` method has the following signiture.
+```ts
+public async getUnpublishedEvents(): Promise<StoredEvent[]>
+```
+The `getUnpublishedEvents()` method returns an array of StoredEvent instances which all represent the events that were intended to be broadcasted, but have yet to be. 
+
+If there is an error, an exception should be thrown.
+
 **mapStoredEventToDomainEvent()**
 The `mapStoredEventsToDomainEvents()` method accepts an instance of a `StoredEvent` and returns a corresponding instance of `DomainEvent`. 
 

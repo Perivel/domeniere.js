@@ -21,8 +21,9 @@ export declare class EventStream implements EventStreamInterface {
      * initializeEvents()
      *
      * initializes the state of the event stream.
+     * @throws EventStoreException when there is an error loading unpublished events from the event store.
      */
-    initializeEvents(getTransmitted?: boolean): Promise<void>;
+    initializeEvents(): Promise<void>;
     /**
      * publishEvents()
      *

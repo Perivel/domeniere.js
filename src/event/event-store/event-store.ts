@@ -2,6 +2,7 @@ import { DateTime, Queue } from "@perivel/foundation";
 import { Domain } from "../../domain/domain.module";
 import { DomainEvent } from "../domain-event/domain-event";
 import { EventsPublished } from "../libevents/events-published.event";
+import { EventStoreException } from "./event-store.exception";
 import { StoredEvent } from "./stored-event";
 import { TransmittedEvent } from "./transmitted-event";
 import { TransmittedEventInterface } from "./transmitted-event.interface";
@@ -49,7 +50,7 @@ export abstract class EventStore {
      * gets the date of the most recent event.
      * @returns the date of the most recent event.
      */
-    public async getDateOfLastEvent(): Promise<DateTime|null> {
+    public async getDateOfLastEvent(): Promise<DateTime | null> {
         const latestEvent = await this.getLatestStoredEvent();
         return latestEvent ? latestEvent.occuredOn() : null;
     }
@@ -61,7 +62,7 @@ export abstract class EventStore {
      * @throws any exception when there is an error.
      */
 
-    protected abstract getLatestStoredEvent(): Promise<StoredEvent|null>;
+    protected abstract getLatestStoredEvent(): Promise<StoredEvent | null>;
 
     /**
      * getTransmittedEventSince()
@@ -70,7 +71,53 @@ export abstract class EventStore {
      * @param date The date to start from. If null, get all events.
      */
 
-    public abstract getTransmittedEventsSince(date: DateTime|null): Promise<Array<TransmittedEvent>>;
+    public abstract getTransmittedEventsSince(date: DateTime | null): Promise<Array<TransmittedEvent>>;
+
+    /**
+     * getUnpublishedEvents()
+     * 
+     * gets the unpublished events from storage.
+     * @throws An exception if there is an error.
+     */
+
+    public abstract getUnpublishedEvents(): Promise<Array<StoredEvent>>;
+
+    /**
+     * loadUnpublishedEvents()
+     * 
+     * loads the unpublished events from storage.
+     * @thorws EventStoreException when there is a problem processing the events.
+     */
+
+    public async loadUnpublishedEvents(): Promise<void> {
+        try {
+            // load unpublished events.
+            const unpublishedStoredEvents = await this.getUnpublishedEvents();
+            const sortedEvents = unpublishedStoredEvents.sort((a: StoredEvent, b: StoredEvent) => {
+                if (a.occuredOn().isBefore(b.occuredOn())) {
+                    return -1;
+                }
+                else if (b.occuredOn().isBefore(a.occuredOn())) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            })
+
+            // map the stored events to domain events
+            sortedEvents.forEach(event => {
+                // convert to domain event.
+                const domainEvent = this.mapStoredEventToDomainEvent(event);
+
+                // add unpublished events to publish queue.
+                this._publishQueue.enqueue(domainEvent);
+            });
+        }
+        catch (e) {
+            throw new EventStoreException((e as Error).message);
+        }
+    }
 
     /**
      * mapStoredEventToDomainEvent()
@@ -88,7 +135,7 @@ export abstract class EventStore {
      * @param transmittedEvent the transmitted event to convert.
      * @throws any exception when it is unable to convert the transmitted event.
      */
-    
+
     public abstract mapTransmittedEventToDomainEvent(transmittedEvent: TransmittedEvent): DomainEvent;
 
     /**
@@ -126,7 +173,7 @@ export abstract class EventStore {
      */
 
     public async publishEvents(): Promise<void> {
-        
+
         if (!this._publishQueue.isEmpty()) {
             try {
                 await this.boradcastEvents(this._publishQueue, this._broadcastedQueue);
@@ -212,7 +259,7 @@ export abstract class EventStore {
             this._storageQueue.enqueue(storedEvent);
 
             // determine if the event should be published.
-            
+
             if ((event.shouldBeBroadcasted() && !event.isInternal()) || this.shouldBroadcastInternalEvents()) {
                 // add event to publish queue
                 this._publishQueue.enqueue(event);
