@@ -484,8 +484,8 @@
     chalk "^4.0.0"
 
 "@perivel/foundation@https://github.com/Perivel/foundation.git":
-  version "1.2.0"
-  resolved "https://github.com/Perivel/foundation.git#9650d80f4a78ea319b670f36e4dba01b938773ff"
+  version "1.2.1"
+  resolved "https://github.com/Perivel/foundation.git#bef2c6acbf545ecbc42172559eace84cf962588f"
   dependencies:
     "@types/luxon" "^1.25.0"
     "@types/uuid" "^8.3.0"
@@ -585,9 +585,9 @@
     pretty-format "^26.0.0"
 
 "@types/luxon@^1.25.0":
-  version "1.26.4"
-  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.26.4.tgz#77bbd5a1aa74ca31edff2aee4f8313ea0d93ca5c"
-  integrity sha512-OIvbVLZQUjyZofqSFpre2VsgvKy0V0JQdRgN0k3H1DTGRdxHiaQjT16+H2gyuhAS9r8B2PQEwrSiqP6/Zka3pQ==
+  version "1.26.5"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.26.5.tgz#843fb705e16e4d2a90847a351b799ea9d879859e"
+  integrity sha512-XeQxxRMyJi1znfzHw4CGDLyup/raj84SnjjkI2fDootZPGlB0yqtvlvEIAmzHDa5wiEI5JJevZOWxpcofsaV+A==
 
 "@types/node-cron@^2.0.3":
   version "2.0.3"
@@ -773,9 +773,9 @@ atob@^2.1.2:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 awesome-phonenumber@^2.39.0:
-  version "2.49.0"
-  resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.49.0.tgz#6924dffcfbda969a11b7986c3ee0ce39d745819d"
-  integrity sha512-XI5AtK8aEIhp4tcSYbqAkyZ6kfudR0FN544MR3ewQ/kqnHOCU2ZwiYRMmTYApXGuTD1Ph33tvR9D/wmxxzeE0Q==
+  version "2.50.0"
+  resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.50.0.tgz#606390e35c7ad07985b1a6daf5238317091346b3"
+  integrity sha512-139A5WSN2iFoOg4g1u7YVJGyUYf5uLG8REhmTvzeIBvR9p1SziaDmy1I0k7JcWPvlFxlUeWZaqVJct8Je7FdvQ==
 
 aws-sign2@~0.7.0:
   version "0.7.0"
