@@ -15,21 +15,31 @@ class Aggregate {
      * @param root The aggregate root.
      * @throws InvalidArgumentException when the root is undefined.
      */
-    constructor(root) {
+    constructor(root, version = 1.0) {
         if (!root) {
             // root is undefined.
             throw new foundation_1.InvalidArgumentException("An aggregate's root cannot be undefined.");
         }
         this._root = root;
-        this._dirty = false;
+        this.__committed_ver__ = version;
+        this.__confirmed_ver__ = version;
     }
     /**
-     * clean()
+     * confirmStateChanges()
      *
-     * indicates that the aggregate data has been successfully updated.
+     * indicates that state changes have been confirmed.
      */
-    _clean() {
-        this._dirty = false;
+    confirmStateChanges() {
+        this.__confirmed_ver__ = this.__committed_ver__;
+    }
+    /**
+     * countUnconfirmedStateChanges()
+     *
+     * gets the number of state changes that have not yet been confirmed.
+     * @returns the number of unconfirmed state changes that the aggregate has.
+     */
+    countUnconfirmedStateChanges() {
+        return this.__committed_ver__ - this.__confirmed_ver__;
     }
     /**
      * equals()
@@ -49,30 +59,40 @@ class Aggregate {
         return this.root().id();
     }
     /**
-     * isDirty()
+     * hasUnconfirmedStateChanges()
      *
-     * determines if the aggregate data is dirty.
+     * determines if the aggregate has unconfirmed state changes
      */
-    _isDirty() {
-        return this._dirty;
+    hasUnconfirmedStateChanges() {
+        return this.__committed_ver__ != this.__confirmed_ver__;
     }
     serialize() {
         return JSON.stringify({
             root: this.root().serialize(),
             data: this.serializeData(),
+            version: this.version(),
         });
     }
     toString() {
         return this.identity().toString();
     }
+    /**
+     * version()
+     *
+     * gets the version of the aggregate.
+     * @returns the version of the aggregate
+     */
+    version() {
+        return this.__committed_ver__;
+    }
     // Helpers
     /**
-     * markDirty()
+     * commitStateChanges()
      *
-     * indicates that the aggregate data is dirty and needs updating.
+     * indicates that state changes have been made to the aggregate.
      */
-    markDirty() {
-        this._dirty = true;
+    commitStateChanges() {
+        this.__committed_ver__++;
     }
     /**
      * root()

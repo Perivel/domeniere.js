@@ -10,7 +10,7 @@ export declare abstract class TimestampedAggregate extends Aggregate implements 
     private readonly _createdOn;
     private _updatedOn;
     private _deletedOn;
-    constructor(root: Entity, created?: DateTime, updated?: DateTime, deleted?: DateTime | null);
+    constructor(root: Entity, version?: number, created?: DateTime, updated?: DateTime, deleted?: DateTime | null);
     /**
      * createdOn()
      *

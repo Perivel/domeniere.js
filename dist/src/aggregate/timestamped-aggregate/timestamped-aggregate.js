@@ -9,9 +9,9 @@ const foundation_1 = require("@perivel/foundation");
  * DateTimeedAggregate defines an aggregate as a DateTimeed Resource.
  */
 class TimestampedAggregate extends aggregate_1.Aggregate {
-    constructor(root, created = foundation_1.DateTime.Now(), updated = foundation_1.DateTime.Now(), deleted = null) {
+    constructor(root, version = 1.0, created = foundation_1.DateTime.Now(), updated = foundation_1.DateTime.Now(), deleted = null) {
         try {
-            super(root);
+            super(root, version);
             this._createdOn = created;
             this._updatedOn = updated;
             this._deletedOn = deleted;
@@ -53,8 +53,8 @@ class TimestampedAggregate extends aggregate_1.Aggregate {
      * commitStateChange() informs the entity that a state change has occured.
      */
     commitStateChange() {
+        super.commitStateChanges();
         this._updatedOn = foundation_1.DateTime.Now();
-        this.markDirty();
     }
     /**
      * setDeleted()

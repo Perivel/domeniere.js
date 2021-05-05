@@ -11,19 +11,27 @@ import { Identifier } from "../../common/common.module";
  */
 export declare abstract class Aggregate implements AggregateInterface, Serializable {
     private _root;
-    private _dirty;
+    private __committed_ver__;
+    private __confirmed_ver__;
     /**
      * Creates an instance of an aggregate.
      * @param root The aggregate root.
      * @throws InvalidArgumentException when the root is undefined.
      */
-    constructor(root: Entity);
+    constructor(root: Entity, version?: number);
     /**
-     * clean()
+     * confirmStateChanges()
      *
-     * indicates that the aggregate data has been successfully updated.
+     * indicates that state changes have been confirmed.
      */
-    _clean(): void;
+    confirmStateChanges(): void;
+    /**
+     * countUnconfirmedStateChanges()
+     *
+     * gets the number of state changes that have not yet been confirmed.
+     * @returns the number of unconfirmed state changes that the aggregate has.
+     */
+    countUnconfirmedStateChanges(): number;
     /**
      * equals()
      *
@@ -38,11 +46,11 @@ export declare abstract class Aggregate implements AggregateInterface, Serializa
      */
     identity(): Identifier;
     /**
-     * isDirty()
+     * hasUnconfirmedStateChanges()
      *
-     * determines if the aggregate data is dirty.
+     * determines if the aggregate has unconfirmed state changes
      */
-    _isDirty(): boolean;
+    hasUnconfirmedStateChanges(): boolean;
     serialize(): string;
     /**
      * serializeData()
@@ -52,11 +60,18 @@ export declare abstract class Aggregate implements AggregateInterface, Serializa
     protected abstract serializeData(): string;
     toString(): string;
     /**
-     * markDirty()
+     * version()
      *
-     * indicates that the aggregate data is dirty and needs updating.
+     * gets the version of the aggregate.
+     * @returns the version of the aggregate
      */
-    protected markDirty(): void;
+    version(): number;
+    /**
+     * commitStateChanges()
+     *
+     * indicates that state changes have been made to the aggregate.
+     */
+    protected commitStateChanges(): void;
     /**
      * root()
      *

@@ -14,9 +14,9 @@ export abstract class TimestampedAggregate extends Aggregate implements Timestam
     private _updatedOn: DateTime;
     private _deletedOn: DateTime | null;
 
-    constructor(root: Entity, created: DateTime = DateTime.Now(), updated: DateTime = DateTime.Now(), deleted: DateTime | null = null) {
+    constructor(root: Entity, version: number = 1.0, created: DateTime = DateTime.Now(), updated: DateTime = DateTime.Now(), deleted: DateTime | null = null) {
         try {
-            super(root);
+            super(root, version);
             this._createdOn = created;
             this._updatedOn = updated;
             this._deletedOn = deleted;
@@ -67,8 +67,8 @@ export abstract class TimestampedAggregate extends Aggregate implements Timestam
      */
 
     protected commitStateChange(): void {
+        super.commitStateChanges();
         this._updatedOn = DateTime.Now();
-        this.markDirty();
     }
 
     /**
