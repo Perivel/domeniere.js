@@ -66,7 +66,7 @@ export abstract class TimestampedAggregate extends Aggregate implements Timestam
      * commitStateChange() informs the entity that a state change has occured.
      */
 
-    protected commitStateChange(): void {
+    protected commitStateChanges(): void {
         super.commitStateChanges();
         this._updatedOn = DateTime.Now();
     }

@@ -52,7 +52,7 @@ class TimestampedAggregate extends aggregate_1.Aggregate {
      *
      * commitStateChange() informs the entity that a state change has occured.
      */
-    commitStateChange() {
+    commitStateChanges() {
         super.commitStateChanges();
         this._updatedOn = foundation_1.DateTime.Now();
     }

@@ -34,7 +34,7 @@ export declare abstract class TimestampedAggregate extends Aggregate implements 
      *
      * commitStateChange() informs the entity that a state change has occured.
      */
-    protected commitStateChange(): void;
+    protected commitStateChanges(): void;
     /**
      * setDeleted()
      *
