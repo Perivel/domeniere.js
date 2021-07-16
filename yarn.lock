@@ -500,7 +500,7 @@
 
 "@perivel/foundation@https://github.com/Perivel/foundation.git":
   version "1.2.1"
-  resolved "https://github.com/Perivel/foundation.git#26809f04654f84cf811acaa6fafeb96e55dc603d"
+  resolved "https://github.com/Perivel/foundation.git#342a2964c4ef3c6bff12b6f4e643a8c2ee24e43d"
   dependencies:
     "@types/bcrypt" "^5.0.0"
     "@types/luxon" "^1.25.0"
@@ -621,9 +621,9 @@
     "@types/tz-offset" "*"
 
 "@types/node@*":
-  version "16.3.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.1.tgz#24691fa2b0c3ec8c0d34bfcfd495edac5593ebb4"
-  integrity sha512-N87VuQi7HEeRJkhzovao/JviiqKjDKMVKxKMfUvSKw+MbkbW8R0nA3fi/MQhhlxV2fQ+2ReM+/Nt4efdrJx3zA==
+  version "16.3.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.3.tgz#0c30adff37bbbc7a50eb9b58fae2a504d0d88038"
+  integrity sha512-8h7k1YgQKxKXWckzFCMfsIwn0Y61UK6tlD6y2lOb3hTOIMlK3t9/QwHOhc81TwU+RMf0As5fj7NPjroERCnejQ==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
