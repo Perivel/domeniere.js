@@ -499,8 +499,8 @@
     tar "^6.1.0"
 
 "@perivel/foundation@https://github.com/Perivel/foundation.git":
-  version "1.2.1"
-  resolved "https://github.com/Perivel/foundation.git#342a2964c4ef3c6bff12b6f4e643a8c2ee24e43d"
+  version "1.2.2"
+  resolved "https://github.com/Perivel/foundation.git#acbb6ea50e8d8cb9b159b4e8bb82f7298dfefef4"
   dependencies:
     "@types/bcrypt" "^5.0.0"
     "@types/luxon" "^1.25.0"
@@ -621,9 +621,9 @@
     "@types/tz-offset" "*"
 
 "@types/node@*":
-  version "16.3.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.3.tgz#0c30adff37bbbc7a50eb9b58fae2a504d0d88038"
-  integrity sha512-8h7k1YgQKxKXWckzFCMfsIwn0Y61UK6tlD6y2lOb3hTOIMlK3t9/QwHOhc81TwU+RMf0As5fj7NPjroERCnejQ==
+  version "16.4.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.0.tgz#2c219eaa3b8d1e4d04f4dd6e40bc68c7467d5272"
+  integrity sha512-HrJuE7Mlqcjj+00JqMWpZ3tY8w7EUd+S0U3L1+PQSWiXZbOgyQDvi+ogoUxaHApPJq5diKxYBQwA3iIlNcPqOg==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
