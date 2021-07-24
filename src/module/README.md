@@ -31,31 +31,31 @@ export class UserModule extends Module {
     }
 }
 ```
-In our `createBindings()`, we have four options for defining our bindings: `addFactoryBinding()`, `addRepository()`, `addServiceBinding()`, and `addServiceInstance()`.
+In our `createBindings()`, we have four options for defining our bindings: `bindFactory()`, `bindRepository()`, `bindService()`, and `bindServiceInstance()`.
 
-### addFactoryBinding()
-We can use the `addFactoryBinding()` method to create a binding for our factory. The `addFactoryBinding()` method takes two arguments: the name of the class we want to bind, and a factory function which tells our module how to instanciate that class. 
+### bindFactory()
+We can use the `bindFactory()` method to create a binding for our factory. The `bindFactory()` method takes two arguments: the name of the class we want to bind, and a factory function which tells our module how to instanciate that class. 
 
 ```ts
-this.addFactoryBinding(UserFactory, (module) => {
+this.bindFactory(UserFactory, (module) => {
     return new UserFactory();
 });
 ```
 Notice here we are adding a UserFactory binding to our module. In our factory function, we tell our module how to instanciate an instance of UserFactory.
 
-### addRepository()
-We can add a repsitory to our module with the `addRepository()` method. The `addRepository()` method takes the repository class name as its single parameter. As discussed in the Repository section, we leave the implementation of the repository to the infrastructure layer (the framework you are using). Here, we are simply telling our module to expect an instnace of our repository class to be registered at a later time.
+### bindRepository()
+We can add a repsitory to our module with the `bindRepository()` method. The `bindRepository()` method takes the repository class name as its single parameter. As discussed in the Repository section, we leave the implementation of the repository to the infrastructure layer (the framework you are using). Here, we are simply telling our module to expect an instnace of our repository class to be registered at a later time.
 
 ```ts
-this.addRepository(UserRepository);
+this.bindRepository(UserRepository);
 ```
 Here, we simply pass in the name of the repository. This tells our module that it should expect to receive an instance of UserRepository at a later time.
 
-### addServiceBinding()
-We can use the `addServiceBinding()` method to tell our module to a bindng for a service. `addServiceBinding()` takes two arguments: The name of the service class to bind and a factory function to tell the module how to instanciate that service.
+### bindService()
+We can use the `bindService()` method to tell our module to a bindng for a service. `bindService()` takes two arguments: The name of the service class to bind and a factory function to tell the module how to instanciate that service.
 
 ```ts
-this.addServiceBinding(CreateUserCommand, (module) => {
+this.bindService(CreateUserCommand, (module) => {
     return new CreateUserCommand(
         module.get(UserFactory),
         module.get(UserRepository),
@@ -64,16 +64,16 @@ this.addServiceBinding(CreateUserCommand, (module) => {
 ```
 Notice here we create a service binding in much the same way we did a factory binding. However, you may have noticed there is a slight difference in that we refer to the module to instanciate any other dependencies our service may need. In our case, our CreateUserCommand requires a UserFacory and a UserRepository.
 
-### addServiceInstance()
-Like `addRepository()`, `addServiceInstance()` tells our module to expect an instance of our service to be passed in at a later time. 
+### bindServiceInstance()
+Like `bindRepository()`, `bindServiceInstance()` tells our module to expect an instance of our service to be passed in at a later time. 
 
 ```ts
-this.addServiceInstance(GeocodeService);
+this.bindServiceInstance(GeocodeService);
 ```
 Notice here that we are registering a GeocodeService in much the same way as we did with adding a repository.
 
 ## Binding Instances to module Objects
-As covered in the last section, we used `addRepository()` and `addServiceInstance()` to twll our module to expect an instance to be registered at a later time. When that time comes, we can use the `registerRepositoryInstance()` method to register a repository instance to our module, and the `registerServiceInstance()` method to register a service instance.
+As covered in the last section, we used `bindRepository()` and `bindServiceInstance()` to twll our module to expect an instance to be registered at a later time. When that time comes, we can use the `registerRepositoryInstance()` method to register a repository instance to our module, and the `registerServiceInstance()` method to register a service instance.
 
 ```ts
 this.registerRepositoryInstance(UserRepository, new MongoUserRepository());
