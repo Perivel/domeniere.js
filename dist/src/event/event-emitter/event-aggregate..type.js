@@ -7,3 +7,4 @@ var EventAggregate;
     EventAggregate["Internal"] = "framework.internal.event";
     EventAggregate["Error"] = "general.error.event";
 })(EventAggregate = exports.EventAggregate || (exports.EventAggregate = {}));
+//# sourceMappingURL=event-aggregate..type.js.map

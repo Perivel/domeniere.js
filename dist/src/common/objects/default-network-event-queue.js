@@ -19,3 +19,4 @@ class DefaultNetworkEventQueue extends network_event_queue_1.NetworkEventQueue {
     }
 }
 exports.DefaultNetworkEventQueue = DefaultNetworkEventQueue;
+//# sourceMappingURL=default-network-event-queue.js.map

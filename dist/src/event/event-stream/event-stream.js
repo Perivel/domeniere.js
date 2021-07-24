@@ -157,3 +157,4 @@ class EventStream {
     }
 }
 exports.EventStream = EventStream;
+//# sourceMappingURL=event-stream.js.map

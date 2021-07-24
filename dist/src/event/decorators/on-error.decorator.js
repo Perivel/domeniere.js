@@ -27,3 +27,4 @@ function OnError(priority = domain_event_handler_priority_enum_1.DomainEventHand
     };
 }
 exports.OnError = OnError;
+//# sourceMappingURL=on-error.decorator.js.map

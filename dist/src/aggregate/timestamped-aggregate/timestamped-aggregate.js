@@ -67,3 +67,4 @@ class TimestampedAggregate extends aggregate_1.Aggregate {
     }
 }
 exports.TimestampedAggregate = TimestampedAggregate;
+//# sourceMappingURL=timestamped-aggregate.js.map

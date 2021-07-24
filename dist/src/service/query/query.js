@@ -14,3 +14,4 @@ class Query extends domain_service_1.DomainService {
     }
 }
 exports.Query = Query;
+//# sourceMappingURL=query.js.map

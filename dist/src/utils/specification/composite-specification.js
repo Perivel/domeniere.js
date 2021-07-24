@@ -42,3 +42,4 @@ class CompositeSpecification {
     }
 }
 exports.CompositeSpecification = CompositeSpecification;
+//# sourceMappingURL=composite-specification.js.map

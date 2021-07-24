@@ -10,15 +10,15 @@ export class TestModule extends Module {
     }
 
     protected createdBindings(): void {
-        this.addFactoryBinding(PostFactory, (container) => {
+        this.bindFactory(PostFactory, (container) => {
             return new PostFactory();
         });
 
-        this.addServiceBinding(DoubleNumberQuery, (container) => {
+        this.bindService(DoubleNumberQuery, (container) => {
             return new DoubleNumberQuery();
         });
 
-        this.addServiceInstance(HashStringQuery);
+        this.bindServiceInstance(HashStringQuery);
     }
 }
 
@@ -29,14 +29,14 @@ export class TestModule2 extends Module {
     }
 
     protected createdBindings(): void {
-        this.addFactoryBinding(PostFactory, (container) => {
+        this.bindFactory(PostFactory, (container) => {
             return new PostFactory();
         });
 
-        this.addServiceBinding(DoubleNumberQuery, (container) => {
+        this.bindService(DoubleNumberQuery, (container) => {
             return new DoubleNumberQuery();
         });
 
-        this.addServiceInstance(HashStringQuery);
+        this.bindServiceInstance(HashStringQuery);
     }
 }

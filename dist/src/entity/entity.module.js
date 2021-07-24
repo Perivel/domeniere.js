@@ -6,3 +6,4 @@ var entity_1 = require("./entity/entity");
 Object.defineProperty(exports, "Entity", { enumerable: true, get: function () { return entity_1.Entity; } });
 var timestamped_entity_1 = require("./timestamped-entity/timestamped-entity");
 Object.defineProperty(exports, "TimestampedEntity", { enumerable: true, get: function () { return timestamped_entity_1.TimestampedEntity; } });
+//# sourceMappingURL=entity.module.js.map

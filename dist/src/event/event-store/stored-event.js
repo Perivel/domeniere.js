@@ -91,3 +91,4 @@ class StoredEvent {
     }
 }
 exports.StoredEvent = StoredEvent;
+//# sourceMappingURL=stored-event.js.map

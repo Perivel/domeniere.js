@@ -11,3 +11,4 @@ class ModuleException extends foundation_1.BaseException {
     }
 }
 exports.ModuleException = ModuleException;
+//# sourceMappingURL=module.exception.js.map

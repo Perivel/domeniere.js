@@ -8,3 +8,4 @@ class InvalidEventPublishIntervalException extends foundation_1.InvalidArgumentE
     }
 }
 exports.InvalidEventPublishIntervalException = InvalidEventPublishIntervalException;
+//# sourceMappingURL=invalid-event-publish-interval.exception.js.map

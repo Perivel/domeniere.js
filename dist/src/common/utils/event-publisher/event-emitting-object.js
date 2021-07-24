@@ -15,3 +15,4 @@ class EventEmittingObject {
     }
 }
 exports.EventEmittingObject = EventEmittingObject;
+//# sourceMappingURL=event-emitting-object.js.map

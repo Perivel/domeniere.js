@@ -11,3 +11,4 @@ class RegistrationNotFoundException extends module_exception_1.ModuleException {
     }
 }
 exports.RegistrationNotFoundException = RegistrationNotFoundException;
+//# sourceMappingURL=registration-not-found.exception.js.map

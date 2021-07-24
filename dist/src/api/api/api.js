@@ -90,3 +90,4 @@ class Api extends common_module_1.EventEmittingObject {
     }
 }
 exports.Api = Api;
+//# sourceMappingURL=api.js.map

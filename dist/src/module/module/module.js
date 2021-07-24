@@ -128,14 +128,14 @@ class Module {
     // Helper functions
     // ==============================
     /**
-     * addFactoryBinding()
+     * bindFactory()
      *
      * adds a factory binding.
      * @param token the token
      * @param factory the factory.
      * @throw DuplicateBindingException when adding a duplicate binding.
      */
-    addFactoryBinding(token, factory) {
+    bindFactory(token, factory) {
         const id = this.getIdFromToken(token);
         if (!this._factoryBindings.has(id)) {
             const entry = new module_factory_entry_1.ModuleFactoryEntry(token, factory);
@@ -147,13 +147,13 @@ class Module {
         }
     }
     /**
-     * addRepository()
+     * bindRepository()
      *
      * adds a repository entry to the module.
      * @param token the token to bind the repository to.
      * @throw DuplicateBindingException when attempting to add a duplicate repository entry.
      */
-    addRepository(token) {
+    bindRepository(token) {
         const id = this.getIdFromToken(token);
         if (!this._repositoryInstances.has(id)) {
             const entry = new module_instance_entry_1.ModuleInstanceEntry(token);
@@ -165,13 +165,13 @@ class Module {
         }
     }
     /**
-     * addServiceBinding()
+     * bindService()
      *
      * adds a service binding to the module.
      * @param token the token to bind the factory to.
      * @param factory the factory.
      */
-    addServiceBinding(token, factory) {
+    bindService(token, factory) {
         const id = this.getIdFromToken(token);
         if (!this._serviceBindings.has(id)) {
             const entry = new module_factory_entry_1.ModuleFactoryEntry(token, factory);
@@ -183,14 +183,14 @@ class Module {
         }
     }
     /**
-     * addServiceInstance()
+     * bindServiceInstance()
      *
      * adds a service instance to the module.
      * @param token the token to register.
      * @throws DuplicateBindingException when attempting to register a service that already exists.
      *
      */
-    addServiceInstance(token) {
+    bindServiceInstance(token) {
         const id = this.getIdFromToken(token);
         if (!this._serviceInstances.has(id)) {
             const entry = new module_instance_entry_1.ModuleInstanceEntry(token);
@@ -213,3 +213,4 @@ class Module {
     }
 }
 exports.Module = Module;
+//# sourceMappingURL=module.js.map

@@ -27,3 +27,4 @@ function OnInternal(priority = domain_event_handler_priority_enum_1.DomainEventH
     };
 }
 exports.OnInternal = OnInternal;
+//# sourceMappingURL=on-internal.decorator.js.map

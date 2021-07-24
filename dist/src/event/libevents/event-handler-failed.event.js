@@ -86,3 +86,4 @@ class EventHandlerFailed extends domain_event_1.DomainEvent {
     }
 }
 exports.EventHandlerFailed = EventHandlerFailed;
+//# sourceMappingURL=event-handler-failed.event.js.map

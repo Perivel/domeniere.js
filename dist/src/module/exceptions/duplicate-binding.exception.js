@@ -11,3 +11,4 @@ class DuplicateBindingException extends module_exception_1.ModuleException {
     }
 }
 exports.DuplicateBindingException = DuplicateBindingException;
+//# sourceMappingURL=duplicate-binding.exception.js.map

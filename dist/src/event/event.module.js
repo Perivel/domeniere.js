@@ -44,3 +44,4 @@ var framework_event_handler_priority_enum_1 = require("./subscriber/framework-ev
 Object.defineProperty(exports, "FrameworkEventHandlerPriority", { enumerable: true, get: function () { return framework_event_handler_priority_enum_1.FrameworkEventHandlerPriority; } });
 var event_aggregate__type_1 = require("./event-emitter/event-aggregate..type");
 Object.defineProperty(exports, "EventAggregate", { enumerable: true, get: function () { return event_aggregate__type_1.EventAggregate; } });
+//# sourceMappingURL=event.module.js.map

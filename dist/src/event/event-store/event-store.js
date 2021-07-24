@@ -175,3 +175,4 @@ class EventStore {
     }
 }
 exports.EventStore = EventStore;
+//# sourceMappingURL=event-store.js.map

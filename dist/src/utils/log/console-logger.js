@@ -110,3 +110,4 @@ class ConsoleLogger extends logger_1.Logger {
     }
 }
 exports.ConsoleLogger = ConsoleLogger;
+//# sourceMappingURL=console-logger.js.map

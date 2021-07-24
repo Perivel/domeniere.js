@@ -73,39 +73,39 @@ export declare abstract class Module implements ModuleInterface {
      */
     serviceInstances(): ModuleInstances;
     /**
-     * addFactoryBinding()
+     * bindFactory()
      *
      * adds a factory binding.
      * @param token the token
      * @param factory the factory.
      * @throw DuplicateBindingException when adding a duplicate binding.
      */
-    protected addFactoryBinding<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void;
+    protected bindFactory<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void;
     /**
-     * addRepository()
+     * bindRepository()
      *
      * adds a repository entry to the module.
      * @param token the token to bind the repository to.
      * @throw DuplicateBindingException when attempting to add a duplicate repository entry.
      */
-    protected addRepository<T>(token: DependencyToken<T>): void;
+    protected bindRepository<T>(token: DependencyToken<T>): void;
     /**
-     * addServiceBinding()
+     * bindService()
      *
      * adds a service binding to the module.
      * @param token the token to bind the factory to.
      * @param factory the factory.
      */
-    protected addServiceBinding<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void;
+    protected bindService<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void;
     /**
-     * addServiceInstance()
+     * bindServiceInstance()
      *
      * adds a service instance to the module.
      * @param token the token to register.
      * @throws DuplicateBindingException when attempting to register a service that already exists.
      *
      */
-    protected addServiceInstance<T>(token: DependencyToken<T>): void;
+    protected bindServiceInstance<T>(token: DependencyToken<T>): void;
     /**
      * getIdFromToken()
      *

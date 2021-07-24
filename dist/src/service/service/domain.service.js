@@ -13,3 +13,4 @@ class DomainService extends common_module_1.EventEmittingObject {
     }
 }
 exports.DomainService = DomainService;
+//# sourceMappingURL=domain.service.js.map

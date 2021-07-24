@@ -58,3 +58,4 @@ class EventStoreFailed extends domain_event_1.DomainEvent {
     }
 }
 exports.EventStoreFailed = EventStoreFailed;
+//# sourceMappingURL=event-store-failed.event.js.map

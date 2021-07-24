@@ -8,3 +8,4 @@ class RepositoryException extends foundation_1.BaseException {
     }
 }
 exports.RepositoryException = RepositoryException;
+//# sourceMappingURL=repository.exception.js.map

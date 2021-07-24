@@ -48,3 +48,4 @@ class Entity {
     }
 }
 exports.Entity = Entity;
+//# sourceMappingURL=entity.js.map

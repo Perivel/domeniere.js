@@ -5,3 +5,4 @@
  * The Value Interface specifies the functionality of Domain Values.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=value.interface.js.map

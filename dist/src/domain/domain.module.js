@@ -16,3 +16,4 @@ __exportStar(require("./domain/domain"), exports);
 __exportStar(require("./exceptions/domain.exception"), exports);
 __exportStar(require("./exceptions/duplicate-service-registration.exception"), exports);
 __exportStar(require("./exceptions/service-not-found.exception"), exports);
+//# sourceMappingURL=domain.module.js.map

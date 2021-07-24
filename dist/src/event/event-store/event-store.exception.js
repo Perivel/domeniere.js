@@ -13,3 +13,4 @@ class EventStoreException extends foundation_1.BaseException {
     }
 }
 exports.EventStoreException = EventStoreException;
+//# sourceMappingURL=event-store.exception.js.map

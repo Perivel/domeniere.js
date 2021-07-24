@@ -26,3 +26,4 @@ function On(event, priority = domain_event_handler_priority_enum_1.DomainEventHa
     };
 }
 exports.On = On;
+//# sourceMappingURL=on.decorator.js.map

@@ -26,3 +26,4 @@ function OnAny(priority = domain_event_handler_priority_enum_1.DomainEventHandle
     };
 }
 exports.OnAny = OnAny;
+//# sourceMappingURL=on-any.decorator.js.map

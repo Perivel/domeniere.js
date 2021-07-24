@@ -84,3 +84,4 @@ class TimestampedEntity extends entity_1.Entity {
     }
 }
 exports.TimestampedEntity = TimestampedEntity;
+//# sourceMappingURL=timestamped-entity.js.map

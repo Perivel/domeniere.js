@@ -60,3 +60,4 @@ class EventsPublished extends domain_event_1.DomainEvent {
     }
 }
 exports.EventsPublished = EventsPublished;
+//# sourceMappingURL=events-published.event.js.map

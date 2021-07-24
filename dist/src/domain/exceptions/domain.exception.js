@@ -13,3 +13,4 @@ class DomainException extends foundation_1.BaseException {
     }
 }
 exports.DomainException = DomainException;
+//# sourceMappingURL=domain.exception.js.map

@@ -12,3 +12,4 @@ var DomainEventHandlerPriority;
     DomainEventHandlerPriority[DomainEventHandlerPriority["LOW"] = 400] = "LOW";
     DomainEventHandlerPriority[DomainEventHandlerPriority["VERY_LOW"] = 500] = "VERY_LOW";
 })(DomainEventHandlerPriority = exports.DomainEventHandlerPriority || (exports.DomainEventHandlerPriority = {}));
+//# sourceMappingURL=domain-event-handler-priority.enum.js.map

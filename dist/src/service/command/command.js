@@ -14,3 +14,4 @@ class Command extends domain_service_1.DomainService {
     }
 }
 exports.Command = Command;
+//# sourceMappingURL=command.js.map

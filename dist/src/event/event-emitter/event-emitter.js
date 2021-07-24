@@ -104,3 +104,4 @@ class EventEmitter {
     }
 }
 exports.EventEmitter = EventEmitter;
+//# sourceMappingURL=event-emitter.js.map

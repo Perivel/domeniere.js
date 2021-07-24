@@ -35,3 +35,4 @@ class DefaultEventStore extends event_store_1.EventStore {
     async saveEvents(eventQueue) { }
 }
 exports.DefaultEventStore = DefaultEventStore;
+//# sourceMappingURL=default-event-store.js.map

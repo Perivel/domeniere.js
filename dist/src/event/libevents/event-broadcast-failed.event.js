@@ -58,3 +58,4 @@ class EventBroadcastFailed extends domain_event_1.DomainEvent {
     }
 }
 exports.EventBroadcastFailed = EventBroadcastFailed;
+//# sourceMappingURL=event-broadcast-failed.event.js.map

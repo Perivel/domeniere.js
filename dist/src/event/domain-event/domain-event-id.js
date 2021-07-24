@@ -40,3 +40,4 @@ class DomainEventId extends foundation_1.Id {
     }
 }
 exports.DomainEventId = DomainEventId;
+//# sourceMappingURL=domain-event-id.js.map

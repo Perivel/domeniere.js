@@ -33,3 +33,4 @@ class SubscriberId extends foundation_1.Id {
     }
 }
 exports.SubscriberId = SubscriberId;
+//# sourceMappingURL=subscriber-id.js.map

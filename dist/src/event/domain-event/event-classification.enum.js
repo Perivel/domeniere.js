@@ -10,3 +10,4 @@ var EventClassifications;
     EventClassifications["InternalError"] = "framework.internal.error";
     EventClassifications["Domain"] = "domain.general";
 })(EventClassifications = exports.EventClassifications || (exports.EventClassifications = {}));
+//# sourceMappingURL=event-classification.enum.js.map

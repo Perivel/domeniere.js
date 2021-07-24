@@ -5,3 +5,4 @@ class NetworkEventQueue {
     constructor() { }
 }
 exports.NetworkEventQueue = NetworkEventQueue;
+//# sourceMappingURL=network-event-queue.js.map

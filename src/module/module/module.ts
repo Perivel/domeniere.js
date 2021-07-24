@@ -176,7 +176,7 @@ export abstract class Module implements ModuleInterface {
     // ==============================
 
     /**
-     * addFactoryBinding()
+     * bindFactory()
      * 
      * adds a factory binding.
      * @param token the token
@@ -184,7 +184,7 @@ export abstract class Module implements ModuleInterface {
      * @throw DuplicateBindingException when adding a duplicate binding.
      */
 
-    protected addFactoryBinding<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>) {
+    protected bindFactory<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>) {
         const id = this.getIdFromToken(token);
 
         if (!this._factoryBindings.has(id)) {
@@ -198,14 +198,14 @@ export abstract class Module implements ModuleInterface {
     }
 
     /**
-     * addRepository()
+     * bindRepository()
      * 
      * adds a repository entry to the module.
      * @param token the token to bind the repository to.
      * @throw DuplicateBindingException when attempting to add a duplicate repository entry.
      */
 
-    protected addRepository<T>(token: DependencyToken<T>): void {
+    protected bindRepository<T>(token: DependencyToken<T>): void {
         const id = this.getIdFromToken(token);
 
         if (!this._repositoryInstances.has(id)) {
@@ -219,14 +219,14 @@ export abstract class Module implements ModuleInterface {
     }
 
     /**
-     * addServiceBinding()
+     * bindService()
      * 
      * adds a service binding to the module.
      * @param token the token to bind the factory to.
      * @param factory the factory.
      */
 
-    protected addServiceBinding<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void {
+    protected bindService<T>(token: ConcreteDependencyToken<T>, factory: BindingFactory<T>): void {
         const id = this.getIdFromToken(token);
 
         if (!this._serviceBindings.has(id)) {
@@ -240,14 +240,14 @@ export abstract class Module implements ModuleInterface {
     }
 
     /**
-     * addServiceInstance()
+     * bindServiceInstance()
      * 
      * adds a service instance to the module.
      * @param token the token to register.
      * @throws DuplicateBindingException when attempting to register a service that already exists.
      * 
      */
-    protected addServiceInstance<T>(token: DependencyToken<T>): void {
+    protected bindServiceInstance<T>(token: DependencyToken<T>): void {
         const id = this.getIdFromToken(token);
 
         if (!this._serviceInstances.has(id)) {
