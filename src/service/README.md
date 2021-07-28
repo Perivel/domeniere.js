@@ -6,7 +6,7 @@ A command is an operation that updates some state in your domain. Think of a com
 
 To define a `Command` by extending the `Command` class.
 ```ts
-import { Command } from '@perivel/fragment`;
+import { Command } from '@perivel/Vessel`;
 
 export class CreateUserCommand extends Command {
 
@@ -72,7 +72,7 @@ A `Query` retrieves or derrives some data from a source. Think of a `Query` as a
 
 To define a Query, we extend the `Query` class. 
 ```ts
-import { Query } from '@perivel/fragment`;
+import { Query } from '@perivel/Vessel`;
 
 export class GetUserByIdQuery extends Query {
 

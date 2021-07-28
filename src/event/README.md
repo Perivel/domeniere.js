@@ -2,12 +2,12 @@
 Domain Events represent the occurance of something of interest in your domain.
 
 ## Event Stores
-Every Fragment project contains a single EventStore, which is responsible for persisting and broadcasting events. The `EventStore` is defined in your Fragment project. However, it is implemented in your infrastructure layer (framework).
+Every Vessel project contains a single EventStore, which is responsible for persisting and broadcasting events. The `EventStore` is defined in your Vessel project. However, it is implemented in your infrastructure layer (framework).
 
 ### Defining the EventStore
-The `EventStore` is defined in the domain layer (your Fragment Project). To define the `EventStore`, we simply extend the `EventStore` class.
+The `EventStore` is defined in the domain layer (your Vessel Project). To define the `EventStore`, we simply extend the `EventStore` class.
 ```ts
-import { EventStore } from '@perivel/fragment';
+import { EventStore } from '@perivel/Vessel';
 
 export abstract class MyEventStore extends EventStore {}
 ```
@@ -104,7 +104,7 @@ protected shouldBroadcastInternalEvents(): boolean {
 ```
 
 ## Internal Events
-Fragment defines a few internal events when certain thingxs occur in your domain.
+Vessel defines a few internal events when certain thingxs occur in your domain.
 
 ### The EventBroadcastFailed Event
 The EventBroadcastFailed indicates that the event store has failed to broadcast a batch of events. Every instance of the `EventBradcastFailed` event contains the error that was thrown when the error occured, which can be accessed through the `error()` method.
@@ -122,13 +122,13 @@ The `EventsPublished` event indicates that there were events that were successfu
 The life cycle of an event consists of four phases. These are the **Perisistence phase**, the **Handle phase**, the **Broadcast phase**, and the **Post-Processing phase**. 
 
 ### The Persistence Phase
-The persistence phase is the first phase an event goes through when it is first emitted. In this phase, a `StoredEvent` counterpart for the event is greated and added to a persistence queue. Fragment then executes the `EventStore`'s `saveEvents()` method to save the event to storage. if the event should be broadcasted, it is added to a publish queue, which will be broadcasted later.
+The persistence phase is the first phase an event goes through when it is first emitted. In this phase, a `StoredEvent` counterpart for the event is greated and added to a persistence queue. Vessel then executes the `EventStore`'s `saveEvents()` method to save the event to storage. if the event should be broadcasted, it is added to a publish queue, which will be broadcasted later.
 
 ### The Local Handler Phase
 The next phase in the event lifecycle is the Local Handler phase. In this phase, the event is dispatched to all the handlers listening for that event. Each of the handlers are then executed in order of their priority (higheest to lowest). 
 
 ### The Broadcast Phase
-The broadcast phase begins when the API's `publishEvents()` method is called. Fragment calls the `EventStore`'s `broadcastEvents()` method where the events are broadcasted and added to the post-publish queue.
+The broadcast phase begins when the API's `publishEvents()` method is called. Vessel calls the `EventStore`'s `broadcastEvents()` method where the events are broadcasted and added to the post-publish queue.
 
 ### The Post-Processing Phase
 The post-processing phase final phase in an event's lifecycle. Here, the now published event will undergo some final processing before its lifecycle ends.
@@ -138,7 +138,7 @@ Event Handlers are methods that are automatically executed in response to some e
 ```ts
 async methodName(event: DomainEvent): Promise<void>
 ```
-The Event Hanlder receives the event as its argument. And it is free to do whatever it needs to do in response to the event being emitted. To tell Fragment this method is an event listener, we need to decorate it with an event decorator. There are four types of event decorators we can use.
+The Event Hanlder receives the event as its argument. And it is free to do whatever it needs to do in response to the event being emitted. To tell Vessel this method is an event listener, we need to decorate it with an event decorator. There are four types of event decorators we can use.
 
 **@On(Event)**
 The most basic event decorator we can use is the `@On` decorator. The `@On` decorator takes the class name of the event we want the handler to be called on.
@@ -151,10 +151,10 @@ public async logUserId(event: DomainEvent): Promise<void> {
     console.log(createdUser.id());
 }
 ```
-Notice here that we pass the class name of the event to the `On()` decorator (in this case, `UserCreated`). This tells Fragment that this method is instended to be an event listener that will be called whenever the `UserCreated` event is emitted.
+Notice here that we pass the class name of the event to the `On()` decorator (in this case, `UserCreated`). This tells Vessel that this method is instended to be an event listener that will be called whenever the `UserCreated` event is emitted.
 
 **@OnInternal()**
-The `@OnInternal` decorator tells Fragment that the method it is attached to is an event handler that should be executed on any internal events. Internal events are events defined by the Fragment library. For more information on Internal Events, see the Internal Events section above.
+The `@OnInternal` decorator tells Vessel that the method it is attached to is an event handler that should be executed on any internal events. Internal events are events defined by the Vessel library. For more information on Internal Events, see the Internal Events section above.
 
 Below is an example of an event handler decorated with the `@OnInternal` decorator.
 ```ts
@@ -166,7 +166,7 @@ public async handleEvent(event: DomainEvent): Promise<void> {
 Unlike the `@On()` decorator, the `@OnInternal()` decorator does not accept any event as an argument. Instead, the handler will be called on any type of internal event that is emitted.
 
 **@OnError()**
-The @OnError() decorator tells Fragment that the method attached is a listener that should be called on all error events. As their name implies, Error Events are events that indicate an error has occured. 
+The @OnError() decorator tells Vessel that the method attached is a listener that should be called on all error events. As their name implies, Error Events are events that indicate an error has occured. 
 
 Below is an example of a listener decorated with the `@OnError()` decorator.
 ```ts
@@ -177,7 +177,7 @@ public async handleError(event: DomainEvent): Promise<void> {
 ```
 
 **@OnAny()**
-The `@OnAny()` is the most braod decorator. @OnAny() tells Fragment the method it is attached to is a listener that should be triggered whenever any kind of event is emitted.
+The `@OnAny()` is the most braod decorator. @OnAny() tells Vessel the method it is attached to is a listener that should be triggered whenever any kind of event is emitted.
 
 Below is an example of an event handler decorated with the `@OnAny()` decorator.
 ```ts
@@ -197,13 +197,13 @@ The priority of the event handler indicates the order in which the modifiers are
 The label is unique label for that handler. This label is only used for your own reference (i.e. when identifying the handler during an `EventHandlerFailed` event). By default, the label is set to a random string.
 
 **stopPropogationOnError**
-This is a flag that tells Fragment to stop propogating the event to subsequent handlers if this event handler fails (that is, it throws an exception). By default, this is set to `false`.
+This is a flag that tells Vessel to stop propogating the event to subsequent handlers if this event handler fails (that is, it throws an exception). By default, this is set to `false`.
 
 ## Defining Custom Events
-While Fragment provides quite a few internal events you can listen to, you often also need to be able to define your own events that are specific to your domain. In order to define your own custom events, yo uneed to override the `DomainEvent` class.
+While Vessel provides quite a few internal events you can listen to, you often also need to be able to define your own events that are specific to your domain. In order to define your own custom events, yo uneed to override the `DomainEvent` class.
 
 ```ts
-import { DomainEvent } from '@perivel/fragment';
+import { DomainEvent } from '@perivel/Vessel';
 import { DateTime } from '@perivel/foundation'
 
 export class UserCreated extends DomainEvent {
@@ -345,7 +345,7 @@ Notice our `serializeData()` method how includes a field for our user.
 Sometimes, we want to modify the behavior of our events. To do so, we can override a few methods in our event class.
 
 **Error Events**
-Error Events are events that indicate an error has occured. Examples of such events include Fragment's very own `EventHandlerFailed` event. Error events are dispatched to handlers intended to execute on any kind of error (that is, handlers decorated with the `@OnError()` decorator). 
+Error Events are events that indicate an error has occured. Examples of such events include Vessel's very own `EventHandlerFailed` event. Error events are dispatched to handlers intended to execute on any kind of error (that is, handlers decorated with the `@OnError()` decorator). 
 
 To mark an event as an error event, we override the `isError()` method.
 ```ts

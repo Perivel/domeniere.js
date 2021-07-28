@@ -4,7 +4,7 @@ A Factory is responsible for the creation of other objects.
 ## Defining a Factory
 We define a factory by extending the `AbstractFactory` class.
 ```ts
-import { AbstractFactory } from '@perivel/fragment';
+import { AbstractFactory } from '@perivel/Vessel';
 
 export class UserFactory {
     

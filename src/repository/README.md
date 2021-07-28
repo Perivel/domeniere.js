@@ -4,7 +4,7 @@ A repository encapsulates logic partaining to querying and retrieving data, and 
 ## Defining a Repository
 To define a repository, we override the `Repository` class. 
 ```ts
-import { Repository } from '@perivel/fragment';
+import { Repository } from '@perivel/Vessel';
 
 export abstract class UserRepository extends Repository {
 
@@ -15,7 +15,7 @@ export abstract class UserRepository extends Repository {
 ```
 Since repositories are only defined in the domain layer, we declare our repositories as abstract classes, and implement them later in the infrastructure layer (i.e. in the framewoerk we decide to use). Every repository has three methods that must be overriden. The `remove()` method removes the specified aggregate from the repository. The `save()` method updates (or creates) the specified aggregate to the repository. And the `size()` method gets the number of objects in the repository.
 ```ts
-import { Repository } from '@perivel/fragment';
+import { Repository } from '@perivel/Vessel';
 
 export abstract class UserRepository extends Repository {
 
@@ -34,7 +34,7 @@ Since we are creating this repository to specifically handle User aggregates, we
 
 In addition to our basic persistence methods, repositories also contain functionalities to retrieve data. To add these functionalities, we just define them in our abstract class.
 ```ts
-import { Repository } from '@perivel/fragment';
+import { Repository } from '@perivel/Vessel';
 
 export abstract class UserRepository extends Repository {
 
@@ -60,7 +60,7 @@ Here, we define a single query method, which gets a user by its ID. Like with th
 In some designs, it makes sence the repository be tasked with assinging identity
 to domain objects. For this functionality, use `IdentityGeneratingRepository`.
 ```ts
-import { IdentityGeneratingRepository } from '@perivel/fragment';
+import { IdentityGeneratingRepository } from '@perivel/Vessel';
 
 export abstract class UserRepository extends IdentityGeneratingRepository {
 

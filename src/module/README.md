@@ -4,7 +4,7 @@ Modules are containers for objects in your domain. Modules contain a collection 
 ## Defining Modules
 To define a module, we extend the `Module` class.
 ```ts
-import { Module } from '@perivel/fragment';
+import { Module } from '@perivel/Vessel';
 
 export class UserModule extends Module {
 
@@ -87,7 +87,7 @@ Sometimes, it makes sence to nest modules. In these cases, we can make use of a 
 ### Creating a Submodule
 We create a submodule in much the same way we create regular modules.
 ```ts
-import { Module } from '@perivel/fragment';
+import { Module } from '@perivel/Vessel';
 
 export class UserModule extends Module {
 

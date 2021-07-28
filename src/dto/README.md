@@ -3,7 +3,7 @@ A Data Transport Object, or DTO, is a container that is designed to hold entire 
 
 All Data objects are created by extending the `Data` class. 
 ```ts
-import { Data } from '@perivel/fragment';
+import { Data } from '@perivel/Vessel';
 
 export class UserLoginData extends Data {
 
@@ -22,7 +22,7 @@ At its most basic form, the only method we nned to override when creating our ow
 
 Now, we are free to define our data object however way we want.
 ```ts
-import { Data } from '@perivel/fragment';
+import { Data } from '@perivel/Vessel';
 
 export class UserLoginData extends Data {
 
