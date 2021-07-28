@@ -1,5 +1,4 @@
 import { AndSpecification } from "./and-specification";
-import { CompositeSpecification } from "./composite-specification";
 import { OrNotSpecification } from "./or-not-specification";
 import { OrSpecification } from "./or-specification";
 import { SpecificationInterface } from "./specification.interface";

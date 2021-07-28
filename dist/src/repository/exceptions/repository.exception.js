@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RepositoryException = void 0;
-const foundation_1 = require("@perivel/foundation");
-class RepositoryException extends foundation_1.BaseException {
+const swindle_1 = require("swindle");
+class RepositoryException extends swindle_1.BaseException {
     constructor(message = "Repository Error") {
         super(message);
     }

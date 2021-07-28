@@ -1,10 +1,10 @@
 {
-  "name": "@perivel/fragment",
+  "name": "vessel",
   "version": "1.4.0",
   "description": "A library that helps developers make portable, framework-independent applications.",
-  "main": "dist/fragment.js",
-  "types": "dist/fragment.d.ts",
-  "repository": "https://github.com/Perivel/fragment",
+  "main": "dist/vessel.js",
+  "types": "dist/vessel.d.ts",
+  "repository": "https://github.com/Perivel/vessel",
   "author": "Patrick Luy <pluy@perivel.com>",
   "license": "MIT",
   "private": true,
@@ -17,10 +17,10 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "dependencies": {
-    "@perivel/foundation": "https://github.com/Perivel/foundation.git",
-    "@perivel/verdic": "^1.0.7",
     "@types/node-cron": "^2.0.3",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "swindle": "^1.2.2",
+    "verdic": "^1.0.8"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Domain = void 0;
-const verdic_1 = require("@perivel/verdic");
+const verdic_1 = require("verdic");
 const event_module_1 = require("../../event/event.module");
 /**
  * Domain

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DefaultEventStore = void 0;
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 const event_store_1 = require("./event-store");
 /**
  * DefaultEventStore
@@ -18,7 +18,7 @@ class DefaultEventStore extends event_store_1.EventStore {
         }
     }
     getLatestStoredEvent() {
-        throw new foundation_1.MethodUndefinedException();
+        throw new swindle_1.MethodUndefinedException();
     }
     async getTransmittedEventsSince(date) {
         return [];
@@ -27,10 +27,10 @@ class DefaultEventStore extends event_store_1.EventStore {
         return [];
     }
     mapStoredEventToDomainEvent(storedEvent) {
-        throw new foundation_1.MethodUndefinedException();
+        throw new swindle_1.MethodUndefinedException();
     }
     mapTransmittedEventToDomainEvent(transmittedEvent) {
-        throw new foundation_1.MethodUndefinedException();
+        throw new swindle_1.MethodUndefinedException();
     }
     async saveEvents(eventQueue) { }
 }

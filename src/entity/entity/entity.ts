@@ -1,5 +1,5 @@
 import { EntityInterface } from "./entity.interface";
-import { InvalidArgumentException, Serializable } from "@perivel/foundation";
+import { InvalidArgumentException, Serializable } from "swindle";
 import { Identifier } from "../../common/interfaces/identifier.interface";
 
 /**

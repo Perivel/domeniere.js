@@ -1,4 +1,4 @@
-import { Id, UUID } from "@perivel/foundation";
+import { Id, UUID } from "swindle";
 import { DomainEventIdInterface } from "./domain-event-id.interface";
 
 /**

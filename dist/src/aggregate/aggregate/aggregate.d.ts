@@ -1,6 +1,6 @@
 import { AggregateInterface } from "./aggregate.interface";
 import { Entity } from "../../entity/entity.module";
-import { Serializable } from "@perivel/foundation";
+import { Serializable } from "swindle";
 import { Identifier } from "../../common/common.module";
 /**
  * Aggregate

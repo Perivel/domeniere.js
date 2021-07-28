@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DomainEventId = void 0;
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 /**
  * DoainEventId
  *
  * DomainEventId represents the domain event id.
  */
-class DomainEventId extends foundation_1.Id {
+class DomainEventId extends swindle_1.Id {
     constructor(value) {
         super(value);
     }
@@ -17,7 +17,7 @@ class DomainEventId extends foundation_1.Id {
      * generate creates a random DomainEventId.
      */
     static Generate() {
-        return new DomainEventId(foundation_1.UUID.V4().id());
+        return new DomainEventId(swindle_1.UUID.V4().id());
     }
     equals(suspect) {
         let isEqual = false;

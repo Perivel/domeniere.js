@@ -1,5 +1,5 @@
 
-import { DependencyNotFoundException, InvalidModuleException, ModuleNotFoundException } from '@perivel/verdic';
+import { DependencyNotFoundException, InvalidModuleException, ModuleNotFoundException } from 'verdic';
 import { DoubleNumberQuery } from '../artifacts/services/double-number.query';
 import { PostFactory } from './../artifacts/factories/post-factory';
 import { Domain } from './../../src/domain/domain.module';

@@ -5,7 +5,7 @@
 
 import { SubscriberIdInterface } from "./subscriber-id.interface";
 import { DomainEventInterface } from "../domain-event/domain-event.interface";
-import { Serializable } from "@perivel/foundation";
+import { Serializable } from "swindle";
 
 export interface SubscriberInterface extends Serializable {
 

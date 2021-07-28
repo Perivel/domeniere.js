@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TimestampedEntity = void 0;
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 const entity_1 = require("../entity/entity");
 /**
  * TimestampedEntity
@@ -17,7 +17,7 @@ class TimestampedEntity extends entity_1.Entity {
      * @param deleted the timestamp the entity was deleted.
      * @throws InvalidArgumentException when the id is undefined.
      */
-    constructor(id, created = foundation_1.DateTime.Now(), updated = foundation_1.DateTime.Now(), deleted = null) {
+    constructor(id, created = swindle_1.DateTime.Now(), updated = swindle_1.DateTime.Now(), deleted = null) {
         try {
             super(id);
             this._createdOn = created;
@@ -61,7 +61,7 @@ class TimestampedEntity extends entity_1.Entity {
      * commitStateChange() informs the entity that a state change has occured.
      */
     commitStateChange() {
-        this._updatedOn = foundation_1.DateTime.Now();
+        this._updatedOn = swindle_1.DateTime.Now();
     }
     /**
      * setDeleted()

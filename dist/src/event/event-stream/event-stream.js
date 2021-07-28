@@ -5,7 +5,7 @@ const event_emitter_1 = require("../event-emitter/event-emitter");
 const subscriber_1 = require("../subscriber/subscriber");
 const subscriber_id_1 = require("../subscriber/subscriber-id");
 const default_event_store_1 = require("../event-store/default-event-store");
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 const framework_event_handler_priority_enum_1 = require("../subscriber/framework-event-handler-priority.enum");
 const event_aggregate__type_1 = require("../event-emitter/event-aggregate..type");
 const event_store_failed_event_1 = require("../libevents/event-store-failed.event");
@@ -119,7 +119,7 @@ class EventStream {
      * @param stopPropogationOnError indicates if the event propogation should stop when the subscriber handler encounters an error.
      */
     subscribe(eventName, handler, priority = domain_event_handler_priority_enum_1.DomainEventHandlerPriority.MEDIUM, label = '', stopPropogationOnError = false) {
-        const subscriberId = new subscriber_id_1.SubscriberId(foundation_1.UUID.V4().id());
+        const subscriberId = new subscriber_id_1.SubscriberId(swindle_1.UUID.V4().id());
         const subscriber = new subscriber_1.Subscriber(subscriberId, eventName.toString(), Number(priority), label, handler, stopPropogationOnError);
         this.emitter.addSubscriber(subscriber);
     }

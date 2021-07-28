@@ -1,5 +1,5 @@
 import { Identifier } from "../../common/common.module";
-import { Equatable } from "@perivel/foundation";
+import { Equatable } from "swindle";
 export interface AggregateInterface extends Equatable {
     /**
      * identifier()

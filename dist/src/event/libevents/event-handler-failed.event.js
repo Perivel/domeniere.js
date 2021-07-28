@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventHandlerFailed = void 0;
 const domain_event_1 = require("../domain-event/domain-event");
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 const event_classification_enum_1 = require("../domain-event/event-classification.enum");
 /**
  * EventHandlerFailed
@@ -10,7 +10,7 @@ const event_classification_enum_1 = require("../domain-event/event-classificatio
  * EventHandlerFailed indicates that an event handler has failed.
  */
 class EventHandlerFailed extends domain_event_1.DomainEvent {
-    constructor(handler, event, error, timestamp = foundation_1.DateTime.Now(), id = undefined) {
+    constructor(handler, event, error, timestamp = swindle_1.DateTime.Now(), id = undefined) {
         super(timestamp, id);
         this._handler = handler;
         this._event = event;

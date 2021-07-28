@@ -1,5 +1,5 @@
 import { DomainEvent } from "../domain-event/domain-event";
-import { DateTime, Queue } from "@perivel/foundation";
+import { DateTime, Queue } from "swindle";
 /**
  * EventsPublished
  *

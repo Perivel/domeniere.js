@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.On = void 0;
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 const domain_module_1 = require("../../domain/domain.module");
 const domain_event_handler_priority_enum_1 = require("../subscriber/domain-event-handler-priority.enum");
 /**
@@ -11,7 +11,7 @@ const domain_event_handler_priority_enum_1 = require("../subscriber/domain-event
  * automatically adds an observer for the specified
  * event.
  */
-function On(event, priority = domain_event_handler_priority_enum_1.DomainEventHandlerPriority.MEDIUM, label = foundation_1.UUID.V4().id(), stopPropogationOnError = false) {
+function On(event, priority = domain_event_handler_priority_enum_1.DomainEventHandlerPriority.MEDIUM, label = swindle_1.UUID.V4().id(), stopPropogationOnError = false) {
     return function (parentCls, funcName, descriptor) {
         // get the function the decorator was applied to.
         const func = descriptor.value;

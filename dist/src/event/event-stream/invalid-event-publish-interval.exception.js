@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InvalidEventPublishIntervalException = void 0;
-const foundation_1 = require("@perivel/foundation");
-class InvalidEventPublishIntervalException extends foundation_1.InvalidArgumentException {
+const swindle_1 = require("swindle");
+class InvalidEventPublishIntervalException extends swindle_1.InvalidArgumentException {
     constructor(message = 'Invalid Event Broadcast Interval.') {
         super(message);
     }

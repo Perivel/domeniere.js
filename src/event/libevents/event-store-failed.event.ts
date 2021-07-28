@@ -1,5 +1,5 @@
 import { DomainEvent } from "../domain-event/domain-event"
-import { DateTime } from "@perivel/foundation";
+import { DateTime } from "swindle";
 import { EventClassifications } from "../domain-event/event-classification.enum";
 
 /**

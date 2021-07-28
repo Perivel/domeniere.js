@@ -1,6 +1,6 @@
 import { Value } from './../../../src/value/value/value';
 import { Identifier } from './../../../src/common/common.module';
-import { UUID } from '@perivel/foundation';
+import { UUID } from 'swindle';
 
 export class PostId extends Value implements Identifier {
 

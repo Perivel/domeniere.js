@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Aggregate = void 0;
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 /**
  * Aggregate
  *
@@ -18,7 +18,7 @@ class Aggregate {
     constructor(root, version = 1.0) {
         if (!root) {
             // root is undefined.
-            throw new foundation_1.InvalidArgumentException("An aggregate's root cannot be undefined.");
+            throw new swindle_1.InvalidArgumentException("An aggregate's root cannot be undefined.");
         }
         this._root = root;
         this.__committed_ver__ = version;
@@ -111,7 +111,7 @@ class Aggregate {
      */
     setRoot(root) {
         if (!root) {
-            throw new foundation_1.InvalidArgumentException('An aggregate root cannot be undefined.');
+            throw new swindle_1.InvalidArgumentException('An aggregate root cannot be undefined.');
         }
         this._root = root;
     }

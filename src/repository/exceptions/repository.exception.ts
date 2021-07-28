@@ -1,4 +1,4 @@
-import { BaseException } from '@perivel/foundation';
+import { BaseException } from 'swindle';
 
 export class RepositoryException extends BaseException {
     

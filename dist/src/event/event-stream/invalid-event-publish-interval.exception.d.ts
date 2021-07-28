@@ -1,4 +1,4 @@
-import { InvalidArgumentException } from '@perivel/foundation';
+import { InvalidArgumentException } from 'swindle';
 export declare class InvalidEventPublishIntervalException extends InvalidArgumentException {
     constructor(message?: string);
 }

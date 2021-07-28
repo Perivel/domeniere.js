@@ -6,7 +6,7 @@ import { Subscriber } from "../subscriber/subscriber";
 import { EventHandler } from "../subscriber/event-handler.type";
 import { SubscriberId } from "../subscriber/subscriber-id";
 import { DefaultEventStore } from "../event-store/default-event-store";
-import { UUID } from "@perivel/foundation";
+import { UUID } from "swindle";
 import { FrameworkEventHandlerPriority } from "../subscriber/framework-event-handler-priority.enum";
 import { ScheduledTask } from 'node-cron';
 import { EventAggregate } from "../event-emitter/event-aggregate..type";

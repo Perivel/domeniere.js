@@ -1,4 +1,4 @@
-import { Id } from "@perivel/foundation";
+import { Id } from "swindle";
 import { DomainEventIdInterface } from "./domain-event-id.interface";
 /**
  * DoainEventId

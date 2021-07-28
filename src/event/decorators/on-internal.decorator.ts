@@ -1,4 +1,4 @@
-import { UUID } from "@perivel/foundation";
+import { UUID } from "swindle";
 import { DomainEventHandlerPriority } from "../subscriber/domain-event-handler-priority.enum";
 import { EventAggregate } from "../event-emitter/event-aggregate..type";
 import { EventDescriptor } from "./event-decryptor";

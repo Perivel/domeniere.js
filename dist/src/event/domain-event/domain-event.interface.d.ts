@@ -1,4 +1,4 @@
-import { DateTime } from "@perivel/foundation";
+import { DateTime } from "swindle";
 import { DomainEventIdInterface } from "./domain-event-id.interface";
 export interface DomainEventInterface {
     /**

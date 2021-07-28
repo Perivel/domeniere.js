@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventStore = void 0;
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 const domain_module_1 = require("../../domain/domain.module");
 const events_published_event_1 = require("../libevents/events-published.event");
 const event_store_exception_1 = require("./event-store.exception");
@@ -13,10 +13,10 @@ const stored_event_1 = require("./stored-event");
  */
 class EventStore {
     constructor() {
-        this._storageQueue = new foundation_1.Queue();
-        this._publishQueue = new foundation_1.Queue();
-        this._broadcastedQueue = new foundation_1.Queue();
-        this._updateQueue = new foundation_1.Queue();
+        this._storageQueue = new swindle_1.Queue();
+        this._publishQueue = new swindle_1.Queue();
+        this._broadcastedQueue = new swindle_1.Queue();
+        this._updateQueue = new swindle_1.Queue();
     }
     /**
      * getDateOfLatestEvent()

@@ -1,5 +1,5 @@
 import { DomainEventInterface } from "./domain-event.interface";
-import { Serializable, DateTime } from "@perivel/foundation";
+import { Serializable, DateTime } from "swindle";
 import { DomainEventId } from "./domain-event-id";
 import { EventClassifications } from "./event-classification.enum";
 

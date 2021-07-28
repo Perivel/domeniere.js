@@ -1,4 +1,4 @@
-import { Module } from './../../../fragment';
+import { Module } from './../../../vessel';
 import { PostFactory } from './../factories/post-factory';
 import { DoubleNumberQuery } from './../services/double-number.query';
 import { HashStringQuery, RegularHashQuery } from './../services/reverse-string.query';

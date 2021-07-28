@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DomainEvent = void 0;
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 const domain_event_id_1 = require("./domain-event-id");
 const event_classification_enum_1 = require("./event-classification.enum");
 /**
@@ -19,7 +19,7 @@ class DomainEvent {
      * @param id The unique occurence id for this specific event instance. This field is optional. It is highly recommended you do not provide this value manually.
      * @throws InvalidArgumentException if the event name is empty.
      */
-    constructor(timestamp = foundation_1.DateTime.Now(), id = "") {
+    constructor(timestamp = swindle_1.DateTime.Now(), id = "") {
         this._timestamp = timestamp;
         this._id = (id) ? new domain_event_id_1.DomainEventId(id) : domain_event_id_1.DomainEventId.Generate();
         this._eventName = this.constructor.EventName();

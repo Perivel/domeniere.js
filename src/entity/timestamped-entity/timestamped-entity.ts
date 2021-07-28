@@ -1,4 +1,4 @@
-import { DateTime, TimestampedResource } from '@perivel/foundation';
+import { DateTime, TimestampedResource } from 'swindle';
 import { Entity } from "../entity/entity";
 import { Identifier } from '../../common/interfaces/identifier.interface';
 

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventBroadcastFailed = void 0;
 const domain_event_1 = require("../domain-event/domain-event");
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 const event_classification_enum_1 = require("../domain-event/event-classification.enum");
 /**
  * EventBroadcastFailed
@@ -10,7 +10,7 @@ const event_classification_enum_1 = require("../domain-event/event-classificatio
  * The EventBroadcastFailed event indicates that the event broadcasting service failed.
  */
 class EventBroadcastFailed extends domain_event_1.DomainEvent {
-    constructor(error, timestamp = foundation_1.DateTime.Now(), id = undefined) {
+    constructor(error, timestamp = swindle_1.DateTime.Now(), id = undefined) {
         super(timestamp, id);
         this._error = error;
     }

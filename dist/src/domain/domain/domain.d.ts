@@ -1,4 +1,4 @@
-import { VerdicContainer } from '@perivel/verdic';
+import { VerdicContainer } from 'verdic';
 import { EventStream } from '../../event/event.module';
 import { DomainInterface } from "./domain.interface";
 /**

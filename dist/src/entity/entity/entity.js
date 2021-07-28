@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Entity = void 0;
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 /**
  * Entity
  *
@@ -16,7 +16,7 @@ class Entity {
     constructor(id) {
         if (!id) {
             // id is undefined.
-            throw new foundation_1.InvalidArgumentException("An entity's id cannot be undefined.");
+            throw new swindle_1.InvalidArgumentException("An entity's id cannot be undefined.");
         }
         this._id = id;
     }

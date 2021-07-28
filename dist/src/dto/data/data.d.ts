@@ -1,4 +1,4 @@
-import { Serializable } from "@perivel/foundation";
+import { Serializable } from "swindle";
 import { DataInterface } from "./data.interface";
 /**
  * Data

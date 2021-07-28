@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SubscriberId = void 0;
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 /**
  * SubscriberId
  *
  * represents a unique id for an event subscriber.
  */
-class SubscriberId extends foundation_1.Id {
+class SubscriberId extends swindle_1.Id {
     constructor(value) {
         super(value);
     }

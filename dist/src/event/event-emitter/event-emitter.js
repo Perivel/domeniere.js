@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventEmitter = void 0;
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 const event_aggregate__type_1 = require("./event-aggregate..type");
 const event_handler_failed_event_1 = require("../libevents/event-handler-failed.event");
 const domain_module_1 = require("../../domain/domain.module");
@@ -34,7 +34,7 @@ class EventEmitter {
      * @emits EventHandlerFailed When an event handler fails.
      */
     async emit(event) {
-        const queue = new foundation_1.PriorityQueue();
+        const queue = new swindle_1.PriorityQueue();
         // get the relevant subscribers.
         const eventName = event.eventName();
         this.subscribers.forEach(sub => {

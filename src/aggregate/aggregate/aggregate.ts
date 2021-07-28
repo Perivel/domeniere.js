@@ -1,6 +1,6 @@
 import { AggregateInterface } from "./aggregate.interface";
 import { Entity } from "../../entity/entity.module";
-import { InvalidArgumentException, Serializable } from "@perivel/foundation";
+import { InvalidArgumentException, Serializable } from "swindle";
 import { Identifier } from "../../common/common.module";
 
 /**

@@ -1,4 +1,4 @@
-import { DependencyToken } from '@perivel/verdic';
+import { DependencyToken } from 'verdic';
 import { Repository } from './../../repository/repository.module';
 import { DomainService } from '../../service/service.module';
 import { ModuleBindings } from "../types/module-bindings.type";

@@ -1,4 +1,4 @@
-import { Equatable } from "@perivel/foundation";
+import { Equatable } from "swindle";
 
 /**
  * Identifier Interface

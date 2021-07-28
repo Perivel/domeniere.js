@@ -1,4 +1,4 @@
-import { ConcreteDependencyToken, BindingFactory } from '@perivel/verdic';
+import { ConcreteDependencyToken, BindingFactory } from 'verdic';
 /**
  * ModuleBindings Type
  */

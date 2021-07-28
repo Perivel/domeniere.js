@@ -2,14 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TimestampedAggregate = void 0;
 const aggregate_1 = require("../aggregate/aggregate");
-const foundation_1 = require("@perivel/foundation");
+const swindle_1 = require("swindle");
 /**
  * DateTimeedAggregate
  *
  * DateTimeedAggregate defines an aggregate as a DateTimeed Resource.
  */
 class TimestampedAggregate extends aggregate_1.Aggregate {
-    constructor(root, version = 1.0, created = foundation_1.DateTime.Now(), updated = foundation_1.DateTime.Now(), deleted = null) {
+    constructor(root, version = 1.0, created = swindle_1.DateTime.Now(), updated = swindle_1.DateTime.Now(), deleted = null) {
         try {
             super(root, version);
             this._createdOn = created;
@@ -54,7 +54,7 @@ class TimestampedAggregate extends aggregate_1.Aggregate {
      */
     commitStateChanges() {
         super.commitStateChanges();
-        this._updatedOn = foundation_1.DateTime.Now();
+        this._updatedOn = swindle_1.DateTime.Now();
     }
     /**
      * setDeleted()

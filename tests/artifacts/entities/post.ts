@@ -1,5 +1,5 @@
 import { TimestampedEntity } from '../../../src/entity/entity.module';
-import { DateTime } from '@perivel/foundation';
+import { DateTime } from 'swindle';
 import { PostId } from './../values/post-id';
 
 export class Post extends TimestampedEntity {

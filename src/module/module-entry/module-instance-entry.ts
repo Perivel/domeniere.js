@@ -1,4 +1,4 @@
-import { DependencyToken } from '@perivel/verdic';
+import { DependencyToken } from 'verdic';
 import { ModuleEntryInterface } from "./module-entry.interface";
 
 /**

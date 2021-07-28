@@ -1,4 +1,4 @@
-import { Id } from "@perivel/foundation";
+import { Id } from "swindle";
 import { SubscriberIdInterface } from "./subscriber-id.interface";
 
 /**

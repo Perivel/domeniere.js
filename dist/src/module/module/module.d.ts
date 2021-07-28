@@ -1,4 +1,4 @@
-import { ConcreteDependencyToken, BindingFactory, DependencyToken } from '@perivel/verdic';
+import { ConcreteDependencyToken, BindingFactory, DependencyToken } from 'verdic';
 import { ModuleBindings } from '../types/module-bindings.type';
 import { ModuleInstances } from '../types/module-instances.type';
 import { ModuleInterface } from './module.interface';
@@ -17,7 +17,7 @@ export declare abstract class Module implements ModuleInterface {
      *
      * this is where we register our module bindings.
      *
-     * use addFactoryBinding(), addRepository(), addServiceBinding(), and addServiceinstance()
+     * use bindFactory(), bindRepository(), bindService(), and bindServiceinstance()
      * to register module dependencies.
      */
     protected abstract createdBindings(): void;

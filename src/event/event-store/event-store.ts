@@ -1,4 +1,4 @@
-import { DateTime, Queue } from "@perivel/foundation";
+import { DateTime, Queue } from "swindle";
 import { Domain } from "../../domain/domain.module";
 import { DomainEvent } from "../domain-event/domain-event";
 import { EventsPublished } from "../libevents/events-published.event";
