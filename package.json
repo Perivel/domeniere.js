@@ -1,6 +1,6 @@
 {
   "name": "domeniere",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A library that helps developers make portable, framework-independent applications.",
   "main": "dist/domeniere.js",
   "types": "dist/domeniere.d.ts",
