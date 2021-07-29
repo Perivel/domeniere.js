@@ -10,14 +10,14 @@ Domeniere is a library to assist in creating framework-independent applications.
 # Domain Drien Design
 Domeniere makes use of a lot of concepts from [Domain Driven Design](https://martinfowler.com/tags/domain%20driven%20design.html).
 
-# Getting Started
-Copy the repository link and run the following command in your project
+# Installation
+To install Domeniere, run the following command with NPM
 ```
-npm install <link>
+npm install domeniere
 ```
 Or with Yarn
 ```
-yarn add <link>
+yarn add domeniere
 ```
 
 # The Building Blocks of a Domeniere Application
@@ -30,3 +30,13 @@ yarn add <link>
 - [Modules](src/module/README.md): Staying Organized
 - [The Domain](src/domain/README.md): Putting It All Togeher
 - [APIs](src/api/README.md): Communicating with the World
+
+# Tests
+To run the tests, use the following command with NPM
+```
+npm run test
+```
+Or, with Yarn
+```
+yarn test
+```
