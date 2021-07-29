@@ -4,7 +4,7 @@ An entity is any object defined primarily by it's identity. Entities have life c
 ## Creating an Entity
 To create an entity, we can override the `Entity` class.
 ```ts
-import { Entity } from '@perivel/Vessel';
+import { Entity } from 'domeniere';
 
 export clas User extends Entity {
 
@@ -12,7 +12,7 @@ export clas User extends Entity {
 ```
 Since all entities are defined by their identity, we must assign some value to represent the identifier of the entity. In our case, we will assume that there is a Value Object called `UserId` that will represent our entity's identity. All identity values for an entity must implement the `Identifier` interface.
 ```ts
-import { Entity } from '@perivel/Vessel';
+import { Entity } from 'domeniere';
 
 export clas User extends Entity {
 
@@ -23,7 +23,7 @@ export clas User extends Entity {
 ```
 In addition to its identity, `Entity` objects must also be able to determine equality. For this, we override the `equals()` method.
 ```ts
-import { Entity } from '@perivel/Vessel';
+import { Entity } from 'domeniere';
 
 export clas User extends Entity {
 
@@ -45,7 +45,7 @@ Once these requirements are met, we are free to define our entitites in however 
 
 Below is a simple example.
 ```ts
-import { Entity } from '@perivel/Vessel';
+import { Entity } from 'domeniere';
 
 export clas User extends Entity {
 

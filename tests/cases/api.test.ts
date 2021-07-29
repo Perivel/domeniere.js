@@ -1,4 +1,4 @@
-import { Domain } from '../../fragment';
+import { Domain } from '../../domeniere';
 import { RegistrationNotFoundException } from '../../src/module/exceptions/registration-not-found.exception';
 import { HashStringQuery } from '../artifacts/services/reverse-string.query';
 import { ValidAPI, InvalidAPI } from './../artifacts/API/api';

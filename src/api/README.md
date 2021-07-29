@@ -4,7 +4,7 @@ APIs define how your domain communicates with the outside world. Your API has th
 ## Defining Your API
 To define an API, we override the `Api` class.
 ```ts
-import { Api } from '@periel/Vessel';
+import { Api } from 'domeniere';
 
 export class UsersApi extends Api {
 
@@ -20,7 +20,7 @@ For more information about `EventStore`s, see the [Events](./../event/README.md)
 ## Registering Modules
 It is in the API where modules are registered and made available to the `Domain` object (see `Domain` section for more information on the `Domain`). We register our modules in the constructor of our API.
 ```ts
-import { Api } from '@periel/Vessel';
+import { Api } from 'domeniere';
 import { UsersModule, UsersRepository } from 'path/to/users.module';
 
 export class UsersApi extends Api {
@@ -37,7 +37,7 @@ export class UsersApi extends Api {
 Notice here we use our module's `registerRepositoryInstance()` method to bind a repository that is defined in our infrastructure layer to the module (see the [Modules](./../module/README.md) section for more information about modules). We then register our module using the `registerModule()` methiod provided by our API. In this example, we only had one module with one external dependency. However, it is very common to have multiple modules with multiple dependencies. The concept for handling which, however, will remain the same.
 
 ## Broadcasting Events
-Broadcastng Events is a responsibility delegated to the Infrasstructure layer, instead of being done automatically. The reasoning for this is that most infrastructure/cloud services have their own mechanisms for things like scheduled jobs (CRON jobs). To tell Vessel to broadcast your events, we can invoke the `broadcastEvents()` method.
+Broadcastng Events is a responsibility delegated to the Infrasstructure layer, instead of being done automatically. The reasoning for this is that most infrastructure/cloud services have their own mechanisms for things like scheduled jobs (CRON jobs). To tell Domeniere to broadcast your events, we can invoke the `broadcastEvents()` method.
 ```ts
 const api = new UsersApi(new MyUsersRepository(), new MyEventStore());
 await api.broadcastEvents();
@@ -46,7 +46,7 @@ await api.broadcastEvents();
 ## Defining API Methods
 We can define our API methods in whatever way we need. Below is a very simple example, exposing one method.
 ```ts
-import { Api, Domain } from '@periel/Vessel';
+import { Api, Domain } from 'domeniere';
 import { 
     UsersModule, 
     UsersRepository, 

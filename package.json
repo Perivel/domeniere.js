@@ -1,13 +1,13 @@
 {
-  "name": "vessel",
+  "name": "domeniere",
   "version": "1.4.0",
   "description": "A library that helps developers make portable, framework-independent applications.",
-  "main": "dist/vessel.js",
-  "types": "dist/vessel.d.ts",
-  "repository": "https://github.com/Perivel/vessel",
+  "main": "dist/domeniere.js",
+  "types": "dist/domeniere.d.ts",
+  "repository": "https://github.com/Perivel/domeniere",
   "author": "Patrick Luy <pluy@perivel.com>",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "tsc",
     "test": "jest",

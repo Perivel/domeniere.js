@@ -8,7 +8,7 @@ All Value objects are derived from the `Value` base class.
 
 Belew is an example of UserId value object that we will define.
 ```ts
-import { Value } from '@perivel/Vessel';
+import { Value } from 'domeniere';
 
 export class UserId extends Value {
     // code goes here.

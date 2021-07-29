@@ -4,7 +4,7 @@ An Aggregate is a cluster of associated objects, that can be treated as a single
 ## Creating an Aggregate
 To create an Aggregate, we extend the `Aggregate` class.
 ```ts
-import { Aggregate } from '@perivel/Vessel';
+import { Aggregate } from 'domeniere';
 
 export class Account extends Aggregate {
 
@@ -17,7 +17,7 @@ Every aggregate takes an entity and a version number as its constructor argument
 
 We are now free to create our aggregate as we see fit. Below is an example.
 ```ts
-import { Aggregate } from '@perivel/Vessel';
+import { Aggregate } from 'domeniere';
 
 export class Account extends Aggregate {
 
@@ -50,20 +50,20 @@ We define two methods. The `updateEmail()` method updates the user's account ema
 The second method we define is the `verify()` method. This method demonstrates how we use aggregates to maintain consistency among our objects  and entities. Here, we check whether or not the passed in verification code matches the one we have on record. If they do match, we mark the verification as complete. But, not only that, we also update our user root entity to indicate when it was verified.
 
 ## Versioning
-Versioning is a useful tool to keep track of changes to the state of your aggregates. Vessel provides a few methods to assist in doing this.
+Versioning is a useful tool to keep track of changes to the state of your aggregates. Domeniere provides a few methods to assist in doing this.
 
 **commitStateChanges()**
-The `commitStateChanges()` method tells Vessel your aggregate has changed its state. We saw an example of this earlier when we defined our aggregate methods.
+The `commitStateChanges()` method tells Domeniere your aggregate has changed its state. We saw an example of this earlier when we defined our aggregate methods.
 ```ts
 public updateEmail(email: EmailAddress) {
         this.root().setContact(new UserContact(email, this.root().contact().phone()));
         this.commitStateChanges();
     }
 ```
-Here, since we change our aggregate's email value, we call the `commitStateChange()` to inform Vessel of the change that was made.
+Here, since we change our aggregate's email value, we call the `commitStateChange()` to inform Domeniere of the change that was made.
 
 **confirmStateChanges()**
-The `confirmStateChanges()` method tells Vessel that the committed changes have been made permanent (usually persisted to storage). This method is usually called after an aggregate has been successfully persisted in a repository.
+The `confirmStateChanges()` method tells Domeniere that the committed changes have been made permanent (usually persisted to storage). This method is usually called after an aggregate has been successfully persisted in a repository.
 
 **hasUnconfirmedStateChanges()**
 The `hasUnconfirmedStateChanges()` method determines if the aggregate has state changes that have not yet been confirmed.
