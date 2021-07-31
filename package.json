@@ -2,6 +2,13 @@
   "name": "domeniere",
   "version": "1.4.1",
   "description": "A library that helps developers make portable, framework-independent applications.",
+  "keywords": [
+    "ddd",
+    "domain driven design",
+    "modular application",
+    "portable application",
+    "microservices"
+  ],
   "main": "dist/domeniere.js",
   "types": "dist/domeniere.d.ts",
   "repository": "https://github.com/Perivel/domeniere",
