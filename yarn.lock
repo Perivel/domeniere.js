@@ -809,7 +809,7 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-awesome-phonenumber@^2.39.0:
+awesome-phonenumber@^2.55.0:
   version "2.55.0"
   resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.55.0.tgz#97459e03ccdcb0c2917046e40af2a66f46b71695"
   integrity sha512-lSq5t4v6pJR+qzWqnSdac2TX20CD5ggVBD8cNL34rgJ+0hVCx+McPgQNLDxdNjiaGeYWrUxscV3BU4K/Tm/JdQ==
@@ -3615,15 +3615,15 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-swindle@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/swindle/-/swindle-1.2.2.tgz#7bf27f974952eccb20dc1087203859d40e1961ef"
-  integrity sha512-vJuFBG+SvKo2SWXn+0x91JgfRj+MDMwK8opX3AAHQisR5zH6UhJ5DAsSAWqcZORvDpgvGc+++4Uj/VHltPXiHQ==
+swindle@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/swindle/-/swindle-1.2.3.tgz#30a23d43398c5789398b050d7373ad99e02d7fd7"
+  integrity sha512-S6AjmqE/K74LBZkuaMKhJdR4fyCIwvGqS6eqy2tNoCX52TvtaNZRveUk+Wz/1FfEfMzyuaLoj7vJzYf6IRwh7A==
   dependencies:
     "@types/bcrypt" "^5.0.0"
     "@types/luxon" "^1.25.0"
     "@types/uuid" "^8.3.0"
-    awesome-phonenumber "^2.39.0"
+    awesome-phonenumber "^2.55.0"
     bcrypt "^5.0.1"
     i18n-iso-countries "^6.0.0"
     luxon "^1.25.0"
@@ -3874,10 +3874,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-verdic@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/verdic/-/verdic-1.0.8.tgz#4d912c1deeb96d0c13a8eeed1e6d089f49d60420"
-  integrity sha512-7AxfI+1/wC1aZfcllqo/jwj+yxsFly+SvCts/o05z6WKi0jCc0BjJfCEs0sNePdK9cLEZa1Q4L0X2XjezSi1Zw==
+verdic@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/verdic/-/verdic-1.0.9.tgz#70aa71deca38fe7d6f1583fe13b6d22b3dc24765"
+  integrity sha512-KqF+LxHv5XifEE63HRukE7Xhg33g9e9TApqkqAF2bfjiPCVQWEhTDlPtApFqItiPLaL+002vcE2TBZxKafCBmA==
   dependencies:
     typescript "^4.2.4"
 
