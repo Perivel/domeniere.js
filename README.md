@@ -11,7 +11,7 @@ Domeniere is a library to assist in creating framework-independent Typescript ap
 Domeniere makes use of a lot of concepts from [Domain Driven Design](https://martinfowler.com/tags/domain%20driven%20design.html).
 
 # Getting Started
-To get started with Domeniere, we recommend using the Domeniere CLI](https://github.com/Perivel/domeniere-cli#readme). While it is completely optional, it is the easiest way to create and manage a Domeniere project.
+To get started with Domeniere, we recommend using the [Domeniere CLI](https://github.com/Perivel/domeniere-cli#readme). While it is completely optional, it is the easiest way to create and manage a Domeniere project.
 
 ## Manual Installation
 If you would rather Inall Domeniere manually, you can do so with NPM
