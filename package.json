@@ -1,6 +1,6 @@
 {
   "name": "domeniere",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "A library that helps developers make portable, framework-independent applications.",
   "keywords": [
     "ddd",
