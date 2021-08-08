@@ -2,7 +2,12 @@
 A Factory is responsible for the creation of other objects. 
 
 ## Defining a Factory
-We define a factory by extending the `AbstractFactory` class.
+To define a factory with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
+```
+domeniere create factory <factory name> <module name>
+```
+
+We manually define a factory by extending the `AbstractFactory` class.
 ```ts
 import { AbstractFactory } from 'domeniere';
 

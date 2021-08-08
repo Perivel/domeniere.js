@@ -2,6 +2,11 @@
 A repository encapsulates logic partaining to querying and retrieving data, and in some cases, logic to retrieve certain summary information. Repositories are used as an abstraction between the application logic and data persistance capabilities. Repositories are defined within the domain layer and implemented in the infrastructure layer. There is usually a 1-to-1 relationship between Aggregates and Repositories, where for every aggregate in the domain, there is one corresponding repository.
 
 ## Defining a Repository
+To define a repository with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
+```
+domeniere create repository <repository name> <module name>
+```
+
 To define a repository, we override the `Repository` class. 
 ```ts
 import { Repository } from 'domeniere';

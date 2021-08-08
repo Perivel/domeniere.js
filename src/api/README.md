@@ -2,6 +2,8 @@
 APIs define how your domain communicates with the outside world. Your API has three responsibilities -- communicating with external consumers (your infrastructure), registering modules, and broadcasting events to external domains.
 
 ## Defining Your API
+If you are using the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), an API file should have been automatically created for you.
+
 To define an API, we override the `Api` class.
 ```ts
 import { Api } from 'domeniere';
@@ -86,7 +88,7 @@ Notice here the arguments we pass to our api are all instances of DTOs (see DTOs
 
 To use our api method in our infrastructure layer, we can use it like any other method.
 ```ts
-const api = new UsersApi(new MyUsersRepository(), new MyEventStore());
+const api = new UsersApi(new MyUsersRepository(), new MyEventStore(), new MyLogger());
 
 const newUser = new UserData('John', 'Appleseed', 'john@appleseed.com');
 try {

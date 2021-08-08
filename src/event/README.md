@@ -5,6 +5,8 @@ Domain Events represent the occurance of something of interest in your domain.
 Every Domeniere project contains a single EventStore, which is responsible for persisting and broadcasting events. The `EventStore` is defined in your Domeniere project. However, it is implemented in your infrastructure layer (framework).
 
 ### Defining the EventStore
+If you are using the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), an event store should have already been created for you.
+
 The `EventStore` is defined in the domain layer (your Domeniere Project). To define the `EventStore`, we simply extend the `EventStore` class.
 ```ts
 import { EventStore } from 'domeniere';
@@ -200,7 +202,14 @@ The label is unique label for that handler. This label is only used for your own
 This is a flag that tells Domeniere to stop propogating the event to subsequent handlers if this event handler fails (that is, it throws an exception). By default, this is set to `false`.
 
 ## Defining Custom Events
-While Domeniere provides quite a few internal events you can listen to, you often also need to be able to define your own events that are specific to your domain. In order to define your own custom events, yo uneed to override the `DomainEvent` class.
+While Domeniere provides quite a few internal events you can listen to, you often also need to be able to define your own events that are specific to your domain. 
+
+To define an event with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
+```
+domeniere create event <event name> <module name>
+```
+
+In order to manually define your own custom events, you need to override the `DomainEvent` class.
 
 ```ts
 import { DomainEvent } from 'domeniere';

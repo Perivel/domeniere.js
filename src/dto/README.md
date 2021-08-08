@@ -1,7 +1,13 @@
 # Data Transfer Object
 A Data Transport Object, or DTO, is a container that is designed to hold entire attributes.
 
-All Data objects are created by extending the `Data` class. 
+## Creating DTOs
+To define a DTO with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
+```
+domeniere create dto <dto name> <module name>
+```
+
+To define a DTO manually, we extend the `Data` class. 
 ```ts
 import { Data } from 'domeniere';
 

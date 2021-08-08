@@ -4,7 +4,12 @@ conceptual identity. Value Objects are instanciated to implement design elements
 which we only care about what they are. 
 
 ## Defining Value Objects
-All Value objects are derived from the `Value` base class.
+To define a value with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
+```
+domeniere create value <value name> <module name>
+```
+
+We manually define a alue by extending the `Value` base class.
 
 Belew is an example of UserId value object that we will define.
 ```ts

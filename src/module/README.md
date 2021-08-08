@@ -2,7 +2,12 @@
 Modules are containers for objects in your domain. Modules contain a collection of highly cohesive objects objects that serve a common purpose.
 
 ## Defining Modules
-To define a module, we extend the `Module` class.
+To define a module with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
+```
+domeniere create module <module name>
+```
+
+To define a module manually, we extend the `Module` class.
 ```ts
 import { Module } from 'domeniere';
 

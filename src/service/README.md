@@ -4,6 +4,11 @@ A Domain Service represents an operation on a Domain Object. Domain Services usu
 ## Commands
 A command is an operation that updates some state in your domain. Think of a command as a write operation. A command does not return any value. Its sole purpose is to change some state in our data. `Commands` should be task-based, instead of data centric.
 
+To define a command with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
+```
+domeniere create command <command name> <module name>
+```
+
 To define a `Command` by extending the `Command` class.
 ```ts
 import { Command } from 'domeniere`;
@@ -69,6 +74,11 @@ Here, our execute() command is pretty straiht forward. We create a user object u
 
 ## Queries
 A `Query` retrieves or derrives some data from a source. Think of a `Query` as a read operation. A `Query` should not modify any kind of data. 
+
+To define a query with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
+```
+domeniere create query <query name> <module name>
+```
 
 To define a Query, we extend the `Query` class. 
 ```ts

@@ -2,7 +2,12 @@
 An entity is any object defined primarily by it's identity. Entities have life cycles that can drastically change their form or content. Therefore, a thread of continuity must be maintained. An entity has a unique predefined identity in which it's definition, responsibilities, and attributes revolve around. 
 
 ## Creating an Entity
-To create an entity, we can override the `Entity` class.
+To define an entity with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
+```
+domeniere create entity <entity name> <module name>
+```
+
+To define an entity manually, we can override the `Entity` class.
 ```ts
 import { Entity } from 'domeniere';
 

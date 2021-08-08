@@ -2,7 +2,12 @@
 An Aggregate is a cluster of associated objects, that can be treated as a single unit. Aggregates are created around a single entity, that maintains some boundary of consistency.
 
 ## Creating an Aggregate
-To create an Aggregate, we extend the `Aggregate` class.
+To define an aggregate with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
+```
+domeniere create aggregate <aggregate name> <module name>
+```
+
+To create an Aggregate manually, we extend the `Aggregate` class.
 ```ts
 import { Aggregate } from 'domeniere';
 

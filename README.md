@@ -74,6 +74,7 @@ Once we create our `accounts` module, we are free to define it however our requi
 - [Modules](src/module/README.md): Staying Organized
 - [The Domain](src/domain/README.md): Putting It All Togeher
 - [APIs](src/api/README.md): Communicating with the World
+- [Logging](src/utils/log/README.md): A Flexible Solution
 
 # Tests
 To run the tests, use the following command with NPM
