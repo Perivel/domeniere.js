@@ -11,7 +11,7 @@ To define an entity manually, we can override the `Entity` class.
 ```ts
 import { Entity } from 'domeniere';
 
-export clas User extends Entity {
+export class User extends Entity {
 
 }
 ```
@@ -19,7 +19,7 @@ Since all entities are defined by their identity, we must assign some value to r
 ```ts
 import { Entity } from 'domeniere';
 
-export clas User extends Entity {
+export class User extends Entity {
 
     constructor(id: UserId) {
         super(id);
@@ -30,7 +30,7 @@ In addition to its identity, `Entity` objects must also be able to determine equ
 ```ts
 import { Entity } from 'domeniere';
 
-export clas User extends Entity {
+export class User extends Entity {
 
     constructor(id: UserId) {
         super(id);
@@ -52,7 +52,7 @@ Below is a simple example.
 ```ts
 import { Entity } from 'domeniere';
 
-export clas User extends Entity {
+export class User extends Entity {
 
     private _profile: UserProfile;
 
