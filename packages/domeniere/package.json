@@ -1,7 +1,7 @@
 {
   "name": "domeniere",
   "version": "2.0.0",
-  "description": "A library that helps developers make portable, framework-independent applications.",
+  "description": "A library to assist in creating framework-independent Typescript applications.",
   "keywords": [
     "ddd",
     "domain driven design",
