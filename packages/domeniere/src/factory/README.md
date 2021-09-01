@@ -11,7 +11,7 @@ We manually define a factory by extending the `AbstractFactory` class.
 ```ts
 import { AbstractFactory } from 'domeniere';
 
-export class UserFactory {
+export class UserFactory extends AbstractFactory {
     
     constructor() {
         super();
@@ -20,7 +20,7 @@ export class UserFactory {
 ```
 We are free to create whatever methods we need. Below, we create a method to create a User instance from a registration.
 ```ts
-export class UserFactory {
+export class UserFactory extends AbstractFactory {
     
     constructor() {
         super();
