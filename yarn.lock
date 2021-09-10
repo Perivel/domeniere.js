@@ -535,6 +535,22 @@
     typescript "^4.3.5"
     uuid "^8.3.0"
 
+"@swindle/core@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@swindle/core/-/core-2.0.1.tgz#4d4c1a2996f5ae14a9f9e5a257343047b1ccb25e"
+  integrity sha512-8WlJ4ZLLxdeY7N3cIcn5+w1HSrjVoNB/eES0nMDQCnEiOT2GyM8xdNqkHgoG/PkqKH5p5fIkCy7oBT6+HA7RTA==
+  dependencies:
+    "@types/bcrypt" "^5.0.0"
+    "@types/luxon" "^1.25.0"
+    "@types/uuid" "^8.3.0"
+    awesome-phonenumber "^2.55.0"
+    bcrypt "^5.0.1"
+    change-case "^4.1.2"
+    i18n-iso-countries "^6.0.0"
+    luxon "^1.25.0"
+    typescript "^4.3.5"
+    uuid "^8.3.0"
+
 "@swindle/structs@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@swindle/structs/-/structs-1.0.0.tgz#2fe322082ccc7629d7e037661afedc9323158994"
