@@ -79,5 +79,43 @@
             "detail": "Runs the value module unit tests.",
             "promptOnClose": true
         },
+        {
+            "label": "Build the Entity Module",
+            "type": "shell",
+            "command": "yarn build",
+            "options": {
+                "cwd": "packages/entity"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the entity module.",
+            "promptOnClose": true
+        },
+        {
+            "label": "Run the Entity Module Unit Tests",
+            "type": "shell",
+            "command": "yarn test",
+            "options": {
+                "cwd": "packages/entity"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Runs the entity module unit tests.",
+            "promptOnClose": true
+        },
     ]
 }

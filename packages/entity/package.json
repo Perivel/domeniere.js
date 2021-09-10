@@ -1,7 +1,7 @@
 {
-  "name": "@domeniere/value",
+  "name": "@domeniere/entity",
   "version": "2.0.0",
-  "description": "The Domeniere values module",
+  "description": "The Domeniere Entity module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/Perivel/domeniere",
@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@swindle/core": "^2.0.1",
+    "@domeniere/state": "^1.0.0",
+    "@domeniere/value": "^2.0.0",
     "typescript": "^4.4.2"
   },
   "devDependencies": {

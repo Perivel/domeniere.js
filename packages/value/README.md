@@ -1,87 +1,98 @@
-# Domeniere
-Domeniere is a library to assist in creating framework-independent Typescript applications.
+# Value Object
+A Value Object is an immutable object that represents a descriptive aspect of a domain with no 
+conceptual identity. Value Objects are instanciated to implement design elements in 
+which we only care about what they are. 
 
-# How Domeniere Fits into Your Architecture
+## Defining Value Objects
+To define a value with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
+```
+domeniere create value <value name> <module name>
+```
 
-# How Domeniere Helps
-**Clean Architecture**: Domeniere helps keep your architectures small, simple, and clean.
-**Create Portable Applications**: Domeniere makes no assumptions as to which Framework, Database, or external services you are using. Instead the details of these services can be injected to work with your Domeniere application.
+We manually define a alue by extending the `Value` base class.
 
-# Domain Drien Design
-Domeniere makes use of a lot of concepts from [Domain Driven Design](https://martinfowler.com/tags/domain%20driven%20design.html).
+Belew is an example of UserId value object that we will define.
+```ts
+import { Value } from '@domeniere/value';
 
-# Getting Started
-To get started with Domeniere, we recommend using the [Domeniere CLI](https://github.com/Perivel/domeniere-cli#readme). While it is completely optional, it is the easiest way to create and manage a Domeniere project.
+export class UserId extends Value {
+    // code goes here.
+}
+```
+You are free to define your value objects in whatever way your requirements dictate. 
+```ts
+export class UserId extends Value {
+    
+    private readonly _value: string
 
-## Manual Installation
-If you would rather Inall Domeniere manually, you can do so with NPM
-```
-npm install domeniere
-```
-Or with Yarn
-```
-yarn add domeniere
-```
-# Usage
-Domeniere projects are referred to as **Domains**. Each Domain consists of application-level concepts specific to the Domain. For example, a Users domain would include concepts such as User Accounts, Profiles, and Passwords. 
+    constructor(val: string) {
+        super();
+        this._value = val;
+    }
 
-With the CLI, we can create a new Domain with the following command.
+    public id(): string {
+        return this._value;
+    }
+}
 ```
-domeniere new users
-```
-Here, we are creating a Users domain. Running this command will create a new users directory with the following structure.
-```
-node_modules/
-dist/
-src/
-.gitignore
-domconfig.json
-package.json
-tsconfig.json
-<domain-name>.ts
-yarn.lock or package.lock.json
-```
-The `node_modules` directory, `dist` directory, `.gitignore` file, `package.json` file, `tsconfig.json` file, and `yarn.lock` or `package.lock.json` files should be pretty self-explanitory. So, we will just focus on the Domeniere-specific elements. 
+In our above example, we create a value object to represents a simple UserId. This object is pretty straightforward, consisting of only one property -- the id value. Notice here that the properties of our Value object are immutable. As a general rule, Value objects should be immutable, favoring replacing them altogether when their values must change.
 
-### The `src/ directory
-The `src` directory contains the source files for your domain. By default, it will contain an API, designated by the `<domain-name>.api.ts` file, and an EventStore, designated by the `<domain-name>.eventstore.ts` file. As you build out your domain, the `src` directory will contain your domain [modules](src/module/README.md).
+When defining a Value Object, there are two methods that we need to override. The `equals()` method defines how we determine equality. The `serialize()` mehtod defines how this object will be serialized. Let's first define our `equals()` method.
+```ts
+export class UserId extends Value {
+    
+    private readonly _value: string
 
-You an learn more about APIs [here](src/api/README.md). And more information about EventStores can be found in the [Events](src/event/README.md) section.
+    constructor(val: string) {
+        super();
+        this._value = val;
+    }
 
-### The domconfig.json File
-The `domconfig.json` file consists of some settings regarding your domain. Very rarely will you need to touch this file.
+    public id(): string {
+        return this._value;
+    }
 
-### The <domain-name>.ts file
-The `<domain-name>.ts` file is the starting point of your application. If you are using the Domeniere-CLI, you will rarely need to manually edit this file.
-
-## Creating Our First Module
-All additional code we will create from this point forward will be contained in [Modules](src/module/README.md). To create our first module, we can run the following command inside our domain directory.
+    public equals(suspect: any): boolean {
+        if (suspect instanceof UserId) {
+            const other = suspect as UserId;
+            return this.id() === other.id();
+        }
+        else {
+            return false;
+        }
+    }
+}
 ```
-domeniere create module accounts
-```
-This will create an `accounts/` directory within our `src` directory with an `accounts.module.ts` file. This is our module file.
+Here, our `UserId`'s `equal()` method returns true if the suspect is also a UserId instance, and their id values are equal. Otherwise, it returns false.
 
-Once we create our `accounts` module, we are free to define it however our requirements dictates.
+Next, let's define our `serialize()` method.
+```ts
+export class UserId extends Value {
+    
+    private readonly _value: string
 
-## The Building Blocks of a Domeniere Project
-- [Values](src/value/README.md): Representing Descriptive Objects
-- [Entities](src/entity/README.md): Representing Identity
-- [Aggregates](src/aggregate/README.md): Maintaining consistency among objects.
-- [Services](src/service/README.md): Performing Operations on Objects
-- [Factories](src/factory/README.md): Data Conversion
-- [Repositories](src/repository/README.md): Persisting Data
-- [Events](src/event/README.md): Letting others know what happened
-- [Modules](src/module/README.md): Staying Organized
-- [The Domain](src/domain/README.md): Putting It All Togeher
-- [APIs](src/api/README.md): Communicating with the World
-- [Logging](src/utils/log/README.md): A Flexible Solution
+    constructor(val: string) {
+        super();
+        this._value = val;
+    }
 
-# Tests
-To run the tests, use the following command with NPM
+    public id(): string {
+        return this._value;
+    }
+
+    public equals(suspect: any): boolean {
+        if (suspect instanceof UserId) {
+            const other = suspect as UserId;
+            return this.id() === other.id();
+        }
+        else {
+            return false;
+        }
+    }
+
+    public serialize(): string {
+        return this.id();
+    }
+}
 ```
-npm run test
-```
-Or, with Yarn
-```
-yarn test
-```
+Here, our serialize method is pretty straightforward. Since the value of UserId is already a string, we simply return the value of the id. 
