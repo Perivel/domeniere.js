@@ -1,180 +1,137 @@
-import { AggregateInterface } from "./aggregate.interface";
-import { Entity } from "@domeniere/entity";
-import { InvalidArgumentException, Serializable } from "@swindle/core";
-import { Identifier } from "@domeniere/value";
-import { State } from "@domeniere/state";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Aggregate = void 0;
+const core_1 = require("@swindle/core");
+const state_1 = require("@domeniere/state");
 /**
- * Aggregate 
- * 
- * Aggregate is a cluster of objects and entities, centered 
- * around a root entity, that is required to fulfill some 
+ * Aggregate
+ *
+ * Aggregate is a cluster of objects and entities, centered
+ * around a root entity, that is required to fulfill some
  * boundary of consistency.
  */
-
-
-export abstract class Aggregate implements AggregateInterface, Serializable {
-
-    private static ROOT_ID = "__root__";
-    private static VERSION_ID = "__version__";
-
-    public readonly __state__: State;
-    private __unconfirmed_changes__: number;
-
+class Aggregate {
     /**
      * Creates an instance of an aggregate.
      * @param root The aggregate root.
      * @throws InvalidArgumentException when the root is undefined.
      */
-
-    constructor(root: Entity, version: number = 1.0) {
-
+    constructor(root, version = 1.0) {
         if (!root) {
             // root is undefined.
-            throw new InvalidArgumentException("An aggregate's root cannot be undefined.");
+            throw new core_1.InvalidArgumentException("An aggregate's root cannot be undefined.");
         }
-
-        this.__state__ = new State();
+        this.__state__ = new state_1.State();
         this.__state__.initialize(Aggregate.ROOT_ID, root);
         this.__state__.initialize(Aggregate.VERSION_ID, version);
         this.__unconfirmed_changes__ = 0;
     }
-
     /**
      * confirmStateChanges()
-     * 
+     *
      * indicates that state changes have been confirmed.
      */
-
-    public confirmStateChanges(): void {
+    confirmStateChanges() {
         this.root().confirmStateChanges();
         this.__state__.confirmChanges();
         this.__unconfirmed_changes__ = 0;
     }
-
     /**
      * unconfirmedStateChangeCount()
-     * 
+     *
      * gets the number of state changes that have not yet been confirmed.
      * @returns the number of unconfirmed state changes that the aggregate has.
      */
-
-    public unconfirmedStateChangeCount(): number {
+    unconfirmedStateChangeCount() {
         return this.__unconfirmed_changes__;
     }
-
     /**
      * equals()
-     * 
+     *
      * equals() compares the instance to the suspect, to deterine if they are equal.
      * @param suspect The suspect to be compared.
      */
-
-    public equals(suspect: any): boolean {
+    equals(suspect) {
         return this.root().equals(suspect);
     }
-
     /**
      * id()
-     * 
+     *
      * identity() gets the Identifier of the root.
      */
-
-    public id(): Identifier {
+    id() {
         return this.root().id();
     }
-
     /**
      * hasUnconfirmedStateChanges()
-     * 
+     *
      * determines if the aggregate has unconfirmed state changes
      */
-
-    public hasUnconfirmedStateChanges(): boolean {
+    hasUnconfirmedStateChanges() {
         return this.__unconfirmed_changes__ > 0;
     }
-
     /**
      * rollbackStatechanges()
-     * 
+     *
      * rolls back the committed state changes.
      */
-
-    public rollbackStateChanges(): void {
+    rollbackStateChanges() {
         this.root().rollbackStateChanges();
         this.__state__.discardChanges();
         this.__unconfirmed_changes__ = 0;
     }
-
-    public serialize(): string {
+    serialize() {
         return JSON.stringify({
             root: this.root().serialize(),
             data: this.serializeData(),
             version: this.version(),
         });
     }
-
-    /**
-     * serializeData()
-     * 
-     * serializes the data
-     */
-    
-    protected abstract serializeData(): string;
-
-    public toString(): string {
+    toString() {
         return this.id().toString();
     }
-
     /**
      * version()
-     * 
+     *
      * gets the version of the aggregate.
      * @returns the version of the aggregate
      */
-
-    public version(): number {
+    version() {
         return this.__state__.get(Aggregate.VERSION_ID);
     }
-
-
     // Helpers
-
     /**
      * commitStateChanges()
-     * 
+     *
      * indicates that state changes have been made to the aggregate.
      */
-
-    protected commitStateChanges(): void {
+    commitStateChanges() {
         this.__state__.set(Aggregate.VERSION_ID, this.version() + 1);
         this.__unconfirmed_changes__++;
     }
-
     /**
      * root()
-     * 
+     *
      * root() gets the aggregate root.
      */
-
-    protected root(): Entity {
+    root() {
         return this.__state__.get(Aggregate.ROOT_ID);
     }
-
     /**
      * setRoot()
-     * 
+     *
      * setRoot() sets the aggregate root.
      * @param root Entity
      * @throws InvalidArgumentException when the root is undefined.
      */
-
-    protected setRoot(root: Entity): void {
-
+    setRoot(root) {
         if (!root) {
-            throw new InvalidArgumentException('An aggregate root cannot be undefined.');
+            throw new core_1.InvalidArgumentException('An aggregate root cannot be undefined.');
         }
-
         this.__state__.set(Aggregate.ROOT_ID, root);
     }
 }
+exports.Aggregate = Aggregate;
+Aggregate.ROOT_ID = "__root__";
+Aggregate.VERSION_ID = "__version__";
+//# sourceMappingURL=aggregate.js.map
