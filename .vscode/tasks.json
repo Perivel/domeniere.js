@@ -4,9 +4,42 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build State Module",
+            "label": "Build the State Module",
             "type": "shell",
-            "command": "echo Hello"
+            "command": "yarn build",
+            "options": {
+                "cwd": "packages/state"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the state module.",
+            "promptOnClose": true
+        },
+        {
+            "label": "Run the State Module Unit Tests",
+            "type": "shell",
+            "command": "yarn test",
+            "options": {
+                "cwd": "packages/state"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Runs the state module unit tests.",
+            "promptOnClose": true
         }
     ]
 }

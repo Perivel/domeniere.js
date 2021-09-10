@@ -84,10 +84,16 @@ export class State implements StateInterface {
       * updates the current state value with the given key.
       * @param key the key to set.
       * @param value the value to set.
+      * @throws UndefinedStateException when the key of the state beting set is not initialized.
       */
  
     public set<T>(key: string, value: T): void {
-        this.traces.get(key)?.set(value);
-        this.modifiedTraces.push(key);
+        if (this.traces.has(key)) {
+            this.traces.get(key)?.set(value);
+            this.modifiedTraces.push(key);
+        }
+        else {
+            throw new UndefinedStateException(`Undefined state '${key}'`);
+        }
     }
 }
