@@ -6,10 +6,10 @@
   ],
   "dependencies": {
     "@swindle/container": "^1.0.0",
-    "@swindle/core": "^2.0.1",
-    "@swindle/event-emitter": "^1.0.1",
+    "@swindle/core": "^2.1.0",
+    "@swindle/event-emitter": "^1.0.3",
     "@swindle/specification": "^1.0.1",
-    "@swindle/structs": "^1.0.3",
+    "@swindle/structs": "^1.0.4",
     "typescript": "^4.4.2"
   },
   "devDependencies": {

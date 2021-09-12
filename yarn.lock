@@ -542,6 +542,22 @@
     typescript "^4.3.5"
     uuid "^8.3.0"
 
+"@swindle/core@2.1.0", "@swindle/core@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@swindle/core/-/core-2.1.0.tgz#93eec2bc397750dd709cc14fd958bd0e30dc1c1b"
+  integrity sha512-tOkYyvn31Ti2KFXXDZW42vKiFMAm0M2RNhJI746fEB1x3WOK9ECfBwEXOPj2EaWumwpM5vDAin7GDzl39di65Q==
+  dependencies:
+    "@types/bcrypt" "^5.0.0"
+    "@types/luxon" "^1.25.0"
+    "@types/uuid" "^8.3.0"
+    awesome-phonenumber "^2.55.0"
+    bcrypt "^5.0.1"
+    change-case "^4.1.2"
+    i18n-iso-countries "^6.0.0"
+    luxon "^1.25.0"
+    typescript "^4.3.5"
+    uuid "^8.3.0"
+
 "@swindle/core@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@swindle/core/-/core-2.0.0.tgz#92f7498496d5711f14b7fd231e31d4fcbe8bf710"
@@ -558,13 +574,22 @@
     typescript "^4.3.5"
     uuid "^8.3.0"
 
-"@swindle/event-emitter@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@swindle/event-emitter/-/event-emitter-1.0.1.tgz#206370331ef574894a2c61ea353eebdbe1ef1576"
-  integrity sha512-IeCatR+eNKUoi+YogQEcR2JV4L/sz3s3eiNaW1wgTyJbLk/andiEncIBDgjY1zYPspjl8JL8ZhqHbOFHjmu83Q==
+"@swindle/event-emitter@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@swindle/event-emitter/-/event-emitter-1.0.2.tgz#e80fb87574e46dfa5f6f461f149f05b6f0f942dc"
+  integrity sha512-xPSNy0xs6C9PUeYRpDEH/qkwaH1E8QJAulEtj0Kt3g09NodW1PEELevb1ihj+Mqg1Y6V8tTbCStIWKDue3el8g==
   dependencies:
     "@swindle/core" "2.0.1"
     "@swindle/structs" "1.0.3"
+    typescript "^4.3.5"
+
+"@swindle/event-emitter@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@swindle/event-emitter/-/event-emitter-1.0.3.tgz#ad07384e0ee81aea0ef3ded56b54e40e9fe5af4d"
+  integrity sha512-GPgxKDYvSFgysPtM4CCAW/kGQFNdwjfPplz6jW98ZGPkTmrFWuVUUntpfg1A65rvBNf4HxPdfzuNFLlWRU2ZPA==
+  dependencies:
+    "@swindle/core" "2.1.0"
+    "@swindle/structs" "1.0.4"
     typescript "^4.3.5"
 
 "@swindle/specification@^1.0.1":
@@ -578,6 +603,13 @@
   integrity sha512-WHjLJafnWaF5qYxynEvzWOZcycCloAzNOCbrcLasUXwpRU/rX+qZvyRrrgBxeN4B6E6N9FUFb/ycA+AUn9enig==
   dependencies:
     "@swindle/core" "^2.0.1"
+
+"@swindle/structs@1.0.4", "@swindle/structs@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@swindle/structs/-/structs-1.0.4.tgz#7e870f86d0917aac979d6fce3e7982feb946a6b6"
+  integrity sha512-N95NWRcZCU1Y3dt50PUEpiKuciLxXk7KdMLIk+b2IOn2/J5DgGoQVWSAvlik4iZziPisFFRGmjCLWpMUZnl9Gw==
+  dependencies:
+    "@swindle/core" "^2.1.0"
 
 "@swindle/structs@^1.0.0":
   version "1.0.0"

@@ -1,4 +1,6 @@
+import { Type } from "@swindle/core";
 import { EventHandler } from "@swindle/event-emitter";
+import { DomainEvent } from "../domain-event/domain-event";
 import { DomainEventInterface } from "../domain-event/domain-event.interface";
 import { EventStore } from "../eventstore/event-store";
 import { TransmittedEvent } from "../eventstore/transmitted-event";
@@ -57,21 +59,13 @@ export interface EventStreamInterface {
     processTransmittedEvent(transmittedEvent: TransmittedEvent): Promise<void>;
 
     /**
-     * setEventStore()
-     * 
-     * setEventStore() sets the event store.
-     */
-
-    setEventStore(eventStore: EventStore): void;
-
-    /**
      * creates a subscriber for the event stream.
-     * @param eventName The name of the event to listen for. This can be a specific event name or a wildcard.
+     * @param event The event to listen for..
      * @param priority The priority of the subscriber (the lower the number, the highrer the priority).
      * @param label a label to give to the subscriber.
      * @param handler The function to execute when an event occurs.
      * @param stopPropogationOnError indicates if event propogation should stop if the handler encounters an error.
      */
 
-    subscribe(eventName: string|EventAggregate, handler: EventHandler, priority: FrameworkEventHandlerPriority|DomainEventHandlerPriority, label: string, stopPropogationOnError: boolean): void;
+    subscribe<T extends DomainEvent>(event: Type<T>|EventAggregate, handler: EventHandler, priority: DomainEventHandlerPriority, label: string, stopPropogationOnError: boolean): void;
 }

@@ -1,6 +1,6 @@
 import { DateTime, MethodUndefinedException } from "@swindle/core";
 import { Queue } from "@swindle/structs"
-import { DomainEvent } from "../event.module";
+import { DomainEvent } from "../domain-event/domain-event";
 import { EventStore } from "./event-store";
 import { StoredEvent } from "./stored-event";
 import { TransmittedEvent } from "./transmitted-event";

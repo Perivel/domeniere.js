@@ -1,20 +1,19 @@
-import { UUID } from "@swindle/core";
-import { 
-    EventEmitter, 
-    EventHandler, 
+import { Type } from "@swindle/core";
+import {
+    EventHandler,
     Subscriber, 
     SubscriberId 
 } from "@swindle/event-emitter";
 import { DomainEvent } from "../domain-event/domain-event";
+import { DomeniereEventEmitter } from "../event-emitter/domeniere-event-emitter";
 import { DefaultEventStore } from "../eventstore/default-event-store";
 import { EventStore } from "../eventstore/event-store";
 import { TransmittedEvent } from "../eventstore/transmitted-event";
+import { EventHandlerFailed } from "../internal-events/event-handler-failed.event";
 import { EventStoreFailed } from "../internal-events/event-store-failed.event";
-import { EventsPublished } from "../internal-events/events-published.event";
 import { DomainEventHandlerPriority } from "./domain-event-handler-priority.enum";
 import { EventAggregate } from "./event-aggregate..type";
 import { EventStreamInterface } from "./event-stream.interface";
-import { FrameworkEventHandlerPriority } from "./framework-event-handler-priority.enum";
 
 /**
  * Event Stream
@@ -23,22 +22,52 @@ import { FrameworkEventHandlerPriority } from "./framework-event-handler-priorit
  */
 
 export class EventStream implements EventStreamInterface {
-    // the global instance.
-    private static _instance: EventStream;
 
     // The event publisher.
-    private readonly emitter: EventEmitter;
+    private readonly emitter: DomeniereEventEmitter;
 
     // event store
     private _eventStore: EventStore;
 
-    constructor() {
-        this.emitter = new EventEmitter();
-        this._eventStore = new DefaultEventStore();
+    constructor(eventStore: EventStore = new DefaultEventStore()) {
+        this._eventStore = eventStore;
+        this.emitter = new DomeniereEventEmitter(
+            // initial subscribers.
+            [],
+            // this method gets executed before event handlers are executed.
+            async (event, emitter): Promise<void> => {
+                // save the event.
+                try {
+                    await this.eventStore().store(event as DomainEvent);
+                    await this.eventStore().persistEvents();
+                }
+                catch (err) {
+                    // failed to store some or all the events.
+                    await emitter.emit(new EventStoreFailed(err as Error));
+                }
+            },
 
+            // this method is executed after all handlers are executed.
+            async (event, emitter): Promise<void> => {
+                // process the published events.
+                this.eventStore().processPublishedEvents();
 
-        // Register internal event handlers.
-        this.registerInternalEventHandlers();
+                // update the published events.
+                try {
+                    await this.eventStore().updatePublishedEvents();
+                }
+                catch (err) {
+                    // failed to store some or all the events.
+                    await emitter.emit(new EventStoreFailed(err as Error));
+                }
+            },
+
+            // executed when the handler encounters an error
+            async (event, error, sub, emitter): Promise<void> => {
+                // emit a handler failed event when an event handler fails.
+                await emitter.emit(new EventHandlerFailed(sub, event as DomainEvent, error));
+            }
+        );
     }
 
     /**
@@ -109,7 +138,7 @@ export class EventStream implements EventStreamInterface {
             await this.emit(event);
         }
         catch (e) {
-            await this.emit(new EventStoreFailed(e));
+            await this.emit(new EventStoreFailed(e as Error));
         }
     }
 
@@ -120,7 +149,6 @@ export class EventStream implements EventStreamInterface {
      */
 
     public async emit(event: DomainEvent): Promise<void> {
-        await this.eventStore().store(event);
         await this.emitter.emit(event);
     }
 
@@ -135,67 +163,22 @@ export class EventStream implements EventStreamInterface {
     }
 
     /**
-     * setEventStore()
-     * 
-     * setEventStore() sets the event store.
-     */
-
-    public setEventStore(eventStore: EventStore): void {
-        this._eventStore = eventStore;
-    }
-
-    /**
      * creates a subscriber for the event stream.
-     * @param eventName The name of the event to listen for. This can be a specific event name or a wildcard.
-     * @param priority The priority of the subscriber. The higher  the priority, the earlier the handler will be executed.
-     * @param label a label to give to the subscriber. This label is only for your own reference, hence it is optional and defaults to an empty string.
+     * @param event The event to listen for..
+     * @param priority The priority of the subscriber (the lower the number, the highrer the priority).
+     * @param label a label to give to the subscriber.
      * @param handler The function to execute when an event occurs.
-     * @param stopPropogationOnError indicates if the event propogation should stop when the subscriber handler encounters an error.
+     * @param stopPropogationOnError indicates if event propogation should stop if the handler encounters an error.
      */
 
-    public subscribe(eventName: string | EventAggregate, handler: EventHandler, priority: FrameworkEventHandlerPriority | DomainEventHandlerPriority = DomainEventHandlerPriority.MEDIUM, label: string = '', stopPropogationOnError: boolean = false): void {
-        const subscriberId = new SubscriberId(UUID.V4().id());
+    subscribe<T extends DomainEvent>(event: Type<T>|EventAggregate, handler: EventHandler, priority: DomainEventHandlerPriority = DomainEventHandlerPriority.MEDIUM, label: string = "", stopPropogationOnError: boolean = false): void {
+        const subscriberId = SubscriberId.Generate();
+        
+        // if the event is an EventAggregate, we cast it to a string. Otherwise, it is some type of DomainEvent, in which case we call the EventName() static method.
+        const eventName = Object.values(EventAggregate).includes(event as EventAggregate) ? event.toString() : (event.constructor as any).EventName();
+
+        // create the subscriber.
         const subscriber = new Subscriber(subscriberId, eventName.toString(), Number(priority), label, handler, stopPropogationOnError);
         this.emitter.addSubscriber(subscriber);
-    }
-
-    // helpers
-
-    /**
-     * registerInternalHandlers()
-     * 
-     * reigster internal handlers here.
-     */
-
-    private registerInternalEventHandlers(): void {
-
-        // register a handler to automatically save events on any event.
-        this.subscribe(EventAggregate.Any.toString(), async () => {
-            try {
-                await this.eventStore().persistEvents();
-            }
-            catch (err) {
-                // failed to store some or all the events.
-                await this.emit(new EventStoreFailed(err as Error));
-            }
-
-        }, FrameworkEventHandlerPriority.HIGH, 'persist events', false);
-
-        // register event to process braodcasted events.
-        this.subscribe(EventsPublished.EventName(), async (event: DomainEvent) => {
-            this.eventStore().processPublishedEvents();
-        }, FrameworkEventHandlerPriority.LOW, 'Process published events', false);
-
-        // Register a handler to automatically update the status of published events in storage.
-        this.subscribe(EventsPublished.EventName(), async (event: DomainEvent) => {
-            try {
-                await this.eventStore().updatePublishedEvents();
-            }
-            catch (err) {
-                // failed to store some or all the events.
-                await this.emit(new EventStoreFailed(err));
-            }
-
-        }, FrameworkEventHandlerPriority.VERY_LOW, 'update events in storage.', false);
     }
 }

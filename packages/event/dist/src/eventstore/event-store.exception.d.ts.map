@@ -1,0 +1,1 @@
+{"version":3,"file":"event-store.exception.d.ts","sourceRoot":"","sources":["../../../src/eventstore/event-store.exception.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,eAAe,CAAC;AAE9C;;;;GAIG;AAEH,qBAAa,mBAAoB,SAAQ,aAAa;gBACtC,OAAO,GAAE,MAA4B;CAGpD"}
