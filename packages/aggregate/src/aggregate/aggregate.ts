@@ -119,6 +119,7 @@ export abstract class Aggregate implements AggregateInterface, Serializable {
      * 
      * serializes the data
      */
+    
     protected abstract serializeData(): string;
 
     public toString(): string {

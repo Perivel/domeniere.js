@@ -24,7 +24,7 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "dependencies": {
-    "@swindle/core": "^2.0.1"
+    "@swindle/core": "^2.1.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",

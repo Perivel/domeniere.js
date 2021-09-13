@@ -1,6 +1,7 @@
-import { Aggregate } from "../aggregate/aggregate";
 import { TimestampedResource, DateTime } from "@swindle/core";
 import { Entity } from "@domeniere/entity";
+import { Aggregate } from "../aggregate/aggregate";
+
 
 /**
  * DateTimeedAggregate
@@ -67,8 +68,8 @@ export abstract class TimestampedAggregate extends Aggregate implements Timestam
      */
 
     protected commitStateChanges(): void {
-        this.__state__.set(TimestampedAggregate.UPDATED_ON_ID, DateTime.Now());
         super.commitStateChanges();
+        this.__state__.set(TimestampedAggregate.UPDATED_ON_ID, DateTime.Now());
     }
 
     /**
@@ -80,6 +81,5 @@ export abstract class TimestampedAggregate extends Aggregate implements Timestam
 
     protected setDeleted(date: DateTime) {
         this.__state__.set(TimestampedAggregate.DELETED_ON_ID, date);
-        this.commitStateChanges();
     }
 }

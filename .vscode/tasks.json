@@ -155,5 +155,43 @@
             "detail": "Runs the Aggregate module unit tests.",
             "promptOnClose": true
         },
+        {
+            "label": "Build the Event Module",
+            "type": "shell",
+            "command": "yarn build",
+            "options": {
+                "cwd": "packages/event"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the event module.",
+            "promptOnClose": true
+        },
+        {
+            "label": "Run the Event Usage Tests",
+            "type": "shell",
+            "command": "yarn build && yarn start",
+            "options": {
+                "cwd": "packages/test-events"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Runs the Aggregate module unit tests.",
+            "promptOnClose": true
+        },
     ]
 }
