@@ -526,22 +526,6 @@
   dependencies:
     typescript "^4.3.5"
 
-"@swindle/core@2.0.1", "@swindle/core@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@swindle/core/-/core-2.0.1.tgz#4d4c1a2996f5ae14a9f9e5a257343047b1ccb25e"
-  integrity sha512-8WlJ4ZLLxdeY7N3cIcn5+w1HSrjVoNB/eES0nMDQCnEiOT2GyM8xdNqkHgoG/PkqKH5p5fIkCy7oBT6+HA7RTA==
-  dependencies:
-    "@types/bcrypt" "^5.0.0"
-    "@types/luxon" "^1.25.0"
-    "@types/uuid" "^8.3.0"
-    awesome-phonenumber "^2.55.0"
-    bcrypt "^5.0.1"
-    change-case "^4.1.2"
-    i18n-iso-countries "^6.0.0"
-    luxon "^1.25.0"
-    typescript "^4.3.5"
-    uuid "^8.3.0"
-
 "@swindle/core@2.1.0", "@swindle/core@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@swindle/core/-/core-2.1.0.tgz#93eec2bc397750dd709cc14fd958bd0e30dc1c1b"
@@ -574,15 +558,6 @@
     typescript "^4.3.5"
     uuid "^8.3.0"
 
-"@swindle/event-emitter@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@swindle/event-emitter/-/event-emitter-1.0.2.tgz#e80fb87574e46dfa5f6f461f149f05b6f0f942dc"
-  integrity sha512-xPSNy0xs6C9PUeYRpDEH/qkwaH1E8QJAulEtj0Kt3g09NodW1PEELevb1ihj+Mqg1Y6V8tTbCStIWKDue3el8g==
-  dependencies:
-    "@swindle/core" "2.0.1"
-    "@swindle/structs" "1.0.3"
-    typescript "^4.3.5"
-
 "@swindle/event-emitter@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@swindle/event-emitter/-/event-emitter-1.0.3.tgz#ad07384e0ee81aea0ef3ded56b54e40e9fe5af4d"
@@ -596,13 +571,6 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@swindle/specification/-/specification-1.0.1.tgz#c9d76683b710287d29519eb529abe7e5aadd2cec"
   integrity sha512-QLE3TYoctC0+D5K8RuxJT/XnsU03aTd8aGokuXYNUtoCSzry3BtKFNsmwcEj7ldf+qGssRKLXh3vo/I3dmCq5g==
-
-"@swindle/structs@1.0.3", "@swindle/structs@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@swindle/structs/-/structs-1.0.3.tgz#c7ebdccc3deae361452d443fe84e950f7e467b59"
-  integrity sha512-WHjLJafnWaF5qYxynEvzWOZcycCloAzNOCbrcLasUXwpRU/rX+qZvyRrrgBxeN4B6E6N9FUFb/ycA+AUn9enig==
-  dependencies:
-    "@swindle/core" "^2.0.1"
 
 "@swindle/structs@1.0.4", "@swindle/structs@^1.0.4":
   version "1.0.4"

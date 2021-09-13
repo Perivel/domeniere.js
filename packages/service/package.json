@@ -1,14 +1,7 @@
 {
-  "name": "@domeniere/core",
+  "name": "@domeniere/service",
   "version": "2.0.0",
-  "description": "The core Domeniere framework.",
-  "keywords": [
-    "ddd",
-    "domain driven design",
-    "modular application",
-    "portable application",
-    "microservices"
-  ],
+  "description": "The Domeniere service module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/Perivel/domeniere",
@@ -24,11 +17,8 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "dependencies": {
-    "@swindle/container": "^1.0.0",
-    "@swindle/core": "^2.0.1",
-    "@swindle/event-emitter": "^1.0.2",
-    "@swindle/specification": "^1.0.1",
-    "@swindle/structs": "^1.0.3",
+    "@swindle/core": "^2.1.0",
+    "@domeniere/domain": "^2.0.0",
     "typescript": "^4.4.2"
   },
   "devDependencies": {
