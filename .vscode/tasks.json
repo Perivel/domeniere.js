@@ -193,5 +193,24 @@
             "detail": "Runs the Aggregate module unit tests.",
             "promptOnClose": true
         },
+        {
+            "label": "Build the Factory Module",
+            "type": "shell",
+            "command": "yarn build",
+            "options": {
+                "cwd": "packages/factory"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the factory module.",
+            "promptOnClose": true
+        },
     ]
 }
