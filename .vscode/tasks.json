@@ -212,5 +212,62 @@
             "detail": "Builds the factory module.",
             "promptOnClose": true
         },
+        {
+            "label": "Build the Repository Module",
+            "type": "shell",
+            "command": "yarn build",
+            "options": {
+                "cwd": "packages/repository"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the repository module.",
+            "promptOnClose": true
+        },
+        {
+            "label": "Build the Domain Module",
+            "type": "shell",
+            "command": "yarn build",
+            "options": {
+                "cwd": "packages/domain"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the domain module.",
+            "promptOnClose": true
+        },
+        {
+            "label": "Build the Service Module",
+            "type": "shell",
+            "command": "yarn build",
+            "options": {
+                "cwd": "packages/service"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the service module.",
+            "promptOnClose": true
+        },
     ]
 }
