@@ -1,0 +1,19 @@
+{
+  "name": "Domeniere Website",
+  "version": "0.0.1",
+  "description": "The Domeniere Library",
+  "main": "index.js",
+  "authors": {
+    "name": "Patrick Luy",
+    "email": "pluy@perivel.com"
+  },
+  "repository": "https://github.com/Perivel/domeniere/Domeniere Website",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
