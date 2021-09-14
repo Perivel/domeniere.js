@@ -1,7 +1,7 @@
 {
-  "name": "@domeniere/core",
+  "name": "@domeniere/dto",
   "version": "2.0.0",
-  "description": "The Domeniere framework.",
+  "description": "The Domeniere dto module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/Perivel/domeniere",
@@ -18,16 +18,6 @@
   },
   "dependencies": {
     "@swindle/core": "^2.1.0",
-    "@domeniere/aggregate": "^2.0.0",
-    "@domeniere/domain": "^2.0.0",
-    "@domeniere/dto": "^2.0.0",
-    "@domeniere/entity": "^2.0.0",
-    "@domeniere/event": "^2.0.0",
-    "@domeniere/factory": "^2.0.0",
-    "@domeniere/module": "^2.0.0",
-    "@domeniere/repository": "^2.0.0",
-    "@domeniere/service": "^2.0.0",
-    "@domeniere/value": "^2.0.0",
     "typescript": "^4.4.2"
   },
   "devDependencies": {
