@@ -1,0 +1,37 @@
+{
+  "name": "@domeniere/core",
+  "version": "2.0.0",
+  "description": "The Domeniere framework.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/Perivel/domeniere",
+  "author": "Patrick Luy <pluy@perivel.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "inspect:circular": "npx madge --circular --extensions ts ./",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "dependencies": {
+    "@swindle/core": "^2.1.0",
+    "@domeniere/aggregate": "^2.0.0",
+    "@domeniere/domain": "^2.0.0",
+    "@domeniere/entity": "^2.0.0",
+    "@domeniere/event": "^2.0.0",
+    "@domeniere/factory": "^2.0.0",
+    "@domeniere/module": "^2.0.0",
+    "@domeniere/repository": "^2.0.0",
+    "@domeniere/service": "^2.0.0",
+    "@domeniere/value": "^2.0.0",
+    "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.4.4"
+  }
+}
