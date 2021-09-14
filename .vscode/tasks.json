@@ -288,5 +288,24 @@
             "detail": "Builds the module module.",
             "promptOnClose": true
         },
+        {
+            "label": "Build the Core Module",
+            "type": "shell",
+            "command": "yarn build",
+            "options": {
+                "cwd": "packages/core"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the core module.",
+            "promptOnClose": true
+        },
     ]
 }
