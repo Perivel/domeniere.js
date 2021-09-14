@@ -307,5 +307,43 @@
             "detail": "Builds the core module.",
             "promptOnClose": true
         },
+        {
+            "label": "Build the Common Module",
+            "type": "shell",
+            "command": "yarn build",
+            "options": {
+                "cwd": "packages/common"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the common module.",
+            "promptOnClose": true
+        },
+        {
+            "label": "Build the Dto Module",
+            "type": "shell",
+            "command": "yarn build",
+            "options": {
+                "cwd": "packages/dto"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the dto module.",
+            "promptOnClose": true
+        },
     ]
 }

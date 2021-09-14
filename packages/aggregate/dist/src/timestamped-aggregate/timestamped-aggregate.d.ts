@@ -1,6 +1,6 @@
-import { Aggregate } from "../aggregate/aggregate";
 import { TimestampedResource, DateTime } from "@swindle/core";
 import { Entity } from "@domeniere/entity";
+import { Aggregate } from "../aggregate/aggregate";
 /**
  * DateTimeedAggregate
  *

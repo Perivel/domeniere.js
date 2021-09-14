@@ -32,6 +32,17 @@ export class State implements StateInterface {
         this.modifiedTraces.splice(0, this.modifiedTraces.length);
     }
 
+    /**
+     * contains()
+     * 
+     * determines if the state contains the provided key
+     * @param key 
+     */
+
+    public contains(key: string): boolean {
+        return this.traces.has(key);
+    }
+
      /**
       * discardChanges()
       * 

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TimestampedAggregate = void 0;
-const aggregate_1 = require("../aggregate/aggregate");
 const core_1 = require("@swindle/core");
+const aggregate_1 = require("../aggregate/aggregate");
 /**
  * DateTimeedAggregate
  *
@@ -53,8 +53,8 @@ class TimestampedAggregate extends aggregate_1.Aggregate {
      * commitStateChange() informs the entity that a state change has occured.
      */
     commitStateChanges() {
-        this.__state__.set(TimestampedAggregate.UPDATED_ON_ID, core_1.DateTime.Now());
         super.commitStateChanges();
+        this.__state__.set(TimestampedAggregate.UPDATED_ON_ID, core_1.DateTime.Now());
     }
     /**
      * setDeleted()
@@ -64,7 +64,6 @@ class TimestampedAggregate extends aggregate_1.Aggregate {
      */
     setDeleted(date) {
         this.__state__.set(TimestampedAggregate.DELETED_ON_ID, date);
-        this.commitStateChanges();
     }
 }
 exports.TimestampedAggregate = TimestampedAggregate;

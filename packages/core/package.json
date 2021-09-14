@@ -20,6 +20,7 @@
     "@swindle/core": "^2.1.0",
     "@domeniere/aggregate": "^2.0.0",
     "@domeniere/domain": "^2.0.0",
+    "@domeniere/dto": "^2.0.0",
     "@domeniere/entity": "^2.0.0",
     "@domeniere/event": "^2.0.0",
     "@domeniere/factory": "^2.0.0",
