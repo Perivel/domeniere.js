@@ -1,0 +1,1 @@
+{"version":3,"file":"log-options.interface.d.ts","sourceRoot":"","sources":["../../src/log-options.interface.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,UAAU;IACvB,SAAS,CAAC,EAAE,MAAM,CAAA;IAClB,UAAU,CAAC,EAAE,MAAM,CAAA;IACnB,IAAI,CAAC,EAAE,MAAM,CAAA;CAChB;AAED,MAAM,WAAW,eAAgB,SAAQ,UAAU;IAC/C,KAAK,CAAC,EAAE,KAAK,CAAC;CACjB"}
