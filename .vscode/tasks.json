@@ -345,5 +345,24 @@
             "detail": "Builds the dto module.",
             "promptOnClose": true
         },
+        {
+            "label": "Build the Logger Module",
+            "type": "shell",
+            "command": "yarn build",
+            "options": {
+                "cwd": "packages/logger"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the dto module.",
+            "promptOnClose": true
+        },
     ]
 }
