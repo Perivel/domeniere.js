@@ -23,6 +23,15 @@ class State {
         this.modifiedTraces.splice(0, this.modifiedTraces.length);
     }
     /**
+     * contains()
+     *
+     * determines if the state contains the provided key
+     * @param key
+     */
+    contains(key) {
+        return this.traces.has(key);
+    }
+    /**
      * discardChanges()
      *
      * discards any changes made and reverts the state.

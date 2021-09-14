@@ -9,6 +9,15 @@ export interface StateInterface {
      */
 
     confirmChanges(): void;
+    
+    /**
+     * contains()
+     * 
+     * determines if the state contains the provided key
+     * @param key 
+     */
+    
+    contains(key: string): boolean;
 
     /**
      * discardChanges()

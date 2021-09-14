@@ -13,7 +13,7 @@ export declare abstract class Api implements ApiInterface {
      *
      * the name of the subdomain.
      */
-    private readonly subdomainName;
+    readonly subdomainName: string;
     /**
      * domain
      *

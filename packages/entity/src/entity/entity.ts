@@ -16,7 +16,7 @@ export abstract class Entity implements EntityInterface, Serializable {
 
     private static ID_STATE_KEY = "__id__";
 
-    protected readonly __state__: State;
+    public readonly __state__: State;
 
     /**
      * creates a new entity instance.

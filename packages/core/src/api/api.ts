@@ -22,7 +22,7 @@ export abstract class Api implements ApiInterface {
      * the name of the subdomain.
      */
     
-    private readonly subdomainName: string;
+    public readonly subdomainName: string;
 
     /**
      * domain

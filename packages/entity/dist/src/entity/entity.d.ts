@@ -9,7 +9,7 @@ import { EntityInterface } from "./entity.interface";
  */
 export declare abstract class Entity implements EntityInterface, Serializable {
     private static ID_STATE_KEY;
-    protected readonly __state__: State;
+    readonly __state__: State;
     /**
      * creates a new entity instance.
      * @param id The entity identifier.

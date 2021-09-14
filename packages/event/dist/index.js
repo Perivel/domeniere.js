@@ -15,6 +15,7 @@ __exportStar(require("./src/domain-event/domain-event"), exports);
 __exportStar(require("./src/event-stream/domain-event-handler-priority.enum"), exports);
 __exportStar(require("./src/event-stream/event-aggregate..type"), exports);
 __exportStar(require("./src/event-stream/event-stream"), exports);
+__exportStar(require("./src/event-stream/domain-event-handler.type"), exports);
 __exportStar(require("./src/eventstore/default-event-store"), exports);
 __exportStar(require("./src/eventstore/event-store"), exports);
 __exportStar(require("./src/eventstore/event-store.exception"), exports);

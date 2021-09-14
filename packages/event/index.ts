@@ -2,6 +2,7 @@ export * from "./src/domain-event/domain-event";
 export * from "./src/event-stream/domain-event-handler-priority.enum";
 export * from "./src/event-stream/event-aggregate..type";
 export * from "./src/event-stream/event-stream";
+export * from "./src/event-stream/domain-event-handler.type";
 export * from "./src/eventstore/default-event-store";
 export * from "./src/eventstore/event-store";
 export * from "./src/eventstore/event-store.exception";
