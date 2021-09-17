@@ -1,7 +1,7 @@
 import { TimestampedAggregate } from '@domeniere/aggregate';
 import { State } from '@domeniere/common';
 import { DateTime, MethodUndefinedException } from '@swindle/core';
-import { UserId } from '../../chatroom.module';
+import { ConversationId, UserId } from '../../chatroom.module';
 import { ConversationInfo } from '../../entities/conversation-info/conversation-info';
 import { Message } from '../../entities/message/message';
 import { ConversationInterface } from './conversation.interface';
@@ -39,6 +39,10 @@ export class Conversation extends TimestampedAggregate implements ConversationIn
         return isEquals;
     }
 
+    public host(): UserId {
+        return this.root().host();
+    }
+
     public messages(): Message[] {
         return this._messages;
     }
@@ -63,5 +67,9 @@ export class Conversation extends TimestampedAggregate implements ConversationIn
 
     protected root(): ConversationInfo {
         return super.root() as ConversationInfo;
+    }
+
+    public id(): ConversationId {
+        return super.id() as ConversationId;
     }
 }

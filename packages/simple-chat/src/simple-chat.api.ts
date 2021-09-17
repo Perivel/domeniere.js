@@ -1,6 +1,7 @@
-import { On } from '@domeniere/common';
+import { On, OnError } from '@domeniere/common';
 import { Api } from '@domeniere/core';
-import ChatroomModule, { ConversationData, ConversationId, ConversationJoined, ConversationsRepository, CreateConversationCommand, CreateUserCommand, GetConversationByIdQuery, GetConversationsForUserQuery, GetUserByIdQuery, JoinConversationCommand, Message, MessageData, MessageId, MessagePosted, PostMessageCommand, UserData, UserFactory, UserId, UserRegistrationData, UserRegistrationFactory, UserRepository } from './chatroom/chatroom.module';
+import { DomainEvent } from '@domeniere/event';
+import ChatroomModule, { ConversationData, ConversationId, ConversationJoined, ConversationsRepository, CreateConversationCommand, CreateUserCommand, GetConversationByIdQuery, GetConversationsForUserQuery, GetUserByIdQuery, GetUserByNicknameQuery, JoinConversationCommand, Message, MessageData, MessageId, MessagePosted, Nickname, PostMessageCommand, UserData, UserFactory, UserId, UserRegistrationData, UserRegistrationFactory, UserRepository } from './chatroom/chatroom.module';
 import { SimpleChatEventStore } from './simple-chat.eventstore';
 
 /**
@@ -33,6 +34,18 @@ export class SimpleChatApi extends Api {
     public async createConversation(host: UserData): Promise<void> {
         const user = this.domain.module('chatroom').get(UserFactory).createFromData(host);
         await this.domain.module('chatroom').get(CreateConversationCommand).execute(user);
+    }
+
+    public async getUserByNickname(nickname: string): Promise<UserData> {
+        const nick = new Nickname(nickname);
+        const user = await this.domain.module('chatroom').get(GetUserByNicknameQuery).execute(nick);
+        
+        const data = new UserData();
+        data.id = user.id().id();
+        data.first_name = user.username().first();
+        data.last_name = user.username().last();
+        data.nickname = user.nickname().value();
+        return data;
     }
 
     public async getConversationsForUser(user: UserData): Promise<ConversationData[]> {
@@ -69,5 +82,10 @@ export class SimpleChatApi extends Api {
     private async onJoinConversation(event: ConversationJoined): Promise<void> {
         const user = event.user();
         console.log(`${user.nickname().toString()} joined the conversation.`);
+    }
+
+    @OnError()
+    private async handleError(event: DomainEvent): Promise<void> {
+        console.log(event.serialize());
     }
 }
