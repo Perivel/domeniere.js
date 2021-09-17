@@ -70,4 +70,8 @@ import { ConversationInfoInterface } from './conversation-info.interface';
             created: this.created().toString()
         });
     }
+
+    public id(): ConversationId {
+        return super.id() as ConversationId;
+    }
 }

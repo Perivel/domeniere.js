@@ -5,6 +5,7 @@ import { UserProfile } from '../../entities/entities.well';
 import { Nickname } from '../../values/nickname/nickname';
 import { UserInterface } from './user.interface';
 import { Username } from '../../values/username/username';
+import { UserId } from '../../chatroom.module';
 
 
 export class User extends Aggregate implements UserInterface {
@@ -27,6 +28,10 @@ export class User extends Aggregate implements UserInterface {
         }
 
         return isEquals;
+    }
+
+    public id(): UserId {
+        return super.id() as UserId;
     }
 
     public nickname(): Nickname {

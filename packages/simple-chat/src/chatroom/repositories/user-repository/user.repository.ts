@@ -1,6 +1,6 @@
 import { IdentityGeneratingRepository } from '@domeniere/repository';
 import { User } from '../../aggregates/aggregates.well';
-import { UserId } from '../../chatroom.module';
+import { Nickname, UserId } from '../../chatroom.module';
 import { UserRepositoryInterface } from './user-repository.interface';
 
 
@@ -14,7 +14,9 @@ export abstract class UserRepository extends IdentityGeneratingRepository implem
         return UserId.Generate();
     }
 
-    public abstract getById(id: UserId): Promise<User>
+    public abstract getById(id: UserId): Promise<User>;
+
+    public abstract getByNickname(nickname: Nickname): Promise<User>
 
     public abstract remove(aggregate: User): Promise<void>;
 
