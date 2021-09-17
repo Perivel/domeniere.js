@@ -14,8 +14,12 @@
     "@domeniere/core": "^2.0.0",
     "@domeniere/common": "^2.0.0"
   },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  },
   "scripts": {
-    "build": "tsc",
-    "start": "yarn build && node ./dist/main.js"
+    "build": "yarn clean && tsc",
+    "start": "yarn build && node ./dist/main.js",
+    "clean": "rimraf ./dist"
   }
 }
