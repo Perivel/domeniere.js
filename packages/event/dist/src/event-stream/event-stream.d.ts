@@ -55,6 +55,6 @@ export declare class EventStream implements EventStreamInterface {
      * @param handler The function to execute when an event occurs.
      * @param stopPropogationOnError indicates if event propogation should stop if the handler encounters an error.
      */
-    subscribe<T extends DomainEvent>(event: Type<T> | EventAggregate, handler: DomainEventHandler, priority?: DomainEventHandlerPriority, label?: string, stopPropogationOnError?: boolean): void;
+    subscribe<T extends DomainEvent>(event: Type<T> | EventAggregate, handler: DomainEventHandler<T>, priority?: DomainEventHandlerPriority, label?: string, stopPropogationOnError?: boolean): void;
 }
 //# sourceMappingURL=event-stream.d.ts.map
