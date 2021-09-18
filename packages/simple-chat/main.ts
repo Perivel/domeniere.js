@@ -46,7 +46,13 @@ class MemoryUserRepository extends UserRepository {
                 return prev;
             }
         }, -1);
-        this.users[index] = aggregate;
+        
+        if (index >= 0) {
+            this.users[index] = aggregate;
+        }
+        else {
+            this.users.push(aggregate);
+        }
     }
 
     public async size(): Promise<number> {
@@ -90,7 +96,13 @@ class MemoryConversationRepository extends ConversationsRepository {
                 return prev;
             }
         }, -1);
-        this.conversations[index] = aggregate;
+        
+        if (index >= 0) {
+            this.conversations[index] = aggregate;
+        }
+        else {
+            this.conversations.push(aggregate);
+        }
     }
 
     public async size(): Promise<number> {

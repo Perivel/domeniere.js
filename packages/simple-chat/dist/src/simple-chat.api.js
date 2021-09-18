@@ -24,11 +24,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SimpleChatApi = void 0;
 const common_1 = require("@domeniere/common");
 const core_1 = require("@domeniere/core");
+const event_1 = require("@domeniere/event");
 const chatroom_module_1 = __importStar(require("./chatroom/chatroom.module"));
+const simple_chat_eventstore_1 = require("./simple-chat.eventstore");
 /**
  * SimpleChatApi
  *
@@ -36,7 +41,7 @@ const chatroom_module_1 = __importStar(require("./chatroom/chatroom.module"));
  *
  * Learn more about Apis at https://github.com/Perivel/domeniere/blob/master/src/api/README.md
  */
-class SimpleChatApi extends core_1.Api {
+let SimpleChatApi = class SimpleChatApi extends core_1.Api {
     constructor(userRepository, conversationRepository, eventStore) {
         super('simple-chat', eventStore);
         const chatroomModule = new chatroom_module_1.default();
@@ -94,14 +99,29 @@ class SimpleChatApi extends core_1.Api {
     async handleError(event) {
         console.log(event.serialize());
     }
-}
+};
 __decorate([
-    (0, common_1.On)(chatroom_module_1.MessagePosted)
+    (0, common_1.On)(chatroom_module_1.MessagePosted),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [chatroom_module_1.MessagePosted]),
+    __metadata("design:returntype", Promise)
 ], SimpleChatApi.prototype, "outputMessage", null);
 __decorate([
-    (0, common_1.On)(chatroom_module_1.ConversationJoined)
+    (0, common_1.On)(chatroom_module_1.ConversationJoined),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [chatroom_module_1.ConversationJoined]),
+    __metadata("design:returntype", Promise)
 ], SimpleChatApi.prototype, "onJoinConversation", null);
 __decorate([
-    (0, common_1.OnError)()
+    (0, common_1.OnError)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [event_1.DomainEvent]),
+    __metadata("design:returntype", Promise)
 ], SimpleChatApi.prototype, "handleError", null);
+SimpleChatApi = __decorate([
+    (0, common_1.Subdomain)('simple-chat'),
+    __metadata("design:paramtypes", [chatroom_module_1.UserRepository,
+        chatroom_module_1.ConversationsRepository,
+        simple_chat_eventstore_1.SimpleChatEventStore])
+], SimpleChatApi);
 exports.SimpleChatApi = SimpleChatApi;

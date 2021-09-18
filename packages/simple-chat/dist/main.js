@@ -33,7 +33,12 @@ class MemoryUserRepository extends simple_chat_1.UserRepository {
                 return prev;
             }
         }, -1);
-        this.users[index] = aggregate;
+        if (index >= 0) {
+            this.users[index] = aggregate;
+        }
+        else {
+            this.users.push(aggregate);
+        }
     }
     async size() {
         return this.users.length;
@@ -66,7 +71,12 @@ class MemoryConversationRepository extends chatroom_module_1.ConversationsReposi
                 return prev;
             }
         }, -1);
-        this.conversations[index] = aggregate;
+        if (index >= 0) {
+            this.conversations[index] = aggregate;
+        }
+        else {
+            this.conversations.push(aggregate);
+        }
     }
     async size() {
         return this.conversations.length;

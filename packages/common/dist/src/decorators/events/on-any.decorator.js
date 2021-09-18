@@ -1,9 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OnAny = void 0;
+require("reflect-metadata");
 const domain_1 = require("@domeniere/domain");
 const event_1 = require("@domeniere/event");
 const core_1 = require("@swindle/core");
+const constants_1 = require("../constants");
 /**
  * OnAny() Decorator.
  *
@@ -21,7 +23,7 @@ function OnAny(priority = event_1.DomainEventHandlerPriority.MEDIUM, label = cor
         // This section changes the handler function so that it still has access to the "this" keyword.
         // We also get the subdomain in which the event will be registered here. This works under the 
         // assmption that this decorator is being called within an Api class body.
-        let subdomain = parentCls.subdomainName;
+        //let subdomain = (parentCls as Api).subdomainName;
         descriptor.value = async function (event) {
             //subdomain = (this as Api).subdomainName;
             return origValue.apply(this, [event]);
@@ -29,7 +31,16 @@ function OnAny(priority = event_1.DomainEventHandlerPriority.MEDIUM, label = cor
         const func = descriptor.value;
         if (func) {
             // add the subscription.
-            domain_1.Domain.EventStream(subdomain).subscribe(eventName, func, handlerPriority, label, stopPropogationOnError);
+            const registrationFn = (subdomain) => domain_1.Domain.EventStream(subdomain).subscribe(eventName, func, handlerPriority, label, stopPropogationOnError);
+            if (Reflect.hasMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls)) {
+                const callbacks = Reflect.getMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls);
+                callbacks.push(registrationFn);
+            }
+            else {
+                const callbacksArr = new Array();
+                callbacksArr.push(registrationFn);
+                Reflect.defineMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, callbacksArr, parentCls);
+            }
         }
     };
 }

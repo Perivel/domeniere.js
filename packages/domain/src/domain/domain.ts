@@ -1,5 +1,5 @@
 import { Container, InvalidModuleException } from '@swindle/container';
-import { EventStore, EventStream } from '@domeniere/event';
+import { DefaultEventStore, EventStore, EventStream } from '@domeniere/event';
 import { DomainInterface } from "./domain.interface";
 import { DomainException } from '../exceptions/domain.exception';
 
@@ -29,10 +29,10 @@ export class Domain implements DomainInterface {
      *
      * Creates a Subdomain within the domain.
      * @param name the name of the subdomain
-     * @param eventStore the event store to be assigned to teh 
+     * @param eventStore the event store to be assigned to the subdomain.
      */
 
-    public static CreateSubdomain(name: string, eventStore: EventStore): void {
+    public static CreateSubdomain(name: string, eventStore: EventStore = new DefaultEventStore()): void {
         if (!Domain.ContainsModule(name)) {
             const frameworkStorageSubmodule = `${name}.__domeniere__`;
             Domain.CreateModule(frameworkStorageSubmodule);

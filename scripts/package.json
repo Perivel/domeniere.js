@@ -14,7 +14,7 @@
     "test:coverage": "jest --coverage",
     "inspect:circular": "npx madge --circular --extensions ts ./",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "build-framework": "node ./build-framework.js"
+    "build-framework": "yarn build && node ./build-framework.js"
   },
   "dependencies": {
     "@swindle/core": "^2.1.0",

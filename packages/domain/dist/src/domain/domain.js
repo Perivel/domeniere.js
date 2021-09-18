@@ -21,9 +21,9 @@ class Domain {
      *
      * Creates a Subdomain within the domain.
      * @param name the name of the subdomain
-     * @param eventStore the event store to be assigned to teh
+     * @param eventStore the event store to be assigned to the subdomain.
      */
-    static CreateSubdomain(name, eventStore) {
+    static CreateSubdomain(name, eventStore = new event_1.DefaultEventStore()) {
         if (!Domain.ContainsModule(name)) {
             const frameworkStorageSubmodule = `${name}.__domeniere__`;
             Domain.CreateModule(frameworkStorageSubmodule);

@@ -1,8 +1,10 @@
-import { Api } from "@domeniere/core";
+import "reflect-metadata";
 import { Domain } from "@domeniere/domain";
 import { DomainEvent, DomainEventHandlerPriority, EventAggregate } from "@domeniere/event";
 import { UUID } from "@swindle/core";
 import { EventDescriptor } from "./event-decryptor";
+import { EventRegistrationCallbackFn } from "./event-registration-callback.type";
+import { EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY } from "../constants";
 
 /**
  * OnError() Decorator.
@@ -27,7 +29,7 @@ export function OnError<T>(priority: DomainEventHandlerPriority = DomainEventHan
         // This section changes the handler function so that it still has access to the "this" keyword.
         // We also get the subdomain in which the event will be registered here. This works under the 
         // assmption that this decorator is being called within an Api class body.
-        let subdomain = (parentCls as Api).subdomainName;
+        //let subdomain = (parentCls as Api).subdomainName;
         descriptor.value = async function <T extends DomainEvent>(event: T): Promise<void> {
             //subdomain = (this as Api).subdomainName;
             return origValue.apply(this, [event]);
@@ -36,8 +38,18 @@ export function OnError<T>(priority: DomainEventHandlerPriority = DomainEventHan
         const func = descriptor.value;
 
         if (func) {
-            // add the subscription.
-            Domain.EventStream(subdomain).subscribe(eventName, func, handlerPriority, label, stopPropogationOnError);
+            // add the subscription as a callback to be registered by the @Subdomain decorator.
+            const registrationFn: EventRegistrationCallbackFn = (subdomain: string) => Domain.EventStream(subdomain).subscribe(eventName, func, handlerPriority, label, stopPropogationOnError);
+
+            if (Reflect.hasMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls)) {
+                const callbacks: EventRegistrationCallbackFn[] = Reflect.getMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls);
+                callbacks.push(registrationFn);
+            }
+            else {
+                const callbacksArr = new Array<EventRegistrationCallbackFn>();
+                callbacksArr.push(registrationFn);
+                Reflect.defineMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, callbacksArr, parentCls);
+            }
         }
     }
 }

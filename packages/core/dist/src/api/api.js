@@ -14,7 +14,7 @@ class Api {
      */
     constructor(domainName, eventStore) {
         this.subdomainName = domainName.trim();
-        domain_1.Domain.CreateSubdomain(this.subdomainName, eventStore);
+        domain_1.Domain.EventStream(this.subdomainName).setEventStore(eventStore);
         this.domain = domain_1.Domain.Module(this.subdomainName);
     }
     /**

@@ -13,4 +13,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // decorators well
 __exportStar(require("./events/events.well"), exports);
 __exportStar(require("./state/state.well"), exports);
+__exportStar(require("./api/api.well"), exports);
 //# sourceMappingURL=decorators.well.js.map

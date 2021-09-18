@@ -18,9 +18,9 @@ export declare class Domain implements DomainInterface {
      *
      * Creates a Subdomain within the domain.
      * @param name the name of the subdomain
-     * @param eventStore the event store to be assigned to teh
+     * @param eventStore the event store to be assigned to the subdomain.
      */
-    static CreateSubdomain(name: string, eventStore: EventStore): void;
+    static CreateSubdomain(name: string, eventStore?: EventStore): void;
     /**
      * CreateModule()
      *
