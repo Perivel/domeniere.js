@@ -40,7 +40,14 @@ class Domain {
      * @param path The the path of the module to create.
      */
     static CreateModule(path) {
-        Domain.instance().container.createModule(path);
+        try {
+            Domain.instance().container.createModule(path);
+        }
+        catch (e) {
+            if (e instanceof container_1.InvalidModuleException) {
+                throw new container_1.InvalidModuleException("Invalid Module: " + path);
+            }
+        }
     }
     /**
      * ContainsModule()

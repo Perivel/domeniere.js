@@ -1,4 +1,4 @@
-import { Container } from '@swindle/container';
+import { Container, InvalidModuleException } from '@swindle/container';
 import { EventStore, EventStream } from '@domeniere/event';
 import { DomainInterface } from "./domain.interface";
 import { DomainException } from '../exceptions/domain.exception';
@@ -51,7 +51,14 @@ export class Domain implements DomainInterface {
      */
 
     public static CreateModule(path: string): void {
-        Domain.instance().container.createModule(path);
+        try {
+            Domain.instance().container.createModule(path);
+        }
+        catch(e) {
+            if (e instanceof InvalidModuleException) {
+                throw new InvalidModuleException("Invalid Module: " + path);
+            }
+        }
     }
 
     /**
