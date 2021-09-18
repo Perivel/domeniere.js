@@ -1,0 +1,5 @@
+{
+    "name": "simple-chat",
+    "description": "A very basic example to illustrate the structure of a Domeniere application",
+    "package_manager": "yarn"
+}

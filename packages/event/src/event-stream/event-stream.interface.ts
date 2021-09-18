@@ -66,5 +66,5 @@ export interface EventStreamInterface {
      * @param stopPropogationOnError indicates if event propogation should stop if the handler encounters an error.
      */
 
-    subscribe<T extends DomainEvent>(event: Type<T>|EventAggregate, handler: DomainEventHandler, priority: DomainEventHandlerPriority, label: string, stopPropogationOnError: boolean): void;
+    subscribe<T extends DomainEvent>(event: Type<T>|EventAggregate, handler: DomainEventHandler<T>, priority: DomainEventHandlerPriority, label: string, stopPropogationOnError: boolean): void;
 }

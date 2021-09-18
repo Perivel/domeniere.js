@@ -7,5 +7,5 @@
 import { DomainEventHandler } from "@domeniere/event";
 
 export interface EventDescriptor extends PropertyDescriptor {
-    value?: DomainEventHandler
+    value?: DomainEventHandler<any>
 }

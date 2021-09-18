@@ -9,12 +9,13 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "tsc",
+    "build": "yarn clean && tsc",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "inspect:circular": "npx madge --circular --extensions ts ./",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "clean": "rimraf ./dist"
   },
   "dependencies": {
     "@swindle/core": "^2.1.0",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.20",
     "jest": "^26.6.3",
-    "ts-jest": "^26.4.4"
+    "ts-jest": "^26.4.4",
+    "rimraf": "^3.0.2"
   }
 }

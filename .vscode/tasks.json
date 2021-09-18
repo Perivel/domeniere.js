@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build the State Module",
+            "label": "build-state-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
@@ -23,7 +23,7 @@
             "promptOnClose": true
         },
         {
-            "label": "Run the State Module Unit Tests",
+            "label": "run-state-module-unit-tests",
             "type": "shell",
             "command": "yarn test",
             "options": {
@@ -42,7 +42,7 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Value Module",
+            "label": "build-value-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
@@ -61,7 +61,7 @@
             "promptOnClose": true
         },
         {
-            "label": "Run the Values Module Unit Tests",
+            "label": "run-values-module-unit-tests",
             "type": "shell",
             "command": "yarn test",
             "options": {
@@ -80,12 +80,16 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Entity Module",
+            "label": "build-entity-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
                 "cwd": "packages/entity"
             },
+            "dependsOn": [
+                "build-state-module",
+                "build-value-module"
+            ],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -99,7 +103,7 @@
             "promptOnClose": true
         },
         {
-            "label": "Run the Entity Module Unit Tests",
+            "label": "run-entity-module-unit-tests",
             "type": "shell",
             "command": "yarn test",
             "options": {
@@ -118,12 +122,16 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Aggregate Module",
+            "label": "build-aggregate-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
                 "cwd": "packages/aggregate"
             },
+            "dependsOn": [
+                "build-state-module",
+                "build-entity-module"
+            ],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -137,7 +145,7 @@
             "promptOnClose": true
         },
         {
-            "label": "Run the Aggregate Module Unit Tests",
+            "label": "run-aggregate-module-unit-tests",
             "type": "shell",
             "command": "yarn test",
             "options": {
@@ -156,12 +164,15 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Event Module",
+            "label": "build-event-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
                 "cwd": "packages/event"
             },
+            "dependsOn": [
+                
+            ],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -175,7 +186,7 @@
             "promptOnClose": true
         },
         {
-            "label": "Run the Event Usage Tests",
+            "label": "run-event-module-unit-tests",
             "type": "shell",
             "command": "yarn build && yarn start",
             "options": {
@@ -194,7 +205,7 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Factory Module",
+            "label": "build-factory-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
@@ -213,12 +224,15 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Repository Module",
+            "label": "build-repository-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
                 "cwd": "packages/repository"
             },
+            "dependsOn": [
+                "build-value-module"
+            ],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -232,12 +246,15 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Domain Module",
+            "label": "build-domain-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
                 "cwd": "packages/domain"
             },
+            "dependsOn": [
+                "build-event-module"
+            ],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -251,12 +268,15 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Service Module",
+            "label": "build-service-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
                 "cwd": "packages/service"
             },
+            "dependsOn": [
+                "build-domain-module"
+            ],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -270,12 +290,16 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Module Module",
+            "label": "build-modules-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
                 "cwd": "packages/module"
             },
+            "dependsOn": [
+                "build-repository-module",
+                "build-service-module"
+            ],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -289,12 +313,23 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Core Module",
+            "label": "build-core-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
                 "cwd": "packages/core"
             },
+            "dependsOn": [
+                "build-value-module",
+                "build-entity-module",
+                "build-aggregate-module",
+                "build-factory-module",
+                "build-repository-module",
+                "build-event-module",
+                "build-domain-module",
+                "build-dto-module",
+                "build-service-module",
+            ],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -308,12 +343,15 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Common Module",
+            "label": "build-common-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
                 "cwd": "packages/common"
             },
+            "dependsOn": [
+                "build-core-module"
+            ],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -327,7 +365,7 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Dto Module",
+            "label": "build-dto-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
@@ -346,11 +384,30 @@
             "promptOnClose": true
         },
         {
-            "label": "Build the Logger Module",
+            "label": "build-logger-module",
             "type": "shell",
             "command": "yarn build",
             "options": {
                 "cwd": "packages/logger"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "test",
+            "detail": "Builds the dto module.",
+            "promptOnClose": true
+        },
+        {
+            "label": "run-simple-chat-test",
+            "type": "shell",
+            "command": "yarn start",
+            "options": {
+                "cwd": "packages/simple-chat"
             },
             "presentation": {
                 "echo": true,

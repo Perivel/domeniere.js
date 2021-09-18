@@ -22,7 +22,8 @@ export function On<T extends DomainEvent>(event: Type<T>, priority: DomainEventH
         const handlerPriority = priority;
 
         // get the event name.
-        const eventName = (event.constructor as any).EventName();
+        //const eventName = (event.constructor as any).EventName();
+        const eventName = (event as any).EventName();
 
         // This section changes the handler function so that it still has access to the "this" keyword.
         // We also get the subdomain in which the event will be registered here. This works under the 
