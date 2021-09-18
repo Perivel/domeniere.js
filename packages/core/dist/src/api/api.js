@@ -13,7 +13,7 @@ class Api {
      * @param eventStore The event store to use.
      */
     constructor(domainName, eventStore) {
-        this.subdomainName = domainName;
+        this.subdomainName = domainName.trim();
         domain_1.Domain.CreateSubdomain(this.subdomainName, eventStore);
         this.domain = domain_1.Domain.Module(this.subdomainName);
     }

@@ -5,7 +5,7 @@
     "examples"
   ],
   "dependencies": {
-    "@swindle/container": "^1.0.0",
+    "@swindle/container": "^1.0.1",
     "@swindle/core": "^2.1.0",
     "@swindle/event-emitter": "^1.0.3",
     "@swindle/specification": "^1.0.1",

@@ -20,7 +20,7 @@ export abstract class Module implements ModuleInterface {
     private readonly _path: string;
 
     constructor(path: string) {
-        this._path = path;
+        this._path = path.trim();
         this._factoryBindings = new Map<string, ModuleFactoryEntry<any>>();
         this._serviceBindings = new Map<string, ModuleFactoryEntry<any>>();
         this._repositoryInstances = new Map<string, ModuleInstanceEntry<any>>();

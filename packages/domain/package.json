@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@swindle/core": "^2.1.0",
-    "@swindle/container": "^1.0.0",
+    "@swindle/container": "^1.0.1",
     "@domeniere/event": "^2.0.0",
     "typescript": "^4.4.2"
   },

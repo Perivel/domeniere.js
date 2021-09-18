@@ -526,6 +526,14 @@
   dependencies:
     typescript "^4.3.5"
 
+"@swindle/container@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@swindle/container/-/container-1.0.1.tgz#20d61001257b93b7bb630ea5f3880ae564f08c93"
+  integrity sha512-J1YX7hN3c+s5ZrUmbCASx6OC+ic/cjA1+sy7eeKMB9DWDklmgI08QFmdqsTT92QggQif6/62JtkFKwv05//B2g==
+  dependencies:
+    "@swindle/core" "2.1.0"
+    typescript "^4.3.5"
+
 "@swindle/core@2.1.0", "@swindle/core@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@swindle/core/-/core-2.1.0.tgz#93eec2bc397750dd709cc14fd958bd0e30dc1c1b"
