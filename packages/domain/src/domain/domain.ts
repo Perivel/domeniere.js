@@ -1,4 +1,4 @@
-import { Container } from '@swindle/container';
+import { Container, InvalidModuleException } from '@swindle/container';
 import { EventStore, EventStream } from '@domeniere/event';
 import { DomainInterface } from "./domain.interface";
 import { DomainException } from '../exceptions/domain.exception';
@@ -36,7 +36,7 @@ export class Domain implements DomainInterface {
         if (!Domain.ContainsModule(name)) {
             const frameworkStorageSubmodule = `${name}.__domeniere__`;
             Domain.CreateModule(frameworkStorageSubmodule);
-            Domain.Module(frameworkStorageSubmodule).bindInstance(EventStream, new EventStream(eventStore));
+            Domain.Module(frameworkStorageSubmodule.trim()).bindInstance(EventStream, new EventStream(eventStore));
         }
         else {
             throw new DomainException(`Subdomain '${name}'' already in use.`);
@@ -51,7 +51,14 @@ export class Domain implements DomainInterface {
      */
 
     public static CreateModule(path: string): void {
-        Domain.instance().container.createModule(path);
+        try {
+            Domain.instance().container.createModule(path);
+        }
+        catch(e) {
+            if (e instanceof InvalidModuleException) {
+                throw new InvalidModuleException("Invalid Module: " + path);
+            }
+        }
     }
 
     /**
@@ -89,7 +96,7 @@ export class Domain implements DomainInterface {
      */
 
     public static EventStream(context: string): EventStream {
-        return Domain.Module(`${context}.__domeniere__`).get(EventStream);
+        return Domain.Module(`${context.trim()}.__domeniere__`).get(EventStream);
     }
 
     /**
@@ -116,6 +123,6 @@ export class Domain implements DomainInterface {
      */
 
     public static async PublishEvents(context: string): Promise<void> {
-        await Domain.Module(`${context}.__domeniere__`).get(EventStream).publishEvents();
+        await Domain.Module(`${context.trim()}.__domeniere__`).get(EventStream).publishEvents();
     }
 }
