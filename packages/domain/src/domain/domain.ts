@@ -36,7 +36,7 @@ export class Domain implements DomainInterface {
         if (!Domain.ContainsModule(name)) {
             const frameworkStorageSubmodule = `${name}.__domeniere__`;
             Domain.CreateModule(frameworkStorageSubmodule);
-            Domain.Module(frameworkStorageSubmodule.trim()).bindInstance(EventStream, new EventStream(eventStore));
+            Domain.Module(frameworkStorageSubmodule).bindInstance(EventStream, new EventStream(eventStore));
         }
         else {
             throw new DomainException(`Subdomain '${name}'' already in use.`);
@@ -96,7 +96,7 @@ export class Domain implements DomainInterface {
      */
 
     public static EventStream(context: string): EventStream {
-        return Domain.Module(`${context.trim()}.__domeniere__`).get(EventStream);
+        return Domain.Module(`${context}.__domeniere__`).get(EventStream);
     }
 
     /**
@@ -123,6 +123,6 @@ export class Domain implements DomainInterface {
      */
 
     public static async PublishEvents(context: string): Promise<void> {
-        await Domain.Module(`${context.trim()}.__domeniere__`).get(EventStream).publishEvents();
+        await Domain.Module(`${context}.__domeniere__`).get(EventStream).publishEvents();
     }
 }

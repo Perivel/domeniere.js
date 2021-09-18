@@ -27,7 +27,7 @@ class Domain {
         if (!Domain.ContainsModule(name)) {
             const frameworkStorageSubmodule = `${name}.__domeniere__`;
             Domain.CreateModule(frameworkStorageSubmodule);
-            Domain.Module(frameworkStorageSubmodule.trim()).bindInstance(event_1.EventStream, new event_1.EventStream(eventStore));
+            Domain.Module(frameworkStorageSubmodule).bindInstance(event_1.EventStream, new event_1.EventStream(eventStore));
         }
         else {
             throw new domain_exception_1.DomainException(`Subdomain '${name}'' already in use.`);
@@ -78,7 +78,7 @@ class Domain {
      * @returns the event stream.
      */
     static EventStream(context) {
-        return Domain.Module(`${context.trim()}.__domeniere__`).get(event_1.EventStream);
+        return Domain.Module(`${context}.__domeniere__`).get(event_1.EventStream);
     }
     /**
      * Module()
@@ -101,7 +101,7 @@ class Domain {
      * Publishes all the events in the event stream.
      */
     static async PublishEvents(context) {
-        await Domain.Module(`${context.trim()}.__domeniere__`).get(event_1.EventStream).publishEvents();
+        await Domain.Module(`${context}.__domeniere__`).get(event_1.EventStream).publishEvents();
     }
 }
 exports.Domain = Domain;

@@ -23,9 +23,9 @@ function On(event, priority = event_1.DomainEventHandlerPriority.MEDIUM, label =
         // This section changes the handler function so that it still has access to the "this" keyword.
         // We also get the subdomain in which the event will be registered here. This works under the 
         // assmption that this decorator is being called within an Api class body.
-        let subdomain = "";
+        let subdomain = parentCls.subdomainName;
         descriptor.value = async function (event) {
-            subdomain = this.subdomainName;
+            //subdomain = (this as Api).subdomainName;
             return origValue === null || origValue === void 0 ? void 0 : origValue.apply(this, [event]);
         };
         const func = descriptor.value;
