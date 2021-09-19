@@ -24,8 +24,5 @@ export function Subdomain(path: string): ClassDecorator {
             registrations.forEach(register => register(path));
             console.log(registrations);
         }
-        else {
-            console.log("No Subscriptions to register.");
-        }
     }
 }

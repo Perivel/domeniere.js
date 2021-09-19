@@ -1,5 +1,5 @@
 import { Module } from '@domeniere/module';
-import { EventStore, TransmittedEvent } from "@domeniere/event";
+import { EventStore, EventStream, TransmittedEvent } from "@domeniere/event";
 import { ApiInterface } from "./api.interface";
 import { Container } from '@swindle/container';
 /**
@@ -20,6 +20,10 @@ export declare abstract class Api implements ApiInterface {
      * the current domain.
      */
     protected readonly domain: Container;
+    /**
+     * The event Stream.
+     */
+    protected readonly stream: EventStream;
     /**
      * constructor()
      * @param eventStore The event store to use.
@@ -51,5 +55,13 @@ export declare abstract class Api implements ApiInterface {
      * @param module the module to register.
      */
     protected registerModule(module: Module): void;
+    /**
+     * init()
+     *
+     * performs some initialization operations.
+     * This operation is run right after the domain has been initialized.
+     * This is the ideal place to initialize things like additional event handlers.
+     */
+    protected init(): void;
 }
 //# sourceMappingURL=api.d.ts.map

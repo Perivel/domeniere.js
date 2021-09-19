@@ -16,6 +16,7 @@ import { DomainEventHandlerPriority } from "./domain-event-handler-priority.enum
 import { DomainEventHandler } from "./domain-event-handler.type";
 import { EventAggregate } from "./event-aggregate..type";
 import { EventStreamInterface } from "./event-stream.interface";
+import { DomainEventClass } from "../domain-event/domain-event-class.type";
 
 /**
  * Event Stream
@@ -203,11 +204,11 @@ export class EventStream implements EventStreamInterface {
      * @param stopPropogationOnError indicates if event propogation should stop if the handler encounters an error.
      */
 
-    subscribe<T extends DomainEvent>(event: Type<T>|EventAggregate, handler: DomainEventHandler<T>, priority: DomainEventHandlerPriority = DomainEventHandlerPriority.MEDIUM, label: string = "", stopPropogationOnError: boolean = false): void {
+    subscribe<T extends DomainEvent>(event: DomainEventClass<T>|EventAggregate, handler: DomainEventHandler<T>, priority: DomainEventHandlerPriority = DomainEventHandlerPriority.MEDIUM, label: string = "", stopPropogationOnError: boolean = false): void {
         const subscriberId = SubscriberId.Generate();
         
         // if the event is an EventAggregate, we cast it to a string. Otherwise, it is some type of DomainEvent, in which case we call the EventName() static method.
-        const eventName = Object.values(EventAggregate).includes(event as EventAggregate) ? event.toString() : (event.constructor as any).EventName();
+        const eventName = Object.values(EventAggregate).includes(event as EventAggregate) ? event.toString() : (event as any).EventName();
 
         // create the subscriber.
         const subscriber = new Subscriber(subscriberId, eventName.toString(), Number(priority), label, handler as EventHandler, stopPropogationOnError);

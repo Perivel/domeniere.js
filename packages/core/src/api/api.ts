@@ -3,6 +3,7 @@ import { Domain } from '@domeniere/domain';
 import { Module } from '@domeniere/module';
 import {
     EventStore, 
+    EventStream, 
     TransmittedEvent
 } from "@domeniere/event";
 import { ApiInterface } from "./api.interface";
@@ -33,6 +34,12 @@ export abstract class Api implements ApiInterface {
     protected readonly domain: Container;
 
     /**
+     * The event Stream.
+     */
+
+    protected readonly stream: EventStream;
+
+    /**
      * constructor() 
      * @param eventStore The event store to use.
      */
@@ -41,7 +48,10 @@ export abstract class Api implements ApiInterface {
         this.subdomainName = domainName.trim();
         Domain.EventStream(this.subdomainName).setEventStore(eventStore);
         this.domain = Domain.Module(this.subdomainName);
-        
+        this.stream = Domain.EventStream(this.subdomainName);
+
+        // run the initialization logic.
+        this.init();
     }
 
     /**
@@ -51,7 +61,7 @@ export abstract class Api implements ApiInterface {
      */
 
     public async broadcastEvents(): Promise<void> {
-        await Domain.EventStream(this.subdomainName).publishEvents();
+        await this.stream.publishEvents();
     }
 
     /**
@@ -61,7 +71,7 @@ export abstract class Api implements ApiInterface {
      */
 
     public async initializeEvents(): Promise<void> {
-        await Domain.EventStream(this.subdomainName).initializeEvents();
+        await this.stream.initializeEvents();
     }
 
     /**
@@ -72,7 +82,7 @@ export abstract class Api implements ApiInterface {
      */
 
     public async processTransmittedEvent(event: TransmittedEvent): Promise<void> {
-        await Domain.EventStream(this.subdomainName).processTransmittedEvent(event);
+        await this.stream.processTransmittedEvent(event);
     }
 
     /**
@@ -121,5 +131,17 @@ export abstract class Api implements ApiInterface {
                 Domain.Module(path).bindInstance(token, instance);
             }
         });
+    }
+
+    /**
+     * init()
+     * 
+     * performs some initialization operations.
+     * This operation is run right after the domain has been initialized.
+     * This is the ideal place to initialize things like additional event handlers.
+     */
+
+    protected init(): void {
+        //
     }
 }

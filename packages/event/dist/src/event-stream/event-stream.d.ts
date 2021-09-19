@@ -1,4 +1,3 @@
-import { Type } from "@swindle/core";
 import { Subscriber } from "@swindle/event-emitter";
 import { DomainEvent } from "../domain-event/domain-event";
 import { EventStore } from "../eventstore/event-store";
@@ -7,6 +6,7 @@ import { DomainEventHandlerPriority } from "./domain-event-handler-priority.enum
 import { DomainEventHandler } from "./domain-event-handler.type";
 import { EventAggregate } from "./event-aggregate..type";
 import { EventStreamInterface } from "./event-stream.interface";
+import { DomainEventClass } from "../domain-event/domain-event-class.type";
 /**
  * Event Stream
  *
@@ -73,6 +73,6 @@ export declare class EventStream implements EventStreamInterface {
      * @param handler The function to execute when an event occurs.
      * @param stopPropogationOnError indicates if event propogation should stop if the handler encounters an error.
      */
-    subscribe<T extends DomainEvent>(event: Type<T> | EventAggregate, handler: DomainEventHandler<T>, priority?: DomainEventHandlerPriority, label?: string, stopPropogationOnError?: boolean): void;
+    subscribe<T extends DomainEvent>(event: DomainEventClass<T> | EventAggregate, handler: DomainEventHandler<T>, priority?: DomainEventHandlerPriority, label?: string, stopPropogationOnError?: boolean): void;
 }
 //# sourceMappingURL=event-stream.d.ts.map

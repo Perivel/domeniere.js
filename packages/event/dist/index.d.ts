@@ -1,4 +1,5 @@
 export * from "./src/domain-event/domain-event";
+export * from './src/domain-event/domain-event-class.type';
 export * from "./src/event-stream/domain-event-handler-priority.enum";
 export * from "./src/event-stream/event-aggregate..type";
 export * from "./src/event-stream/event-stream";

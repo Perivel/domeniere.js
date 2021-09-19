@@ -22,9 +22,6 @@ function Subdomain(path) {
             registrations.forEach(register => register(path));
             console.log(registrations);
         }
-        else {
-            console.log("No Subscriptions to register.");
-        }
     };
 }
 exports.Subdomain = Subdomain;

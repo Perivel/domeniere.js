@@ -1,1 +1,1 @@
-{"version":3,"file":"subdomain.decorator.d.ts","sourceRoot":"","sources":["../../../../src/decorators/api/subdomain.decorator.ts"],"names":[],"mappings":"AACA,OAAO,kBAAkB,CAAC;AAI1B;;;;GAIG;AAEH,wBAAgB,SAAS,CAAC,IAAI,EAAE,MAAM,GAAG,cAAc,CAmBtD"}
+{"version":3,"file":"subdomain.decorator.d.ts","sourceRoot":"","sources":["../../../../src/decorators/api/subdomain.decorator.ts"],"names":[],"mappings":"AACA,OAAO,kBAAkB,CAAC;AAI1B;;;;GAIG;AAEH,wBAAgB,SAAS,CAAC,IAAI,EAAE,MAAM,GAAG,cAAc,CAgBtD"}
