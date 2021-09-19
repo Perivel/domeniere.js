@@ -25,7 +25,6 @@ function On(event, priority = event_1.DomainEventHandlerPriority.MEDIUM, label =
         // We also get the subdomain in which the event will be registered here. This works under the 
         // assmption that this decorator is being called within an Api class body.
         descriptor.value = async function (event) {
-            //subdomain = (this as Api).subdomainName;
             return origValue === null || origValue === void 0 ? void 0 : origValue.apply(this, [event]);
         };
         const func = descriptor.value;

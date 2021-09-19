@@ -39,7 +39,10 @@ export class MessagePosted extends DomainEvent {
     }
 
     public serializeData(): string {
-        throw new MethodUndefinedException();
+        return JSON.stringify({
+            message: this.message().serialize(),
+            conversation: this.conversation().serialize()
+        });
     }
 
     public shouldBeBroadcasted(): boolean {

@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const domain_1 = require("@domeniere/domain");
 const simple_chat_1 = require("./simple-chat");
 const chatroom_module_1 = require("./src/chatroom/chatroom.module");
 class MemoryUserRepository extends simple_chat_1.UserRepository {
@@ -88,6 +87,7 @@ class MemorySimpleChatEventStore extends simple_chat_1.SimpleChatEventStore {
         super();
     }
     async boradcastEvents(eventsToPublish, publishedEvents) {
+        console.log("Running broadcastEvents()");
         let event;
         while (!eventsToPublish.isEmpty()) {
             event = eventsToPublish.dequeue();
@@ -96,33 +96,44 @@ class MemorySimpleChatEventStore extends simple_chat_1.SimpleChatEventStore {
         }
     }
     async getLatestStoredEvent() {
+        console.log("Running getLatestStoredEvent()");
         return null;
     }
     async getTransmittedEventsSince(date) {
+        console.log("Running getTransmittedEventsSince()");
         return [];
     }
     async getUnpublishedEvents() {
+        console.log("Running getUnpublishedEvents()");
         return [];
     }
     mapStoredEventToDomainEvent(storedEvent) {
-        throw new Error("Undefined");
+        console.log("Running mapStoredEventToDomainEvent()");
+        throw new Error("mapStoredEventToDomainEvent");
     }
     mapTransmittedEventToDomainEvent(transmittedEvent) {
+        console.log("Running mapTransmittedEventToDomainEvent()");
         throw new Error('Method not implemented.');
     }
     async saveEvents(eventQueue) {
+        //console.log("Running saveEvents()");
+        throw new Error("Events cannot be saved.");
     }
 }
 const main = async () => {
     const chat = new simple_chat_1.SimpleChatApi(new MemoryUserRepository(), new MemoryConversationRepository(), new MemorySimpleChatEventStore());
-    const subscribers = domain_1.Domain.EventStream('simple-chat').listSubscribers();
-    console.log(`Subscribers:\n${subscribers}`);
     const registration = new chatroom_module_1.UserRegistrationData();
     registration.first_name = "John";
     registration.last_name = "Appleseed";
     registration.nickname = "John";
+    const anotherRegistration = new chatroom_module_1.UserRegistrationData();
+    anotherRegistration.first_name = "Carmen";
+    anotherRegistration.last_name = "Lopez";
+    anotherRegistration.nickname = "Carmen";
     await chat.createUser(registration);
+    await chat.createUser(anotherRegistration);
     const john = await chat.getUserByNickname(registration.nickname);
+    const carmen = await chat.getUserByNickname(anotherRegistration.nickname);
     await chat.createConversation(john);
     const convo = await chat.getConversationsForUser(john);
     const message = new chatroom_module_1.MessageData();
@@ -130,5 +141,6 @@ const main = async () => {
     message.content = "This is my first message.";
     message.conversation_id = convo[0].id;
     await chat.postMessage(message, convo[0]);
+    await chat.joinConversation(carmen, convo[0]);
 };
 main().then(() => console.log("Finished!"));
