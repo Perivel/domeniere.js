@@ -36,11 +36,13 @@ function OnError(priority = event_1.DomainEventHandlerPriority.MEDIUM, label = c
             if (Reflect.hasMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls)) {
                 const callbacks = Reflect.getMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls);
                 callbacks.push(registrationFn);
+                console.log(`Added to callbacks array: ${callbacks}`);
             }
             else {
                 const callbacksArr = new Array();
                 callbacksArr.push(registrationFn);
                 Reflect.defineMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, callbacksArr, parentCls);
+                console.log(`Created callbacks array: ${callbacksArr}`);
             }
         }
     };

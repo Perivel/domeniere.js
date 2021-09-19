@@ -5,6 +5,7 @@ import { Type, UUID } from "@swindle/core";
 import { EventDescriptor } from "./event-decryptor";
 import { EventRegistrationCallbackFn } from './event-registration-callback.type';
 import { EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, SUBDOMAIN_METADATA_KEY } from "./../constants";
+import { isConstructorDeclaration } from 'typescript';
 
 /**
  * On() Decorator.
@@ -43,11 +44,13 @@ export function On<T extends DomainEvent>(event: Type<T>, priority: DomainEventH
             if (Reflect.hasMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls)) {
                 const callbacks: EventRegistrationCallbackFn[] = Reflect.getMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls);
                 callbacks.push(registrationFn);
+                console.log(`Added callbacks array: ${callbacks}`);
             }
             else {
                 const callbacksArr = new Array<EventRegistrationCallbackFn>();
                 callbacksArr.push(registrationFn);
                 Reflect.defineMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, callbacksArr, parentCls);
+                console.log(`Created callbacks array: ${callbacksArr}`)
             }
         }
     }

@@ -9,18 +9,23 @@ import { EventRegistrationCallbackFn } from "../events/event-registration-callba
  * The Subdomain decorator specifies the subdomain an Api will be working with.
  */
 
-export function Subdomain(path: string) {
-    return function(target: Object) {
+export function Subdomain(path: string): ClassDecorator {
+    return (target) => {
         // create the subdomain
         Domain.CreateSubdomain(path);
 
         // set the subdomain metadata
-        Reflect.defineMetadata(SUBDOMAIN_METADATA_KEY, path, target);
+        Reflect.defineMetadata(SUBDOMAIN_METADATA_KEY, path, target.prototype);
 
         // register the event handlers.
-        if (Reflect.hasMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target)) {
-            const registrations: EventRegistrationCallbackFn[] = Reflect.getMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target);
+        console.log(`\Registering listeners...\n`);
+        if (Reflect.hasMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target.prototype)) {
+            const registrations: EventRegistrationCallbackFn[] = Reflect.getMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target.prototype);
             registrations.forEach(register => register(path));
+            console.log(registrations);
+        }
+        else {
+            console.log("No Subscriptions to register.");
         }
     }
 }

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventStream = void 0;
 const event_emitter_1 = require("@swindle/event-emitter");
-const __1 = require("../..");
+const event_store_exception_1 = require("./../eventstore/event-store.exception");
 const domeniere_event_emitter_1 = require("../event-emitter/domeniere-event-emitter");
 const default_event_store_1 = require("../eventstore/default-event-store");
 const event_handler_failed_event_1 = require("../internal-events/event-handler-failed.event");
@@ -122,6 +122,15 @@ class EventStream {
         await this.emitter.emit(event);
     }
     /**
+     * listSubscribers()
+     *
+     * lists the event subscribers.
+     * @returns the list of event subscribers.
+     */
+    listSubscribers() {
+        return this.emitter.subscriberList();
+    }
+    /**
      * eventStore()
      *
      * eventStore() gets the event store.
@@ -139,7 +148,7 @@ class EventStream {
      */
     setEventStore(eventStore, force = false) {
         if (!force && this._eventStoreUpdated) {
-            throw new __1.EventStoreException('EventStore already previously set.');
+            throw new event_store_exception_1.EventStoreException('EventStore already previously set.');
         }
         this._eventStore = eventStore;
         this._eventStoreUpdated = true;

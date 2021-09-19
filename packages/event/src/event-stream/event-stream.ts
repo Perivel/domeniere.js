@@ -4,7 +4,7 @@ import {
     Subscriber, 
     SubscriberId 
 } from "@swindle/event-emitter";
-import { EventStoreException } from "../..";
+import { EventStoreException } from "./../eventstore/event-store.exception";
 import { DomainEvent } from "../domain-event/domain-event";
 import { DomeniereEventEmitter } from "../event-emitter/domeniere-event-emitter";
 import { DefaultEventStore } from "../eventstore/default-event-store";
@@ -154,6 +154,17 @@ export class EventStream implements EventStreamInterface {
 
     public async emit(event: DomainEvent): Promise<void> {
         await this.emitter.emit(event);
+    }
+
+    /**
+     * listSubscribers()
+     * 
+     * lists the event subscribers.
+     * @returns the list of event subscribers.
+     */
+
+    public listSubscribers(): Subscriber[] {
+        return this.emitter.subscriberList();
     }
 
     /**

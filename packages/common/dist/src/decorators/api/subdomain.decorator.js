@@ -10,15 +10,20 @@ const constants_1 = require("../constants");
  * The Subdomain decorator specifies the subdomain an Api will be working with.
  */
 function Subdomain(path) {
-    return function (target) {
+    return (target) => {
         // create the subdomain
         domain_1.Domain.CreateSubdomain(path);
         // set the subdomain metadata
-        Reflect.defineMetadata(constants_1.SUBDOMAIN_METADATA_KEY, path, target);
+        Reflect.defineMetadata(constants_1.SUBDOMAIN_METADATA_KEY, path, target.prototype);
         // register the event handlers.
-        if (Reflect.hasMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target)) {
-            const registrations = Reflect.getMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target);
+        console.log(`\Registering listeners...\n`);
+        if (Reflect.hasMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target.prototype)) {
+            const registrations = Reflect.getMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target.prototype);
             registrations.forEach(register => register(path));
+            console.log(registrations);
+        }
+        else {
+            console.log("No Subscriptions to register.");
         }
     };
 }

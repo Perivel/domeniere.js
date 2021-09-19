@@ -45,11 +45,13 @@ export function OnInternal<T>(priority: DomainEventHandlerPriority = DomainEvent
             if (Reflect.hasMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls)) {
                 const callbacks: EventRegistrationCallbackFn[] = Reflect.getMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls);
                 callbacks.push(registrationFn);
+                console.log(`Added Callbacks array: ${callbacks}`);
             }
             else {
                 const callbacksArr = new Array<EventRegistrationCallbackFn>();
                 callbacksArr.push(registrationFn);
                 Reflect.defineMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, callbacksArr, parentCls);
+                console.log(`Created callbacks array: ${callbacksArr}`)
             }
         }
     }

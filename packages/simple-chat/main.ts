@@ -1,6 +1,7 @@
 import { DomainEvent, StoredEvent, TransmittedEvent } from '@domeniere/event';
 import { DateTime } from '@swindle/core';
 import { Queue } from '@swindle/structs';
+import { Domain } from "@domeniere/domain";
 import { SimpleChatApi, SimpleChatEventStore, UserRepository } from './simple-chat';
 import { UserId, User, Nickname, ConversationsRepository, Conversation, ConversationId, UserRegistrationData, MessageData } from './src/chatroom/chatroom.module';
 
@@ -120,6 +121,7 @@ class MemorySimpleChatEventStore extends SimpleChatEventStore {
         let event: DomainEvent;
         while(!eventsToPublish.isEmpty()) {
             event = eventsToPublish.dequeue()!;
+            console.log(event);
             publishedEvents.enqueue(event);
         }
     }
@@ -156,6 +158,9 @@ const main = async (): Promise<void> => {
         new MemoryConversationRepository(),
         new MemorySimpleChatEventStore(),
     );
+
+    const subscribers = Domain.EventStream('simple-chat').listSubscribers();
+    console.log(`Subscribers:\n${subscribers}`)
     
     const registration = new UserRegistrationData();
     registration.first_name = "John";

@@ -1,4 +1,5 @@
 import { Type } from "@swindle/core";
+import { Subscriber } from "@swindle/event-emitter";
 import { DomainEvent } from "../domain-event/domain-event";
 import { EventStore } from "../eventstore/event-store";
 import { TransmittedEvent } from "../eventstore/transmitted-event";
@@ -42,6 +43,13 @@ export declare class EventStream implements EventStreamInterface {
      * emit() publishes a domain event.
      */
     emit(event: DomainEvent): Promise<void>;
+    /**
+     * listSubscribers()
+     *
+     * lists the event subscribers.
+     * @returns the list of event subscribers.
+     */
+    listSubscribers(): Subscriber[];
     /**
      * eventStore()
      *
