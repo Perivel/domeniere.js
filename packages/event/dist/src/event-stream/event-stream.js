@@ -24,8 +24,13 @@ class EventStream {
         async (event, emitter) => {
             // save the event.
             try {
-                await this.eventStore().store(event);
-                await this.eventStore().persistEvents();
+                // We persist all events except EventStoreFailedEvents, as it would not make sence to persist an error event 
+                // in the same object that just failed and caused that error.
+                const isEventStoreFailedEvent = event instanceof event_store_failed_event_1.EventStoreFailed;
+                if (!isEventStoreFailedEvent) {
+                    await this.eventStore().store(event);
+                    await this.eventStore().persistEvents();
+                }
             }
             catch (err) {
                 // failed to store some or all the events.
