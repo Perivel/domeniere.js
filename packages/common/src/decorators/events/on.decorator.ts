@@ -1,11 +1,10 @@
 import 'reflect-metadata';
 import { Domain } from "@domeniere/domain";
-import { DomainEvent, DomainEventHandlerPriority } from "@domeniere/event";
-import { Type, UUID } from "@swindle/core";
+import { DomainEvent, DomainEventClass, DomainEventHandlerPriority } from "@domeniere/event";
+import { UUID } from "@swindle/core";
 import { EventDescriptor } from "./event-decryptor";
 import { EventRegistrationCallbackFn } from './event-registration-callback.type';
-import { EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, SUBDOMAIN_METADATA_KEY } from "./../constants";
-import { isConstructorDeclaration } from 'typescript';
+import { EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY } from "./../constants";
 
 /**
  * On() Decorator.
@@ -15,7 +14,7 @@ import { isConstructorDeclaration } from 'typescript';
  * event.
  */
 
-export function On<T extends DomainEvent>(event: Type<T>, priority: DomainEventHandlerPriority = DomainEventHandlerPriority.MEDIUM, label: string = UUID.V4().id(), stopPropogationOnError: boolean = false) {
+export function On<T extends DomainEvent>(event: DomainEventClass<T>, priority: DomainEventHandlerPriority = DomainEventHandlerPriority.MEDIUM, label: string = UUID.V4().id(), stopPropogationOnError: boolean = false) {
     return function (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) {
 
         // get the function the decorator was applied to.
@@ -44,13 +43,11 @@ export function On<T extends DomainEvent>(event: Type<T>, priority: DomainEventH
             if (Reflect.hasMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls)) {
                 const callbacks: EventRegistrationCallbackFn[] = Reflect.getMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls);
                 callbacks.push(registrationFn);
-                console.log(`Added callbacks array: ${callbacks}`);
             }
             else {
                 const callbacksArr = new Array<EventRegistrationCallbackFn>();
                 callbacksArr.push(registrationFn);
                 Reflect.defineMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, callbacksArr, parentCls);
-                console.log(`Created callbacks array: ${callbacksArr}`)
             }
         }
     }

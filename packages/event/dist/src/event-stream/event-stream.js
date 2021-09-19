@@ -164,7 +164,7 @@ class EventStream {
     subscribe(event, handler, priority = domain_event_handler_priority_enum_1.DomainEventHandlerPriority.MEDIUM, label = "", stopPropogationOnError = false) {
         const subscriberId = event_emitter_1.SubscriberId.Generate();
         // if the event is an EventAggregate, we cast it to a string. Otherwise, it is some type of DomainEvent, in which case we call the EventName() static method.
-        const eventName = Object.values(event_aggregate__type_1.EventAggregate).includes(event) ? event.toString() : event.constructor.EventName();
+        const eventName = Object.values(event_aggregate__type_1.EventAggregate).includes(event) ? event.toString() : event.EventName();
         // create the subscriber.
         const subscriber = new event_emitter_1.Subscriber(subscriberId, eventName.toString(), Number(priority), label, handler, stopPropogationOnError);
         this.emitter.addSubscriber(subscriber);

@@ -16,6 +16,9 @@ class Api {
         this.subdomainName = domainName.trim();
         domain_1.Domain.EventStream(this.subdomainName).setEventStore(eventStore);
         this.domain = domain_1.Domain.Module(this.subdomainName);
+        this.stream = domain_1.Domain.EventStream(this.subdomainName);
+        // run the initialization logic.
+        this.init();
     }
     /**
      * broadcastEvents()
@@ -23,7 +26,7 @@ class Api {
      * broadcastEvents() broadcasts all unpublished events to the network.
      */
     async broadcastEvents() {
-        await domain_1.Domain.EventStream(this.subdomainName).publishEvents();
+        await this.stream.publishEvents();
     }
     /**
      * initializeEvents()
@@ -31,7 +34,7 @@ class Api {
      * initializes the service's state.
      */
     async initializeEvents() {
-        await domain_1.Domain.EventStream(this.subdomainName).initializeEvents();
+        await this.stream.initializeEvents();
     }
     /**
      * processTransmittedEvent()
@@ -40,7 +43,7 @@ class Api {
      * @param event the event to intake.
      */
     async processTransmittedEvent(event) {
-        await domain_1.Domain.EventStream(this.subdomainName).processTransmittedEvent(event);
+        await this.stream.processTransmittedEvent(event);
     }
     /**
      * registerModule()
@@ -82,6 +85,16 @@ class Api {
                 domain_1.Domain.Module(path).bindInstance(token, instance);
             }
         });
+    }
+    /**
+     * init()
+     *
+     * performs some initialization operations.
+     * This operation is run right after the domain has been initialized.
+     * This is the ideal place to initialize things like additional event handlers.
+     */
+    init() {
+        //
     }
 }
 exports.Api = Api;

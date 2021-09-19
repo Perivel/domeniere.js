@@ -12,6 +12,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Subscriber = void 0;
 __exportStar(require("./src/domain-event/domain-event"), exports);
+__exportStar(require("./src/domain-event/domain-event-class.type"), exports);
 __exportStar(require("./src/event-stream/domain-event-handler-priority.enum"), exports);
 __exportStar(require("./src/event-stream/event-aggregate..type"), exports);
 __exportStar(require("./src/event-stream/event-stream"), exports);
