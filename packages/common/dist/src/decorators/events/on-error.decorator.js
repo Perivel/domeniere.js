@@ -26,7 +26,6 @@ function OnError(priority = event_1.DomainEventHandlerPriority.MEDIUM, label = c
         // assmption that this decorator is being called within an Api class body.
         //let subdomain = (parentCls as Api).subdomainName;
         descriptor.value = async function (event) {
-            //subdomain = (this as Api).subdomainName;
             return origValue.apply(this, [event]);
         };
         const func = descriptor.value;

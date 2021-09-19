@@ -31,7 +31,6 @@ export function OnError<T>(priority: DomainEventHandlerPriority = DomainEventHan
         // assmption that this decorator is being called within an Api class body.
         //let subdomain = (parentCls as Api).subdomainName;
         descriptor.value = async function <T extends DomainEvent>(event: T): Promise<void> {
-            //subdomain = (this as Api).subdomainName;
             return origValue.apply(this, [event]);
         }
 

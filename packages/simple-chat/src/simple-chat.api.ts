@@ -1,6 +1,6 @@
 import { On, OnError, Subdomain } from '@domeniere/common';
 import { Api } from '@domeniere/core';
-import { DomainEvent } from '@domeniere/event';
+import { DomainEvent, EventStoreFailed } from '@domeniere/event';
 import ChatroomModule, { ConversationData, ConversationId, ConversationJoined, ConversationsRepository, CreateConversationCommand, CreateUserCommand, GetConversationByIdQuery, GetConversationsForUserQuery, GetUserByIdQuery, GetUserByNicknameQuery, JoinConversationCommand, Message, MessageData, MessageId, MessagePosted, Nickname, PostMessageCommand, UserData, UserFactory, UserId, UserRegistrationData, UserRegistrationFactory, UserRepository } from './chatroom/chatroom.module';
 import { SimpleChatEventStore } from './simple-chat.eventstore';
 

@@ -18,11 +18,9 @@ export function Subdomain(path: string): ClassDecorator {
         Reflect.defineMetadata(SUBDOMAIN_METADATA_KEY, path, target.prototype);
 
         // register the event handlers.
-        console.log(`\Registering listeners...\n`);
         if (Reflect.hasMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target.prototype)) {
             const registrations: EventRegistrationCallbackFn[] = Reflect.getMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target.prototype);
             registrations.forEach(register => register(path));
-            console.log(registrations);
         }
     }
 }

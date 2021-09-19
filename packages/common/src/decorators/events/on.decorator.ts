@@ -30,7 +30,6 @@ export function On<T extends DomainEvent>(event: DomainEventClass<T>, priority: 
         // We also get the subdomain in which the event will be registered here. This works under the 
         // assmption that this decorator is being called within an Api class body.
         descriptor.value = async function <T extends DomainEvent>(event: T): Promise<void> {
-            //subdomain = (this as Api).subdomainName;
             return origValue?.apply(this, [event]);
         }
 

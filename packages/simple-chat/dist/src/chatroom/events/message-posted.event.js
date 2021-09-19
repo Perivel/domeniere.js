@@ -28,7 +28,10 @@ class MessagePosted extends event_1.DomainEvent {
         return false;
     }
     serializeData() {
-        throw new core_1.MethodUndefinedException();
+        return JSON.stringify({
+            message: this.message().serialize(),
+            conversation: this.conversation().serialize()
+        });
     }
     shouldBeBroadcasted() {
         return true;

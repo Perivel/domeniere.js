@@ -1,7 +1,6 @@
 import { DomainEvent, StoredEvent, TransmittedEvent } from '@domeniere/event';
 import { DateTime } from '@swindle/core';
 import { Queue } from '@swindle/structs';
-import { Domain } from "@domeniere/domain";
 import { SimpleChatApi, SimpleChatEventStore, UserRepository } from './simple-chat';
 import { UserId, User, Nickname, ConversationsRepository, Conversation, ConversationId, UserRegistrationData, MessageData } from './src/chatroom/chatroom.module';
 
@@ -118,6 +117,7 @@ class MemorySimpleChatEventStore extends SimpleChatEventStore {
     }
 
     protected async boradcastEvents(eventsToPublish: Queue<DomainEvent>, publishedEvents: Queue<DomainEvent>): Promise<void> {
+        console.log("Running broadcastEvents()");
         let event: DomainEvent;
         while(!eventsToPublish.isEmpty()) {
             event = eventsToPublish.dequeue()!;
@@ -127,27 +127,33 @@ class MemorySimpleChatEventStore extends SimpleChatEventStore {
     }
 
     protected async getLatestStoredEvent(): Promise<StoredEvent | null> {
+        console.log("Running getLatestStoredEvent()");
         return null;
     }
 
     public async getTransmittedEventsSince(date: DateTime | null): Promise<TransmittedEvent[]> {
+        console.log("Running getTransmittedEventsSince()");
         return [];
     }
 
     public async getUnpublishedEvents(): Promise<StoredEvent[]> {
+        console.log("Running getUnpublishedEvents()");
         return [];
     }
 
     protected mapStoredEventToDomainEvent(storedEvent: StoredEvent): DomainEvent {
-        throw new Error("Undefined");
+        console.log("Running mapStoredEventToDomainEvent()");
+        throw new Error("mapStoredEventToDomainEvent");
     }
 
     public mapTransmittedEventToDomainEvent(transmittedEvent: TransmittedEvent): DomainEvent {
+        console.log("Running mapTransmittedEventToDomainEvent()");
         throw new Error('Method not implemented.');
     }
 
     protected async saveEvents(eventQueue: Queue<StoredEvent>): Promise<void> {
-
+        //console.log("Running saveEvents()");
+        throw new Error("Events cannot be saved.");
     }
 }
 
@@ -158,17 +164,20 @@ const main = async (): Promise<void> => {
         new MemoryConversationRepository(),
         new MemorySimpleChatEventStore(),
     );
-
-    const subscribers = Domain.EventStream('simple-chat').listSubscribers();
-    console.log(`Subscribers:\n${subscribers}`)
     
     const registration = new UserRegistrationData();
     registration.first_name = "John";
     registration.last_name = "Appleseed";
     registration.nickname = "John";
+    const anotherRegistration = new UserRegistrationData();
+    anotherRegistration.first_name = "Carmen";
+    anotherRegistration.last_name = "Lopez";
+    anotherRegistration.nickname = "Carmen";
     
     await chat.createUser(registration);
+    await chat.createUser(anotherRegistration);
     const john = await chat.getUserByNickname(registration.nickname);
+    const carmen = await chat.getUserByNickname(anotherRegistration.nickname);
     await chat.createConversation(john);
     const convo = await chat.getConversationsForUser(john);
     
@@ -177,6 +186,8 @@ const main = async (): Promise<void> => {
     message.content = "This is my first message.";
     message.conversation_id = convo[0].id;
     await chat.postMessage(message, convo[0]);
+
+    await chat.joinConversation(carmen, convo[0]);
 }
 
 main().then(() => console.log("Finished!"));

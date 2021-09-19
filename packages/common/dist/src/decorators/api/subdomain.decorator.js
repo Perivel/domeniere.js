@@ -16,11 +16,9 @@ function Subdomain(path) {
         // set the subdomain metadata
         Reflect.defineMetadata(constants_1.SUBDOMAIN_METADATA_KEY, path, target.prototype);
         // register the event handlers.
-        console.log(`\Registering listeners...\n`);
         if (Reflect.hasMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target.prototype)) {
             const registrations = Reflect.getMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, target.prototype);
             registrations.forEach(register => register(path));
-            console.log(registrations);
         }
     };
 }
