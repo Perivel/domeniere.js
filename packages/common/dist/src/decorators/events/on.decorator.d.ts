@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { DomainEvent, DomainEventHandlerPriority } from "@domeniere/event";
 import { Type } from "@swindle/core";
 import { EventDescriptor } from "./event-decryptor";

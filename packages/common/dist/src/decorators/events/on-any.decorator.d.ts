@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { DomainEventHandlerPriority } from "@domeniere/event";
 import { EventDescriptor } from "./event-decryptor";
 /**

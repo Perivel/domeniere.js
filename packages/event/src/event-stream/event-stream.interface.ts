@@ -67,4 +67,14 @@ export interface EventStreamInterface {
      */
 
     subscribe<T extends DomainEvent>(event: Type<T>|EventAggregate, handler: DomainEventHandler<T>, priority: DomainEventHandlerPriority, label: string, stopPropogationOnError: boolean): void;
+
+    /**
+     * setEventStore()
+     * 
+     * sets the event stream's internal event store.
+     * @param eventStore the event store to set.
+     * @param force whether or not to force setting the eventstore.
+     */
+    
+    setEventStore(eventStore: EventStore, force: boolean): void;
 }

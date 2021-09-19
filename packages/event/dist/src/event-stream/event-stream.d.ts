@@ -1,4 +1,5 @@
 import { Type } from "@swindle/core";
+import { Subscriber } from "@swindle/event-emitter";
 import { DomainEvent } from "../domain-event/domain-event";
 import { EventStore } from "../eventstore/event-store";
 import { TransmittedEvent } from "../eventstore/transmitted-event";
@@ -14,6 +15,7 @@ import { EventStreamInterface } from "./event-stream.interface";
 export declare class EventStream implements EventStreamInterface {
     private readonly emitter;
     private _eventStore;
+    private _eventStoreUpdated;
     constructor(eventStore?: EventStore);
     /**
      * initializeEvents()
@@ -42,11 +44,27 @@ export declare class EventStream implements EventStreamInterface {
      */
     emit(event: DomainEvent): Promise<void>;
     /**
+     * listSubscribers()
+     *
+     * lists the event subscribers.
+     * @returns the list of event subscribers.
+     */
+    listSubscribers(): Subscriber[];
+    /**
      * eventStore()
      *
      * eventStore() gets the event store.
      */
     eventStore(): EventStore;
+    /**
+     * setEventStore()
+     *
+     * sets the event stream's internal event store.
+     * @param eventStore the event store to set.
+     * @param force whether or not to force setting the eventstore.
+     * @throws EventStoreException when attempting to reset the event store, without explicitly forcing it.
+     */
+    setEventStore(eventStore: EventStore, force?: boolean): void;
     /**
      * creates a subscriber for the event stream.
      * @param event The event to listen for..

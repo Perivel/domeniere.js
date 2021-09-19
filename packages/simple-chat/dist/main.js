@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const domain_1 = require("@domeniere/domain");
 const simple_chat_1 = require("./simple-chat");
 const chatroom_module_1 = require("./src/chatroom/chatroom.module");
 class MemoryUserRepository extends simple_chat_1.UserRepository {
@@ -33,7 +34,12 @@ class MemoryUserRepository extends simple_chat_1.UserRepository {
                 return prev;
             }
         }, -1);
-        this.users[index] = aggregate;
+        if (index >= 0) {
+            this.users[index] = aggregate;
+        }
+        else {
+            this.users.push(aggregate);
+        }
     }
     async size() {
         return this.users.length;
@@ -66,7 +72,12 @@ class MemoryConversationRepository extends chatroom_module_1.ConversationsReposi
                 return prev;
             }
         }, -1);
-        this.conversations[index] = aggregate;
+        if (index >= 0) {
+            this.conversations[index] = aggregate;
+        }
+        else {
+            this.conversations.push(aggregate);
+        }
     }
     async size() {
         return this.conversations.length;
@@ -80,6 +91,7 @@ class MemorySimpleChatEventStore extends simple_chat_1.SimpleChatEventStore {
         let event;
         while (!eventsToPublish.isEmpty()) {
             event = eventsToPublish.dequeue();
+            console.log(event);
             publishedEvents.enqueue(event);
         }
     }
@@ -103,6 +115,8 @@ class MemorySimpleChatEventStore extends simple_chat_1.SimpleChatEventStore {
 }
 const main = async () => {
     const chat = new simple_chat_1.SimpleChatApi(new MemoryUserRepository(), new MemoryConversationRepository(), new MemorySimpleChatEventStore());
+    const subscribers = domain_1.Domain.EventStream('simple-chat').listSubscribers();
+    console.log(`Subscribers:\n${subscribers}`);
     const registration = new chatroom_module_1.UserRegistrationData();
     registration.first_name = "John";
     registration.last_name = "Appleseed";

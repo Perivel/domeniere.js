@@ -1,6 +1,7 @@
 import { DomainEvent, StoredEvent, TransmittedEvent } from '@domeniere/event';
 import { DateTime } from '@swindle/core';
 import { Queue } from '@swindle/structs';
+import { Domain } from "@domeniere/domain";
 import { SimpleChatApi, SimpleChatEventStore, UserRepository } from './simple-chat';
 import { UserId, User, Nickname, ConversationsRepository, Conversation, ConversationId, UserRegistrationData, MessageData } from './src/chatroom/chatroom.module';
 
@@ -46,7 +47,13 @@ class MemoryUserRepository extends UserRepository {
                 return prev;
             }
         }, -1);
-        this.users[index] = aggregate;
+        
+        if (index >= 0) {
+            this.users[index] = aggregate;
+        }
+        else {
+            this.users.push(aggregate);
+        }
     }
 
     public async size(): Promise<number> {
@@ -90,7 +97,13 @@ class MemoryConversationRepository extends ConversationsRepository {
                 return prev;
             }
         }, -1);
-        this.conversations[index] = aggregate;
+        
+        if (index >= 0) {
+            this.conversations[index] = aggregate;
+        }
+        else {
+            this.conversations.push(aggregate);
+        }
     }
 
     public async size(): Promise<number> {
@@ -108,6 +121,7 @@ class MemorySimpleChatEventStore extends SimpleChatEventStore {
         let event: DomainEvent;
         while(!eventsToPublish.isEmpty()) {
             event = eventsToPublish.dequeue()!;
+            console.log(event);
             publishedEvents.enqueue(event);
         }
     }
@@ -144,6 +158,9 @@ const main = async (): Promise<void> => {
         new MemoryConversationRepository(),
         new MemorySimpleChatEventStore(),
     );
+
+    const subscribers = Domain.EventStream('simple-chat').listSubscribers();
+    console.log(`Subscribers:\n${subscribers}`)
     
     const registration = new UserRegistrationData();
     registration.first_name = "John";

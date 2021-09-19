@@ -39,8 +39,9 @@ export abstract class Api implements ApiInterface {
 
     constructor(domainName: string, eventStore: EventStore) {
         this.subdomainName = domainName.trim();
-        Domain.CreateSubdomain(this.subdomainName, eventStore);
+        Domain.EventStream(this.subdomainName).setEventStore(eventStore);
         this.domain = Domain.Module(this.subdomainName);
+        
     }
 
     /**

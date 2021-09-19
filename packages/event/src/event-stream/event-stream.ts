@@ -4,6 +4,7 @@ import {
     Subscriber, 
     SubscriberId 
 } from "@swindle/event-emitter";
+import { EventStoreException } from "./../eventstore/event-store.exception";
 import { DomainEvent } from "../domain-event/domain-event";
 import { DomeniereEventEmitter } from "../event-emitter/domeniere-event-emitter";
 import { DefaultEventStore } from "../eventstore/default-event-store";
@@ -29,6 +30,7 @@ export class EventStream implements EventStreamInterface {
 
     // event store
     private _eventStore: EventStore;
+    private _eventStoreUpdated: boolean;
 
     constructor(eventStore: EventStore = new DefaultEventStore()) {
         this._eventStore = eventStore;
@@ -69,6 +71,7 @@ export class EventStream implements EventStreamInterface {
                 await emitter.emit(new EventHandlerFailed(sub, event as DomainEvent, error));
             }
         );
+        this._eventStoreUpdated = false;
     }
 
     /**
@@ -154,6 +157,17 @@ export class EventStream implements EventStreamInterface {
     }
 
     /**
+     * listSubscribers()
+     * 
+     * lists the event subscribers.
+     * @returns the list of event subscribers.
+     */
+
+    public listSubscribers(): Subscriber[] {
+        return this.emitter.subscriberList();
+    }
+
+    /**
      * eventStore()
      * 
      * eventStore() gets the event store.
@@ -161,6 +175,23 @@ export class EventStream implements EventStreamInterface {
 
     public eventStore(): EventStore {
         return this._eventStore;
+    }
+
+    /**
+     * setEventStore()
+     * 
+     * sets the event stream's internal event store.
+     * @param eventStore the event store to set.
+     * @param force whether or not to force setting the eventstore.
+     * @throws EventStoreException when attempting to reset the event store, without explicitly forcing it.
+     */
+
+    public setEventStore(eventStore: EventStore, force: boolean = false): void {
+        if (!force && this._eventStoreUpdated) {
+            throw new EventStoreException('EventStore already previously set.');
+        }
+        this._eventStore = eventStore;
+        this._eventStoreUpdated = true;
     }
 
     /**
