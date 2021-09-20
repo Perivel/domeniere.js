@@ -97,7 +97,8 @@ let SimpleChatApi = class SimpleChatApi extends core_1.Api {
         console.log(`${user.nickname().toString()} joined the conversation.`);
     }
     async handleError(event) {
-        console.log(event.serialize());
+        //console.log(event.serialize());
+        console.log(this.subdomainName);
     }
 };
 __decorate([

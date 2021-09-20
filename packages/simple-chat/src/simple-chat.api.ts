@@ -87,6 +87,7 @@ export class SimpleChatApi extends Api {
 
     @OnError()
     private async handleError(event: DomainEvent): Promise<void> {
-        console.log(event.serialize());
+        //console.log(event.serialize());
+        console.log(this.subdomainName);
     }
 }

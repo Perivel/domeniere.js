@@ -42,8 +42,13 @@ export class EventStream implements EventStreamInterface {
             async (event, emitter): Promise<void> => {
                 // save the event.
                 try {
-                    await this.eventStore().store(event as DomainEvent);
-                    await this.eventStore().persistEvents();
+                    // We persist all events except EventStoreFailedEvents, as it would not make sence to persist an error event 
+                    // in the same object that just failed and caused that error.
+                    const isEventStoreFailedEvent = event instanceof EventStoreFailed;
+                    if (!isEventStoreFailedEvent) {
+                        await this.eventStore().store(event as DomainEvent);
+                        await this.eventStore().persistEvents();
+                    }
                 }
                 catch (err) {
                     // failed to store some or all the events.
