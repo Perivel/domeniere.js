@@ -188,6 +188,7 @@ const main = async (): Promise<void> => {
     await chat.postMessage(message, convo[0]);
 
     await chat.joinConversation(carmen, convo[0]);
+    await chat.testState();
 }
 
 main().then(() => console.log("Finished!"));
