@@ -50,11 +50,27 @@ module.exports = {
       '/docs/': [
         {
           title: 'Getting Started',
-          path: '/v2',
           collapsable: false,
           children: [
-            '',
-            'project-structure'
+            ['/docs/', 'First Steps'],
+            ['project-structure', 'Project Structure']
+          ]
+        },
+        {
+          title: 'Fundamentals',
+          collapsable: false,
+          children: [
+            ['/docs/v2/aggregates', 'Aggregates'],
+            ['/docs/v2/api', 'Api'],
+            ['/docs/v2/dtos', 'Data Transfer Objects'],
+            ['/docs/v2/entities', 'Entities'],
+            ['/docs/v2/events', 'Events'],
+            ['/docs/v2/factories', 'Factories'],
+            ['/docs/v2/modules', 'Modules'],
+            ['/docs/v2/repositories', 'Repositories'],
+            ['/docs/v2/services', 'Services'],
+            ['/docs/v2/specifications', 'Specifications'],
+            ['/docs/v2/values', 'Values']
           ]
         }
       ],
