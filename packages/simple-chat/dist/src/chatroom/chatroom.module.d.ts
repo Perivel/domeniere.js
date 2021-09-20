@@ -1,5 +1,5 @@
 import { Module } from '@domeniere/module';
-export default class ChatroomModule extends Module {
+export declare class ChatroomModule extends Module {
     constructor();
     protected createdBindings(): void;
 }

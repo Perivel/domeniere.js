@@ -34,26 +34,27 @@ module.exports = {
     lastUpdated: false,
     nav: [
       {
-        text: 'Guide',
-        link: '/guide/',
+        text: 'Documentation',
+        link: '/docs/',
       },
       {
-        text: 'Config',
-        link: '/config/'
+        text: 'Contribute',
+        link: '/contribute/',
       },
       {
-        text: 'VuePress',
-        link: 'https://v1.vuepress.vuejs.org'
+        text: 'Github',
+        link: 'https://github.com/Perivel/domeniere'
       }
     ],
     sidebar: {
-      '/guide/': [
+      '/docs/': [
         {
-          title: 'Guide',
+          title: 'Getting Started',
+          path: '/v2',
           collapsable: false,
           children: [
             '',
-            'using-vue',
+            'project-structure'
           ]
         }
       ],
