@@ -1,7 +1,31 @@
-import { On, OnError, Subdomain } from '@domeniere/common';
+import { On, OnAny, OnError } from '@domeniere/common';
 import { Api } from '@domeniere/core';
 import { DomainEvent, EventStoreFailed } from '@domeniere/event';
-import ChatroomModule, { ConversationData, ConversationId, ConversationJoined, ConversationsRepository, CreateConversationCommand, CreateUserCommand, GetConversationByIdQuery, GetConversationsForUserQuery, GetUserByIdQuery, GetUserByNicknameQuery, JoinConversationCommand, Message, MessageData, MessageId, MessagePosted, Nickname, PostMessageCommand, UserData, UserFactory, UserId, UserRegistrationData, UserRegistrationFactory, UserRepository } from './chatroom/chatroom.module';
+import { 
+    ChatroomModule, 
+    ConversationData, 
+    ConversationId, 
+    ConversationJoined, 
+    ConversationsRepository, 
+    CreateConversationCommand, 
+    CreateUserCommand, 
+    GetConversationByIdQuery, 
+    GetConversationsForUserQuery, 
+    GetUserByIdQuery, 
+    GetUserByNicknameQuery, 
+    JoinConversationCommand, 
+    Message, MessageData, 
+    MessageId, 
+    MessagePosted, 
+    Nickname, 
+    PostMessageCommand, 
+    UserData, 
+    UserFactory, 
+    UserId, 
+    UserRegistrationData, 
+    UserRegistrationFactory, 
+    UserRepository 
+} from './chatroom/chatroom.module';
 import { SimpleChatEventStore } from './simple-chat.eventstore';
 
 /**
@@ -12,7 +36,6 @@ import { SimpleChatEventStore } from './simple-chat.eventstore';
  * Learn more about Apis at https://github.com/Perivel/domeniere/blob/master/src/api/README.md
  */
 
-@Subdomain('simple-chat')
 export class SimpleChatApi extends Api {
 
     constructor(
@@ -111,5 +134,11 @@ export class SimpleChatApi extends Api {
     @OnError()
     private async handleError(event: DomainEvent): Promise<void> {
         console.log(this.subdomainName);
+    }
+
+
+    @OnAny()
+    private async anotherHandler(event: DomainEvent): Promise<void> {
+        console.log(`On Subdomain: ${this.subdomainName}`)
     }
 }

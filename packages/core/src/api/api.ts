@@ -1,4 +1,4 @@
-
+import "reflect-metadata";
 import { Domain } from '@domeniere/domain';
 import { Module } from '@domeniere/module';
 import {
@@ -8,6 +8,8 @@ import {
 } from "@domeniere/event";
 import { ApiInterface } from "./api.interface";
 import { Container } from '@swindle/container';
+import { EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, SUBDOMAIN_METADATA_KEY } from "../constants";
+import { EventRegistrationCallbackFn } from "../event-registration-callback.type";
 
 /**
  * ApplicationFragment
@@ -23,7 +25,7 @@ export abstract class Api implements ApiInterface {
      * the name of the subdomain.
      */
     
-    public readonly subdomainName: string;
+    protected readonly subdomainName: string;
 
     /**
      * domain
@@ -44,11 +46,18 @@ export abstract class Api implements ApiInterface {
      * @param eventStore The event store to use.
      */
 
-    constructor(domainName: string, eventStore: EventStore) {
-        this.subdomainName = domainName.trim();
+    constructor(subdomain: string, eventStore: EventStore) {
+        this.subdomainName = subdomain.trim();
+        Domain.CreateSubdomain(this.subdomainName);
         Domain.EventStream(this.subdomainName).setEventStore(eventStore);
         this.domain = Domain.Module(this.subdomainName);
         this.stream = Domain.EventStream(this.subdomainName);
+
+        // Register any events
+        if (Reflect.hasMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, this)) {
+            const registrations: EventRegistrationCallbackFn[] = Reflect.getMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, this);
+            registrations.forEach(register => register(this, this.subdomainName));
+        }
 
         // run the initialization logic.
         this.init();

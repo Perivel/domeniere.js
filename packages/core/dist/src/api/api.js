@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Api = void 0;
+require("reflect-metadata");
 const domain_1 = require("@domeniere/domain");
+const constants_1 = require("../constants");
 /**
  * ApplicationFragment
  *
@@ -12,11 +14,17 @@ class Api {
      * constructor()
      * @param eventStore The event store to use.
      */
-    constructor(domainName, eventStore) {
-        this.subdomainName = domainName.trim();
+    constructor(subdomain, eventStore) {
+        this.subdomainName = subdomain.trim();
+        domain_1.Domain.CreateSubdomain(this.subdomainName);
         domain_1.Domain.EventStream(this.subdomainName).setEventStore(eventStore);
         this.domain = domain_1.Domain.Module(this.subdomainName);
         this.stream = domain_1.Domain.EventStream(this.subdomainName);
+        // Register any events
+        if (Reflect.hasMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, this)) {
+            const registrations = Reflect.getMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, this);
+            registrations.forEach(register => register(this, this.subdomainName));
+        }
         // run the initialization logic.
         this.init();
     }

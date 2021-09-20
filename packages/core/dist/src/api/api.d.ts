@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { Module } from '@domeniere/module';
 import { EventStore, EventStream, TransmittedEvent } from "@domeniere/event";
 import { ApiInterface } from "./api.interface";
@@ -13,7 +14,7 @@ export declare abstract class Api implements ApiInterface {
      *
      * the name of the subdomain.
      */
-    readonly subdomainName: string;
+    protected readonly subdomainName: string;
     /**
      * domain
      *
@@ -28,7 +29,7 @@ export declare abstract class Api implements ApiInterface {
      * constructor()
      * @param eventStore The event store to use.
      */
-    constructor(domainName: string, eventStore: EventStore);
+    constructor(subdomain: string, eventStore: EventStore);
     /**
      * broadcastEvents()
      *

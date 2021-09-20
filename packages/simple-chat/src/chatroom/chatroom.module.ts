@@ -20,7 +20,7 @@ import {
 } from './services/services.well';
 
 
-export default class ChatroomModule extends Module {
+export class ChatroomModule extends Module {
     constructor() {
         super('chatroom');
     }

@@ -10,6 +10,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ChatroomModule = void 0;
 const module_1 = require("@domeniere/module");
 const factories_well_1 = require("./factories/factories.well");
 const repositories_well_1 = require("./repositories/repositories.well");
@@ -51,7 +52,7 @@ class ChatroomModule extends module_1.Module {
         });
     }
 }
-exports.default = ChatroomModule;
+exports.ChatroomModule = ChatroomModule;
 // module well exports go here.
 __exportStar(require("./values/values.well"), exports);
 __exportStar(require("./entities/entities.well"), exports);

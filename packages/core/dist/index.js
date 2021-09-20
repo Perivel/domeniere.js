@@ -11,4 +11,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./src/api/api"), exports);
+__exportStar(require("./src/constants"), exports);
+__exportStar(require("./src/event-registration-callback.type"), exports);
 //# sourceMappingURL=index.js.map

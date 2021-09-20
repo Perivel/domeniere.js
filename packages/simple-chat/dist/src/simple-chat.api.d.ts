@@ -20,5 +20,6 @@ export declare class SimpleChatApi extends Api {
     outputMessage(event: MessagePosted): Promise<void>;
     private onJoinConversation;
     private handleError;
+    private anotherHandler;
 }
 //# sourceMappingURL=simple-chat.api.d.ts.map

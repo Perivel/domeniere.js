@@ -1,28 +1,9 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
 };
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
@@ -32,8 +13,7 @@ exports.SimpleChatApi = void 0;
 const common_1 = require("@domeniere/common");
 const core_1 = require("@domeniere/core");
 const event_1 = require("@domeniere/event");
-const chatroom_module_1 = __importStar(require("./chatroom/chatroom.module"));
-const simple_chat_eventstore_1 = require("./simple-chat.eventstore");
+const chatroom_module_1 = require("./chatroom/chatroom.module");
 /**
  * SimpleChatApi
  *
@@ -41,10 +21,10 @@ const simple_chat_eventstore_1 = require("./simple-chat.eventstore");
  *
  * Learn more about Apis at https://github.com/Perivel/domeniere/blob/master/src/api/README.md
  */
-let SimpleChatApi = class SimpleChatApi extends core_1.Api {
+class SimpleChatApi extends core_1.Api {
     constructor(userRepository, conversationRepository, eventStore) {
         super('simple-chat', eventStore);
-        const chatroomModule = new chatroom_module_1.default();
+        const chatroomModule = new chatroom_module_1.ChatroomModule();
         chatroomModule.registerRepositoryInstance(chatroom_module_1.UserRepository, userRepository);
         chatroomModule.registerRepositoryInstance(chatroom_module_1.ConversationsRepository, conversationRepository);
         this.registerModule(chatroomModule);
@@ -119,7 +99,10 @@ let SimpleChatApi = class SimpleChatApi extends core_1.Api {
     async handleError(event) {
         console.log(this.subdomainName);
     }
-};
+    async anotherHandler(event) {
+        console.log(`On Subdomain: ${this.subdomainName}`);
+    }
+}
 __decorate([
     (0, common_1.On)(chatroom_module_1.MessagePosted),
     __metadata("design:type", Function),
@@ -138,10 +121,10 @@ __decorate([
     __metadata("design:paramtypes", [event_1.DomainEvent]),
     __metadata("design:returntype", Promise)
 ], SimpleChatApi.prototype, "handleError", null);
-SimpleChatApi = __decorate([
-    (0, common_1.Subdomain)('simple-chat'),
-    __metadata("design:paramtypes", [chatroom_module_1.UserRepository,
-        chatroom_module_1.ConversationsRepository,
-        simple_chat_eventstore_1.SimpleChatEventStore])
-], SimpleChatApi);
+__decorate([
+    (0, common_1.OnAny)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [event_1.DomainEvent]),
+    __metadata("design:returntype", Promise)
+], SimpleChatApi.prototype, "anotherHandler", null);
 exports.SimpleChatApi = SimpleChatApi;

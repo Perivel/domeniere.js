@@ -29,7 +29,8 @@
     "@domeniere/repository": "^2.0.0",
     "@domeniere/service": "^2.0.0",
     "@domeniere/value": "^2.0.0",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.2",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",

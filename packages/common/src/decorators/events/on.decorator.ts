@@ -3,8 +3,7 @@ import { Domain } from "@domeniere/domain";
 import { DomainEvent, DomainEventClass, DomainEventHandlerPriority } from "@domeniere/event";
 import { UUID } from "@swindle/core";
 import { EventDescriptor } from "./event-decryptor";
-import { EventRegistrationCallbackFn } from './event-registration-callback.type';
-import { EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY } from "./../constants";
+import { EventRegistrationCallbackFn, EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY } from '@domeniere/core';
 
 /**
  * On() Decorator.
