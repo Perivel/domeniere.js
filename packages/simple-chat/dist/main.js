@@ -142,5 +142,6 @@ const main = async () => {
     message.conversation_id = convo[0].id;
     await chat.postMessage(message, convo[0]);
     await chat.joinConversation(carmen, convo[0]);
+    await chat.testState();
 };
 main().then(() => console.log("Finished!"));

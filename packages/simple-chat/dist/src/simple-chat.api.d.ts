@@ -16,6 +16,7 @@ export declare class SimpleChatApi extends Api {
     getConversationsForUser(user: UserData): Promise<ConversationData[]>;
     joinConversation(user: UserData, conversation: ConversationData): Promise<void>;
     postMessage(message: MessageData, conversation: ConversationData): Promise<void>;
+    testState(): Promise<void>;
     outputMessage(event: MessagePosted): Promise<void>;
     private onJoinConversation;
     private handleError;

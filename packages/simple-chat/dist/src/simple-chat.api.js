@@ -87,6 +87,26 @@ let SimpleChatApi = class SimpleChatApi extends core_1.Api {
         const messageToPost = new chatroom_module_1.Message(chatroom_module_1.MessageId.Generate(), author.nickname(), message.content, author.id());
         await this.domain.module('chatroom').get(chatroom_module_1.PostMessageCommand).execute(messageToPost, convo);
     }
+    async testState() {
+        const data = new chatroom_module_1.UserRegistrationData();
+        data.first_name = "Bob";
+        data.last_name = "Billy";
+        data.nickname = "Bobby";
+        const registration = this.domain.module('chatroom').get(chatroom_module_1.UserRegistrationFactory).createFromData(data);
+        // create the user.
+        await this.domain.module('chatroom').get(chatroom_module_1.CreateUserCommand).execute(registration);
+        const user = await this.domain.module('chatroom').get(chatroom_module_1.GetUserByNicknameQuery).execute(new chatroom_module_1.Nickname(data.nickname));
+        console.log(`Original Nickname: ${user.nickname().toString()}`);
+        // change the nickname.
+        const newNickname = new chatroom_module_1.Nickname("Rob");
+        user.setNickname(newNickname);
+        console.log(`Expected: ${newNickname.toString()}\tReceived: ${user.nickname().toString()}`);
+        user.rollbackStateChanges();
+        console.log(`Expected: ${data.nickname}\tReceived: ${user.nickname().toString()}`);
+        user.setNickname(newNickname);
+        user.confirmStateChanges();
+        console.log(`Expected: ${newNickname.toString()}\tReceived: ${user.nickname().toString()}`);
+    }
     async outputMessage(event) {
         const message = event.message();
         const conversation = event.conversation();
@@ -97,7 +117,6 @@ let SimpleChatApi = class SimpleChatApi extends core_1.Api {
         console.log(`${user.nickname().toString()} joined the conversation.`);
     }
     async handleError(event) {
-        //console.log(event.serialize());
         console.log(this.subdomainName);
     }
 };
