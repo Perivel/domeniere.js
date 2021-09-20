@@ -1,8 +1,5 @@
 # What is DomeiereJS?
-DomeniereJS is a Typescript library for creating Framework-Independent applications. DomeniereJS provides a clean and simple project structure to help you build application libraries. 
-
-# Framework-Independent?
-Content
+DomeniereJS is a Typescript library for creating Framework-Independent applications. You can think of a Domeniere application like a shell or enclosure for your application logic, which leaves out the infrastructure implementation details. This allows you to quickly adopt your application to many different frameworks as your needs change. With DomeniereJS, you encapsulate the concrete aspects of your application into a modular library you can use anywhere, and pass in any framework specific details as dependencies to adopt its behavior to its environment.
 
 # Prerequisites
 In order to begin using Domeniere, your system must meet the following requirements.
