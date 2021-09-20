@@ -18,7 +18,7 @@ export function On<T extends DomainEvent>(event: DomainEventClass<T>, priority: 
     return function (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) {
 
         // get the function the decorator was applied to.
-        const origValue = descriptor.value!;
+        //const origValue = descriptor.value!;
 
         // Set the subscription priority
         const handlerPriority = priority;
@@ -29,15 +29,15 @@ export function On<T extends DomainEvent>(event: DomainEventClass<T>, priority: 
         // This section changes the handler function so that it still has access to the "this" keyword.
         // We also get the subdomain in which the event will be registered here. This works under the 
         // assmption that this decorator is being called within an Api class body.
-        descriptor.value = async function <T extends DomainEvent>(event: T): Promise<void> {
-            return origValue?.apply(this, [event]);
-        }
+        // descriptor.value = async function <T extends DomainEvent>(event: T): Promise<void> {
+        //     return origValue?.apply(this, [event]);
+        // }
 
         const func = descriptor.value;
 
         if (func) {
             // add the subscription as a callback to be handled by the @Subdomain decorator.
-            const registrationFn: EventRegistrationCallbackFn = (subdomain) =>  Domain.EventStream(subdomain).subscribe(event, func, handlerPriority, label, stopPropogationOnError);
+            const registrationFn: EventRegistrationCallbackFn = (context, subdomain) =>  Domain.EventStream(subdomain).subscribe(event, func.bind(context), handlerPriority, label, stopPropogationOnError);
 
             if (Reflect.hasMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls)) {
                 const callbacks: EventRegistrationCallbackFn[] = Reflect.getMetadata(EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls);
