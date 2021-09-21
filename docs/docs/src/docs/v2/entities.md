@@ -93,3 +93,7 @@ The last requirement for creating an `Entity` is to specify how to serialize its
 
 Once these requirements are met, we can move on to defining the properties of our entity.
 
+## Entity Properties and State
+Entities will usually contan more than just an `id`.  
+
+## Timestamped Entities
