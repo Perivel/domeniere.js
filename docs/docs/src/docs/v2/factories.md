@@ -8,6 +8,8 @@ domeniere create factory <module-name>/path/to/factory-name
 ```
 This command will create a factory within the `factories` subdirectory of the module we specify. 
 
+> **Note**: In orfer to create an factory, you need to have created a module that will contain the entity. See the Modules section for more details.
+
 Below is an example of what a basic `UserFactory` would look like.
 ```ts
 import { AbstractFactory } from '@domeniere/factory';
