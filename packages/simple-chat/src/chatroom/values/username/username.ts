@@ -1,5 +1,4 @@
 import { Value } from '@domeniere/value';
-import { MethodUndefinedException } from '@swindle/core';
 import { UsernameInterface } from './username.interface';
 
 
