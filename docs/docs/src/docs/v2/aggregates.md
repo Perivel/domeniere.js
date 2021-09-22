@@ -54,7 +54,13 @@ We define two methods. The `updateEmail()` method updates the user's account ema
 
 The second method we define is the `verify()` method. This method demonstrates how we use aggregates to maintain consistency among our objects  and entities. Here, we check whether or not the passed in verification code matches the one we have on record. If they do match, we mark the verification as complete. But, not only that, we also update our user root entity to indicate when it was verified.
 
-## Versioning
+## Aggregate State
+
+### Defining Aggregate State
+
+### The Aggregate State Lifecycle
+
+## Aggregate Versioning
 Versioning is a useful tool to keep track of changes to the state of your aggregates. Domeniere provides a few methods to assist in doing this.
 
 **commitStateChanges()**
@@ -78,3 +84,5 @@ The `countUnconfirmedStateChanges()` method gets the number of committed changes
 
 **version()**
 The `version()` method gets the committed version.
+
+## Timestamped Aggregates
