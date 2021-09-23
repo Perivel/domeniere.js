@@ -39,10 +39,10 @@ module.exports = {
         text: 'Documentation',
         link: '/docs/',
       },
-      {
-        text: 'Contribute',
-        link: '/contribute/',
-      }
+      // {
+      //   text: 'Contribute',
+      //   link: '/contribute/',
+      // }
     ],
     sidebar: {
       '/docs/': [
