@@ -1,7 +1,7 @@
 ---
 home: true
 heroText: DomeniereJS
-heroImage: /logo.png
+heroImage: logo.png
 tagline: Build Framework-Independent Applications
 actionText: Get Started →
 actionLink: /docs/
