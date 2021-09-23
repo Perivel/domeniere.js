@@ -16,7 +16,7 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/config/#head
    */
   head: [
-    ['meta', { name: 'theme-color', content: '#3eaf7c' }],
+    ['meta', { name: 'theme-color', content: '#2708A0' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
   ],
@@ -27,11 +27,13 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: '',
+    repo: 'https://github.com/Perivel/domeniere',
     editLinks: false,
     docsDir: '',
     editLinkText: '',
-    lastUpdated: false,
+    lastUpdated: true,
+    logo: 'logo.png',
+    searchPlaceholder: "Search Site",
     nav: [
       {
         text: 'Documentation',
@@ -40,10 +42,6 @@ module.exports = {
       {
         text: 'Contribute',
         link: '/contribute/',
-      },
-      {
-        text: 'Github',
-        link: 'https://github.com/Perivel/domeniere'
       }
     ],
     sidebar: {

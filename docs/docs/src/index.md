@@ -3,8 +3,8 @@ home: true
 heroText: DomeniereJS
 heroImage: /logo.png
 tagline: Build Framework-Independent Applications
-actionText: Quick Start →
-actionLink: /guide/
+actionText: Get Started →
+actionLink: /docs/
 features:
 - title: Simple
   details: Domeniere is simple and easy to learn. With the included Command-Line Interface, you can get started in seconds.
