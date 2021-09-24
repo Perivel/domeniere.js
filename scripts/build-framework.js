@@ -73,6 +73,12 @@ const build = async () => {
     await os_1.Process.Exec('yarn build', {
         cwd: moduleDir.toString()
     });
+    // build module module
+    console.log("\tBuilding Module module");
+    moduleDir = filesystem_1.Path.FromSegments(packagesPath, 'module');
+    await os_1.Process.Exec('yarn build', {
+        cwd: moduleDir.toString()
+    });
     // build core module
     console.log("\tBuilding Core module");
     moduleDir = filesystem_1.Path.FromSegments(packagesPath, 'core');

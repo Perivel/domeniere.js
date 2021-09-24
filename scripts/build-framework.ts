@@ -2,6 +2,7 @@ import { Path } from "@swindle/filesystem";
 import { Process } from "@swindle/os";
 import { DateTime, Duration } from '@swindle/core';
 
+
 /**
  * This script builds all the components of the Domeniere framework
  */
@@ -82,6 +83,13 @@ const build = async (): Promise<Duration> => {
     // build service module
     console.log("\tBuilding Service module");
     moduleDir = Path.FromSegments(packagesPath, 'service');
+    await Process.Exec('yarn build', {
+        cwd: moduleDir.toString()
+    })
+
+    // build module module
+    console.log("\tBuilding Module module");
+    moduleDir = Path.FromSegments(packagesPath, 'module');
     await Process.Exec('yarn build', {
         cwd: moduleDir.toString()
     })
