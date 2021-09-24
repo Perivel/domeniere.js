@@ -10,7 +10,7 @@ const duplicate_binding_exception_1 = require("../exceptions/duplicate-binding.e
  */
 class Module {
     constructor(path) {
-        this._path = path;
+        this._path = path.trim();
         this._factoryBindings = new Map();
         this._serviceBindings = new Map();
         this._repositoryInstances = new Map();

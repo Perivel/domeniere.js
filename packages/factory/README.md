@@ -1,35 +1,11 @@
-# Factory
-A Factory is responsible for the creation of other objects. 
+# Domeniere Factory
+This packagge is the Factory construct for the [DomeniereJS](https://perivel.github.io/domeniere/).
 
-## Defining a Factory
-To define a factory with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
-```
-domeniere create factory <factory name> <module name>
-```
+# DomeniereJS
+DomeniereJS is a Typescript library for creating Framework-Independent applications. You can think of a Domeniere application like a shell or enclosure for your application logic, which leaves out the infrastructure implementation details. This allows you to quickly adopt your application to many different frameworks as your needs change. With DomeniereJS, you encapsulate the concrete aspects of your application into a modular library you can use anywhere, and pass in any framework specific details as dependencies to adopt its behavior to its environment.
 
-We manually define a factory by extending the `AbstractFactory` class.
-```ts
-import { AbstractFactory } from 'domeniere';
+# Documentation
+You can read the Documentation [here](https://perivel.github.io/domeniere/).
 
-export class UserFactory extends AbstractFactory {
-    
-    constructor() {
-        super();
-    }
-}
-```
-We are free to create whatever methods we need. Below, we create a method to create a User instance from a registration.
-```ts
-export class UserFactory extends AbstractFactory {
-    
-    constructor() {
-        super();
-    }
-
-    public createFromRegistration(registration: UserRegistration) {
-        // ...
-        return user;
-    }
-}
-```
-A handy guideline for defining factories is that we define our factory methods based on the ways we instanciate our objects.
+# License
+DomeniereJS is provided under the MIT License.

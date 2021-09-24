@@ -1,11 +1,8 @@
-# Domeniere
-Domeniere is a library to assist in creating framework-independent Typescript applications.
+# DomeniereJS
+DomeniereJS is a Typescript library for creating Framework-Independent applications. You can think of a Domeniere application like a shell or enclosure for your application logic, which leaves out the infrastructure implementation details. This allows you to quickly adopt your application to many different frameworks as your needs change. With DomeniereJS, you encapsulate the concrete aspects of your application into a modular library you can use anywhere, and pass in any framework specific details as dependencies to adopt its behavior to its environment.
 
-# How Domeniere Fits into Your Architecture
+# Documentation
+You can read the Documentation [here](https://perivel.github.io/domeniere/).
 
-# How Domeniere Helps
-**Clean Architecture**: Domeniere helps keep your architectures small, simple, and clean.
-**Create Portable Applications**: Domeniere makes no assumptions as to which Framework, Database, or external services you are using. Instead the details of these services can be injected to work with your Domeniere application.
-
-# Docs
-To get started, read the [Documentation](packages/domeniere/README.md)
+# License
+DomeniereJS is provided under the MIT License.

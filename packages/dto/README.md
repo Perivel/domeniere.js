@@ -1,52 +1,11 @@
-# Data Transfer Object
-A Data Transport Object, or DTO, is a container that is designed to hold entire attributes.
+# Domeniere Dto
+This packagge is the Dto module for the [DomeniereJS](https://perivel.github.io/domeniere/).
 
-## Creating DTOs
-To define a DTO with the [Domeniere CLI](https://github.com/Perivel/domeniere-cli), we can run the following command in our root directory.
-```
-domeniere create dto <dto name> <module name>
-```
+# DomeniereJS
+DomeniereJS is a Typescript library for creating Framework-Independent applications. You can think of a Domeniere application like a shell or enclosure for your application logic, which leaves out the infrastructure implementation details. This allows you to quickly adopt your application to many different frameworks as your needs change. With DomeniereJS, you encapsulate the concrete aspects of your application into a modular library you can use anywhere, and pass in any framework specific details as dependencies to adopt its behavior to its environment.
 
-To define a DTO manually, we extend the `Data` class. 
-```ts
-import { Data } from 'domeniere';
+# Documentation
+You can read the Documentation [here](https://perivel.github.io/domeniere/).
 
-export class UserLoginData extends Data {
-
-    constructor() {
-        super();
-    }
-
-    public serialize() {
-        return JSON.stringify({
-
-        });
-    }
-}
-```
-At its most basic form, the only method we nned to override when creating our own DTO is the `serialize()` method. The serialize method returns a seria.ized version of the data.
-
-Now, we are free to define our data object however way we want.
-```ts
-import { Data } from 'domeniere';
-
-export class UserLoginData extends Data {
-
-    public readonly username: string;
-    public readonly password: string;
-
-    constructor(username: string, password: string) {
-        super();
-        this.username = username;
-        this.password = password;
-    }
-
-    public serialize() {
-        return JSON.stringify({
-            username: this.username,
-            password: this.password
-        });
-    }
-}
-```
-Notice we define our data properties as public properties.
+# License
+DomeniereJS is provided under the MIT License.
