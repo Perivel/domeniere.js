@@ -8,7 +8,7 @@ domeniere create aggregate <module-name>/path/to/aggregate-name
 ```
 This command will create a new aggregate in the `aggregates` subdirectory of our specified module.
 
-> **Note**: In orfer to create an aggregate, you need to have created a module that will contain the entity. See the Modules section for more details.
+> **Note**: In order to create an aggregate, you need to have created a module that will contain the aggregate. See the Modules section for more details.
 
 Every aggregate takes an entity and a version number as its constructor argument. The provided entity will serve as the aggregate root. The version number is an optional argument that is used to keep track of changes to the aggregate. By default, it will be set to 1.0.
 
@@ -224,6 +224,6 @@ domeniere create aggregate <module-name>/path/to/the/aggregate-name --timestampe
 ```
 This will create a new directory for the aggregate in the specified module's aggregates subdirectory. This subdirectory will contain both an interface file and a class file for our aggregate.
 
-> **Note**: In orfer to create an aggregate, you need to have created a module that will contain the entity. See the Modules section for more details.
+> **Note**: In order to create an aggregate, you need to have created a module that will contain the aggregate. See the Modules section for more details.
 
 The created `Timestamped Aggregate` is very similar to a regular aggregate. The only difference is our created `Timestamped Aggregate` now includes arguments for DateTimes when they were created, updated, and deleted. We can create our `Aggregate` just like we normally would. Domeniere will automatically manage our timestamps for us in the Aggregate state Lifecycle.

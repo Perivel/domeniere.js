@@ -207,7 +207,7 @@ domeniere create event <module-name>/path/to/the/event-name
 ```
 This will create an event file in our specified module's `events` subdirectory.
 
-> **Note**: In orfer to create an event, you need to have created a module that will contain the event. See the Modules section for more details.
+> **Note**: In order to create an event, you need to have created a module that will contain the event. See the Modules section for more details.
 
 Custom events take two optional arguments. The first is the timestamp of when the event occurs. By default, this is the current date and time in UTC. The second argument is a unique id for the event instance. When it is set to `undefined`, a random unique ID is generated for us by the `DomainEvent` class.
 
@@ -395,4 +395,4 @@ private async handleEvent(event: SomeEvent): Promise<void> {
 > **Note**: You can learn more about the `Api` in the Apis section.
 
 ## Broadcasting Events
-To broadcast our events over a network, we use our `Api`'s `broadcastEvents()` method. To learn more about the `Api`, see the [Api](./../api/README.md) section.
+To broadcast our events over a network, we use our `Api`'s `broadcastEvents()` method. To learn more about the `Api`, see the Api section.

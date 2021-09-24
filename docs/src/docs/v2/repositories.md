@@ -8,7 +8,7 @@ domeniere create repository <module-name>/path/to/the/repository-name
 ```
 This will create a repository file inside the `repositories` subdirectory of the specified module.
 
-> **Note**: In order to create a repository, you need to have created a module that will contain the entity. See the Modules section for more details.
+> **Note**: In order to create a repository, you need to have created a module that will contain the repository. See the Modules section for more details.
 
 Since repositories need to adopt to their environment, we declare our repositories as abstract classes. Every repository has three methods that must be overriden. The `remove()` method removes the specified aggregate from the repository. The `save()` method updates (or creates) the specified aggregate to the repository. And the `size()` method gets the number of objects in the repository.
 
@@ -67,7 +67,7 @@ domeniere create repository <module-name>/path/to/the/repository-name --generate
 ```
 This will create a repository file for our repository in the specified module's `repositories` subdirectory.
 
-> **Note**: In order to create a repository, you need to have created a module that will contain the entity. See the Modules section for more details.
+> **Note**: In order to create a repository, you need to have created a module that will contain the repository. See the Modules section for more details.
 
 An Identity-Generating Repository behaves very similar to a regular repository, except for one difference. As its name implies, it has the capability to generate Ids for whatever aggregate it is responsible for.
 
