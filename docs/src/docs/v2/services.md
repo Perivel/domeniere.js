@@ -10,7 +10,7 @@ domeniere create command <module>/path/to/the/command-name
 ```
 This will create a directory for our command inside our specified module's `services` directory.
 
-> **Note**: In orfer to create a command, you need to have created a module that will contain the command. See the Modules section for more details.
+> **Note**: In order to create a command, you need to have created a module that will contain the command. See the Modules section for more details.
 
 Below is an example of a `CreateAccountCommand` that is responsible for creating a User Account from a given registration.
 ```ts

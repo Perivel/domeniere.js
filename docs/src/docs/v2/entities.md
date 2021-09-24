@@ -8,7 +8,7 @@ domeniere create entity <module-name>/path/to/the/entity-name
 ```
 This will create a new directory for the entity in the specified module's entities subdirectory. This subdirectory will contain both an interface file and a class file for our entity.
 
-> **Note**: In orfer to create an entity, you need to have created a module that will contain the entity. See the Modules section for more details.
+> **Note**: In order to create an entity, you need to have created a module that will contain the entity. See the Modules section for more details.
 
 For this example, let's say we are defining a `User` entity. When we first create our entity, we are given a basic template like the one below.
 
@@ -245,6 +245,6 @@ domeniere create entity <module-name>/path/to/the/entity-name --timestamped
 ```
 This will create a new directory for the entity in the specified module's entities subdirectory. This subdirectory will contain both an interface file and a class file for our entity.
 
-> **Note**: In orfer to create an entity, you need to have created a module that will contain the entity. See the Modules section for more details.
+> **Note**: In order to create an entity, you need to have created a module that will contain the entity. See the Modules section for more details.
 
 The created `Timestamped Entity` is very similar to a regular entity. The only difference is our created `Timestamped Entity` now includes arguments for DateTimes when they were created, updated, and deleted. We can create our entity just like we normally would. Domeniere will automatically manage our timestamps for us in the Entity Lifecycle.
