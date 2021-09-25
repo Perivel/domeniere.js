@@ -1,4 +1,4 @@
-import { ConcreteDependencyToken, BindingFactory, DependencyToken} from 'verdic';
+import { ConcreteDependencyToken, BindingFactory, DependencyToken} from '@swindle/container';
 import { ModuleFactoryEntry } from '../module-entry/module-factory-entry';
 import { ModuleInstanceEntry } from '../module-entry/module-instance-entry';
 import { ModuleBindings } from '../types/module-bindings.type';
