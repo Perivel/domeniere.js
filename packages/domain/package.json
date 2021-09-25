@@ -1,6 +1,6 @@
 {
   "name": "@domeniere/domain",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "The Domeniere domain module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@swindle/core": "^2.1.0",
     "@swindle/container": "^1.0.1",
-    "@domeniere/event": "^2.0.0",
+    "@domeniere/event": "^2.0.1",
     "typescript": "^4.4.2"
   },
   "devDependencies": {

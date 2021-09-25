@@ -1,6 +1,6 @@
 {
   "name": "@domeniere/service",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "The Domeniere service module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@swindle/core": "^2.1.0",
-    "@domeniere/domain": "^2.0.0",
+    "@domeniere/domain": "^2.0.1",
     "typescript": "^4.4.2"
   },
   "devDependencies": {

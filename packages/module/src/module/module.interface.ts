@@ -1,4 +1,4 @@
-import { DependencyToken } from 'verdic';
+import { DependencyToken } from '@swindle/container';
 import { Repository } from '@domeniere/repository';
 import { DomainService } from '@domeniere/service';
 import { ModuleBindings } from "../types/module-bindings.type";
