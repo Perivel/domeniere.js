@@ -127,7 +127,7 @@ You can learn more about module bindings in the [Modules](./modules) section.
 ### Instance Bindings
 We create `Instance Bindings` inside our module's `createBindings()` method. We can create a binding to our service with the `bindServiceInstance()` method.
 ```ts
-this.bindService(ServiceClass);
+this.bindServiceInstance(ServiceClass);
 ```
 The `bindServiceInstance()` method takes the class name of our service as its only argument. Once this is complete, we can now use our serive in our application.
 

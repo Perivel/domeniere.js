@@ -38,6 +38,10 @@ module.exports = {
     logo: 'logo.png',
     searchPlaceholder: "Search Site",
     nav: [
+      // {
+      //   text: 'Home',
+      //   link: '/',
+      // },
       {
         text: 'Documentation',
         link: '/docs/',
