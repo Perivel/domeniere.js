@@ -15,7 +15,7 @@ export class UsersApi extends Api {
 ```
 The Api accepts the name of the subdomain for which your application belongs to, and an instance of your `EventStore`. Your subdomain name will default to the same name on your domconfig.json file. 
 
-> **Note**: You can learn more about EventStores in the Events section.
+> **Note**: You can learn more about Event Stores in the [Events](./events) section.
 
 ## Registering Modules
 It is in the API where modules are registered and made available to our Api. We register our modules in the constructor of our API.
@@ -36,7 +36,7 @@ export class UsersApi extends Api {
 ```
 Notice here we use our module's `registerRepositoryInstance()` method to bind a repository instance to the module. We then register our module using the `registerModule()` methiod provided by our API. In this example, we only had one module with one external dependency. However, it is very common to have multiple modules with multiple dependencies. In those cases, we just repeat the steps illustrated above.
 
-> **Note**: You can learn more about Module Bindings in the Modules section.
+> **Note**: You can learn more about Module Bindings in the [Modules](./modules) section.
 
 ## Broadcasting Events
 Broadcastng Events is a responsibility delegated to users of our application, instead of being done automatically. The reasoning for this is that most infrastructure/cloud services have their own mechanisms for things like scheduled jobs (CRON jobs). To tell Domeniere to broadcast your events, we can invoke the `broadcastEvents()` method.
@@ -90,7 +90,7 @@ export class UsersApi extends Api {
 ```
 Notice here the arguments we pass to our api are all instances of DTOs. When communicating with outside consumers, it is recommended that data be passed through DTOs. Also notice that the tasks performed by our API are done primarily by services, factories, and repositories within our modules, which we access through our Api's `domain` property. Organizing our codebase in this manner keeps our code clean, readable, and easy to maintain. When there is an error, we can either manually throw an exception or have one of our services throw one, which can then be handled in the infrastructure layer.
 
-> **Note**: You can learn more about DTOs in the Data Transfer Objects section.
+> **Note**: You can learn more about DTOs in the [Data Transfer Objects](./dtos) section.
 
 To use our api method in a consumer application, we can use it like any other method.
 ```ts
@@ -147,4 +147,4 @@ export class UsersApi extends Api {
 ```
 Here, we define an Event Handler method which will send a Welcome message every time an `AccountCreated` event occurs. Notice here we are using the `On()` decorator. This is how we inform Domeniere that the method we just defined is intended to be an Event Handler method.
 
-> **Note**: You can learn more about Event Handlers in the Events section.
+> **Note**: You can learn more about Event Handlers in the [Events](./events) section.

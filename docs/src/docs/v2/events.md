@@ -129,7 +129,7 @@ Event Handlers are methods that are automatically executed in response to some e
 ```ts
 async methodName(event: DomainEvent): Promise<void>
 ```
-> **Note**: You can learn more about Apis in the Apis section.
+> **Note**: You can learn more about Apis in the [Apis](./api) section.
 
 > **Note**: The type of the `event` argument of an Event Handler can be any class that extends `DomainEvent`.
 
@@ -207,7 +207,7 @@ domeniere create event <module-name>/path/to/the/event-name
 ```
 This will create an event file in our specified module's `events` subdirectory.
 
-> **Note**: In order to create an event, you need to have created a module that will contain the event. See the Modules section for more details.
+> **Note**: In order to create an event, you need to have created a module that will contain the event. See the [Modules](./modules) section for more details.
 
 Custom events take two optional arguments. The first is the timestamp of when the event occurs. By default, this is the current date and time in UTC. The second argument is a unique id for the event instance. When it is set to `undefined`, a random unique ID is generated for us by the `DomainEvent` class.
 
@@ -392,7 +392,7 @@ private async handleEvent(event: SomeEvent): Promise<void> {
     await this.emit(new AnotherEvent(...));
 }
 ```
-> **Note**: You can learn more about the `Api` in the Apis section.
+> **Note**: You can learn more about the `Api` in the [Apis](./api) section.
 
 ## Broadcasting Events
 To broadcast our events over a network, we use our `Api`'s `broadcastEvents()` method. To learn more about the `Api`, see the Api section.

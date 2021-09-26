@@ -8,7 +8,7 @@ domeniere create entity <module-name>/path/to/the/entity-name
 ```
 This will create a new directory for the entity in the specified module's entities subdirectory. This subdirectory will contain both an interface file and a class file for our entity.
 
-> **Note**: In order to create an entity, you need to have created a module that will contain the entity. See the Modules section for more details.
+> **Note**: In order to create an entity, you need to have created a module that will contain the entity. See the [Modules](./modules) section for more details.
 
 For this example, let's say we are defining a `User` entity. When we first create our entity, we are given a basic template like the one below.
 
@@ -45,7 +45,7 @@ import { UserInterface } from './user.interface';
 ```
 Entities are primarily defined by their identities. In Domeniere applications, we assign an `Identifier Value` to represent the identity of an entity. 
 
-> **Note**: You can learn more about `Identifier Values` in the Values section.
+> **Note**: You can learn more about `Identifier Values` in the [Values](./values) section.
 
 For this example, we will assume we already have defined a `UserId` Identity value that we can use as the Id of our `User` entity.
 
@@ -233,7 +233,7 @@ The Commitment phase takes place when a state change has taken place in the enti
 
 The Verification phase is the final phase of the Entity State Lifecycle. In the Verification phase, the committed state changes of an entity are either confirmed with the entity's `confirmStateChanges()` method or discarded with the `rollbackStateChanges()` method. This phase is normally executed by an `Aggregate`, or a `Command` or `Query` that utilizes the entity.
 
-> **Note**: You can learn more about Aggregates in the Aggregates section, and about Commands and Queries in the Services section.
+> **Note**: You can learn more about Aggregates in the [Aggregates](./aggregates) section, and about Commands and Queries in the [Services](./services) section.
 
 ## Timestamped Entities
 Sometimes, we want or need to attach timstamps to our entities, that indicate when they were created, last updated, or even deleted. In these cases, we can create a `TimestampedEntity`, which will track these timestamps for our entiy  automatically.
@@ -245,6 +245,6 @@ domeniere create entity <module-name>/path/to/the/entity-name --timestamped
 ```
 This will create a new directory for the entity in the specified module's entities subdirectory. This subdirectory will contain both an interface file and a class file for our entity.
 
-> **Note**: In order to create an entity, you need to have created a module that will contain the entity. See the Modules section for more details.
+> **Note**: In order to create an entity, you need to have created a module that will contain the entity. See the [Modules](./modules) section for more details.
 
 The created `Timestamped Entity` is very similar to a regular entity. The only difference is our created `Timestamped Entity` now includes arguments for DateTimes when they were created, updated, and deleted. We can create our entity just like we normally would. Domeniere will automatically manage our timestamps for us in the Entity Lifecycle.

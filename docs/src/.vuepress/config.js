@@ -20,7 +20,8 @@ module.exports = {
   head: [
     ['meta', { name: 'theme-color', content: '#2708A0' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+    ['link', { rel: 'apple-touch-icon', sizes: '152x152', href: 'mobile-icon.jpg'}]
   ],
 
   /**
@@ -53,6 +54,7 @@ module.exports = {
           collapsable: false,
           children: [
             ['/docs/', 'First Steps'],
+            //['philosophy', 'Philosophy'],
             ['project-structure', 'Project Structure']
           ]
         },
