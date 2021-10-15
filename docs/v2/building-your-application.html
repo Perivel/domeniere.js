@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Building Your Application | DomeniereJS</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://domeniere.com/mobile-icon.jpg">
+    <meta name="description" content="Build Framework-Independent Application Libraries.">
+    <meta name="theme-color" content="#2708A0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="preload" href="/assets/css/0.styles.4ee4b92b.css" as="style"><link rel="preload" href="/assets/js/app.07ba9b71.js" as="script"><link rel="preload" href="/assets/js/2.c110500d.js" as="script"><link rel="preload" href="/assets/js/17.fe56518a.js" as="script"><link rel="prefetch" href="/assets/js/10.00908f63.js"><link rel="prefetch" href="/assets/js/11.d9789e0c.js"><link rel="prefetch" href="/assets/js/12.89418239.js"><link rel="prefetch" href="/assets/js/13.0c6996ad.js"><link rel="prefetch" href="/assets/js/14.fcb088e2.js"><link rel="prefetch" href="/assets/js/15.7a70df12.js"><link rel="prefetch" href="/assets/js/16.9da8c658.js"><link rel="prefetch" href="/assets/js/18.e264f784.js"><link rel="prefetch" href="/assets/js/19.22903301.js"><link rel="prefetch" href="/assets/js/20.a83f87a9.js"><link rel="prefetch" href="/assets/js/21.caf40893.js"><link rel="prefetch" href="/assets/js/22.b4c6ed65.js"><link rel="prefetch" href="/assets/js/23.488cb85f.js"><link rel="prefetch" href="/assets/js/24.12146c9f.js"><link rel="prefetch" href="/assets/js/25.24f5f354.js"><link rel="prefetch" href="/assets/js/26.7e440405.js"><link rel="prefetch" href="/assets/js/27.a32346ff.js"><link rel="prefetch" href="/assets/js/28.9b7ac0d6.js"><link rel="prefetch" href="/assets/js/3.12f7257b.js"><link rel="prefetch" href="/assets/js/4.8237f7ce.js"><link rel="prefetch" href="/assets/js/5.1dda8a28.js"><link rel="prefetch" href="/assets/js/6.c5f5f561.js"><link rel="prefetch" href="/assets/js/7.59be7610.js"><link rel="prefetch" href="/assets/js/8.d0b17da8.js"><link rel="prefetch" href="/assets/js/9.ea031657.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.4ee4b92b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="logo.png" alt="DomeniereJS" class="logo"> <span class="site-name can-hide">DomeniereJS</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/" class="nav-link router-link-active">
+  Documentation
+</a></div> <a href="https://github.com/Perivel/domeniere" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/" class="nav-link router-link-active">
+  Documentation
+</a></div> <a href="https://github.com/Perivel/domeniere" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Getting Started</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/" aria-current="page" class="sidebar-link">First Steps</a></li><li><a href="/docs/project-structure.html" class="sidebar-link">Project Structure</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Fundamentals</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/v2/values.html" class="sidebar-link">Values</a></li><li><a href="/docs/v2/entities.html" class="sidebar-link">Entities</a></li><li><a href="/docs/v2/aggregates.html" class="sidebar-link">Aggregates</a></li><li><a href="/docs/v2/factories.html" class="sidebar-link">Factories</a></li><li><a href="/docs/v2/repositories.html" class="sidebar-link">Repositories</a></li><li><a href="/docs/v2/services.html" class="sidebar-link">Services</a></li><li><a href="/docs/v2/events.html" class="sidebar-link">Events</a></li><li><a href="/docs/v2/modules.html" class="sidebar-link">Modules</a></li><li><a href="/docs/v2/dtos.html" class="sidebar-link">Data Transfer Objects</a></li><li><a href="/docs/v2/specifications.html" class="sidebar-link">Specifications</a></li><li><a href="/docs/v2/api.html" class="sidebar-link">Api</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Deployment</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/v2/building-your-application.html" aria-current="page" class="active sidebar-link">Building Your Application</a></li><li><a href="/docs/v2/using-your-application.html" class="sidebar-link">Using Your Application</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="building-your-application"><a href="#building-your-application" class="header-anchor">#</a> Building Your Application</h1> <p>Since all Domeniere Applications are just regular Typescript NodeJS projects, building your Domeniere application is very strightforward. The goal of the Domeniere Build Process is to generate a library we can use in our environment.</p> <p>All Domeniere applications come with a default built script in its <code>package.json</code> file. So, we can build our application by running the following command.</p> <div class="language- extra-class"><pre class="language-text"><code>npm run build
+
+or
+
+yarn build
+</code></pre></div><p>Once the build process completes, we are ready to use it in our environment.</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">9/29/2021, 1:24:22 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/v2/api.html" class="prev">
+        Api
+      </a></span> <span class="next"><a href="/docs/v2/using-your-application.html">
+        Using Your Application
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.07ba9b71.js" defer></script><script src="/assets/js/2.c110500d.js" defer></script><script src="/assets/js/17.fe56518a.js" defer></script>
+  </body>
+</html>
