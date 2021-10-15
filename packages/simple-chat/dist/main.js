@@ -91,7 +91,7 @@ class MemorySimpleChatEventStore extends simple_chat_1.SimpleChatEventStore {
         let event;
         while (!eventsToPublish.isEmpty()) {
             event = eventsToPublish.dequeue();
-            console.log(event);
+            //console.log(event);
             publishedEvents.enqueue(event);
         }
     }
@@ -143,5 +143,6 @@ const main = async () => {
     await chat.postMessage(message, convo[0]);
     await chat.joinConversation(carmen, convo[0]);
     await chat.testState();
+    await chat.broadcastEvents();
 };
 main().then(() => console.log("Finished!"));
