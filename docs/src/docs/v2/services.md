@@ -10,7 +10,7 @@ domeniere create command <module>/path/to/the/command-name
 ```
 This will create a directory for our command inside our specified module's `services` directory.
 
-> **Note**: In order to create a command, you need to have created a module that will contain the command. See the Modules section for more details.
+> **Note**: In order to create a command, you need to have created a module that will contain the command. See the [Modules](./modules) section for more details.
 
 Below is an example of a `CreateAccountCommand` that is responsible for creating a User Account from a given registration.
 ```ts
@@ -62,7 +62,7 @@ domeniere create query <module-name>/path/to/query-name
 ```
 This will create a directory for our query inside our specified module's `services` directory.
 
-> **Note**: In order to create a query, you need to have created a module that will contain the query. See the Modules section for more details.
+> **Note**: In order to create a query, you need to have created a module that will contain the query. See the [Modules](./modules) section for more details.
 
 Below is an example of a `GetUserByIdQuery`, which is tasked with getting an Account by its Id.
 ```ts
@@ -109,3 +109,26 @@ await this.emit(new AccountCreated(account));
 In many cases, different parts of your domain may need to respond to state changes. In order to notify your interested parties about a state change, services can emit events to inform interested parties about changes through the built in `emit()` method. 
 
 To learn more about events, refer to the Events section.
+
+## Registering Services
+Something important that we have to do in order to ensure our services are available is to register them with our module. There are two ways to register our services. We can either register our services as `Factory Bindings` or as `Instance Bindings`.
+
+### Factory Bindings
+We create `Factory Bindings` inside our module's `createBindings()` method. We can create a binding to our service with the `bindService()` method.
+```ts
+this.bindService(ServiceClass, (module) => {
+    return new ServiceClass(module.get(DependencyClass));
+});
+```
+The `bindService()` method takes two arguments. The first is the class name of the service we want to bind. The second is a factory function to tell Domeniere how to instantiate our service. Once this is complete, we can now use our serive in our application.
+
+You can learn more about module bindings in the [Modules](./modules) section.
+
+### Instance Bindings
+We create `Instance Bindings` inside our module's `createBindings()` method. We can create a binding to our service with the `bindServiceInstance()` method.
+```ts
+this.bindServiceInstance(ServiceClass);
+```
+The `bindServiceInstance()` method takes the class name of our service as its only argument. Once this is complete, we can now use our serive in our application.
+
+You can learn more about module bindings in the [Modules](./modules) section.

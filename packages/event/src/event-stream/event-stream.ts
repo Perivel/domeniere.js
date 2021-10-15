@@ -58,17 +58,7 @@ export class EventStream implements EventStreamInterface {
 
             // this method is executed after all handlers are executed.
             async (event, emitter): Promise<void> => {
-                // process the published events.
-                this.eventStore().processPublishedEvents();
-
-                // update the published events.
-                try {
-                    await this.eventStore().updatePublishedEvents();
-                }
-                catch (err) {
-                    // failed to store some or all the events.
-                    await emitter.emit(new EventStoreFailed(err as Error));
-                }
+                //
             },
 
             // executed when the handler encounters an error
@@ -132,6 +122,18 @@ export class EventStream implements EventStreamInterface {
 
     public async publishEvents(): Promise<void> {
         await this.eventStore().publishEvents();
+
+        // process the published events.
+        this.eventStore().processPublishedEvents();
+
+        // update the published events.
+        try {
+            await this.eventStore().updatePublishedEvents();
+        }
+        catch (err) {
+            // failed to store some or all the events.
+            await this.emitter.emit(new EventStoreFailed(err as Error));
+        }
     }
 
     /**

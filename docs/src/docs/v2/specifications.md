@@ -12,7 +12,7 @@ domeniere create specification <module-name>/path/to/specification-name
 ```
 This will create a specification file inside the `specifications` subdirectory of our specified module.
 
-> **Note**: In order to create a specification, you must have created a module which will contiain the specification. You can learn more about Modules in the Modules section.
+> **Note**: In order to create a specification, you must have created a module which will contiain the specification. You can learn more about Modules in the [Modules](./modules) section.
 
 Below is an example definition of an `RegistrationAgeSpecification` class.
 ```ts

@@ -91,7 +91,7 @@ class MemorySimpleChatEventStore extends simple_chat_1.SimpleChatEventStore {
         let event;
         while (!eventsToPublish.isEmpty()) {
             event = eventsToPublish.dequeue();
-            console.log(event);
+            //console.log(event);
             publishedEvents.enqueue(event);
         }
     }
@@ -116,8 +116,7 @@ class MemorySimpleChatEventStore extends simple_chat_1.SimpleChatEventStore {
         throw new Error('Method not implemented.');
     }
     async saveEvents(eventQueue) {
-        //console.log("Running saveEvents()");
-        throw new Error("Events cannot be saved.");
+        console.log("Running saveEvents()");
     }
 }
 const main = async () => {
@@ -143,5 +142,6 @@ const main = async () => {
     await chat.postMessage(message, convo[0]);
     await chat.joinConversation(carmen, convo[0]);
     await chat.testState();
+    await chat.broadcastEvents();
 };
 main().then(() => console.log("Finished!"));

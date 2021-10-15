@@ -20,7 +20,8 @@ module.exports = {
   head: [
     ['meta', { name: 'theme-color', content: '#2708A0' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+    ['link', { rel: 'apple-touch-icon', sizes: '152x152', href: 'https://domeniere.com/mobile-icon.jpg'}]
   ],
 
   /**
@@ -37,6 +38,10 @@ module.exports = {
     logo: 'logo.png',
     searchPlaceholder: "Search Site",
     nav: [
+      // {
+      //   text: 'Home',
+      //   link: '/',
+      // },
       {
         text: 'Documentation',
         link: '/docs/',
@@ -53,6 +58,7 @@ module.exports = {
           collapsable: false,
           children: [
             ['/docs/', 'First Steps'],
+            //['philosophy', 'Philosophy'],
             ['project-structure', 'Project Structure']
           ]
         },
@@ -60,19 +66,27 @@ module.exports = {
           title: 'Fundamentals',
           collapsable: false,
           children: [
-            ['/docs/v2/aggregates', 'Aggregates'],
-            ['/docs/v2/api', 'Api'],
-            ['/docs/v2/dtos', 'Data Transfer Objects'],
+            ['/docs/v2/values', 'Values'],
             ['/docs/v2/entities', 'Entities'],
-            ['/docs/v2/events', 'Events'],
+            ['/docs/v2/aggregates', 'Aggregates'],
             ['/docs/v2/factories', 'Factories'],
-            ['/docs/v2/modules', 'Modules'],
             ['/docs/v2/repositories', 'Repositories'],
             ['/docs/v2/services', 'Services'],
+            ['/docs/v2/events', 'Events'],
+            ['/docs/v2/modules', 'Modules'],
+            ['/docs/v2/dtos', 'Data Transfer Objects'],
             ['/docs/v2/specifications', 'Specifications'],
-            ['/docs/v2/values', 'Values']
+            ['/docs/v2/api', 'Api']
           ]
-        }
+        },
+        {
+          title: 'Deployment',
+          collapsable: false,
+          children: [
+            ['/docs/v2/building-your-application', 'Building Your Application'],
+            ['/docs/v2/using-your-application', 'Using Your Application'],
+          ]
+        },
       ],
     }
   },

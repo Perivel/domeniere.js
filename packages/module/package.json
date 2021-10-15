@@ -1,6 +1,6 @@
 {
   "name": "@domeniere/module",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "The Domeniere module module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "clean": "rimraf ./dist"
   },
   "dependencies": {
-    "@domeniere/service": "^2.0.1",
+    "@domeniere/service": "^2.0.2",
     "@domeniere/repository": "^2.0.1",
     "@swindle/core": "^2.1.0",
     "@swindle/container": "^1.0.0",

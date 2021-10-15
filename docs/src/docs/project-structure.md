@@ -1,5 +1,5 @@
 # Project Structure
-DomeniereJS provides a very simple and scalable project structure.
+DomeniereJS believes in "Convention over Configuration". Below is the standard structure of every DomeniereJS project.
 
 # The Root Directory
 ## The index.ts File

@@ -10,7 +10,7 @@ domeniere create value <module-name>/path/to/the/value-name
 ```
 This will create a new directory for the value in the specified module's values subdirectory. This subdirectory will contain both an interface file and a class file for our value.
 
-> **Note**: In order to create a value, you need to have created a module that will contain the value. See the Modules section for more details.
+> **Note**: In order to create a value, you need to have created a module that will contain the value. See the [Modules](./modules) section for more details.
 
 When creating a Value class, we need to override the `equals()` method and the `serialize()` method. The `equals()` method defines how our value will determine equality. The `serialize()` method defines how our value class will be serialized.
 

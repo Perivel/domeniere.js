@@ -8,7 +8,7 @@ domeniere create aggregate <module-name>/path/to/aggregate-name
 ```
 This command will create a new aggregate in the `aggregates` subdirectory of our specified module.
 
-> **Note**: In order to create an aggregate, you need to have created a module that will contain the aggregate. See the Modules section for more details.
+> **Note**: In order to create an aggregate, you need to have created a module that will contain the aggregate. See the [Modules](./modules) section for more details.
 
 Every aggregate takes an entity and a version number as its constructor argument. The provided entity will serve as the aggregate root. The version number is an optional argument that is used to keep track of changes to the aggregate. By default, it will be set to 1.0.
 
@@ -196,7 +196,7 @@ export class Account extends Aggregate {
 ```
 We define two additional state properties to assist us in managing password authentication. The `AccountStatus` value object contains the possible statuses an `Account` aggregate can have. THe `AuthenticationAttempts` manages the number of attempts previously made on this account, and whther or not the authentication attempt limit has been exceeded. We first determine if the password we received matches the hashed password for this account. If the password matches, then the caller can be authenticated and we reset the attempts. If the password input does not match, however, we increment the number of attempts, and if the allowed limit is exceeded, we lock the account for security purposes. This example illustrates how we can use Aggregates to enforce consistencies within state changes.
 
-> **Note**: the above method does not represent a complete authentication solution. Rather, it represents part of one that will be used in an authentication process defined within a service such as an `AuthenticateAccountCommand`. For more information about services, see the Services section.
+> **Note**: the above method does not represent a complete authentication solution. Rather, it represents part of one that will be used in an authentication process defined within a service such as an `AuthenticateAccountCommand`. For more information about services, see the [Services](./services) section.
 
 Notice that in our `authenticate()` method, we also call the aggregate's `commitStateChanges()` method. This is mandetory to assist Domeniere in tracking state changes, as we will explain in the Aggregate Lifecycle. Another detail to note is that **Domeniere uses the assignment operator (`=` sign) to detect state changes**.
 
@@ -209,7 +209,7 @@ The Commitment phase begins when a state change has taken place in the aggregate
 
 The Verification phase is the final phase of the Aggregate State Lifecycle. In the Verification phase, the committed state changes of an aggregate are either confirmed with the aggregate's `confirmStateChanges()` method or discarded with the `rollbackStateChanges()` method. This phase is normally executed by a `Command` that utilizes the aggregate.
 
-> **Note**: You can learn more about Commands in the Services section.
+> **Note**: You can learn more about Commands in the [Services](./services) section.
 
 ## Aggregate Versioning
 Versioning is a useful tool to keep track of changes to the state of your aggregates. Versioning will often be used to synchronize changes across Domeniere domains. By default, Domeniere manages aggregate versions as part of the `Aggregate` state. So, aggregate versioning is not something youu need to worry about too much.
@@ -224,6 +224,6 @@ domeniere create aggregate <module-name>/path/to/the/aggregate-name --timestampe
 ```
 This will create a new directory for the aggregate in the specified module's aggregates subdirectory. This subdirectory will contain both an interface file and a class file for our aggregate.
 
-> **Note**: In order to create an aggregate, you need to have created a module that will contain the aggregate. See the Modules section for more details.
+> **Note**: In order to create an aggregate, you need to have created a module that will contain the aggregate. See the [Modules](./modules) section for more details.
 
 The created `Timestamped Aggregate` is very similar to a regular aggregate. The only difference is our created `Timestamped Aggregate` now includes arguments for DateTimes when they were created, updated, and deleted. We can create our `Aggregate` just like we normally would. Domeniere will automatically manage our timestamps for us in the Aggregate state Lifecycle.

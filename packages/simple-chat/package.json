@@ -11,8 +11,8 @@
   "dependencies": {
     "@swindle/core": "^2.1.0",
     "@swindle/structs": "^1.0.4",
-    "@domeniere/core": "^2.0.0",
-    "@domeniere/common": "^2.0.0"
+    "@domeniere/core": "^2.0.3",
+    "@domeniere/common": "^2.0.3"
   },
   "devDependencies": {
     "rimraf": "^3.0.2"

@@ -39,16 +39,7 @@ class EventStream {
         }, 
         // this method is executed after all handlers are executed.
         async (event, emitter) => {
-            // process the published events.
-            this.eventStore().processPublishedEvents();
-            // update the published events.
-            try {
-                await this.eventStore().updatePublishedEvents();
-            }
-            catch (err) {
-                // failed to store some or all the events.
-                await emitter.emit(new event_store_failed_event_1.EventStoreFailed(err));
-            }
+            //
         }, 
         // executed when the handler encounters an error
         async (event, error, sub, emitter) => {
@@ -102,6 +93,16 @@ class EventStream {
      */
     async publishEvents() {
         await this.eventStore().publishEvents();
+        // process the published events.
+        this.eventStore().processPublishedEvents();
+        // update the published events.
+        try {
+            await this.eventStore().updatePublishedEvents();
+        }
+        catch (err) {
+            // failed to store some or all the events.
+            await this.emitter.emit(new event_store_failed_event_1.EventStoreFailed(err));
+        }
     }
     /**
      * processTransmittedEvent()
