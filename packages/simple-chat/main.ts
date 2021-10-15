@@ -152,8 +152,7 @@ class MemorySimpleChatEventStore extends SimpleChatEventStore {
     }
 
     protected async saveEvents(eventQueue: Queue<StoredEvent>): Promise<void> {
-        //console.log("Running saveEvents()");
-        throw new Error("Events cannot be saved.");
+        console.log("Running saveEvents()");
     }
 }
 

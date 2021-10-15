@@ -116,8 +116,7 @@ class MemorySimpleChatEventStore extends simple_chat_1.SimpleChatEventStore {
         throw new Error('Method not implemented.');
     }
     async saveEvents(eventQueue) {
-        //console.log("Running saveEvents()");
-        throw new Error("Events cannot be saved.");
+        console.log("Running saveEvents()");
     }
 }
 const main = async () => {
