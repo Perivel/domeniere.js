@@ -1,5 +1,4 @@
-import { TimestampedAggregate } from '@domeniere/aggregate';
-import { Entity } from '@domeniere/entity';
+import { TimestampedAggregate, Entity, } from '@domeniere/framework';
 import { DateTime, MethodUndefinedException } from '@swindle/core';
 import { __AGGREGATE_NAME__Interface } from './__AGGREGATE_PATH__.interface';
 

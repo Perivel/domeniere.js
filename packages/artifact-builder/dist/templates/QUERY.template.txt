@@ -1,4 +1,4 @@
-import { Query } from '@domeniere/service';
+import { Query } from '@domeniere/framework';
 import { MethodUndefinedException } from '@swindle/core';
 
 

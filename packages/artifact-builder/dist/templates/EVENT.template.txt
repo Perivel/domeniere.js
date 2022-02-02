@@ -1,4 +1,4 @@
-import { DomainEvent } from '@domeniere/event';
+import { DomainEvent } from '@domeniere/framework';
 import { DateTime, MethodUndefinedException } from '@swindle/core';
 
 

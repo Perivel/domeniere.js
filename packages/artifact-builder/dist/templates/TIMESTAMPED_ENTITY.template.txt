@@ -1,5 +1,4 @@
-import { TimestampedEntity } from '@domeniere/entity';
-import { Identifier } from '@domeniere/value';
+import { Identifier, TimestampedEntity } from '@domeniere/framework';
 import { DateTime, MethodUndefinedException } from '@swindle/core';
 import { __ENTITY_NAME__Interface } from './__ENTITY_PATH__.interface';
 

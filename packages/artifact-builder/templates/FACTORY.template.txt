@@ -1,4 +1,4 @@
-import { AbstractFactory } from '@domeniere/factory';
+import { AbstractFactory } from '@domeniere/framework';
 import { __FACTORY_NAME__FactoryInterface } from './__FACTORY_PATH__-factory.interface';
 
 

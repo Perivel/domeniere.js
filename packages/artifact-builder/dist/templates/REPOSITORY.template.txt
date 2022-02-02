@@ -1,5 +1,4 @@
-import { Repository } from '@domeniere/repository';
-import { Aggregate } from '@domeniere/aggregate';
+import { Aggregate, Repository } from '@domeniere/framework';
 
 
 export abstract class __REPOSITORY_NAME__Repository extends Repository {

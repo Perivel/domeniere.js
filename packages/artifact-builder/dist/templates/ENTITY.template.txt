@@ -1,5 +1,4 @@
-import { Entity } from '@domeniere/entity';
-import { Identifier } from '@domeniere/value';
+import { Entity, Identifier } from '@domeniere/framework';
 import { MethodUndefinedException } from '@swindle/core';
 import { __ENTITY_NAME__Interface } from './__ENTITY_PATH__.interface';
 

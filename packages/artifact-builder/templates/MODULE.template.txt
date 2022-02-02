@@ -1,4 +1,4 @@
-import { Module } from '@domeniere/module';
+import { Module } from '@domeniere/framework';
 
 
 export default class __MODULE_NAME__Module extends Module {

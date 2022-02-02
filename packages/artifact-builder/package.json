@@ -1,6 +1,6 @@
 {
   "name": "@domeniere/artifact-builder",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Artifact Generators for Domeniere artifacts",
   "main": "dist/index.js",
   "repository": "https://github.com/Perivel/domeniere-cli.git",
@@ -8,10 +8,10 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@swindle/core": "^2.1.0",
-    "@swindle/filesystem": "1.0.6",
-    "@swindle/structs": "^1.0.4",
-    "@swindle/os": "1.0.9"
+    "@swindle/core": "^2.1.1",
+    "@swindle/filesystem": "1.0.8",
+    "@swindle/structs": "^1.0.5",
+    "@swindle/os": "1.0.11"
   },
   "devDependencies": {
     "copyfiles": "^2.4.1",

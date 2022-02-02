@@ -1,6 +1,4 @@
-import { IdentityGeneratingRepository } from '@domeniere/repository';
-import { Aggregate } from '@domeniere/aggregate';
-import { Identifier } from '@domeniere/value';
+import { Identifier, IdentityGeneratingRepository, Aggregate } from '@domeniere/framework';
 import { MethodUndefinedException } from '@swindle/core';
 
 

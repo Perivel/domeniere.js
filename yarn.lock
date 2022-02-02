@@ -303,16 +303,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@domeniere/artifact-builder@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@domeniere/artifact-builder/-/artifact-builder-1.0.3.tgz#c6c9f39a8c9578118989de35166027565c6abcab"
-  integrity sha512-9pyOWFXU8a6XGq0hRKNmvWILQ/FTWNZdvVFRUo3yE3rRjqWdah2bOQprdgy7J7EjAg31naGwQ4/hoavlHqy75Q==
-  dependencies:
-    "@swindle/core" "^2.1.0"
-    "@swindle/filesystem" "1.0.6"
-    "@swindle/os" "1.0.9"
-    "@swindle/structs" "^1.0.4"
-
 "@domeniere/event@^2.0.0":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@domeniere/event/-/event-2.0.2.tgz#7a78edcd207669ca646c3f50c1fd1c534f280b11"
@@ -594,7 +584,15 @@
     "@swindle/structs" "1.0.5"
     typescript "^4.3.5"
 
-"@swindle/filesystem@1.0.6", "@swindle/filesystem@^1.0.6":
+"@swindle/filesystem@1.0.8", "@swindle/filesystem@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@swindle/filesystem/-/filesystem-1.0.8.tgz#5d476f8f2209d9d0def17eac2cc384f69657edfd"
+  integrity sha512-NjgspjJ+EQZdSzB7ukUQoU1x6u6I3Yd89/0c1hTSrpTDgXesm1G9Yp5gStaGCkrBdMroQeTFRKTtTfFxWKVulw==
+  dependencies:
+    "@swindle/core" "^2.1.1"
+    "@types/node" "16.7.1"
+
+"@swindle/filesystem@^1.0.6":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@swindle/filesystem/-/filesystem-1.0.6.tgz#ebab953d979bf2bd6e4d68ec3065f8fa3584e981"
   integrity sha512-1sbtbZr3IZUex+LMvdzOm8MeW+u+v4jOoIZ98IRV2pDufgik3Gzln+zZ1gpzusPg5gaWAMn3X1s5uzdUnCigrQ==
@@ -602,7 +600,16 @@
     "@swindle/core" "^2.1.0"
     "@types/node" "16.7.1"
 
-"@swindle/os@1.0.9", "@swindle/os@^1.0.9":
+"@swindle/os@1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@swindle/os/-/os-1.0.11.tgz#afb96aeff25642deabeaeae8a5636a91a7626669"
+  integrity sha512-5UzJ8zYSwt8E0UKXnw6AxBBeBq+w7tszDBVr8mA4Jg1Tj+FxBuc91fKPfH1V8noYGsQOLEJ6cW5mp+dVZagDNQ==
+  dependencies:
+    "@swindle/core" "^2.1.1"
+    "@swindle/filesystem" "^1.0.8"
+    promisify-child-process "^4.1.1"
+
+"@swindle/os@^1.0.9":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@swindle/os/-/os-1.0.9.tgz#f47a45bb5c14fc03ebcaab126c11b2eaa377384b"
   integrity sha512-LMNoVrDwQu2tTSftjhKjhsOtpWBf6Rs7EXwuJAc1T8kLxOU5qwfYo5rEYabEv2H/7eJn/1xWm+J7AG26uFJdyA==

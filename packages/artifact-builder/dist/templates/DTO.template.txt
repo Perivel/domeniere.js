@@ -1,4 +1,4 @@
-import { Data } from '@domeniere/dto';
+import { Data } from '@domeniere/framework';
 import { MethodUndefinedException } from '@swindle/core';
 
 
