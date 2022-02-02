@@ -1,0 +1,1 @@
+{"version":3,"file":"invalid-event-publish-interval.exception.js","sourceRoot":"","sources":["../../../../src/event/event-stream/invalid-event-publish-interval.exception.ts"],"names":[],"mappings":";;;AAAA,wCAAwD;AAGxD,MAAa,oCAAqC,SAAQ,+BAAwB;IAE9E,YAAY,UAAkB,mCAAmC;QAC7D,KAAK,CAAC,OAAO,CAAC,CAAC;IACnB,CAAC;CACJ;AALD,oFAKC"}

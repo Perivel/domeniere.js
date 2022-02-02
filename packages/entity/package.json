@@ -20,7 +20,7 @@
   "dependencies": {
     "@swindle/core": "^2.1.0",
     "@domeniere/state": "^1.0.1",
-    "@domeniere/value": "^2.0.2",
+    
     "typescript": "^4.4.2"
   },
   "devDependencies": {

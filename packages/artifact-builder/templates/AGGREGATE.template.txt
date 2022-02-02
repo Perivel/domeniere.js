@@ -1,0 +1,28 @@
+import { Aggregate } from '@domeniere/aggregate';
+import { Entity } from '@domeniere/entity';
+import { MethodUndefinedException } from '@swindle/core';
+import { __AGGREGATE_NAME__Interface } from './__AGGREGATE_PATH__.interface';
+
+
+export class __AGGREGATE_NAME__ extends Aggregate implements __AGGREGATE_NAME__Interface {
+
+    constructor(root: Entity, version: number|undefined = 1.0) {
+        super(root, version);
+    }
+
+    public equals(suspect: any): boolean {
+
+        let isEquals = false;
+
+        if (suspect instanceof __AGGREGATE_NAME__) {
+            const other = suspect as __AGGREGATE_NAME__;
+            isEquals = this.id().equals(other.id());
+        }
+
+        return isEquals;
+    }
+
+    protected serializeData(): string {
+        throw new MethodUndefinedException();
+    }
+}

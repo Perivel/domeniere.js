@@ -1,0 +1,22 @@
+import { IdentityGeneratingRepository } from '@domeniere/repository';
+import { Aggregate } from '@domeniere/aggregate';
+import { Identifier } from '@domeniere/value';
+import { MethodUndefinedException } from '@swindle/core';
+
+
+export abstract class __REPOSITORY_NAME__Repository extends IdentityGeneratingRepository {
+
+    constructor() {
+        super();
+    }
+
+    public generateIdentity(): Identifier {
+        throw new MethodUndefinedException();
+    }
+
+    public abstract remove(aggregate: Aggregate): Promise<void>;
+
+    public abstract save(aggregate: Aggregate): Promise<void>;
+
+    public abstract size(): Promise<number>;
+}

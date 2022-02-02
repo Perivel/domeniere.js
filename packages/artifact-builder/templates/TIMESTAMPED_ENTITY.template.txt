@@ -1,0 +1,27 @@
+import { TimestampedEntity } from '@domeniere/entity';
+import { Identifier } from '@domeniere/value';
+import { DateTime, MethodUndefinedException } from '@swindle/core';
+import { __ENTITY_NAME__Interface } from './__ENTITY_PATH__.interface';
+
+
+ export class __ENTITY_NAME__ extends TimestampedEntity implements __ENTITY_NAME__Interface {
+
+    constructor(id: Identifier, createdOn: DateTime = DateTime.Now(), updatedOn: DateTime = DateTime.Now(), deletedOn: DateTime|null = null) {
+        super(id, createdOn, updatedOn, deletedOn);
+    }
+
+    public equals(suspect: any): boolean {
+        let isEquals = false;
+
+        if (suspect instanceof __ENTITY_NAME__) {
+            const other = suspect as __ENTITY_NAME__;
+            isEquals = this.id().equals(other.id());
+        }
+
+        return isEquals;
+    }
+
+    public serializeData(): string {
+        throw new MethodUndefinedException();
+    }
+}

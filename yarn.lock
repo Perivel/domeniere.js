@@ -550,6 +550,19 @@
     typescript "^4.3.5"
     uuid "^8.3.0"
 
+"@swindle/core@2.1.1", "@swindle/core@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@swindle/core/-/core-2.1.1.tgz#a8e91638ec87fac5dd1a7d3e9b9d960761a18555"
+  integrity sha512-0hiJb7xzh3TRWWq4mEnv9t7lsRuPVJTvpCBB5qe9zmJo0J1h9MHJta2dRFBx9vIG+uWyS8n4pR4ijTrAJBkDVw==
+  dependencies:
+    awesome-phonenumber "^2.55.0"
+    bcryptjs "^2.4.3"
+    change-case "^4.1.2"
+    i18n-iso-countries "^6.0.0"
+    luxon "^1.25.0"
+    typescript "^4.3.5"
+    uuid "^8.3.0"
+
 "@swindle/core@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@swindle/core/-/core-2.0.0.tgz#92f7498496d5711f14b7fd231e31d4fcbe8bf710"
@@ -573,6 +586,15 @@
   dependencies:
     "@swindle/core" "2.1.0"
     "@swindle/structs" "1.0.4"
+    typescript "^4.3.5"
+
+"@swindle/event-emitter@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@swindle/event-emitter/-/event-emitter-1.0.6.tgz#b42af7eb275004fb26573923cc6ed147c9baed75"
+  integrity sha512-Rx/5cr3jxhkzB9a0RRydXfViIq9CG3D0VOsWQVrlxzXV76zPD6/HNZ572X5KFgeeqH2mx1Q5MCQ38XPkgxbeLw==
+  dependencies:
+    "@swindle/core" "2.1.1"
+    "@swindle/structs" "1.0.5"
     typescript "^4.3.5"
 
 "@swindle/filesystem@^1.0.6":
@@ -603,6 +625,13 @@
   integrity sha512-N95NWRcZCU1Y3dt50PUEpiKuciLxXk7KdMLIk+b2IOn2/J5DgGoQVWSAvlik4iZziPisFFRGmjCLWpMUZnl9Gw==
   dependencies:
     "@swindle/core" "^2.1.0"
+
+"@swindle/structs@1.0.5", "@swindle/structs@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@swindle/structs/-/structs-1.0.5.tgz#b1b2d87af7e9a76020ee64b3ad4155229c233e74"
+  integrity sha512-L5H/XvKwqbnxdKDaT7V4FEuwDeM0x23Y7HqjX+MsyRH/mKiNMcYG/9SjcplMzqKJi0Ov5RL31aUHGlTHPqobeg==
+  dependencies:
+    "@swindle/core" "^2.1.1"
 
 "@swindle/structs@^1.0.0":
   version "1.0.0"
@@ -970,6 +999,11 @@ bcrypt@^5.0.1:
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.0"
     node-addon-api "^3.1.0"
+
+bcryptjs@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/bcryptjs/-/bcryptjs-2.4.3.tgz#9ab5627b93e60621ff7cdac5da9733027df1d0cb"
+  integrity sha1-mrVie5PmBiH/fNrF2pczAn3x0Ms=
 
 brace-expansion@^1.1.7:
   version "1.1.11"

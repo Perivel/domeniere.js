@@ -1,0 +1,14 @@
+import { Query } from '@domeniere/service';
+import { MethodUndefinedException } from '@swindle/core';
+
+
+export class __QUERY_NAME__Query extends Query {
+
+    constructor() {
+        super();
+    }
+
+    public async execute(): Promise<any> {
+        throw new MethodUndefinedException();
+    }
+}

@@ -1,0 +1,14 @@
+import { Module } from '@domeniere/module';
+
+
+export default class __MODULE_NAME__Module extends Module {
+    constructor() {
+        super('__MODULE_PATH__');
+    }
+
+    protected createdBindings() {
+        // register module bindings here.
+    }
+}
+
+// module well exports go here.

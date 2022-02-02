@@ -1,0 +1,10 @@
+import { AbstractFactory } from '@domeniere/factory';
+import { __FACTORY_NAME__FactoryInterface } from './__FACTORY_PATH__-factory.interface';
+
+
+export class __FACTORY_NAME__Factory extends AbstractFactory implements __FACTORY_NAME__FactoryInterface {
+    
+    constructor() {
+        super();
+    }
+}

@@ -1,0 +1,28 @@
+import { TimestampedAggregate } from '@domeniere/aggregate';
+import { Entity } from '@domeniere/entity';
+import { DateTime, MethodUndefinedException } from '@swindle/core';
+import { __AGGREGATE_NAME__Interface } from './__AGGREGATE_PATH__.interface';
+
+
+export class __AGGREGATE_NAME__ extends TimestampedAggregate implements __AGGREGATE_NAME__Interface {
+
+    constructor(root: Entity, version: number|undefined = 1.0, createdOn: DateTime = DateTime.Now(), updatedOn: DateTime = DateTime.Now(), deletedOn: DateTime|null = null) {
+        super(root, version, createdOn, updatedOn, deletedOn);
+    }
+
+    public equals(suspect: any): boolean {
+
+        let isEquals = false;
+
+        if (suspect instanceof __AGGREGATE_NAME__) {
+            const other = suspect as __AGGREGATE_NAME__;
+            isEquals = this.id().equals(other.id());
+        }
+
+        return isEquals;
+    }
+
+    protected serializeData(): string {
+        throw new MethodUndefinedException();
+    }
+}

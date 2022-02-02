@@ -1,0 +1,3 @@
+// The index file
+export * from './src/__DOMAIN_NAME__.api';
+export * from './src/__DOMAIN_NAME__.eventstore';

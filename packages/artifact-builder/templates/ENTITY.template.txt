@@ -1,0 +1,27 @@
+import { Entity } from '@domeniere/entity';
+import { Identifier } from '@domeniere/value';
+import { MethodUndefinedException } from '@swindle/core';
+import { __ENTITY_NAME__Interface } from './__ENTITY_PATH__.interface';
+
+
+ export class __ENTITY_NAME__ extends Entity implements __ENTITY_NAME__Interface {
+
+    constructor(id: Identifier) {
+        super(id);
+    }
+
+    public equals(suspect: any): boolean {
+        let isEquals = false;
+
+        if (suspect instanceof __ENTITY_NAME__) {
+            const other = suspect as __ENTITY_NAME__;
+            isEquals = this.id().equals(other.id());
+        }
+
+        return isEquals;
+    }
+
+    public serializeData(): string {
+        throw new MethodUndefinedException();
+    }
+}

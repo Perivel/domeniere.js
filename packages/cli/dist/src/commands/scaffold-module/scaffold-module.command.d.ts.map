@@ -1,0 +1,1 @@
+{"version":3,"file":"scaffold-module.command.d.ts","sourceRoot":"","sources":["../../../../src/commands/scaffold-module/scaffold-module.command.ts"],"names":[],"mappings":"AAAA,OAAO,EACH,OAAO,EAEV,MAAM,WAAW,CAAC;AAanB;;;;GAIG;AAGH,qBAAa,qBAAsB,SAAQ,OAAO;IAG9C,MAAM,CAAC,KAAK,aAEV;IAGF,UAAU,SAAmF;IAG7F,MAAM,CAAC,KAAK;;;;MAIV;IAEF;;;;OAIG;IAEG,OAAO,IAAI,OAAO,CAAC,MAAM,CAAC;CAiCnC"}

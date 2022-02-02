@@ -1,0 +1,25 @@
+{
+  "name": "@domeniere/artifact-builder",
+  "version": "1.0.2",
+  "description": "Artifact Generators for Domeniere artifacts",
+  "main": "dist/index.js",
+  "repository": "https://github.com/Perivel/domeniere-cli.git",
+  "author": "Patrick Luy <pluy@perivel.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@swindle/core": "^2.1.0",
+    "@swindle/filesystem": "1.0.6",
+    "@swindle/structs": "^1.0.4",
+    "@swindle/os": "1.0.9"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "rimraf": "^3.0.2"
+  },
+  "scripts": {
+    "build": "yarn clean && tsc && yarn copy-templates",
+    "clean": "rimraf ./dist",
+    "copy-templates": "copyfiles -u 1 templates/**/*.txt ./dist/templates"
+  }
+}

@@ -1,0 +1,14 @@
+import { Data } from '@domeniere/dto';
+import { MethodUndefinedException } from '@swindle/core';
+
+
+export class __DTO_NAME__Data extends Data {
+
+    constructor() {
+        super();
+    }
+
+    public serialize(): string {
+        throw new MethodUndefinedException();
+    }
+}
