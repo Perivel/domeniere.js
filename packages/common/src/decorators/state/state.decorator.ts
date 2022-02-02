@@ -1,5 +1,4 @@
-import { Aggregate } from "@domeniere/aggregate";
-import { Entity } from "@domeniere/entity";
+import { Aggregate, Entity } from "@domeniere/framework";
 
 /**
  * State() Decorator.
