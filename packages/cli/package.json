@@ -1,6 +1,6 @@
 {
   "name": "@domeniere/cli",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "A command line tool for managing domeniere applications.",
   "main": "dist/cli.js",
   "repository": "https://github.com/Perivel/domeniere-cli.git",
