@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { Domain } from './../domain/domain.module';
-import { Module } from './../module/module.module';
+import { Module, ModuleReference } from './../module/module.module';
 import {
     EventStore, 
     EventStream, 
@@ -31,6 +31,7 @@ export abstract class Api implements ApiInterface {
      * domain
      * 
      * the current domain.
+     * @deprecated domain property is deprecated and will be removed in a future update. Use the module() method instead.
      */
 
     protected readonly domain: Container;
@@ -51,6 +52,7 @@ export abstract class Api implements ApiInterface {
         Domain.CreateSubdomain(this.subdomainName);
         Domain.EventStream(this.subdomainName).setEventStore(eventStore);
         this.domain = Domain.Module(this.subdomainName);
+
         this.stream = Domain.EventStream(this.subdomainName);
 
         // Register any events
@@ -81,6 +83,18 @@ export abstract class Api implements ApiInterface {
 
     public async initializeEvents(): Promise<void> {
         await this.stream.initializeEvents();
+    }
+
+    /**
+     * module()
+     * 
+     * Gets a reference to a module.
+     * @param path the path of the module to get a reference to.
+     * @returns A ModuleReference pointing to the module specified by the path.
+     */
+
+    public module(path: string): ModuleReference {
+        return new ModuleReference(Domain.Module(this.subdomainName).module(path));
     }
 
     /**

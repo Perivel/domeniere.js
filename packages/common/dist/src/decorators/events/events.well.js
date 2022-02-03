@@ -15,4 +15,5 @@ __exportStar(require("./on-any.decorator"), exports);
 __exportStar(require("./on-error.decorator"), exports);
 __exportStar(require("./on-internal.decorator"), exports);
 __exportStar(require("./on.decorator"), exports);
+__exportStar(require("./event-handler-options.interface"), exports);
 //# sourceMappingURL=events.well.js.map

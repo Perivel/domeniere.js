@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Module } from './../module/module.module';
+import { Module, ModuleReference } from './../module/module.module';
 import { EventStore, EventStream, TransmittedEvent } from "./../event/event.module";
 import { ApiInterface } from "./api.interface";
 import { Container } from '@swindle/container';
@@ -19,6 +19,7 @@ export declare abstract class Api implements ApiInterface {
      * domain
      *
      * the current domain.
+     * @deprecated domain property is deprecated and will be removed in a future update. Use the module() method instead.
      */
     protected readonly domain: Container;
     /**
@@ -42,6 +43,14 @@ export declare abstract class Api implements ApiInterface {
      * initializes the service's state.
      */
     initializeEvents(): Promise<void>;
+    /**
+     * module()
+     *
+     * Gets a reference to a module.
+     * @param path the path of the module to get a reference to.
+     * @returns A ModuleReference pointing to the module specified by the path.
+     */
+    module(path: string): ModuleReference;
     /**
      * processTransmittedEvent()
      *

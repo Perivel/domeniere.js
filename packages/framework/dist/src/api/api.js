@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Api = void 0;
 require("reflect-metadata");
 const domain_module_1 = require("./../domain/domain.module");
+const module_module_1 = require("./../module/module.module");
 const constants_1 = require("./constants");
 /**
  * ApplicationFragment
@@ -43,6 +44,16 @@ class Api {
      */
     async initializeEvents() {
         await this.stream.initializeEvents();
+    }
+    /**
+     * module()
+     *
+     * Gets a reference to a module.
+     * @param path the path of the module to get a reference to.
+     * @returns A ModuleReference pointing to the module specified by the path.
+     */
+    module(path) {
+        return new module_module_1.ModuleReference(domain_module_1.Domain.Module(this.subdomainName).module(path));
     }
     /**
      * processTransmittedEvent()

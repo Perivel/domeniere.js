@@ -1,11 +1,11 @@
 import "reflect-metadata";
-import { DomainEventHandlerPriority } from "@domeniere/framework";
 import { EventDescriptor } from "./event-decryptor";
+import { EventHandlerOptions } from './event-handler-options.interface';
 /**
  * OnAny() Decorator.
  *
  * OnAny() decorator is a method-decorator that
  * automatically adds an observer for any event.
  */
-export declare function OnAny<T>(priority?: DomainEventHandlerPriority, label?: string, stopPropogationOnError?: boolean): (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) => void;
+export declare function OnAny<T>({ priority, label, stopPropogationOnError }: EventHandlerOptions): (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) => void;
 //# sourceMappingURL=on-any.decorator.d.ts.map
