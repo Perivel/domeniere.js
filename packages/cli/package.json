@@ -1,6 +1,6 @@
 {
   "name": "@domeniere/cli",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A command line tool for managing domeniere applications.",
   "main": "dist/cli.js",
   "repository": "https://github.com/Perivel/domeniere-cli.git",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@domeniere/artifact-builder": "^2.0.1",
+    "@domeniere/artifact-builder": "^2.0.2",
     "@swindle/core": "^2.1.1",
     "@swindle/filesystem": "1.0.8",
     "@swindle/os": "1.0.11",
