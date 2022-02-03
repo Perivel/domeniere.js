@@ -1,34 +1,26 @@
-import { Api } from '@domeniere/framework';
+import { Api, DomainEvent, ModuleReference } from '@domeniere/framework';
+import { ModuleRef, OnError } from '@domeniere/common';
 import { SimpleChatEventStore } from './simple-chat.eventstore';
+import ConversationModule from './conversation/conversation.module';
 
 
 export class SimpleChatApi extends Api {
 
+    @ModuleRef('conversation')
+    private readonly conversationModule!: ModuleReference;
+
     constructor(eventStore: SimpleChatEventStore) {
-        super('simple-chat' ,eventStore);
+        super('simple-chat', eventStore);
+        const conversationModule = new ConversationModule();
+        this.registerModule(conversationModule);
     }
 
-    public async createConversation(): Promise<void> {
-
-    }
-
-    public async createUser(): Promise<void> {
-
-    }
-
-    public async getConversationsForUserId(): Promise<any> {
-
-    }
-
-    public async getUserForTag(): Promise<any> {
-
-    }
-
-    public async joinConversation(): Promise<void> {
-
-    }
-
-    public async sendMessage(): Promise<void> {
+    public printWelcome(): void {
         
+    }
+
+    @OnError({})
+    public async handleError(event: DomainEvent): Promise<void> {
+        console.log(event.toString());
     }
 }

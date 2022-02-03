@@ -2,20 +2,20 @@
 # yarn lockfile v1
 
 
-"@domeniere/common@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@domeniere/common/-/common-3.0.0.tgz#ed4dc5a97a448aa65749c8531bd4c49078505492"
-  integrity sha512-bc/tcjFhD3X3ZZZEaRQ0JxHDFmRLjRxwixCEFT1d1hwTJueQViN6ENYqvzyCASx7AaICBi6EkEqBs64uDJxUZQ==
+"@domeniere/common@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@domeniere/common/-/common-3.0.2.tgz#1cfea6c8cfb6dc8192e95b5444a89f9a1ad67bea"
+  integrity sha512-UMbvi5iplagC8lt9F5GWfh8u7k/f3vvZ7oOcwRXeGa/i6y9KGm2y6gZAX3kEyOWr9LhWvlA5SZrYL9KKDVgJHw==
   dependencies:
-    "@domeniere/framework" "^3.0.0"
+    "@domeniere/framework" "^3.0.1"
     "@swindle/core" "^2.1.1"
     reflect-metadata "^0.1.13"
     typescript "^4.4.2"
 
-"@domeniere/framework@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@domeniere/framework/-/framework-3.0.0.tgz#e713c7f64043baed8b04a68972cdc1d8be0d4e7b"
-  integrity sha512-+ThfZbtbqztliiopdhTQYvgRf4aBUgkZiHO+r/pRQU2oSsRSepKJ93WW/e6Rf55mfrLAG1vowRtbUhCOw5f8TA==
+"@domeniere/framework@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@domeniere/framework/-/framework-3.0.1.tgz#5401eb45100540159149bdec4dc3903a640ae340"
+  integrity sha512-IUGG4DAMEwfAX3+zo7zy5WSAEkX+ShWQAy7Kc5vCHuMdvFP6EwVHIGQcyPqW+Wav6ZiGg4tABdsxYmtxVNYvmw==
   dependencies:
     "@domeniere/state" "^1.0.1"
     "@swindle/container" "^1.0.1"

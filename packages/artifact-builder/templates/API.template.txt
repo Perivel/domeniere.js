@@ -13,7 +13,7 @@ export class __DOMAIN_NAME__Api extends Api {
         console.log("Welcome to Domeniere");
     }
 
-    @OnError()
+    @OnError({})
     public async handleError(event: DomainEvent): Promise<void> {
         console.log(event.toString());
     }

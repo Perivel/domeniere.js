@@ -10,7 +10,7 @@
   "private": true,
   "dependencies": {
     "@domeniere/framework": "^3.0.1",
-    "@domeniere/common": "^3.0.1"
+    "@domeniere/common": "^3.0.2"
   },
   "scripts": {
     "build": "tsc"
