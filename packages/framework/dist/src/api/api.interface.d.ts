@@ -1,7 +1,7 @@
 /**
  * ApplicationServiceInterface.
  */
-import { TransmittedEvent } from "@domeniere/event";
+import { TransmittedEvent } from "./../event/event.module";
 export interface ApiInterface {
     /**
      * broadcastEvents()

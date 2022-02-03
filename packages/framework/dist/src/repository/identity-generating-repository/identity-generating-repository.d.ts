@@ -1,4 +1,4 @@
-import { Identifier } from "@domeniere/value";
+import { Identifier } from "./../../value/value.module";
 import { IdentityGeneratingRepositoryInterface } from "./identity-generating-repository.interface";
 import { Repository } from "../repository/repository";
 export declare abstract class IdentityGeneratingRepository extends Repository implements IdentityGeneratingRepositoryInterface {

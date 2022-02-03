@@ -1,5 +1,5 @@
 import { RepositoryInterface } from "./repository.interface";
-import { Aggregate } from "@domeniere/aggregate";
+import { Aggregate } from "./../../aggregate/aggregate.module";
 /**
  * Repostory
  *

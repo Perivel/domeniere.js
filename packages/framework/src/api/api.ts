@@ -1,11 +1,11 @@
 import "reflect-metadata";
-import { Domain } from '@domeniere/domain';
-import { Module } from '@domeniere/module';
+import { Domain } from './../domain/domain.module';
+import { Module } from './../module/module.module';
 import {
     EventStore, 
     EventStream, 
     TransmittedEvent
-} from "@domeniere/event";
+} from "./../event/event.module";
 import { ApiInterface } from "./api.interface";
 import { Container } from '@swindle/container';
 import { EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, SUBDOMAIN_METADATA_KEY } from "./constants";

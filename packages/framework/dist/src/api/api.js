@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Api = void 0;
 require("reflect-metadata");
-const domain_1 = require("@domeniere/domain");
+const domain_module_1 = require("./../domain/domain.module");
 const constants_1 = require("./constants");
 /**
  * ApplicationFragment
@@ -16,10 +16,10 @@ class Api {
      */
     constructor(subdomain, eventStore) {
         this.subdomainName = subdomain.trim();
-        domain_1.Domain.CreateSubdomain(this.subdomainName);
-        domain_1.Domain.EventStream(this.subdomainName).setEventStore(eventStore);
-        this.domain = domain_1.Domain.Module(this.subdomainName);
-        this.stream = domain_1.Domain.EventStream(this.subdomainName);
+        domain_module_1.Domain.CreateSubdomain(this.subdomainName);
+        domain_module_1.Domain.EventStream(this.subdomainName).setEventStore(eventStore);
+        this.domain = domain_module_1.Domain.Module(this.subdomainName);
+        this.stream = domain_module_1.Domain.EventStream(this.subdomainName);
         // Register any events
         if (Reflect.hasMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, this)) {
             const registrations = Reflect.getMetadata(constants_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, this);
@@ -66,31 +66,31 @@ class Api {
         const serviceBindings = module.serviceBindings();
         const serviceInstances = module.serviceInstances();
         // create the module.
-        if (!domain_1.Domain.ContainsModule(path)) {
-            domain_1.Domain.CreateModule(path);
+        if (!domain_module_1.Domain.ContainsModule(path)) {
+            domain_module_1.Domain.CreateModule(path);
         }
         // register the factories
         factories.forEach((factory, token) => {
-            if (!domain_1.Domain.Module(path).has(token)) {
-                domain_1.Domain.Module(path).bindFactory(token, factory);
+            if (!domain_module_1.Domain.Module(path).has(token)) {
+                domain_module_1.Domain.Module(path).bindFactory(token, factory);
             }
         });
         // register repositories
         repositories.forEach((instance, token) => {
-            if (!domain_1.Domain.Module(path).has(token)) {
-                domain_1.Domain.Module(path).bindInstance(token, instance);
+            if (!domain_module_1.Domain.Module(path).has(token)) {
+                domain_module_1.Domain.Module(path).bindInstance(token, instance);
             }
         });
         // register service binding
         serviceBindings.forEach((factory, token) => {
-            if (!domain_1.Domain.Module(path).has(token)) {
-                domain_1.Domain.Module(path).bindFactory(token, factory);
+            if (!domain_module_1.Domain.Module(path).has(token)) {
+                domain_module_1.Domain.Module(path).bindFactory(token, factory);
             }
         });
         // service instances
         serviceInstances.forEach((instance, token) => {
-            if (!domain_1.Domain.Module(path).has(token)) {
-                domain_1.Domain.Module(path).bindInstance(token, instance);
+            if (!domain_module_1.Domain.Module(path).has(token)) {
+                domain_module_1.Domain.Module(path).bindInstance(token, instance);
             }
         });
     }

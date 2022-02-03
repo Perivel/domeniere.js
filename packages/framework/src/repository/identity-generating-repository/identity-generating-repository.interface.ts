@@ -1,5 +1,5 @@
 import { RepositoryInterface } from "../repository/repository.interface";
-import { Identifier } from "@domeniere/value";
+import { Identifier } from "./../../value/value.module";
 
 /**
  * IdentityGeneratingRepositoryInterface

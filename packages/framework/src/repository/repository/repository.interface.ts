@@ -1,4 +1,4 @@
-import { Aggregate } from "@domeniere/aggregate";
+import { Aggregate } from "./../../aggregate/aggregate.module";
 
 /**
  * RepositoryInterface

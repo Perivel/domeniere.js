@@ -1,6 +1,6 @@
 import { DependencyToken } from '@swindle/container';
-import { Repository } from '@domeniere/repository';
-import { DomainService } from '@domeniere/service';
+import { Repository } from './../../repository/repository.module';
+import { DomainService } from './../../service/service.module';
 import { ModuleBindings } from "../types/module-bindings.type";
 import { ModuleInstances } from "../types/module-instances.type";
 /**

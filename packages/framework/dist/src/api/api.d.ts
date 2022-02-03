@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import { Module } from '@domeniere/module';
-import { EventStore, EventStream, TransmittedEvent } from "@domeniere/event";
+import { Module } from './../module/module.module';
+import { EventStore, EventStream, TransmittedEvent } from "./../event/event.module";
 import { ApiInterface } from "./api.interface";
 import { Container } from '@swindle/container';
 /**
