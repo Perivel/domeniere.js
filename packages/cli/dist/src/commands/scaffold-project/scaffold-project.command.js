@@ -152,31 +152,31 @@ class ScaffoldProjectCommand extends clipanion_1.Command {
             return 1;
         }
         // install the dependencies
-        try {
-            spinner.start(messageFormatter.info("Installing project dependencies..."));
-            const packagesToInstall = ScaffoldProjectCommand.PROJECT_DEPENDENCIES.join(" ");
-            const binary = packageManager.toString();
-            const args = packageManager === artifact_builder_1.PackageManager.NPM ? `install ${packagesToInstall}` : `add ${packagesToInstall}`;
-            await os_1.Process.Spawn(binary, [args], {
-                cwd: projectPath.toString(),
-                shell: true,
-                encoding: "utf8",
-            });
-            // the installation was successful.
-            spinner.stopWithSuccess(messageFormatter.info("Successfully installed project dependencies.\n"));
-        }
-        catch (e) {
-            // failed to install dependencies.
-            // delete the directory.
-            if (await filesystem_1.FileSystem.Contains(projectPath)) {
-                await filesystem_1.FileSystem.Delete(projectPath, true, true);
-            }
-            // clean up and show the error message.
-            spinner.stopWithFailure(messageFormatter.error("Failed to install dependencies.\n"));
-            const errMsg = e.message;
-            this.context.stdout.write(messageFormatter.error(`${errMsg}\n`));
-            return 1;
-        }
+        // try {
+        //     spinner.start(messageFormatter.info("Installing project dependencies..."));
+        //     const packagesToInstall = ScaffoldProjectCommand.PROJECT_DEPENDENCIES.join(" ");
+        //     const binary = packageManager.toString();
+        //     const args = packageManager === PackageManager.NPM ? `install ${packagesToInstall}` : `add ${packagesToInstall}`;
+        //     await Process.Spawn(binary, [args], {
+        //         cwd: projectPath.toString(),
+        //         shell: true,
+        //         encoding: "utf8",
+        //     });
+        //     // the installation was successful.
+        //     spinner.stopWithSuccess(messageFormatter.info("Successfully installed project dependencies.\n"));
+        // }
+        // catch(e) {
+        //     // failed to install dependencies.
+        //     // delete the directory.
+        //     if (await FileSystem.Contains(projectPath)) {
+        //         await FileSystem.Delete(projectPath, true, true);
+        //     }
+        //     // clean up and show the error message.
+        //     spinner.stopWithFailure(messageFormatter.error("Failed to install dependencies.\n"));
+        //     const errMsg = (e as Error).message;
+        //     this.context.stdout.write(messageFormatter.error(`${errMsg}\n`));
+        //     return 1;
+        // }
         // successfully created project.
         const successMsg = `Successfully created project ${projectName}`;
         this.context.stdout.write(`${messageFormatter.info(successMsg)}\n`);

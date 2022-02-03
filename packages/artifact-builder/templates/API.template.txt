@@ -1,14 +1,20 @@
-import { Api } from '@domeniere/framework';
+import { Api, DomainEvent } from '@domeniere/framework';
+import { OnError } from '@domeniere/common';
 import { __DOMAIN_NAME__EventStore } from './__DOMAIN_PATH__.eventstore';
 
 
 export class __DOMAIN_NAME__Api extends Api {
 
     constructor(eventStore: __DOMAIN_NAME__EventStore) {
-        super('__DOMAIN_PATH__' ,eventStore);
+        super('__DOMAIN_PATH__', eventStore);
     }
 
     public printWelcome(): void {
         console.log("Welcome to Domeniere");
+    }
+
+    @OnError()
+    public async handleError(event: DomainEvent): Promise<void> {
+        console.log(event.toString());
     }
 }

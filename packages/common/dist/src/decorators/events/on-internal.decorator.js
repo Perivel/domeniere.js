@@ -2,10 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OnInternal = void 0;
 require("reflect-metadata");
-const domain_1 = require("@domeniere/domain");
-const event_1 = require("@domeniere/event");
+const framework_1 = require("@domeniere/framework");
 const core_1 = require("@swindle/core");
-const core_2 = require("@domeniere/core");
 /**
  * OnInternal() Decorator.
  *
@@ -13,14 +11,14 @@ const core_2 = require("@domeniere/core");
  * automatically adds an observer for any framework
  * event.
  */
-function OnInternal(priority = event_1.DomainEventHandlerPriority.MEDIUM, label = core_1.UUID.V4().id(), stopPropogationOnError = false) {
+function OnInternal(priority = framework_1.DomainEventHandlerPriority.MEDIUM, label = core_1.UUID.V4().id(), stopPropogationOnError = false) {
     return function (parentCls, funcName, descriptor) {
         // get the function the decorator was applied to.
         //const origValue = descriptor.value!;
         // Set the subscription priority
         const handlerPriority = priority;
         // get the event name.
-        const eventName = event_1.EventAggregate.Internal;
+        const eventName = framework_1.EventAggregate.Internal;
         // This section changes the handler function so that it still has access to the "this" keyword.
         // We also get the subdomain in which the event will be registered here. This works under the 
         // assmption that this decorator is being called within an Api class body.
@@ -31,15 +29,15 @@ function OnInternal(priority = event_1.DomainEventHandlerPriority.MEDIUM, label 
         const func = descriptor.value;
         if (func) {
             // add the subscription as a callback to be registered by the @Subdomain decorator.
-            const registrationFn = (context, subdomain) => domain_1.Domain.EventStream(subdomain).subscribe(eventName, func.bind(context), handlerPriority, label, stopPropogationOnError);
-            if (Reflect.hasMetadata(core_2.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls)) {
-                const callbacks = Reflect.getMetadata(core_2.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls);
+            const registrationFn = (context, subdomain) => framework_1.Domain.EventStream(subdomain).subscribe(eventName, func.bind(context), handlerPriority, label, stopPropogationOnError);
+            if (Reflect.hasMetadata(framework_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls)) {
+                const callbacks = Reflect.getMetadata(framework_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, parentCls);
                 callbacks.push(registrationFn);
             }
             else {
                 const callbacksArr = new Array();
                 callbacksArr.push(registrationFn);
-                Reflect.defineMetadata(core_2.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, callbacksArr, parentCls);
+                Reflect.defineMetadata(framework_1.EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, callbacksArr, parentCls);
             }
         }
     };
