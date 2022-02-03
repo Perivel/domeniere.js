@@ -1,0 +1,5 @@
+{
+    "name": "simple-chat",
+    "description": "An aexample project demonstrating the structure of a DomeniereJS library and how to use it.",
+    "package_manager": "yarn"
+}
