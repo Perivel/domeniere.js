@@ -5,5 +5,8 @@ DomeniereJS is a Typescript library for creating Framework-Independent applicati
 # Documentation
 You can read the Documentation [here](https://www.domeniere.com/).
 
+# Contributing
+If you are interested in contributing to DomeniereJS, please be sure to read the [Contribution Guidelines](./.github/CONTRIBUTING.md)
+
 # License
 DomeniereJS is provided under the MIT License.
