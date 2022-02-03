@@ -14,8 +14,7 @@ export function ModuleRef(path: string) {
             writable: false,
             enumerable: false,
             get: function () {
-                const module = (this as Api).domain.module(path);
-                return new ModuleReference(module);
+                return (this as Api).module(path);
             },
         });
     }

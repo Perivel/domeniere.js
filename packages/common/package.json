@@ -8,6 +8,13 @@
   "author": "Patrick Luy <pluy@perivel.com>",
   "license": "MIT",
   "private": false,
+  "keywords": [
+    "domenierejs",
+    "domeniere",
+    "domeniere.js",
+    "domain driven design",
+    "ddd"
+  ],
   "scripts": {
     "build": "yarn clean && tsc",
     "test": "jest",

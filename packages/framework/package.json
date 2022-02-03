@@ -7,6 +7,12 @@
   "repository": "https://github.com/Perivel/domeniere",
   "author": "Patrick Luy <pluy@perivel.com>",
   "license": "MIT",
+  "keywords": [
+    "ddd",
+    "domeniere",
+    "domenierejs",
+    "domeniere.js"
+  ],
   "private": false,
   "scripts": {
     "build": "yarn clean && tsc",

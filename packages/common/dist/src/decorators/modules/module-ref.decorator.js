@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ModuleRef = void 0;
-const framework_1 = require("@domeniere/framework");
 /**
  * ModuleRef() Decorator.
  *
@@ -15,8 +14,7 @@ function ModuleRef(path) {
             writable: false,
             enumerable: false,
             get: function () {
-                const module = this.domain.module(path);
-                return new framework_1.ModuleReference(module);
+                return this.module(path);
             },
         });
     };
