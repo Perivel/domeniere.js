@@ -1,6 +1,6 @@
-import { 
-    DuplicateStateInitializationException, 
-    UndefinedStateException 
+import {
+    DuplicateStateInitializationException,
+    UndefinedStateException
 } from "../exceptions/exceptions.well";
 import { Trace } from "../trace/trace.well";
 import { StateInterface } from "./state.interface";
@@ -43,25 +43,25 @@ export class State implements StateInterface {
         return this.traces.has(key);
     }
 
-     /**
-      * discardChanges()
-      * 
-      * discards any changes made and reverts the state.
-      */
- 
+    /**
+     * discardChanges()
+     * 
+     * discards any changes made and reverts the state.
+     */
+
     public discardChanges(): void {
         this.modifiedTraces.forEach(key => this.traces.get(key)!.discard());
         this.modifiedTraces.splice(0, this.modifiedTraces.length);
     }
- 
-     /**
-      * get()
-      * 
-      * gets the state value for te given key.
-      * @param key the key of the state value to get.
-      * @throws UndefinedStateException when the state you are retrieving is not found.
-      */
- 
+
+    /**
+     * get()
+     * 
+     * gets the state value for te given key.
+     * @param key the key of the state value to get.
+     * @throws UndefinedStateException when the state you are retrieving is not found.
+     */
+
     public get<T>(key: string): T {
         if (this.traces.has(key)) {
             return this.traces.get(key)!.get();
@@ -70,16 +70,16 @@ export class State implements StateInterface {
             throw new UndefinedStateException(`Undefined state '${key}'`);
         }
     }
- 
-     /**
-      * initialize()
-      * 
-      * Initializes a new state value.
-      * @param key the key to initialize
-      * @param value the initial value to set.
-      * @throws DuplicateStateInstantiationException when attempting to initialize an already initialized steate.
-      */
- 
+
+    /**
+     * initialize()
+     * 
+     * Initializes a new state value.
+     * @param key the key to initialize
+     * @param value the initial value to set.
+     * @throws DuplicateStateInstantiationException when attempting to initialize an already initialized steate.
+     */
+
     public initialize<T>(key: string, value: T): void {
         if (!this.traces.has(key)) {
             this.traces.set(key, new Trace<T>(value));
@@ -88,16 +88,16 @@ export class State implements StateInterface {
             throw new DuplicateStateInitializationException(`Attempting to redefine state '${key}'`);
         }
     }
- 
-     /**
-      * set()
-      * 
-      * updates the current state value with the given key.
-      * @param key the key to set.
-      * @param value the value to set.
-      * @throws UndefinedStateException when the key of the state beting set is not initialized.
-      */
- 
+
+    /**
+     * set()
+     * 
+     * updates the current state value with the given key.
+     * @param key the key to set.
+     * @param value the value to set.
+     * @throws UndefinedStateException when the key of the state beting set is not initialized.
+     */
+
     public set<T>(key: string, value: T): void {
         if (this.traces.has(key)) {
             this.traces.get(key)?.set(value);

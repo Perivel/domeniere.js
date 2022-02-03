@@ -1,0 +1,15 @@
+import { Aggregate, Repository } from '@domeniere/framework';
+
+
+export abstract class __REPOSITORY_NAME__Repository extends Repository {
+
+    constructor() {
+        super();
+    }
+
+    public abstract remove(aggregate: Aggregate): Promise<void>;
+
+    public abstract save(aggregate: Aggregate): Promise<void>;
+
+    public abstract size(): Promise<number>;
+}

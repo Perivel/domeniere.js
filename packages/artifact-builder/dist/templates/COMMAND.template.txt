@@ -1,0 +1,13 @@
+import { Command } from '@domeniere/framework';
+
+
+export class __COMMAND_NAME__Command extends Command {
+
+    constructor() {
+        super();
+    }
+
+    public async execute(): Promise<void> {
+        
+    }
+}

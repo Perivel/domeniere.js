@@ -1,0 +1,5 @@
+{
+    "name": "__DOMAIN_NAME__",
+    "description": "__DOMAIN_DESCRIPTION__",
+    "package_manager": "__PACKAGE_MANAGER__"
+}

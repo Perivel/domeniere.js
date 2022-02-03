@@ -1,0 +1,1 @@
+{"version":3,"file":"scaffold-query.command.d.ts","sourceRoot":"","sources":["../../../../src/commands/scaffold-query/scaffold-query.command.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAU,MAAM,WAAW,CAAC;AAO5C;;;;GAIG;AAGH,qBAAa,oBAAqB,SAAQ,OAAO;IAG7C,MAAM,CAAC,KAAK,aAEV;IAGF,SAAS,SAAkF;IAG3F,MAAM,CAAC,KAAK;;;;MAeV;IAEF;;;;OAIG;IAEG,OAAO,IAAI,OAAO,CAAC,MAAM,CAAC;CAgCnC"}

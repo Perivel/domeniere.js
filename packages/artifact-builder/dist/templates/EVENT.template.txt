@@ -1,0 +1,34 @@
+import { DomainEvent } from '@domeniere/framework';
+import { DateTime, MethodUndefinedException } from '@swindle/core';
+
+
+export class __EVENT_CLASS_NAME__ extends DomainEvent {
+
+    constructor(occuredOn: DateTime = DateTime.Now(), id: string|undefined = undefined) {
+        super(occuredOn, id);
+    }
+
+    public static EventClassification(): string {
+        return '__EVENT_CLASSIFICATION__';
+    }
+
+    public static EventName(): string {
+        return '__EVENT_STRING_NAME__';
+    }
+
+    public static EventVersion(): number {
+        return 1.0;
+    }
+
+    public isError(): boolean {
+        return __ERROR_EVENT__;
+    }
+
+    public serializeData(): string {
+        throw new MethodUndefinedException();
+    }
+
+    public shouldBeBroadcasted(): boolean {
+        return __BROADCAST_EVENT__;
+    }
+}

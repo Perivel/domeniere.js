@@ -1,0 +1,1 @@
+{"version":3,"file":"spinner.interface.d.ts","sourceRoot":"","sources":["../../../../src/utilities/spinner/spinner.interface.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,gBAAgB;IAE7B;;;;;OAKG;IAEH,KAAK,CAAC,OAAO,EAAE,MAAM,GAAG,IAAI,CAAC;IAE7B;;;;;OAKG;IAEH,eAAe,CAAC,OAAO,EAAE,MAAM,GAAG,IAAI,CAAC;IAEvC;;;;;OAKG;IAEH,eAAe,CAAC,OAAO,EAAE,MAAM,GAAG,IAAI,CAAC;CAC1C"}

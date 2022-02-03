@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { DomainEvent, DomainEventClass, DomainEventHandlerPriority } from "@domeniere/event";
+import { DomainEvent, DomainEventClass, DomainEventHandlerPriority } from "@domeniere/framework";
 import { EventDescriptor } from "./event-decryptor";
 /**
  * On() Decorator.

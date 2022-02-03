@@ -1,0 +1,9 @@
+import { EventStore } from "@domeniere/framework";
+
+
+export abstract class __DOMAIN_NAME__EventStore extends EventStore {
+
+    constructor() {
+        super();
+    }
+}

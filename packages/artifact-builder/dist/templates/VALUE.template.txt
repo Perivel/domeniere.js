@@ -1,0 +1,19 @@
+import { Value } from '@domeniere/framework';
+import { MethodUndefinedException } from '@swindle/core';
+import { __VALUE_NAME__Interface } from './__VALUE_PATH__.interface';
+
+
+ export class __VALUE_NAME__ extends Value implements __VALUE_NAME__Interface {
+
+    constructor() {
+        super();
+    }
+
+    public equals(suspect: any): boolean {
+        throw new MethodUndefinedException();
+    }
+
+    public serialize(): string {
+        throw new MethodUndefinedException();
+    }
+}

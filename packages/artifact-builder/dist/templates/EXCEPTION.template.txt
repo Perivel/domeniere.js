@@ -1,0 +1,9 @@
+import { BaseException } from '@swindle/core';
+
+
+ export class __EXCEPTION_NAME__Exception extends BaseException {
+
+    constructor(message: string = "__EXCEPTION_TEXT__ Error") {
+        super(message);
+    }
+}

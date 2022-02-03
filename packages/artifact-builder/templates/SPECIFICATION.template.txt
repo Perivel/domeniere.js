@@ -1,0 +1,14 @@
+import { CompositeSpecification } from '@swindle/specification';
+import { MethodUndefinedException } from '@swindle/core';
+
+
+export class __SPECIFICATION_NAME__Specification extends CompositeSpecification {
+
+    constructor() {
+        super();
+    }
+
+    public isSatisfiedBy(suspect: any): boolean {
+        throw new MethodUndefinedException();
+    }
+}

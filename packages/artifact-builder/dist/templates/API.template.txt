@@ -1,0 +1,14 @@
+import { Api } from '@domeniere/framework';
+import { __DOMAIN_NAME__EventStore } from './__DOMAIN_PATH__.eventstore';
+
+
+export class __DOMAIN_NAME__Api extends Api {
+
+    constructor(eventStore: __DOMAIN_NAME__EventStore) {
+        super('__DOMAIN_PATH__' ,eventStore);
+    }
+
+    public printWelcome(): void {
+        console.log("Welcome to Domeniere");
+    }
+}

@@ -1,9 +1,14 @@
 import "reflect-metadata";
-import { Domain } from "@domeniere/domain";
-import { DomainEvent, DomainEventHandlerPriority, EventAggregate } from "@domeniere/event";
+import { 
+    Domain, 
+    DomainEvent, 
+    DomainEventHandlerPriority, 
+    EventAggregate, 
+    EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, 
+    EventRegistrationCallbackFn 
+} from "@domeniere/framework";
 import { UUID } from "@swindle/core";
 import { EventDescriptor } from "./event-decryptor";
-import { EVENT_REGISTRATION_CALLBACK_ARRAY_METADATA_KEY, EventRegistrationCallbackFn } from "@domeniere/core";
 
 /**
  * OnError() Decorator.

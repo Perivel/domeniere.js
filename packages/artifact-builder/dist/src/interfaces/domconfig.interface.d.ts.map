@@ -1,0 +1,1 @@
+{"version":3,"file":"domconfig.interface.d.ts","sourceRoot":"","sources":["../../../src/interfaces/domconfig.interface.ts"],"names":[],"mappings":"AACA;;;;GAIG;AAEH,MAAM,WAAW,SAAS;IACtB,IAAI,EAAE,MAAM,CAAC;IACb,WAAW,EAAE,MAAM,CAAC;IACpB,eAAe,EAAE,MAAM,CAAC;CAC3B"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"artifact-details.interface.d.ts","sourceRoot":"","sources":["../../../../src/artifact-details-parser/artifact-details/artifact-details.interface.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,wBAAwB;IAErC;;;;OAIG;IAEH,eAAe,IAAI,MAAM,CAAC;IAE1B;;;;OAIG;IAEH,YAAY,IAAI,MAAM,CAAC;IAEvB;;;;OAIG;IAEH,MAAM,IAAI,MAAM,CAAC;IAEjB;;;;;OAKG;IAEH,SAAS,IAAI,MAAM,CAAC;CACvB"}

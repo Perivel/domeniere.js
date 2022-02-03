@@ -1,7 +1,7 @@
 {
   "name": "@domeniere/common",
-  "version": "2.0.4",
-  "description": "Common decorators and utilities for Domeniere applications.",
+  "version": "3.0.0",
+  "description": "Common decorators and utilities for DomeniereJS applications.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/Perivel/domeniere",
@@ -18,8 +18,8 @@
     "clean": "rimraf ./dist"
   },
   "dependencies": {
-    "@domeniere/core": "^2.0.4",
-    "@swindle/core": "^2.1.0",
+    "@domeniere/framework": "^3.0.0",
+    "@swindle/core": "^2.1.1",
     "reflect-metadata": "^0.1.13",
     "typescript": "^4.4.2"
   },
