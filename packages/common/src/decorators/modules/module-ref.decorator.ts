@@ -1,4 +1,4 @@
-import { Api } from "@domeniere/framework";
+import { Api, ModuleReference } from "@domeniere/framework";
 
 /**
  * ModuleRef() Decorator.
@@ -14,7 +14,8 @@ export function ModuleRef(path: string) {
             writable: false,
             enumerable: false,
             get: function () {
-                return (this as Api).domain.module(path);
+                const module = (this as Api).domain.module(path);
+                return new ModuleReference(module);
             },
         });
     }
