@@ -1,6 +1,7 @@
 import 'reflect-metadata';
-import { DomainEvent, DomainEventClass, DomainEventHandlerPriority } from "@domeniere/framework";
+import { DomainEvent, DomainEventClass } from "@domeniere/framework";
 import { EventDescriptor } from "./event-decryptor";
+import { EventHandlerOptions } from './event-handler-options.interface';
 /**
  * On() Decorator.
  *
@@ -8,5 +9,5 @@ import { EventDescriptor } from "./event-decryptor";
  * automatically adds an observer for the specified
  * event.
  */
-export declare function On<T extends DomainEvent>(event: DomainEventClass<T>, priority?: DomainEventHandlerPriority, label?: string, stopPropogationOnError?: boolean): (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) => void;
+export declare function On<T extends DomainEvent>(event: DomainEventClass<T>, { priority, label, stopPropogationOnError }: EventHandlerOptions): (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) => void;
 //# sourceMappingURL=on.decorator.d.ts.map

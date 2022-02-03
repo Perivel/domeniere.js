@@ -303,16 +303,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@domeniere/event@^2.0.0":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@domeniere/event/-/event-2.0.2.tgz#7a78edcd207669ca646c3f50c1fd1c534f280b11"
-  integrity sha512-cbia6W2QxYS82452p9kMGi+RWIn/HcOuXu+HbR3j5ib2Hub+vPK7VEcN1ANraQdTnl5PSbH/p0knx9qhEGa40Q==
-  dependencies:
-    "@swindle/core" "^2.1.0"
-    "@swindle/event-emitter" "^1.0.3"
-    "@swindle/structs" "^1.0.4"
-    typescript "^4.4.2"
-
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"

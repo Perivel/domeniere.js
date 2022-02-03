@@ -10,8 +10,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// decorators well
-__exportStar(require("./events/events.well"), exports);
-__exportStar(require("./state/state.well"), exports);
-__exportStar(require("./modules/modules.well"), exports);
-//# sourceMappingURL=decorators.well.js.map
+// modules decorator well
+__exportStar(require("./module-ref.decorator"), exports);
+//# sourceMappingURL=modules.well.js.map

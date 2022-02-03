@@ -9,8 +9,8 @@
   "license": "__DOMAIN_LICENSE__",
   "private": true,
   "dependencies": {
-    "@domeniere/framework": "^3.0.0",
-    "@domeniere/common": "^3.0.0"
+    "@domeniere/framework": "^3.0.1",
+    "@domeniere/common": "^3.0.1"
   },
   "scripts": {
     "build": "tsc"

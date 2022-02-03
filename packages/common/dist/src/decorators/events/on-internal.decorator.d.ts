@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import { DomainEventHandlerPriority } from "@domeniere/framework";
 import { EventDescriptor } from "./event-decryptor";
+import { EventHandlerOptions } from './event-handler-options.interface';
 /**
  * OnInternal() Decorator.
  *
@@ -8,5 +8,5 @@ import { EventDescriptor } from "./event-decryptor";
  * automatically adds an observer for any framework
  * event.
  */
-export declare function OnInternal<T>(priority?: DomainEventHandlerPriority, label?: string, stopPropogationOnError?: boolean): (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) => void;
+export declare function OnInternal<T>({ priority, label, stopPropogationOnError }: EventHandlerOptions): (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) => void;
 //# sourceMappingURL=on-internal.decorator.d.ts.map

@@ -1,1 +1,1 @@
-{"version":3,"file":"decorators.well.d.ts","sourceRoot":"","sources":["../../../src/decorators/decorators.well.ts"],"names":[],"mappings":"AACA,cAAc,sBAAsB,CAAC;AACrC,cAAc,oBAAoB,CAAC"}
+{"version":3,"file":"decorators.well.d.ts","sourceRoot":"","sources":["../../../src/decorators/decorators.well.ts"],"names":[],"mappings":"AACA,cAAc,sBAAsB,CAAC;AACrC,cAAc,oBAAoB,CAAC;AACnC,cAAc,wBAAwB,CAAC"}

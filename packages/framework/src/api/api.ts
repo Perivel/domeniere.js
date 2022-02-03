@@ -33,7 +33,7 @@ export abstract class Api implements ApiInterface {
      * the current domain.
      */
 
-    protected readonly domain: Container;
+    public readonly domain: Container;
 
     /**
      * The event Stream.
