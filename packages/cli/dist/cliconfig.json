@@ -1,7 +1,6 @@
 {
     "name": "domeniere",
     "binary_name": "domeniere",
-    "version": "3.0.2",
     "defaults": {
         "description": "A Domeniere project",
         "license": "MIT"
