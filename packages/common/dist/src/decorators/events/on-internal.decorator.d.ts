@@ -8,5 +8,5 @@ import { EventHandlerOptions } from './event-handler-options.interface';
  * automatically adds an observer for any framework
  * event.
  */
-export declare function OnInternal<T>({ priority, label, stopPropogationOnError }: EventHandlerOptions): (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) => void;
+export declare function OnInternal<T>(options?: EventHandlerOptions): (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) => void;
 //# sourceMappingURL=on-internal.decorator.d.ts.map

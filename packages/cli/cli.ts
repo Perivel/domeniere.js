@@ -2,6 +2,7 @@
 import { Process } from "@swindle/os";
 import { Cli, Builtins } from 'clipanion';
 import * as config from "./cliconfig.json";
+import { version } from './package.json';
 import { commands } from "./src/commands/command-list";
 
 const [node, app, ...args] = Process.argv;
@@ -9,7 +10,7 @@ const [node, app, ...args] = Process.argv;
 const cli = new Cli({
     binaryLabel: config.name,
     binaryName: config.binary_name,
-    binaryVersion: config.version,
+    binaryVersion: version,
 });
 
 // register all commands

@@ -1,0 +1,36 @@
+{
+    "name": "@domeniere/cli",
+    "version": "3.0.4",
+    "description": "A command line tool for managing domeniere applications.",
+    "main": "dist/cli.js",
+    "repository": "https://github.com/Perivel/domeniere-cli.git",
+    "author": "Patrick Luy <pluy@perivel.com>",
+    "license": "MIT",
+    "private": false,
+    "dependencies": {
+        "@domeniere/artifact-builder": "^2.0.4",
+        "@swindle/core": "^2.1.1",
+        "@swindle/filesystem": "1.0.8",
+        "@swindle/os": "1.0.11",
+        "@swindle/structs": "^1.0.5",
+        "chalk": "^4.1.2",
+        "clipanion": "^3.0.1",
+        "enquirer": "^2.3.6",
+        "open": "^8.2.1",
+        "ora": "^5.4.1",
+        "typanion": "^3.3.2"
+    },
+    "devDependencies": {
+        "copyfiles": "^2.4.1",
+        "rimraf": "^3.0.2"
+    },
+    "scripts": {
+        "build": "yarn clean && tsc && yarn copy-assets && yarn copy-config",
+        "clean": "rimraf ./dist",
+        "copy-assets": "copyfiles -u 1 assets/**/*.art ./dist/assets",
+        "copy-config": "copyfiles ./cliconfig.json ./dist/"
+    },
+    "bin": {
+        "domeniere": "./dist/cli.js"
+    }
+}

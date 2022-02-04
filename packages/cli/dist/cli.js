@@ -23,12 +23,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const os_1 = require("@swindle/os");
 const clipanion_1 = require("clipanion");
 const config = __importStar(require("./cliconfig.json"));
+const package_json_1 = require("./package.json");
 const command_list_1 = require("./src/commands/command-list");
 const [node, app, ...args] = os_1.Process.argv;
 const cli = new clipanion_1.Cli({
     binaryLabel: config.name,
     binaryName: config.binary_name,
-    binaryVersion: config.version,
+    binaryVersion: package_json_1.version,
 });
 // register all commands
 command_list_1.commands.forEach(cmd => cli.register(cmd));

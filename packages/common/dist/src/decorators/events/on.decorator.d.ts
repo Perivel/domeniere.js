@@ -9,5 +9,5 @@ import { EventHandlerOptions } from './event-handler-options.interface';
  * automatically adds an observer for the specified
  * event.
  */
-export declare function On<T extends DomainEvent>(event: DomainEventClass<T>, { priority, label, stopPropogationOnError }: EventHandlerOptions): (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) => void;
+export declare function On<T extends DomainEvent>(event: DomainEventClass<T>, options?: EventHandlerOptions): (parentCls: Object, funcName: string | symbol, descriptor: EventDescriptor) => void;
 //# sourceMappingURL=on.decorator.d.ts.map

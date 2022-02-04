@@ -16,7 +16,7 @@ When creating a Value class, we need to override the `equals()` method and the `
 
 Below is an example of a Username value class.
 ```ts
-import { Value } from '@domeniere/value';
+import { Value } from '@domeniere/framework';
 import { UsernameInterface } from './username.interface';
 
 
@@ -77,7 +77,7 @@ The `Identifier` interface  provides us an `is()` method wich will return the va
 Below is an example definition of a `UserId` Identifier value.
 
 ```ts
-import { Value } from '@domeniere/value';
+import { Value } from '@domeniere/framework';
 import { UUID } from '@swindle/core';
 import { UserIdInterface } from './user-id.interface';
 

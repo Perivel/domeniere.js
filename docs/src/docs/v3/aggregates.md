@@ -14,7 +14,7 @@ Every aggregate takes an entity and a version number as its constructor argument
 
 Below is an example definition for an `Account` aggregate.
 ```ts
-import { Aggregate } from '@domeniere/aggregate';
+import { Aggregate } from '@domeniere/framework';
 import { User } from './../../entities/entities.well';
 
 export class Account extends Aggregate {
@@ -33,7 +33,7 @@ All aggregates are created around a single entity, known as the **Aggregate Root
 ## Aggregate State
 On its own, our `Account` aggregate already has its own state, through the Aggregate Root. As an example, we can define functionality to update our `Account` username.
 ```ts
-import { Aggregate } from '@domeniere/aggregate';
+import { Aggregate } from '@domeniere/framework';
 import { User } from './../../entities/entities.well';
 import { Username } from './../../values/values.well';
 
@@ -64,7 +64,7 @@ There are times, however, when our `Aggregate` has more state to maintain than w
 ### Defining Aggregate State
 Let's begin by definng a `password` property for our `Aggregate`.
 ```ts
-import { Aggregate } from '@domeniere/aggregate';
+import { Aggregate } from '@domeniere/framework';
 import { User } from './../../entities/entities.well';
 import { 
     Username,
@@ -96,7 +96,7 @@ export class Account extends Aggregate {
 ```
 Here, we define a new property called `password`, which is hold the hashed password for the `Acount` aggregate. But, we are not done yet. In addition to defining our `password` property, we have to tell Domeniere that this `passwword` property is part of the `Aggregate`'s state. To do this, we annotate the property definition with the `State()` decorator.
 ```ts
-import { Aggregate } from '@domeniere/aggregate';
+import { Aggregate } from '@domeniere/framework';
 import { State } from '@domeniere/common';
 import { User } from './../../entities/entities.well';
 import { 
@@ -132,7 +132,7 @@ By annotating our `password` property with the `State()` decorator, we tell Dome
 
 Now, let's define some functionalities in our `Account` aggregate for managing passwords.
 ```ts
-import { Aggregate } from '@domeniere/aggregate';
+import { Aggregate } from '@domeniere/framework';
 import { State } from '@domeniere/common';
 import { User } from './../../entities/entities.well';
 import { 
