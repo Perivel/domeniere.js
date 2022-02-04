@@ -14,7 +14,7 @@ Since repositories need to adopt to their environment, we declare our repositori
 
 Below is an example definition of a `AccountRepository`.
 ```ts
-import { Repository } from '@domeniere/repository';
+import { Repository } from '@domeniere/framework';
 import { Account } from './../../aggregates/aggregates.well';
 
 export abstract class AccountRepository extends Repository {
@@ -36,7 +36,7 @@ Since we are creating this repository to specifically handle `Account` aggregate
 
 In addition to our basic persistence methods, repositories also contain functionalities to retrieve data. To add these functionalities, we just define them in our abstract class.
 ```ts
-import { Repository } from '@domeniere/repository';
+import { Repository } from '@domeniere/framework';
 import { Account } from './../../aggregates/aggregates.well';
 import { UserId } from './../../values/values.well';
 
@@ -73,7 +73,7 @@ An Identity-Generating Repository behaves very similar to a regular repository, 
 
 Below is an example of our `AccountRepository` with the ability to generate `UserId` instances for our accounts.
 ```ts
-import { Repository } from '@domeniere/repository';
+import { Repository } from '@domeniere/framework';
 import { Account } from './../../aggregates/aggregates.well';
 import { UserId } from './../../values/values.well';
 

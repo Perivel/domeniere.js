@@ -232,7 +232,7 @@ The second method we need to override is the `EventClassification()` method. The
 
 > **Note**: Domeniere uses this classification name to determine which Event Stream to publish the event to. If you need to specify some grouping identifier in your event classification, you can designate it with a color (`:`) character right after the default classification. For example, if you wanted to attach a `"registration"` tag and your default classification name was `"users"`, the name `"users:registration"` would be perfectly legal.
 ```ts
-import { DomainEvent } from '@domeniere/event';
+import { DomainEvent } from '@domeniere/framework';
 
 
 export class AccountCreated extends DomainEvent {
@@ -252,7 +252,7 @@ export class AccountCreated extends DomainEvent {
 ```
 The third method we need to override is the `EventVersion()` method. The event version is a numeric id to the version of the event. This is most useful when you later have to update your event, to tell your event consumers which version of your event they are receiving. This way, they are able to parse and properly consume it.
 ```ts
-import { DomainEvent } from '@domeniere/event';
+import { DomainEvent } from '@domeniere/framework';
 
 
 export class AccountCreated extends DomainEvent {
@@ -278,7 +278,7 @@ By default, the event version of any event is 1.0. As the event evolves and chan
 
 The last method we need to override is the `serializeData()` method. The `serializeData()` method tells the event how to serialize the custom daata you have given it.
 ```ts
-import { DomainEvent } from '@domeniere/event';
+import { DomainEvent } from '@domeniere/framework';
 
 
 export class AccountCreated extends DomainEvent {
@@ -308,7 +308,7 @@ export class AccountCreated extends DomainEvent {
 ```
 As we have not yet fully define our `CreatedUser` event, we will save the details of this method for later. For now, let's define our `AccountCreated` event.
 ```ts
-import { DomainEvent } from '@domeniere/event';
+import { DomainEvent } from '@domeniere/framework';
 import { Account } from './../../aggregates/aggregates.well';
 
 export class AccountCreated extends DomainEvent {

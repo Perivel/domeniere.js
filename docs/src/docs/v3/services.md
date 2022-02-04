@@ -14,7 +14,7 @@ This will create a directory for our command inside our specified module's `serv
 
 Below is an example of a `CreateAccountCommand` that is responsible for creating a User Account from a given registration.
 ```ts
-import { Command } from '@domeniere/service';
+import { Command } from '@domeniere/framework';
 import { AccountCreated} from './../../events/events.well';
 import { AccountFactory } from './../../factories/factories.well';
 import { AccountRepository } from './../../repositories/repositories.well';
@@ -66,7 +66,7 @@ This will create a directory for our query inside our specified module's `servic
 
 Below is an example of a `GetUserByIdQuery`, which is tasked with getting an Account by its Id.
 ```ts
-import { Query } from '@domeniere/service`;
+import { Query } from '@domeniere/framework`;
 import { Account } from './../../aggregates/aggregates.well';
 import { AccountRepository } from './../../repositories/repositories.well';
 import { UserId } from './../../values/values/well';

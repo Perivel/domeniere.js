@@ -13,8 +13,7 @@ This will create a new directory for the entity in the specified module's entiti
 For this example, let's say we are defining a `User` entity. When we first create our entity, we are given a basic template like the one below.
 
 ```ts
-import { Entity } from '@domeniere/entity';
-import { Identifier } from '@domeniere/value';
+import { Entity, Identifier } from '@domeniere/framework';
 import { MethodUndefinedException } from '@swindle/core';
 import { UserInterface } from './user.interface';
 
@@ -50,8 +49,7 @@ Entities are primarily defined by their identities. In Domeniere applications, w
 For this example, we will assume we already have defined a `UserId` Identity value that we can use as the Id of our `User` entity.
 
 ```ts
-import { Entity } from '@domeniere/entity';
-import { Identifier } from '@domeniere/value';
+import { Entity, Identifier } from '@domeniere/framework';
 import { UserInterface } from './user.interface';
 import { UserId } from './../../values/values.well';
 
@@ -99,7 +97,7 @@ As was mentioned earlier, an `Entity` can change its form or content overtime. I
 Lets begin defining a few properties for our `User` Entity.
 
 ```ts
-import { Entity } from '@domeniere/entity';
+import { Entity } from '@domeniere/framework';
 import { UserInterface } from './user.interface';
 import { UserId, Username, Address } from './../../values/values.well';
 
@@ -161,7 +159,7 @@ So, right now, while we do have our properties defined, we have not yet told Dom
 Below is an updated definition of our `User` entity, where we have designated our properties as part of the entity state.
 
 ```ts
-import { Entity } from '@domeniere/entity';
+import { Entity } from '@domeniere/framework';
 import { State } from '@domeniere/common';
 import { UserInterface } from './user.interface';
 import { UserId, Username, Address } from './../../values/values.well';

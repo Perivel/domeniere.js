@@ -10,7 +10,7 @@ This will create a new module subdirectory in your project's `src` directory.
 
 Below is an example of a `Users` module class.
 ```ts
-import { Module } from '@domeniere/module';
+import { Module } from '@domeniere/framework';
 
 export class UserModule extends Module {
 

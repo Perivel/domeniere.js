@@ -44,7 +44,7 @@ module.exports = {
       // },
       {
         text: 'Documentation',
-        link: '/docs/',
+        link: '/docs/v3/',
       },
       // {
       //   text: 'Contribute',
@@ -52,12 +52,12 @@ module.exports = {
       // }
     ],
     sidebar: {
-      '/docs/': [
+      '/docs/v2/': [
         {
           title: 'Getting Started',
           collapsable: false,
           children: [
-            ['/docs/', 'First Steps'],
+            ['/docs/v2/', 'First Steps'],
             //['philosophy', 'Philosophy'],
             ['project-structure', 'Project Structure']
           ]
@@ -85,6 +85,42 @@ module.exports = {
           children: [
             ['/docs/v2/building-your-application', 'Building Your Application'],
             ['/docs/v2/using-your-application', 'Using Your Application'],
+          ]
+        },
+      ],
+      '/docs/v3/': [
+        {
+          title: 'Getting Started',
+          collapsable: false,
+          children: [
+            ['/docs/v3/', 'First Steps'],
+            //['philosophy', 'Philosophy'],
+            ['project-structure', 'Project Structure']
+          ]
+        },
+        {
+          title: 'Fundamentals',
+          collapsable: false,
+          children: [
+            ['/docs/v3/values', 'Values'],
+            ['/docs/v3/entities', 'Entities'],
+            ['/docs/v3/aggregates', 'Aggregates'],
+            ['/docs/v3/factories', 'Factories'],
+            ['/docs/v3/repositories', 'Repositories'],
+            ['/docs/v3/services', 'Services'],
+            ['/docs/v3/events', 'Events'],
+            ['/docs/v3/modules', 'Modules'],
+            ['/docs/v3/dtos', 'Data Transfer Objects'],
+            ['/docs/v3/specifications', 'Specifications'],
+            ['/docs/v3/api', 'Api']
+          ]
+        },
+        {
+          title: 'Deployment',
+          collapsable: false,
+          children: [
+            ['/docs/v3/building-your-application', 'Building Your Application'],
+            ['/docs/v3/using-your-application', 'Using Your Application'],
           ]
         },
       ],

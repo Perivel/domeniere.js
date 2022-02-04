@@ -10,7 +10,7 @@ This will create a new class file in the `data` subdirectory of the specified mo
 
 Below is an example of what a `UserLogin` Data Transfer Object.
 ```ts
-import { Data } from '@domeniere/dto';
+import { Data } from '@domeniere/framework';
 
 export class UserLoginData extends Data {
 
@@ -29,7 +29,7 @@ At its most basic form, the only method we nned to override when creating our ow
 
 Now, we are free to define our data object however way we want.
 ```ts
-import { Data } from '@domeniere/dto';
+import { Data } from '@domeniere/framework';
 
 export class UserLoginData extends Data {
 

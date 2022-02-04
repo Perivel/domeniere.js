@@ -12,7 +12,7 @@ This command will create a factory within the `factories` subdirectory of the mo
 
 Below is an example of what a basic `UserFactory` would look like.
 ```ts
-import { AbstractFactory } from '@domeniere/factory';
+import { AbstractFactory } from '@domeniere/framework';
 import { User } from './../../entities/entities.well';
 import { UserRegistration } from './../../values/values.well';
 
