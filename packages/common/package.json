@@ -1,6 +1,6 @@
 {
   "name": "@domeniere/common",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Common decorators and utilities for DomeniereJS applications.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
