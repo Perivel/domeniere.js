@@ -1,8 +1,17 @@
 import { Api, DomainEvent, ModuleReference } from '@domeniere/framework';
-import { ModuleRef, OnError } from '@domeniere/common';
+import { ModuleRef, On, OnError } from '@domeniere/common';
 import { SimpleChatEventStore } from './simple-chat.eventstore';
 import ConversationModule from './conversation/conversation.module';
-import AccountModule from './account/account.module';
+import AccountModule, { 
+    AccountCreated,
+    AccountRegistrationData,
+    AccountRegistrationFactory,
+    AccountRepository,
+    AgeSpecification,
+    CreateAccountCommand,
+    TagSpecification,
+    UsernameSpecification,
+} from './account/account.module';
 
 
 export class SimpleChatApi extends Api {
@@ -13,16 +22,40 @@ export class SimpleChatApi extends Api {
     @ModuleRef('conversation')
     private readonly conversationModule!: ModuleReference;
 
-    constructor(eventStore: SimpleChatEventStore) {
+    constructor(
+        accountsRepository: AccountRepository,
+        eventStore: SimpleChatEventStore
+    ) {
         super('simple-chat', eventStore);
         const accountsModule = new AccountModule();
+        accountsModule.registerRepositoryInstance(AccountRepository, accountsRepository);
         this.registerModule(accountsModule);
         const conversationModule = new ConversationModule();
         this.registerModule(conversationModule);
     }
 
-    public async createUser(): Promise<void> {
-        //
+    public async createUser(registrationData: AccountRegistrationData): Promise<void> {
+        const registration = this.accountsModule
+            .get(AccountRegistrationFactory)
+            .createFromDto(registrationData);
+
+        // verify
+        const nameSpec = new UsernameSpecification();
+        const tagSpec = new TagSpecification();
+        const ageSpec = new AgeSpecification();
+        const validRegistration = nameSpec
+            .and(tagSpec)
+            .and(ageSpec)
+            .isSatisfiedBy(registration);
+        
+        if (!validRegistration) {
+            throw new Error('Invalid registration.');
+        }
+
+        // create account.
+        await this.accountsModule
+            .get(CreateAccountCommand)
+            .execute(registration);
     }
 
     public async createConversation(): Promise<void> {
@@ -44,5 +77,10 @@ export class SimpleChatApi extends Api {
     @OnError()
     public async handleError(event: DomainEvent): Promise<void> {
         console.log(event.toString());
+    }
+
+    @On(AccountCreated, { label: "account-registered"})
+    public async announceRegistration(event: AccountCreated): Promise<void> {
+        console.log(`${event.account().username()} has created an account successfully.`);
     }
 }
