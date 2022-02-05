@@ -1,16 +1,16 @@
 {
   "name": "simple-chat",
   "version": "1.0.0",
-  "description": "A Domeniere project",
+  "description": "An example project to illustrate the structure of a Domeniere library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "",
-  "author": "",
+  "author": "Patrick Luy <pluy@perivel.com>",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "@domeniere/framework": "^3.0.1",
-    "@domeniere/common": "^3.0.2"
+    "@domeniere/common": "^3.0.3"
   },
   "scripts": {
     "build": "tsc"

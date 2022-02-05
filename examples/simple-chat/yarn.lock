@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@domeniere/common@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@domeniere/common/-/common-3.0.2.tgz#1cfea6c8cfb6dc8192e95b5444a89f9a1ad67bea"
-  integrity sha512-UMbvi5iplagC8lt9F5GWfh8u7k/f3vvZ7oOcwRXeGa/i6y9KGm2y6gZAX3kEyOWr9LhWvlA5SZrYL9KKDVgJHw==
+"@domeniere/common@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@domeniere/common/-/common-3.0.3.tgz#476fab87e74162289551ad7230c196b55ede0f3f"
+  integrity sha512-CMxzn/WJ69AFZ9BtVkKKB6UjIVn4aO7HBrtKVUE4GPASnQYfj7PNi8H/+CHvD1lkWCHdtwrNAJZ1BKaoTFGZGg==
   dependencies:
     "@domeniere/framework" "^3.0.1"
     "@swindle/core" "^2.1.1"
@@ -556,9 +556,9 @@ set-blocking@^2.0.0:
   integrity sha1-BF+XgtARrppoA93TgrJDkrPYkPc=
 
 signal-exit@^3.0.0:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.6.tgz#24e630c4b0f03fea446a2bd299e62b4a6ca8d0af"
-  integrity sha512-sDl4qMFpijcGw22U5w63KmD3cZJfBuFlVNbVMKje2keoKML7X2UzWbc4XrmEbDwg0NXJc3yv4/ox7b+JWb57kQ==
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.7.tgz#a9a1767f8af84155114eaabd73f99273c8f59ad9"
+  integrity sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==
 
 snake-case@^3.0.4:
   version "3.0.4"

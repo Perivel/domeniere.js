@@ -1,5 +1,5 @@
 {
     "name": "simple-chat",
-    "description": "A Domeniere project",
+    "description": "An example project to illustrate the structure of a Domeniere library",
     "package_manager": "yarn"
 }
