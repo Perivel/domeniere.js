@@ -13,3 +13,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // exceptions well
 __exportStar(require("./user-id.exception"), exports);
 __exportStar(require("./tag.exception"), exports);
+__exportStar(require("./account-not-found.exception"), exports);

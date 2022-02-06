@@ -4,11 +4,16 @@ import { SimpleChatEventStore } from './simple-chat.eventstore';
 import ConversationModule from './conversation/conversation.module';
 import AccountModule, { 
     AccountCreated,
+    AccountData,
+    AccountDataFactory,
     AccountRegistrationData,
     AccountRegistrationFactory,
     AccountRepository,
     AgeSpecification,
     CreateAccountCommand,
+    GetAccountByTagQuery,
+    Tag,
+    TagData,
     TagSpecification,
     UsernameSpecification,
 } from './account/account.module';
@@ -35,11 +40,12 @@ export class SimpleChatApi extends Api {
     }
 
     public async createUser(registrationData: AccountRegistrationData): Promise<void> {
+        // convert the DTO to a Domain Object.
         const registration = this.accountsModule
             .get(AccountRegistrationFactory)
             .createFromDto(registrationData);
 
-        // verify
+        // verify the registration meets our requirements.
         const nameSpec = new UsernameSpecification();
         const tagSpec = new TagSpecification();
         const ageSpec = new AgeSpecification();
@@ -59,19 +65,30 @@ export class SimpleChatApi extends Api {
     }
 
     public async createConversation(): Promise<void> {
-
+        //
     }
 
-    public async getUserByTag(): Promise<void> {
+    public async getAccountByTag(tag: TagData): Promise<AccountData> {
+        // covert the dto to a domain object.
+        const tagObj = new Tag(tag.tag);
 
+        // get the account using the tag.
+        const account = await this.accountsModule
+            .get(GetAccountByTagQuery)
+            .execute(tagObj);
+        
+        // convert to an account data instance, and return it.
+        return this.accountsModule
+            .get(AccountDataFactory)
+            .createFromAccountObject(account);
     }
 
     public async getConversationById(): Promise<any> {
-
+        //
     }
 
     public async sendMessage(): Promise<void> {
-
+        //
     }
 
     @OnError()

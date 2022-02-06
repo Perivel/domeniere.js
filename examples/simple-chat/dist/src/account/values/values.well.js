@@ -17,3 +17,5 @@ __exportStar(require("./tag/tag.interface"), exports);
 __exportStar(require("./tag/tag"), exports);
 __exportStar(require("./username/username.interface"), exports);
 __exportStar(require("./username/username"), exports);
+__exportStar(require("./account-registration/account-registration.interface"), exports);
+__exportStar(require("./account-registration/account-registration"), exports);

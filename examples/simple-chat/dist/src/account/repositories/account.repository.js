@@ -3,6 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountRepository = void 0;
 const framework_1 = require("@domeniere/framework");
 const values_well_1 = require("../values/values.well");
+/**
+ * AccountRepository
+ *
+ * The accounts repository.
+ */
 class AccountRepository extends framework_1.IdentityGeneratingRepository {
     constructor() {
         super();

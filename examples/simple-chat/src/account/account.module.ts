@@ -1,7 +1,7 @@
 import { Module } from '@domeniere/framework';
-import { AccountFactory, AccountRegistrationFactory } from './factories/factories.well';
+import { AccountDataFactory, AccountFactory, AccountRegistrationFactory } from './factories/factories.well';
 import { AccountRepository } from './repositories/repositories.well';
-import { CreateAccountCommand } from './services/services.well';
+import { CreateAccountCommand, GetAccountByTagQuery } from './services/services.well';
 
 
 export default class AccountModule extends Module {
@@ -11,6 +11,7 @@ export default class AccountModule extends Module {
 
     protected createdBindings() {
         // register module bindings here.
+        this.bindFactory(AccountDataFactory, _ => new AccountDataFactory());
         this.bindFactory(AccountRegistrationFactory, _ => new AccountRegistrationFactory());
         this.bindFactory(AccountFactory, _ => new AccountFactory());
         this.bindRepository(AccountRepository);
@@ -19,6 +20,9 @@ export default class AccountModule extends Module {
                 module.get(AccountFactory),
                 module.get(AccountRepository)
             );
+        });
+        this.bindService(GetAccountByTagQuery, module => {
+            return new GetAccountByTagQuery(module.get(AccountRepository));
         });
     }
 }
