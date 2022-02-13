@@ -1,0 +1,36 @@
+{
+  "name": "@domeniere/transmitter",
+  "version": "1.0.0",
+  "description": "In-memory event bus for sharing events between Domeniere libraries.",
+  "keywords": [
+    "ddd",
+    "domain driven design",
+    "domenierejs",
+    "domeniere",
+    "event bus"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/Perivel/domeniere",
+  "author": "Patrick Luy <pluy@perivel.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "yarn clean && tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "inspect:circular": "npx madge --circular --extensions ts ./",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "clean": "rimraf ./dist"
+  },
+  "dependencies": {
+    "@swindle/core": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.4.4",
+    "rimraf": "^3.0.2"
+  }
+}

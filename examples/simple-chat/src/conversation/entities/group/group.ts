@@ -19,8 +19,7 @@ export class Group extends Entity implements GroupInterface {
     constructor(id: ConversationId, host: Account, members: MemberList) {
         super(id);
         this._host = host;
-        this._members = members;
-        this._members.add(host);
+        this._members = members.add(host);
     }
 
     public containsMember(member: Account): boolean {

@@ -19,7 +19,7 @@ export class Conversation extends TimestampedAggregate implements ConversationIn
 
     constructor(
         root: Group,
-        messages: Message[],
+        messages: Message[] = [],
         version: number|undefined = 1.0, 
         createdOn: DateTime = DateTime.Now(), 
         updatedOn: DateTime = DateTime.Now(), 
@@ -35,8 +35,13 @@ export class Conversation extends TimestampedAggregate implements ConversationIn
     }
 
     public addMessage(message: Message): void {
-        this._messages = [...this._messages, message];
-        this.commitStateChanges();
+        if (this.root().containsMember(message.author())) {
+            this._messages = [...this._messages, message];
+            this.commitStateChanges();
+        }
+        else {
+            throw new Error("Cannot post message to this conversation.");
+        }
     }
 
     public equals(suspect: any): boolean {

@@ -1,7 +1,9 @@
 import { Api, DomainEvent, ModuleReference } from '@domeniere/framework';
 import { ModuleRef, On, OnError } from '@domeniere/common';
 import { SimpleChatEventStore } from './simple-chat.eventstore';
-import ConversationModule from './conversation/conversation.module';
+import ConversationModule, { 
+    ConversationRepository, 
+} from './conversation/conversation.module';
 import AccountModule, { 
     AccountCreated,
     AccountData,
@@ -29,13 +31,16 @@ export class SimpleChatApi extends Api {
 
     constructor(
         accountsRepository: AccountRepository,
+        conversationRepository: ConversationRepository,
         eventStore: SimpleChatEventStore
     ) {
         super('simple-chat', eventStore);
         const accountsModule = new AccountModule();
         accountsModule.registerRepositoryInstance(AccountRepository, accountsRepository);
         this.registerModule(accountsModule);
+        
         const conversationModule = new ConversationModule();
+        conversationModule.registerRepositoryInstance(ConversationRepository, conversationRepository);
         this.registerModule(conversationModule);
     }
 
@@ -65,7 +70,7 @@ export class SimpleChatApi extends Api {
     }
 
     public async createConversation(): Promise<void> {
-        //
+        
     }
 
     public async getAccountByTag(tag: TagData): Promise<AccountData> {
